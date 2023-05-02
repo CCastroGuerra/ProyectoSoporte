@@ -3,7 +3,7 @@ include('../templates/cabecera.php');
 ?>
 
 
-<!-- Modal Roles -->
+<!-- Modal bajas -->
 <div class="modal fade" id="bajasModal" tabindex="-1" aria-labelledby="rolesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -49,7 +49,7 @@ include('../templates/cabecera.php');
         </div>
     </div>
 </div>
-<!-- /*Fin del modal roles*/ -->
+<!-- /*Fin del modal bajas*/ -->
 
 <!--Contenido-->
 <div class="col-md-12 col-lg-12 ">
@@ -57,7 +57,11 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">Lista Bajas <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal"><strong>Añadir</strong></button></h3>
+                    <h3 class="card-title mb-4">
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-6">Lista Bajas </div>
+                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal"><strong>Añadir</strong></button></div>
+                        </div></h3>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar Área" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarRoles" id="txtBuscarRoles">
                     </div>
