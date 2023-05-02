@@ -17,6 +17,10 @@ include('../templates/cabecera.php');
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <div class="visually-hidden">
+                                        <label class="control-label">Código</label>
+                                        <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
+                                    </div>
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                     <input type="text" class="form-control mb-2" id="nombreArea" name="nombreArea" placeholder="Ingrese Nombre">
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
@@ -55,7 +59,7 @@ include('../templates/cabecera.php');
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista Productos </div>
                             <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#productosModal"><strong>Añadir</strong></button></div>
-                        </div>                        
+                        </div>
                     </h3>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar producto" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">

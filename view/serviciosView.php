@@ -11,11 +11,15 @@ include('../templates/cabecera.php');
         <h5 class="modal-title" id="exampleModalLabel">Editar Servicio</h5>
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form id="formServicio">        
-      <div class="modal-body">
-        <div class="card">
-          <div class="card-body">
+      <form id="formServicio">
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
               <div class="form-group">
+                <div class="visually-hidden">
+                  <label class="control-label">Código</label>
+                  <input type="text" class="form-control" id="inputCodigo" placeholder="Código">
+                </div>
                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                 <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese Servicio">
                 <div id="alerta"></div>
