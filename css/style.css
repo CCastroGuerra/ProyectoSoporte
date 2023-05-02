@@ -72,7 +72,7 @@
   --cui-border-radius-2xl: 2rem;
   --cui-border-radius-pill: 50rem;
   --cui-heading-color: unset;
-  --cui-link-color: #321fdb;
+  --cui-link-color: unset;
   --cui-link-hover-color: #2819af;
   --cui-code-color: #d63384;
   --cui-highlight-bg: #fff3cd;
