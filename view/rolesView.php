@@ -11,20 +11,24 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="exampleModalLabel">Editar Roles</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form>
+            <form id="formRoles">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="mb-2">DNI:</label>
-                        <div id="nombreEmpleado"></div>
-                        <input type="text" class="form-control mb-2" id="nombreRoles" name="nombreRoles" placeholder="Ingrese DNI">
-                        <label for="exampleInputEmail1" class="mb-2">Rol:</label>
-                        <select class="form-select" aria-label="Roles">
-                            <option selected>Seleccione el rol</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Técnico</option>
-                            <option value="3">Secretaria</option>
-                        </select>
-                        <div id="alerta"></div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="mb-2">DNI:</label>
+                                <div id="nombreEmpleado"></div>
+                                <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI">
+                                <label for="exampleInputEmail1" class="mb-2">Rol:</label>
+                                <select class="form-select" aria-label="Roles">
+                                    <option selected>Seleccione el rol</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Técnico</option>
+                                    <option value="3">Secretaria</option>
+                                </select>
+                                <div id="alerta"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -44,9 +48,16 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">Lista Roles <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><strong>Añadir</strong></button></h3>
+                    <h3 class="card-title mb-4">
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-6">Asignación de Roles </div>
+                            <div class="col-lg-2 col-sm-4 text-end">
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><strong>Añadir</strong></button>
+                            </div>
+                        </div>
+                    </h3>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar Área" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarRoles" id="txtBuscarRoles">
+                        <input type="text" class="form-control" placeholder="Buscar Rol" aria-label="txtRol" aria-describedby="button-addon2" name="txtBuscarRoles" id="txtBuscarRoles">
                     </div>
 
                 </div>

@@ -9,31 +9,37 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="exampleModalLabel">Añadir Personal</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="frmEmpleados">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="mb-2">Apellidos:</label>
-                        <input type="text" class="form-control form-control-sm mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
-                        <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                        <input type="text" class="form-control  form-control-sm mb-2" id="marca" name="marca" placeholder="Ingrese marca">
-                        <label for="exampleInputEmail1" class="mb-2">Cargo:</label>
-                        <select class="form-select form-select-sm" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">Impresora</option>
-                            <option value="2">Laptop</option>
-                            <option value="3">Todo en uno</option>
-                        </select>
-                        <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
-                        <input type="text" class="form-control  form-control-sm mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
-                        <label for="exampleInputEmail1" class="mb-2">Contraseña:</label>
-                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+
+            <form id="frmEmpleados">
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="mb-2">Apellidos:</label>
+                                <input type="text" class="form-control form-control-sm mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
+                                <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
+                                <input type="text" class="form-control  form-control-sm mb-2" id="marca" name="marca" placeholder="Ingrese marca">
+                                <label for="exampleInputEmail1" class="mb-2">Cargo:</label>
+                                <select class="form-select form-select-sm" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Impresora</option>
+                                    <option value="2">Laptop</option>
+                                    <option value="3">Todo en uno</option>
+                                </select>
+                                <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
+                                <input type="text" class="form-control  form-control-sm mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
+                                <label for="exampleInputEmail1" class="mb-2">Contraseña:</label>
+                                <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -97,7 +103,9 @@ include('../templates/cabecera.php');
                                 <td>Cristian</td>
                                 <td>Practicante</td>
                                 <td>CrisVieraB</td>
-                                <td><form><input type="password" id="contra-01" value="contraseña" size=11 disabled autocomplete="on"></form></td>
+                                <td>
+                                    <form><input type="password" id="contra-01" value="contraseña" size=11 disabled autocomplete="on"></form>
+                                </td>
                                 <td><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text');} else{x.setAttribute('type','password');}">DEL</a></td>
                             </tr>
 
