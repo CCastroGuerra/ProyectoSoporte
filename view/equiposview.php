@@ -207,32 +207,12 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">
+                    <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-6">Lista de Equipos </div>
+                            <div class="col-lg-10 col-sm-4">Lista de Equipos </div>
                             <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><strong>Añadir</strong></button></div>
                         </div>
-                    </h3>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon1">Marca</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon1" name="txtBuscarMarca" id="txtBuscarMarca">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon2">Área</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon1">Margesi</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                            </div>
-                        </div>
-                    </div>
+                    </h3>                    
                 </div>
             </div>
         </div>

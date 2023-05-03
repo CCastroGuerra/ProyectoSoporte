@@ -76,7 +76,7 @@
         language: {
           decimal: ".",
           emptyTable: "No hay datos disponibles en esta tabla",
-          info: "Mostrando _START_ a _END_ de _TOTAL_",
+          info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
           infoEmpty: "Mostrando 0 de 0 de 0 entradas",
           infoFiltered: "(Filtrado de _MAX_ total entradas)",
           "infoPostFix": "",
@@ -103,8 +103,9 @@
         lengthChange: false,
         search:false,
         searching: false,
+        paging:false,
         language: {
-            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json"
         },
 
       });
