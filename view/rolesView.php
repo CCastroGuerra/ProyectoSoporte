@@ -66,20 +66,28 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"><strong>#</strong></th>
-                                <th scope="col"><strong>Nombre</strong></th>
-                                <th scope="col"><strong>Apellidos</strong></th>
-                                <th scope="col"><strong>Rol</strong></th>
-                                <th scope="col"><strong>Opciones</strong></th>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Apellidos</strong></th>
+                                    <th scope="col"><strong>Rol</strong></th>
+                                    <th scope="col"><strong>Opciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbRoles">
+                                <tr>
+                                <td>01</td>
+                                <td>Nombre 1</td>
+                                <td>Apellidos 1</td>
+                                <td>Rol 1</td>
+                                <td>[] [] []</td>
                             </tr>
-                        </thead>
-                        <tbody id="tbRoles">
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

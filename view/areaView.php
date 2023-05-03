@@ -64,7 +64,8 @@ include('../templates/cabecera.php');
     <div class="col-xs-1-12">
       <div class="card">
         <div class="card-body">
-          <table class="table">
+          <!-- tabla area -->
+          <table class="table" id="myTable">
             <thead>
               <tr>
                 <th scope="col"><strong>#</strong></th>
@@ -76,6 +77,7 @@ include('../templates/cabecera.php');
 
             </tbody>
           </table>
+          <!-- /tabla area -->
         </div>
       </div>
     </div>

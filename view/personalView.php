@@ -74,47 +74,48 @@ include('../templates/cabecera.php');
                                 <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
                             </div>
                         </div>
-                        <div class="col-md-3">
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-xs-1-12">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"><strong>#</strong></th>
-                                <th scope="col"><strong>Apellidos</strong></th>
-                                <th scope="col"><strong>Nombre</strong></th>
-                                <th scope="col"><strong>Cargo</strong></th>
-                                <th scope="col"><strong>Usuario</strong></th>
-                                <th scope="col"><strong>Contraseña</strong></th>
-                                <th scope='col'><strong>Acciones</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbEquipos">
-                            <tr>
-                                <td><a href="#" id="href" data-coreui-toggle="modal" data-coreui-target="#ModalName">01</a></td>
-                                <td>Viera Burneo</td>
-                                <td>Cristian</td>
-                                <td>Practicante</td>
-                                <td>CrisVieraB</td>
-                                <td>
-                                    <form><input type="password" id="contra-01" value="contraseña" size=11 disabled autocomplete="on"></form>
-                                </td>
-                                <td><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text');} else{x.setAttribute('type','password');}">DEL</a></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong>Apellidos</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Cargo</strong></th>
+                                    <th scope="col"><strong>Usuario</strong></th>
+                                    <th scope="col"><strong>Contraseña</strong></th>
+                                    <th scope='col'><strong>Acciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbEquipos">
+                                <tr>
+                                    <td scope="col">01</td>
+                                    <td scope="col">Viera Burneo</td>
+                                    <td scope="col">Cristian</td>
+                                    <td scope="col">Practicante</td>
+                                    <td scope="col">CrisVieraB</td>
+                                    <td scope="col">
+                                        <form><input type="password" id="contra-01" value="contraseña" size=7 disabled autocomplete="on"></form>
+                                    </td>
+                                    <td scope="col"><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text')} else{x.setAttribute('type','password');}">DEL</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 </div>
 
 
