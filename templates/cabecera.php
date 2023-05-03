@@ -47,6 +47,9 @@
   <!-- We use those styles to show code examples, you should remove them in your application.-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
   <link href="../css/examples.css" rel="stylesheet">
+  <!-- Datables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
   <script>
@@ -61,6 +64,9 @@
     // Bootstrap ID
     gtag('config', 'UA-118965717-5');
   </script>
+
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.js"></script>
   <!-- <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet"> -->
 </head>
 
@@ -198,8 +204,8 @@
             <use xlink:href="../assets/brand/coreui.svg#full"></use>
           </svg></a>
         <ul class="header-nav d-none d-md-flex">
-          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/dashboardView.php">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Users</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
         </ul>
         <ul class="header-nav ms-auto">
