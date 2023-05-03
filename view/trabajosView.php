@@ -84,7 +84,7 @@ include('../templates/cabecera.php');
                                 <div class="col-xs-1-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title mb-4">
+                                            <h5 class="card-title mb-auto">
                                                 <div class="row">
                                                     <div class="col-lg-10 col-sm-4">Servicios Aplicados </div>
                                                     <div class="col-lg-2 col-sm-4 text-end">
@@ -97,22 +97,24 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="col-xs-1-12">
                                     <div class="card">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col"><strong>#</strong></th>
-                                                        <th scope="col"><strong>Servicio</strong></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbEquipos">
-                                                    <tr>
-                                                        <td>01</td>
-                                                        <td>formateo</td>
-                                                    </tr>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table" id="tableModal">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col"><strong>#</strong></th>
+                                                            <th scope="col"><strong>Servicio</strong></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbEquipos">
+                                                        <tr>
+                                                            <td>01</td>
+                                                            <td>formateo</td>
+                                                        </tr>
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +179,7 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">
+                    <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista Trabajos
                             </div>
@@ -186,10 +188,6 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                     </h3>
-
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar Área" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                    </div>
 
                 </div>
             </div>
@@ -230,7 +228,7 @@ include('../templates/cabecera.php');
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 <!--/contenido ventana -->

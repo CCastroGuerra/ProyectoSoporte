@@ -89,23 +89,31 @@
           paginate: {
             first: "Primero",
             last: "Ultimo",
-            next: "Siguiente",
-            previous: "Anterior"
+            next: ">",
+            previous: "<"
           },
           search: "_INPUT_",
           searchPlaceholder: "Buscar..."
-        }
+        },
+        pagingType: "full_numbers",
+        pagingTag: "button",
+        "columnDefs": [{
+          "targets": [-1],
+
+          "searchable": false,
+
+        }]
       });
 
       $("#tableModal").DataTable({
-        destroy:true,
+        destroy: true,
         lengthMenu: false,
         lengthChange: false,
-        search:false,
+        search: false,
         searching: false,
-        paging:false,
+        paging: false,
         language: {
-            url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json"
+          url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json"
         },
 
       });

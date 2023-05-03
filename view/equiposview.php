@@ -65,7 +65,7 @@ include('../templates/cabecera.php');
                                 <div class="col-xs-1-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title mb-4">
+                                            <h3 class="card-title mb-auto">
                                                 <div class="row">
                                                     <div class="col-lg-10 col-sm-6">Lista de componentes </div>
                                                     <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><strong>Añadir</strong></button></div>

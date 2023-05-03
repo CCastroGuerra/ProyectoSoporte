@@ -46,7 +46,7 @@ include('../templates/cabecera.php');
     <div class="col-xs-1-12">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title mb-4">
+          <h3 class="card-title mb-auto">
             <div class="row">
               <div class="col-lg-10 col-sm-6">Lista de Áreas </div>
               <div class="col-lg-2 col-sm-4 text-end">
@@ -54,9 +54,6 @@ include('../templates/cabecera.php');
               </div>
             </div>
           </h3>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Buscar Área" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-          </div>
 
         </div>
       </div>
@@ -74,7 +71,66 @@ include('../templates/cabecera.php');
               </tr>
             </thead>
             <tbody id="tbArea">
-
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Nombre 1</td>
+                <td>[] [] []</td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Apellid 1</td>
+                <td>[] [] []</td>
+              </tr>
             </tbody>
           </table>
           <!-- /tabla area -->

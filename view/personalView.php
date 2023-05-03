@@ -51,7 +51,7 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">
+                    <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista del Personal </div>
                             <div class="col-lg-2 col-sm-5 text-end">
@@ -61,20 +61,6 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                     </h3>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon1" name="txtBuscarMarca" id="txtBuscarMarca">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon2">Apellidos</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
