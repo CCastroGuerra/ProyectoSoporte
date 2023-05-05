@@ -18,7 +18,7 @@ include('../templates/cabecera.php');
             <div class="card-body">
               <div class="form-group">
                 <div class="visually-hidden" >
-                  <label class="control-label">Código</label>
+                  <label class="control-label">Códgigo</label>
                   <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
                 </div>
                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
