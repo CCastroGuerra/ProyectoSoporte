@@ -1,74 +1,75 @@
 <?php
 class Area extends Conectar{
-    public function traerAreas(){
-        $conectar = parent::conexion();
-        $sql = "SELECT * FROM area WHERE esActivo =1";
-        $sql = $conectar ->prepare($sql);
-        $sql->execute();
-        $resultado = $sql->fetchAll();
-        if(empty($resultado)){
-            $resultado = array('listado'=>'vacio');
-            $jsonString = json_encode($resultado);
-            echo $jsonString;
-         }else{
-             $json =array();
-             $listado = array();
-             foreach($resultado as $row) {
-                 $listado[]=array(
-                     'id_area' => $row['id_area'],
-                     'nombre_area' => $row['nombre_area']
-                 );
-             }
-             $jsonString = json_encode($listado);
-             echo $jsonString;
-         
-         }
-    }
-    public function traerAreaXId($id){
-        $conectar = parent::conexion();
-        $sql = "SELECT * FROM area WHERE id_area = ?";
-        $sql = $conectar ->prepare($sql);
-        $sql -> bindValue(1, $id);
-        $sql->execute();
-        return $resultado = $sql->fetchAll();
-    }
-    public function eliminarArea($id){
-            if (isset($_POST["id"])) {
-                $id = $_POST["id"];
-                // Resto del código para eliminar la tarea
-                $conectar = parent::conexion();
-                $sql = "UPDATE area SET esActivo = 0 WHERE id_area = ?";
-                $sql = $conectar ->prepare($sql);
-                $sql -> bindValue(1, $id);
-                $sql->execute();
-                return $resultado = $sql->fetchAll();
-            } else {
-                echo "El parámetro 'id' no ha sido enviado";
-            }
-     }
-        
-        
-       
+    public function listarArea(){
+        global $conect;
+        $sql="SELECT * FROM `area`";
+        $fila=$conect->prepare($sql);
+        $fila->execute();
     
-    public function registrarArea($nombre){
-        $conectar = parent::conexion();
-        $sql = "INSERT INTO `area`(`id_area`, `nombre_area`,  `esActivo`) VALUES (NULL,?,1)";
-        $sql = $conectar ->prepare($sql);
-        $sql -> bindValue(1, $nombre);
-        $sql->execute();
-        return $resultado = $sql->fetchAll();
+        $resultado = $fila->fetchAll();
+        if(empty($resultado)){
+           $resultado = array('listado'=>'vacio');
+           $jsonString = json_encode($resultado);
+           echo $jsonString;
+        }else{
+            $json =array();
+            $listado = array();
+            foreach($resultado as $row) {
+                $listado[]=array(
+                    'id' => $row['id_area'],
+                    'nombre' => $row['nombre_area']
+                );
+            }
+            $jsonString = json_encode($listado);
+            echo $jsonString;
+        }
     }
-    public function actualizarArea($id, $nombre) {
-        try {
-            $conectar = parent::conexion();
-            $sql = "UPDATE area SET nombre_area = ? WHERE id_area = ?";
-            $sql = $conectar->prepare($sql);
-            $sql->bindValue(1, $nombre);
-            $sql->bindValue(2, $id);
-            $sql->execute();
-            return $resultado = $sql->fetchAll();
-        } catch (PDOException $e) {
-            throw new Exception("Error al actualizar la tarea: " . $e->getMessage());
+    function agregarArea($nombreArea){
+        global $conect;
+        $sql = "INSERT INTO `area`(`nombre_area`) VALUES ('$nombreArea')";
+        $fila=$conect->prepare($sql);
+        if($fila->execute()){
+            echo '1';
+        }else{
+            echo '0';
+        }
+    }
+
+    function buscarArea($filtro, $pagina = 1, $cantidadPagina =5){
+        global $conect;
+        $inicio = ($pagina -1) * $cantidadPagina;
+        $sql="SELECT * FROM `area`   $filtro  order by id_area limit $inicio,$cantidadPagina";
+        //echo $sql;
+        $fila=$conect->prepare($sql);
+        $fila->execute();
+    
+        $resultado = $fila->fetchAll();
+        
+        $fila->closeCursor();
+        if(empty($resultado)){
+           $resultado = array('listado'=>'vacio');
+           $jsonString = json_encode($resultado);
+           echo $jsonString;
+        }else{
+            $json =array();
+            $listado = array();
+            foreach($resultado as $row) {
+                $listado[]=array(
+                    'id' => $row['id_area'],
+                    'nombre' => $row['nombre_area']
+                );
+            }
+            $sqlNroFilas  = "SELECT count(id_area) as cantidad FROM `area`   $filtro";
+        
+            $fila2 = $conect-> prepare($sqlNroFilas);
+            $fila2->execute();
+    
+            $array = $fila2->fetch(PDO::FETCH_LAZY);
+            $paginas = ceil($array['cantidad'] / $cantidadPagina);
+            $json = array('listado' => $listado,'paginas' => $paginas, 'pagina' => $pagina,'total' => $array['cantidad']);
+            $jsonString = json_encode($json);
+            echo $jsonString;
+        
         }
     }
 }
