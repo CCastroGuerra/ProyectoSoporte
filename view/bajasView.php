@@ -81,7 +81,7 @@ include('../templates/cabecera.php');
                                             <option value="10">10</option>
                                             <option value="15">15</option>
                                         </select>
-                                        Entradas</label>
+                                        Entradasss</label>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-sm-4 text-end">
