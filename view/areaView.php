@@ -3,12 +3,14 @@ include('../templates/cabecera.php');
 ?>
 
 
+
+
 <!-- Modal Area -->
 <div class="modal fade" id="areaModal" tabindex="-1" aria-labelledby="areaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Área</h5>
+        <h5 class="modal-title" id="tituloModal">Guardar Área</h5>
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
       <form id="formArea">
@@ -17,12 +19,12 @@ include('../templates/cabecera.php');
           <div class="card">
             <div class="card-body">
               <div class="form-group">
-                <div class="visually-hidden" >
-                  <label class="control-label">Código</label>
-                  <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
+                <div class="">
+                  <!-- <label class="control-label">Código</label> -->
+                  <input type="hidden" id="id_area" name="id_area">
                 </div>
                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                <input type="text" class="form-control mb-2" id="nombreArea" name="nombreArea" placeholder="Ingrese área">
+                <input type="text" class="form-control mb-2" id="nombre_area" name="nombre_area" placeholder="Ingrese área">
                 <div id="alerta"></div>
               </div>
             </div>
@@ -31,7 +33,7 @@ include('../templates/cabecera.php');
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
         </div>
       </form>
@@ -39,7 +41,8 @@ include('../templates/cabecera.php');
   </div>
 </div>
 <!-- /*Fin del modal area*/ -->
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 <!--Contenido-->
 <div class="col-md-12 col-lg-12 ">
   <div class="row ">
@@ -62,76 +65,20 @@ include('../templates/cabecera.php');
       <div class="card">
         <div class="card-body">
           <!-- tabla area -->
-          <table class="table" id="myTable">
+          <table class="table" id="tablaAreas">
             <thead>
               <tr>
                 <th scope="col"><strong>#</strong></th>
                 <th scope="col"><strong>Nombre</strong></th>
-                <th scope="col"><strong>Opciones</strong></th>
+                <th scope="col"><strong></strong></th>
+                <th scope="col"><strong></strong></th>
+                <th scope="col"><strong></strong></th>
+
               </tr>
+              <tbody>
+
+              </tbody>
             </thead>
-            <tbody id="tbArea">
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Nombre 1</td>
-                <td>[] [] []</td>
-              </tr>
-              <tr>
-                <td>#</td>
-                <td>Apellid 1</td>
-                <td>[] [] []</td>
-              </tr>
-            </tbody>
           </table>
           <!-- /tabla area -->
         </div>
@@ -141,8 +88,12 @@ include('../templates/cabecera.php');
 </div>
 
 <!--/Contenido-->
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="../js/areaAjax.js"></script>
+
 <?php
 include '../templates/footer.php';
 ?>

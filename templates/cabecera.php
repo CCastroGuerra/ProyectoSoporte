@@ -48,7 +48,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
   <link href="../css/examples.css" rel="stylesheet">
   <!-- Datables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
 
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -65,45 +65,45 @@
     gtag('config', 'UA-118965717-5');
   </script>
 
-  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-  <script src="https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.js"></script>
+  <script src="https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.js"></script> -->
   <!-- prueba script datatables -->
-  <script>
+  <!-- <script>
     $(document).ready(function() {
-      $("Table").DataTable({
-        language: {
-          decimal: ".",
-          emptyTable: "No hay datos disponibles en esta tabla",
-          info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-          infoEmpty: "Mostrando 0 de 0 de 0 entradas",
-          infoFiltered: "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          thousands: ",",
-          lengthMenu: "Mostrar _MENU_ Entradas",
-          loadingRecords: "Cargando...",
-          processing: "Procesando...",
-          search: "Buscar:",
-          zeroRecords: "Sin resultados encontrados",
-          paginate: {
-            first: "Primero",
-            last: "Ultimo",
-            next: ">",
-            previous: "<"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Buscar..."
-        },
-        pagingType: "full_numbers",
-        pagingTag: "button",
-        "columnDefs": [{
+       $("Table").DataTable({
+         language: {
+           decimal: ".",
+           emptyTable: "No hay datos disponibles en esta tabla",
+           info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+           infoEmpty: "Mostrando 0 de 0 de 0 entradas",
+           infoFiltered: "(Filtrado de _MAX_ total entradas)",
+           "infoPostFix": "",
+           thousands: ",",
+           lengthMenu: "Mostrar _MENU_ Entradas",
+           loadingRecords: "Cargando...",
+           processing: "Procesando...",
+           search: "Buscar:",
+           zeroRecords: "Sin resultados encontrados",
+           paginate: {
+             first: "Primero",
+             last: "Ultimo",
+             next: ">",
+             previous: "<"
+           },
+           search: "_INPUT_",
+           searchPlaceholder: "Buscar..."
+         },
+         pagingType: "full_numbers",
+         pagingTag: "button",
+       "columnDefs": [{
           "targets": [-1],
 
-          "searchable": false,
+      "searchable": false,
 
         }]
-      });
+       });
 
       $("#tableModal").DataTable({
         destroy: true,
@@ -119,7 +119,7 @@
       });
 
     });
-  </script>
+  </script>  -->
 
   <!-- <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet"> -->
 </head>
