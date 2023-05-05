@@ -72,7 +72,7 @@ include('../templates/cabecera.php');
           <div class="row mb-auto">
             <div class="col-lg-10 col-sm-4">
               <div class="table-length my-1 text-start">
-                <label>Mostrar
+                <label>Mostrar 
                     <select name="tablaAreas_length" aria-controls="tablaAreas">
                       <option value="5">5</option>
                       <option value="10">10</option>
