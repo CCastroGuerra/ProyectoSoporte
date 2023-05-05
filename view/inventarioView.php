@@ -33,7 +33,6 @@ include('../templates/cabecera.php');
         </div>
     </div>
 </div>
-
 <!-- /modal inventario -->
 
 <!-- contenido -->
@@ -41,19 +40,22 @@ include('../templates/cabecera.php');
     <div class="col-xs-1-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title mb-4">
+                <h3 class="card-title mb-auto">
                     <div class="row">
                         <div class="col-lg-10 col-sm-6">Inventario </div>
                         <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#inventarioModal"><strong>Añadir</strong></button></div>
                     </div>
                 </h3>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Buscar Producto" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                </div>
-                <h5 class=" card-title mb-4" style="color:00000">
+                
+                
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+            <h5 class=" card-title mb-4" style="color:00000">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-inventario-tab" data-coreui-toggle="tab" data-coreui-target="#nav-inventario" type="button" role="tab" aria-controls="nav-inventario" aria-selected="true">Inventario</button>
+                            <button class="nav-link active" id="nav-inventario-tab" data-coreui-toggle="tab" data-coreui-target="#nav-inventario" type="button" role="tab" aria-controls="nav-inventario" aria-selected="true">Resumen</button>
                             <button class="nav-link" id="nav-entradas-tab" data-coreui-toggle="tab" data-coreui-target="#nav-entradas" type="button" role="tab" aria-controls="nav-entradas" aria-selected="false">Entradas</button>
                             <button class="nav-link" id="nav-salidas-tab" data-coreui-toggle="tab" data-coreui-target="#nav-salidas" type="button" role="tab" aria-controls="nav-salidas" aria-selected="false">Salidas</button>
                         </div>
@@ -115,11 +117,6 @@ include('../templates/cabecera.php');
                         <!-- /tabla salidas -->
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-
             </div>
         </div>
 

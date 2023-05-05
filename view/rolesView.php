@@ -48,7 +48,7 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">
+                    <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Asignación de Roles </div>
                             <div class="col-lg-2 col-sm-4 text-end">
@@ -56,9 +56,6 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                     </h3>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar Rol" aria-label="txtRol" aria-describedby="button-addon2" name="txtBuscarRoles" id="txtBuscarRoles">
-                    </div>
 
                 </div>
             </div>
@@ -66,20 +63,28 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"><strong>#</strong></th>
-                                <th scope="col"><strong>Nombre</strong></th>
-                                <th scope="col"><strong>Apellidos</strong></th>
-                                <th scope="col"><strong>Rol</strong></th>
-                                <th scope="col"><strong>Opciones</strong></th>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Apellidos</strong></th>
+                                    <th scope="col"><strong>Rol</strong></th>
+                                    <th scope="col"><strong>Opciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbRoles">
+                                <tr>
+                                <td>01</td>
+                                <td>Nombre 1</td>
+                                <td>Apellidos 1</td>
+                                <td>Rol 1</td>
+                                <td>[] [] []</td>
                             </tr>
-                        </thead>
-                        <tbody id="tbRoles">
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

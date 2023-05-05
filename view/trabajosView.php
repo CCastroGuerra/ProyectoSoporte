@@ -84,7 +84,7 @@ include('../templates/cabecera.php');
                                 <div class="col-xs-1-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title mb-4">
+                                            <h5 class="card-title mb-auto">
                                                 <div class="row">
                                                     <div class="col-lg-10 col-sm-4">Servicios Aplicados </div>
                                                     <div class="col-lg-2 col-sm-4 text-end">
@@ -97,22 +97,24 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="col-xs-1-12">
                                     <div class="card">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col"><strong>#</strong></th>
-                                                        <th scope="col"><strong>Servicio</strong></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbEquipos">
-                                                    <tr>
-                                                        <td>01</td>
-                                                        <td>formateo</td>
-                                                    </tr>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table" id="tableModal">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col"><strong>#</strong></th>
+                                                            <th scope="col"><strong>Servicio</strong></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbEquipos">
+                                                        <tr>
+                                                            <td>01</td>
+                                                            <td>formateo</td>
+                                                        </tr>
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -149,14 +151,14 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="card-form">
-                            <label for="exampleInputEmail1" class="mb-2">Servicio:</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Servicio 1</option>
-                                            <option value="2">Servicio 2</option>
-                                            <option value="3">Servicio 3</option>
-                                            <option value="4">Servicio 4</option>
-                                        </select>
+                                <label for="exampleInputEmail1" class="mb-2">Servicio:</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Servicio 1</option>
+                                    <option value="2">Servicio 2</option>
+                                    <option value="3">Servicio 3</option>
+                                    <option value="4">Servicio 4</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -177,7 +179,7 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">
+                    <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista Trabajos
                             </div>
@@ -187,43 +189,46 @@ include('../templates/cabecera.php');
                         </div>
                     </h3>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar Área" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                    </div>
-
                 </div>
             </div>
         </div>
+
+
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"><strong>#</strong></th>
-                                <th scope="col"><strong># Serie</strong></th>
-                                <th scope="col"><strong>Marquesi</strong></th>
-                                <th scope="col"><strong>Usuario</strong></th>
-                                <th scope="col"><strong>Area</strong></th>
-                                <th scope="col"><strong>Técnico</strong></th>
-                                <th scope="col"><strong>Fecha</strong></th>
-                                <th scope="col"><strong>Opciones</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbArea">
-                            <th>01</th>
-                            <th>48961871</th>
-                            <th>14768498</th>
-                            <th>Usuario</th>
-                            <th>Administración</th>
-                            <th>Técnico 1</th>
-                            <th>27/04/2023</th>
-                            <th>[][][]</th>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong># Serie</strong></th>
+                                    <th scope="col"><strong>Marquesi</strong></th>
+                                    <th scope="col"><strong>Usuario</strong></th>
+                                    <th scope="col"><strong>Area</strong></th>
+                                    <th scope="col"><strong>Técnico</strong></th>
+                                    <th scope="col"><strong>Fecha</strong></th>
+                                    <th scope="col"><strong>Opciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbArea">
+                                <tr>
+                                    <td>01</td>
+                                    <td>48961871</td>
+                                    <td>14768498</td>
+                                    <td>Usuario</td>
+                                    <td>Administración</td>
+                                    <td>Técnico 1</td>
+                                    <td>27/04/2023</td>
+                                    <td>[][][]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!--/contenido ventana -->

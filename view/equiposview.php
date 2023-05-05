@@ -65,7 +65,7 @@ include('../templates/cabecera.php');
                                 <div class="col-xs-1-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title mb-4">
+                                            <h3 class="card-title mb-auto">
                                                 <div class="row">
                                                     <div class="col-lg-10 col-sm-6">Lista de componentes </div>
                                                     <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><strong>Añadir</strong></button></div>
@@ -76,38 +76,40 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="col-xs-1-12">
                                     <div class="card">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col"><strong>#</strong></th>
-                                                        <th scope="col"><strong>Tipo</strong></th>
-                                                        <th scope="col"><strong>Clase</strong></th>
-                                                        <th scope="col"><strong>Marca</strong></th>
-                                                        <th scope="col"><strong>Modelo</strong></th>
-                                                        <th scope="col"><strong># Serie</strong></th>
-                                                        <th scope="col"><strong>Capacidad</strong></th>
-                                                        <th scope="col"><strong>Estado</strong></th>
-                                                        <th scope="col"><strong>Fecha</strong></th>
-                                                        <th scope="col"><strong>Opciones</strong></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbEquipos">
-                                                    <tr>
-                                                        <td>01</td>
-                                                        <td>tipo 1</td>
-                                                        <td>clase 1</td>
-                                                        <td>marca 1</td>
-                                                        <td>modelo 1</td>
-                                                        <td>##########</td>
-                                                        <td>16 tb</td>
-                                                        <td>nuevo</td>
-                                                        <td>02/05/2023</td>
-                                                        <td>[ ] [ ] [ ]</td>
-                                                    </tr>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table" id="tableModal">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col"><strong>#</strong></th>
+                                                            <th scope="col"><strong>Tipo</strong></th>
+                                                            <th scope="col"><strong>Clase</strong></th>
+                                                            <th scope="col"><strong>Marca</strong></th>
+                                                            <th scope="col"><strong>Modelo</strong></th>
+                                                            <th scope="col"><strong># Serie</strong></th>
+                                                            <th scope="col"><strong>Capacidad</strong></th>
+                                                            <th scope="col"><strong>Estado</strong></th>
+                                                            <th scope="col"><strong>Fecha</strong></th>
+                                                            <th scope="col"><strong>Opciones</strong></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbEquipos">
+                                                        <tr>
+                                                            <td>01</td>
+                                                            <td>tipo 1</td>
+                                                            <td>clase 1</td>
+                                                            <td>marca 1</td>
+                                                            <td>modelo 1</td>
+                                                            <td>##########</td>
+                                                            <td>16 tb</td>
+                                                            <td>nuevo</td>
+                                                            <td>02/05/2023</td>
+                                                            <td>[ ] [ ] [ ]</td>
+                                                        </tr>
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -205,71 +207,53 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">
+                    <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-6">Lista de Equipos </div>
+                            <div class="col-lg-10 col-sm-4">Lista de Equipos </div>
                             <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><strong>Añadir</strong></button></div>
                         </div>
-                    </h3>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon1">Marca</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon1" name="txtBuscarMarca" id="txtBuscarMarca">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon2">Área</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="basic-addon1">Margesi</span>
-                                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="txtBuscarArea" id="txtBuscarArea">
-                            </div>
-                        </div>
-                    </div>
+                    </h3>                    
                 </div>
             </div>
         </div>
         <div class="col-xs-1-12">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"><strong>#</strong></th>
-                                <th scope="col"><strong>Area</strong></th>
-                                <th scope="col"><strong>Marca</strong></th>
-                                <th scope="col"><strong>Modelo</strong></th>
-                                <th scope="col"><strong># Serie</strong></th>
-                                <th scope="col"><strong>Magesi</strong></th>
-                                <th scope="col"><strong>Estado</strong></th>
-                                <th scope="col"><strong>IP</strong></th>
-                                <th scope="col"><strong>MAC</strong></th>
-                                <th scope="col"><strong>Alta</strong></th>
-                                <th scope='col'><strong>Acciones</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbEquipos">
-                            <tr>
-                                <td><a href="#" id="href" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo">01</a></td>
-                                <td>Logistica</td>
-                                <td>HP</td>
-                                <td>SCR1023</td>
-                                <td>1544816718</td>
-                                <td>######</td>
-                                <td>Bueno</td>
-                                <td>192.168.2.145</td>
-                                <td>8d:5f:6c:7a:6b</td>
-                                <td>22/10/2022</td>
-                                <td><a href="">DEL</a></td>
-                            </tr>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong>Area</strong></th>
+                                    <th scope="col"><strong>Marca</strong></th>
+                                    <th scope="col"><strong>Modelo</strong></th>
+                                    <th scope="col"><strong># Serie</strong></th>
+                                    <th scope="col"><strong>Magesi</strong></th>
+                                    <th scope="col"><strong>Estado</strong></th>
+                                    <th scope="col"><strong>IP</strong></th>
+                                    <th scope="col"><strong>MAC</strong></th>
+                                    <th scope="col"><strong>Alta</strong></th>
+                                    <th scope='col'><strong>Acciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbEquipos">
+                                <tr>
+                                    <td><a href="#" id="href" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo">01</a></td>
+                                    <td>Logistica</td>
+                                    <td>HP</td>
+                                    <td>SCR1023</td>
+                                    <td>1544816718</td>
+                                    <td>######</td>
+                                    <td>Bueno</td>
+                                    <td>192.168.2.145</td>
+                                    <td>8d:5f:6c:7a:6b</td>
+                                    <td>22/10/2022</td>
+                                    <td><a href="">DEL</a></td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

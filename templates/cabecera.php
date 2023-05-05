@@ -47,6 +47,9 @@
   <!-- We use those styles to show code examples, you should remove them in your application.-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
   <link href="../css/examples.css" rel="stylesheet">
+  <!-- Datables -->
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
+
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
   <script>
@@ -61,6 +64,63 @@
     // Bootstrap ID
     gtag('config', 'UA-118965717-5');
   </script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+  <script src="https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.js"></script> -->
+  <!-- prueba script datatables -->
+  <!-- <script>
+    $(document).ready(function() {
+       $("Table").DataTable({
+         language: {
+           decimal: ".",
+           emptyTable: "No hay datos disponibles en esta tabla",
+           info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+           infoEmpty: "Mostrando 0 de 0 de 0 entradas",
+           infoFiltered: "(Filtrado de _MAX_ total entradas)",
+           "infoPostFix": "",
+           thousands: ",",
+           lengthMenu: "Mostrar _MENU_ Entradas",
+           loadingRecords: "Cargando...",
+           processing: "Procesando...",
+           search: "Buscar:",
+           zeroRecords: "Sin resultados encontrados",
+           paginate: {
+             first: "Primero",
+             last: "Ultimo",
+             next: ">",
+             previous: "<"
+           },
+           search: "_INPUT_",
+           searchPlaceholder: "Buscar..."
+         },
+         pagingType: "full_numbers",
+         pagingTag: "button",
+       "columnDefs": [{
+          "targets": [-1],
+
+      "searchable": false,
+
+        }]
+       });
+
+      $("#tableModal").DataTable({
+        destroy: true,
+        lengthMenu: false,
+        lengthChange: false,
+        search: false,
+        searching: false,
+        paging: false,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json"
+        },
+
+      });
+
+    });
+  </script>  -->
+
   <!-- <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet"> -->
 </head>
 
@@ -198,8 +258,8 @@
             <use xlink:href="../assets/brand/coreui.svg#full"></use>
           </svg></a>
         <ul class="header-nav d-none d-md-flex">
-          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/dashboardView.php">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Users</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
         </ul>
         <ul class="header-nav ms-auto">
