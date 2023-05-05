@@ -102,10 +102,11 @@ include('../templates/cabecera.php');
                 <th scope="col"><strong></strong></th>
 
               </tr>
+
+            </thead>
             <tbody>
 
             </tbody>
-            </thead>
           </table>
           <!-- /tabla area -->
         </div>
