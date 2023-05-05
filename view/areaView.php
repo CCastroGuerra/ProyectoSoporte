@@ -20,8 +20,8 @@ include('../templates/cabecera.php');
             <div class="card-body">
               <div class="form-group">
 
-                <div class="visually-hidden" >
-                  <label class="control-label">Códgigo</label>
+                <div class="visually-hidden">
+                  <label class="control-label">Código</label>
                   <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
 
                 </div>
@@ -58,6 +58,7 @@ include('../templates/cabecera.php');
                 <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#areaModal"><strong>Añadir</strong></button>
               </div>
             </div>
+
           </h3>
 
         </div>
@@ -66,6 +67,28 @@ include('../templates/cabecera.php');
     <div class="col-xs-1-12">
       <div class="card">
         <div class="card-body">
+          <!-- encabezado--->
+          <div class="container text-center">
+          <div class="row mb-auto">
+            <div class="col-lg-10 col-sm-4">
+              <div class="table-length my-1 text-start">
+                <label>Mostrar
+                    <select name="tablaAreas_length" aria-controls="tablaAreas">
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                    </select>
+                  Entradas</label>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-4 text-end">
+              <div class="mb-2">
+                <input type="search" class="form-control" id="inputbuscarArea" placeholder="Buscar..." size="14" maxlength="14">
+              </div>
+              </>
+            </div>
+          </div>
+          </div>
           <!-- tabla area -->
           <table class="table" id="tablaAreas">
             <thead>
@@ -77,9 +100,9 @@ include('../templates/cabecera.php');
                 <th scope="col"><strong></strong></th>
 
               </tr>
-              <tbody>
+            <tbody>
 
-              </tbody>
+            </tbody>
             </thead>
           </table>
           <!-- /tabla area -->
