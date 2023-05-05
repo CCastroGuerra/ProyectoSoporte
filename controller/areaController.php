@@ -6,35 +6,22 @@ $area = new Area();
 
 switch($_GET["opcion"]){
     case "listar":
-    $area-> traerAreas();
+    $area-> listarArea();
     break;
 
-    case "guardaryeditar":
-        $datos=$area->traerAreaXId($_POST["id_area"]);
-            if(empty($_POST["id_area"])){
-                if(is_array($datos)==true and count($datos)==0){
-                    $area->registrarArea($_POST["nombre_area"]);
-                }
-            }else{
-                $area ->actualizarArea($_POST["id_area"],$_POST["nombre_area"]);
+    case "guardar":
+       $area->agregarArea($_POST['nombreArea']);
 
-            }
         //$area ->registrarArea($_POST["nombre"]);
         break;
-    case "mostrar":
-        $datos = $area->traerAreaXId($_POST["id"]);
-        if(is_array($datos)==true && count($datos)>0){
-            foreach($datos as $row){
-                $output['id_area'] = $row['id_area'];
-                $output['nombre_area'] = $row['nombre_area'];
-               
-            }
-            echo json_encode($output);
-        }
+    case "buscar":
+        $area->buscarArea($_POST['valor'],$_POST['pagina'],$_POST['cantidad']);
+
         break;
-    case "eliminar":
-            $area-> eliminarArea($_POST["id"]);
-            break;
+    // case "eliminar":
+    //         $area-> eliminarArea($_POST["id"]);
+    //         break;
+    
     // case "actualizar":
     //     $area ->actualizarArea($_POST["id"],$_POST["nombre"]);
     //     echo "actualizado correctamente";
