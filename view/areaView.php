@@ -97,9 +97,8 @@ include('../templates/cabecera.php');
               <tr>
                 <th scope="col"><strong>#</strong></th>
                 <th scope="col"><strong>Nombre</strong></th>
-                <th scope="col"><strong></strong></th>
-                <th scope="col"><strong></strong></th>
-                <th scope="col"><strong></strong></th>
+                <th scope="col"><strong>Opciones</strong></th>
+                
 
               </tr>
 
