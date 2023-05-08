@@ -1,87 +1,122 @@
-var valorBuscar = "";
+var id;
 var numPagina = 1;
-var cantidadFilas = 0;
-var linkEditar ="";
-var linkBorrar= "";
+var frmArea = document.getElementById("formArea");
+console.log(numPagina);
+buscarArea();
 
-buscarArea('',1,4);
-listarArea();
-
-var formArea = document.getElementById("formArea");
-var respuesta = document.getElementById("alerta");
-
-/* Control de campos vacios*/
-formArea.onsubmit = function (e) {
-  var nombre = document.getElementById("nombre_area").value;
+//listarArea();
+frmArea.onsubmit = function (e) {
   e.preventDefault();
-  // console.log(nombre);
-  if (nombre.length > 0) {
-    guardarArea();
+  if (frmArea.querySelector("#inputCodigo").value !== "") {
+    console.log("actualizo");
+    actualizar(id);
   } else {
-    mensaje = "Completa los campos";
-    respuesta.innerHTML = `
-    <div class="alert alert-danger" role="alert id="alerta"">
-    ${mensaje}
-    </div
-        `;
+    guardarArea();
+    listarArea();
+    console.log("guardo");
   }
+  frmArea.reset();
 };
-/*Listar datos */
+
+/*limit para el select*/
+var numRegistors = document.getElementById('numeroRegistros');
+numRegistors.addEventListener("change", listarArea);
+
 function listarArea() {
+  let num_registros = document.getElementById('numeroRegistros').value;
   const ajax = new XMLHttpRequest();
-  //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/areaController.php", true);
   var data = new FormData();
-  //data.append("accion", "listar");
-  data.append('accion','listar');
-  data.append('valor','');
-  data.append('pagina','1');
-  data.append('cantidad','4');
-  //Funcion onload, se ejecuta cuando recibe respuesta del servidor
+  data.append("accion", "listar");
+  data.append("valor", "");
+  data.append("cantidad", "4");
+  data.append('registros',num_registros);
   ajax.onload = function () {
-    //Se guarda la respuesta del servidor
     let respuesta = ajax.responseText;
     console.log(respuesta);
     const area = JSON.parse(respuesta);
-
     let template = ""; // Estructura de la tabla html
     if (area.length > 0) {
       area.forEach(function (area) {
         template += `
-                <tr>
-                    <td>${area.id}</td>
-                    <td>${area.nombre}</td>
-                    <td><button type="button" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal" data-fila = "${area.id}">Editar</button>
-                    <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
-
-                    
-                
-                </tr>
-                `;
-       
-        seleccionar();
-
+                  <tr>
+                      <td>${area.id}</td>
+                      <td>${area.nombre}</td>
+                      <td><button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila = "${area.id}">Editar</button>
+                      <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
+                  </tr>
+                  `;
       });
-
       var elemento = document.getElementById("tbArea");
       elemento.innerHTML = template;
+     
     }
   };
   ajax.send(data);
 }
-/* Insertar registros */
+
+function buscarArea() {
+  var cajaBuscar = document.getElementById("inputbuscarArea");
+  const textoBusqueda = cajaBuscar.value;
+  let num_registros = document.getElementById('numeroRegistros').value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/areaController.php", true);
+  var data = new FormData();
+  data.append("accion", "buscar");
+  data.append("cantidad", "4");
+  data.append('registros',num_registros);
+  data.append('pag',numPagina);
+  data.append("textoBusqueda", textoBusqueda);
+    ajax.onload = function () {
+      let respuesta = ajax.responseText;
+      console.log(respuesta);
+      const datos = JSON.parse(respuesta);
+      console.log(datos);
+      let area = datos.listado;
+      console.log(area);
+      let template = ""; // Estructura de la tabla html
+      if (area != 'vacio') {
+        area.forEach(function (area) {
+          template += `
+            <tr>
+              <td>${area.id}</td>
+              <td>${area.nombre}</td>
+              <td>
+                <button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila="${area.id}">
+                  Editar
+                </button>
+                <button type="button" onClick=eliminarArea("${area.id}") class="btn btn-danger" data-fila="${area.id}">
+                  Borrar
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+        var elemento = document.getElementById("tbArea");
+        elemento.innerHTML = template;
+        document.getElementById('txtPagVista').value = numPagina;
+        document.getElementById('txtPagTotal').value = datos.paginas;
+
+      } else {
+        var elemento = document.getElementById("tbArea");
+        elemento.innerHTML = `
+          <tr>
+            <td colspan="3" class="text-center">No se encontraron resultados</td>
+          </tr>
+        `;
+      }
+    };
+    ajax.send(data);
+}
+
 function guardarArea() {
-  // var respuesta = document.getElementById("alerta");
   var realizado = "";
   var mensaje = "";
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/areaController.php", true);
-  var data = new FormData(formArea);
+  var data = new FormData(frmArea);
   data.append("accion", "guardar");
-  // daa[]
-  //Funcion onload, se ejecuta cuando recibe respuesta del servidor
-  //console.log(data.nombre);
   ajax.onload = function () {
     realizado = ajax.responseText;
     console.log(realizado);
@@ -89,204 +124,71 @@ function guardarArea() {
       swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
     buscarArea();
-    formArea.reset();
+    //listarArea();
+    frmArea.reset();
   };
   ajax.send(data);
 }
 
-
-/* **********Terminar */
-function seleccionar(){
-    linkEditar = document.querySelectorAll("#tbArea .btn-info");
-
-    for(let i=0; i<linkEditar.length; i++){
-        linkEditar[i].addEventListener('click', function(e){
-           // console.log(linkEditar[i]);
-           var enlace ='';
-           enlace = e.target.dataset.fila;
-           console.log(enlace);
-           ajax.open('POST', "../controller/areaController.php",true);
-           var data = new FormData();
-           data.append("valor", "enlace");
-           data.append("accion", "Seleccionar");
-           ajax.onload = function(){
-           const respuesta = ajax.responseText;
-           console.log(respuesta);
-
-          
-        }});
-       
-    }
-}
-/********Buscar en tabla*/
-function buscarArea(valor = '',pagina = 1, cantidad = 3){
-    const ajax = new XMLHttpRequest();
-    ajax.open('POST', "../controller/areaController.php", true);
-    var data = new FormData();
-
-    data.append('valor',valor);
-    data.append('pagina',pagina);
-    data.append('cantidad',cantidad);
-    data.append('accion','buscar');
-    ajax.onload = function(){
-        let respuesta = ajax.responseText;
-        console.log(respuesta);
-        const datos = JSON.parse(respuesta);
-        let area = datos.listado;
-        let template = "";
-
-        if(area !== 'vacio'){
-            area.forEach(function(area){
-                template +=  `
-                <tr>
-                    <td>${area.id}</td>
-                    <td>${area.nombre}</td>
-                    <td><button type="button" class="btn btn-info" data-coreui-toggle="modal" data-coreui-target="#exampleModal" data-fila = "${area.id}">Editar</button>
-                    <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
-
-                    
-                
-                </tr>
-                `;
-
-            });
-            var elemento = document.getElementById("tbArea");
-            elemento.innerHTML = template;
-            document.getElementById('txtPagVista').value = numPagina;
-            document.getElementById('txtPagTotal').value = datos.paginas;
-
-        }else{
-            // var aviso = document.getElementById("alerta");
-            template = `No se encontraron datos`;
-            var elemento = document.getElementById("tbArea");
-            elemento.innerHTML =template;
-            document.getElementById('txtPagVista').value = 0;
-            document.getElementById('txtPagTotal').value = 0;
-
-        }
-        
-        
-    }
-    ajax.send(data);
+function mostrarEnModal(areaid) {
+  console.log(id);
+  id = areaid;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/areaController.php", true);
+  const data = new FormData();
+  data.append("id", id);
+  data.append("accion", "mostrar");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    let datos = JSON.parse(respuesta);
+    document.getElementById("nombre_area").value = datos.nombre;
+    document.getElementById("inputCodigo").value = datos.id;
+  };
+  ajax.send(data);
 }
 
-
-let pagInicio = document.querySelector('#btnPrimero');
-pagInicio.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVista').value = numPagina;
-    buscar('',1,3);
-    pagInicio.blur();
-});
-let pagAnterior = document.querySelector('#btnAnterior');
-pagAnterior.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagDestino = 0;
-    if ((pagVisitada - 1) >= 1) {
-        pagDestino = pagVisitada - 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscar('',numPagina,3);
-        pagAnterior.blur();
-    }
-});
-let pagSiguiente = document.querySelector('#btnSiguiente');
-pagSiguiente.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
-    var pagDestino = 0;
-    if ((pagVisitada + 1) <= pagFinal) {
-        pagDestino = pagVisitada + 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscar('',numPagina,3);
-        pagSiguiente.blur();
-    }
-});
-let pagFinal = document.querySelector('#btnUltimo');
-pagFinal.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotal').value;
-    document.getElementById('txtPagVista').value = numPagina;
-    console.log(numPagina);
-    buscar('',numPagina,3);
-    pagFinal.blur();
-});
-
-/****************************/
-//Buscar elementos
-let campoBusqueda = document.getElementById("inputbuscarArea");
-campoBusqueda.addEventListener("keyup", function(e){
-    var valor = campoBusqueda.value;
-    console.log(valor);
-    valorBuscar ="where nombre_area like '%"+valor+"%'";
-    numPagina = 1;
-    cantidadFilas = 3;
-    buscarArea(valorBuscar,numPagina,cantidadFilas);
-
-
-});
-
-
-function seleccionar(){
-  linkEditar = document.querySelectorAll("#tbArea .btn-info");
-  var datosInput = document.querySelectorAll('#frmArea input');
-  var datosSelect = document.querySelectorAll('#frmArea select');
-  
+function actualizar(id) {
+  const nombreInput = document.getElementById("nombre_area");
+  // Obtener los valores actualizados desde los elementos del modal
+  const nombre = nombreInput.value;
+  swal
+    .fire({
+      title: "CRUD",
+      text: "Desea actualizar el registro?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "../controller/areaController.php", true);
+        const data = new FormData();
+        data.append("id", id);
+        data.append("nombre", nombre);
+        data.append("accion", "actualizar");
+        ajax.onload = function () {
+          console.log(ajax.responseText);
+          listarArea();
+          swal.fire(
+            "Actualizado!",
+            "El registro se actualizó correctamente.",
+            "success"
+          );
+        };
+        ajax.send(data);
+      }
+    });
 }
 
-/**********ELIMINAR*/
-// function eliminar() {
-//   linkBorrar = document.querySelectorAll('#tbArea ');
-//   btnBorrar = document.querySelectorAll('button');
-//   //console.log(linkEditar.length);
-//   var elementoRpta = document.getElementById('aviso');
-//   for (let i = 0; i < linkBorrar.length; i++) {
-//       linkBorrar[i].addEventListener('click', function (e) {
-//           var respuesta = '';
-//           var mensaje = '';
-//           enlaceBorrar = e.target.dataset.fila;
-//           var ajax = new XMLHttpRequest();
-//           ajax.open('POST', '../controller/areaController.php', true);
-//           console.log(enlaceBorrar);
-//           var data = new FormData();
-//           data.append('valor', enlaceBorrar);
-//           data.append('pag', '1');
-//           data.append('accion', 'Eliminar');
-//           console.log(numPagina);
-//           ajax.onload = function () {
-//               //console.log(ajax.responseText);
-//               respuesta = ajax.responseText;
-//               if (respuesta == 'true') {
-//                   mensaje = "Los datos se eliminaron con exito.";
-//                   elementoRpta.innerHTML = `
-//                   <div  class="alert alert-success alert-link" id="msjalerta" role="alert">
-//                   <span class="alert-dismissible">`+ mensaje + `</span>
-//                   </div>`;
-//               }
-//               else {
-//                   mensaje = "Los datos no se lograron eliminar.";
-//                   elementoRpta.innerHTML = `
-//                   <div  class="alert alert-danger alert-link" id="msjalerta" role="alert">
-//                   <span class="alert-dismissible">`+ mensaje + `</span>
-//                   </div>`;
-//               }
-             
-//               buscar();
-//               e.preventDefault();
-//           }
-//           console.log(numPagina);
-//           ajax.send(data);
-//           // console.log(enlace);
-//           // numPagina = e.target.dataset.pagina;
-//           e.preventDefault();
-//           var alerta = document.querySelector('#aviso');
-//           setTimeout(function () { alerta.innerHTML = ''; }, 2000);
+function limpiarFormulario() {
+  frmArea.reset();
+}
 
-//       });
-//   }
-// }
-
-function eliminarArea(id){
+function eliminarArea(id) {
   console.log(id);
   swal
     .fire({
@@ -304,13 +206,10 @@ function eliminarArea(id){
         ajax.open("POST", "../controller/areaController.php", true);
         const data = new FormData();
         data.append("id", id);
-        //data.append('valor', enlaceBorrar);
-        data.append('pag', '1');
-        data.append('accion', 'eliminar');
+        data.append("accion", "eliminar");
         ajax.onload = function () {
-          console.log(ajax.responseText);
-          //cargarTabla();
-          //listarTareas();
+          var respuesta = ajax.responseText;
+          console.log(respuesta);
           listarArea();
           swal.fire(
             "Eliminado!",
@@ -318,8 +217,109 @@ function eliminarArea(id){
             "success"
           );
         };
-        console.log("id=" + id);
         ajax.send(data);
       }
     });
 }
+
+/*BUSCAR*/
+var cajaBuscar = document.getElementById("inputbuscarArea");
+const data = new FormData();
+data.append("accion", "buscar");
+
+cajaBuscar.addEventListener("keyup", function (e) {
+  const textoBusqueda = cajaBuscar.value;
+  console.log(textoBusqueda);
+  if (textoBusqueda.trim() == "") {
+    listarArea();
+  } else{
+    buscarArea();
+  }//{
+  //   data.append("textoBusqueda", textoBusqueda);
+  //   const ajax = new XMLHttpRequest();
+  //   ajax.open("POST", "../controller/areaController.php", true);
+  //   ajax.onload = function () {
+  //     let respuesta = ajax.responseText;
+  //     console.log(respuesta);
+  //     const datos = JSON.parse(respuesta);
+  //     let area = datos.listado;
+  //     console.log(area);
+  //     let template = ""; // Estructura de la tabla html
+  //     if (area != 'vacio') {
+  //       area.forEach(function (area) {
+  //         template += `
+  //           <tr>
+  //             <td>${area.id}</td>
+  //             <td>${area.nombre}</td>
+  //             <td>
+  //               <button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila="${area.id}">
+  //                 Editar
+  //               </button>
+  //               <button type="button" onClick=eliminarArea("${area.id}") class="btn btn-danger" data-fila="${area.id}">
+  //                 Borrar
+  //               </button>
+  //             </td>
+  //           </tr>
+  //         `;
+  //       });
+  //       var elemento = document.getElementById("tbArea");
+  //       elemento.innerHTML = template;
+  //       document.getElementById('txtPagVista').value = numPagina;
+  //       document.getElementById('txtPagTotal').value = datos.paginas;
+
+  //     } else {
+  //       var elemento = document.getElementById("tbArea");
+  //       elemento.innerHTML = `
+  //         <tr>
+  //           <td colspan="3" class="text-center">No se encontraron resultados</td>
+  //         </tr>
+  //       `;
+  //     }
+  //   };
+  //   ajax.send(data);
+  // }
+});
+
+/**************************/
+/* BOTONES DE PAGINACIÓN */
+let pagInicio = document.querySelector('#btnPrimero');
+pagInicio.addEventListener('click', function (e) {
+    numPagina = 1;
+    document.getElementById('txtPagVista').value = numPagina;
+    buscarArea();
+    pagInicio.blur();
+});
+let pagAnterior = document.querySelector('#btnAnterior');
+pagAnterior.addEventListener('click', function (e) {
+    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
+    var pagDestino = 0;
+    if ((pagVisitada - 1) >= 1) {
+        pagDestino = pagVisitada - 1;
+        numPagina = pagDestino;
+        document.getElementById('txtPagVista').value = numPagina;
+        buscarArea();
+        pagAnterior.blur();
+    }
+});
+let pagSiguiente = document.querySelector('#btnSiguiente');
+pagSiguiente.addEventListener('click', function (e) {
+    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
+    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
+    var pagDestino = 0;
+    if ((pagVisitada + 1) <= pagFinal) {
+        pagDestino = pagVisitada + 1;
+        numPagina = pagDestino;
+        document.getElementById('txtPagVista').value = numPagina;
+        buscarArea();
+        pagSiguiente.blur();
+    }
+});
+let pagFinal = document.querySelector('#btnUltimo');
+pagFinal.addEventListener('click', function (e) {
+    numPagina = document.getElementById('txtPagTotal').value;
+    document.getElementById('txtPagVista').value = numPagina;
+    console.log(numPagina);
+    buscarArea();
+    pagFinal.blur();
+});
+

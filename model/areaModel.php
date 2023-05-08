@@ -1,10 +1,17 @@
 <?php
-class Area extends Conectar
-{
+
+class Area extends Conectar{
+
     public function listarArea()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `area` WHERE esActivo = 1";
+        $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+        //Para comprobar si se a mandado el parametro de registros
+        if (isset($_POST['registros'])) {
+        $limit = $_POST['registros'];
+        $sLimit = "LIMIT $limit";
+        }
+        $sql = "SELECT * FROM `area` WHERE esActivo = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -26,6 +33,7 @@ class Area extends Conectar
             echo $jsonString;
         }
     }
+
     public function agregarArea($nombreArea)
     {
         $conectar = parent::conexion();
@@ -38,57 +46,112 @@ class Area extends Conectar
         }
     }
 
-    public function buscarArea($filtro, $pagina = 1, $cantidadPagina = 5)
-    {
-        $conectar = parent::conexion();
-        $inicio = ($pagina - 1) * $cantidadPagina;
-        $sql = "SELECT * FROM `area`   $filtro  order by id_area limit $inicio,$cantidadPagina";
-        //echo $sql;
-        $fila = $conectar->prepare($sql);
-        $fila->execute();
-
-        $resultado = $fila->fetchAll();
-
-        $fila->closeCursor();
-        if (empty($resultado)) {
-            $resultado = array('listado' => 'vacio');
-            $jsonString = json_encode($resultado);
-            echo $jsonString;
-        } else {
-            $json = array();
-            $listado = array();
-            foreach ($resultado as $row) {
-                $listado[] = array(
-                    'id' => $row['id_area'],
-                    'nombre' => $row['nombre_area']
-                );
-            }
-            $sqlNroFilas  = "SELECT count(id_area) as cantidad FROM `area`   $filtro";
-
-            $fila2 = $conectar->prepare($sqlNroFilas);
-            $fila2->execute();
-
-            $array = $fila2->fetch(PDO::FETCH_LAZY);
-            $paginas = ceil($array['cantidad'] / $cantidadPagina);
-            $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
-            $jsonString = json_encode($json);
-            echo $jsonString;
-        }
+    public function actulizarArea($idArea,$nombreArea){
+        $conectar= parent::conexion();
+        $sql="UPDATE area
+            SET
+               nombre_area=? 
+            WHERE
+                id_area = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1,$nombreArea);
+        $sql->bindValue(2,$idArea);
+        $sql->execute();
+        return $resultado=$sql->fetchAll();
     }
-
-    public function eliminarArea($id)
-    {
+    public function traerAreaXId($idArea){
+        $conectar= parent::conexion();
+        $sql="SELECT * FROM area WHERE id_area = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1,$idArea);
+        $sql->execute();
+        return $resultado=$sql->fetchAll();
+    }
+    public function eliminarArea($id){
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
             $sql = "UPDATE area SET esActivo = 0 WHERE id_area = ?";
-            $sql = $conectar->prepare($sql);
-            $sql->bindValue(1, $id);
+            $sql = $conectar ->prepare($sql);
+            $sql -> bindValue(1, $id);
             $sql->execute();
             return $resultado = $sql->fetchAll();
         } else {
             echo "El parámetro 'id' no ha sido enviado";
         }
     }
+
+    // public function buscarArea() {
+    //     $textoBusqueda = $_POST['textoBusqueda'];
+
+    //     try {
+    //         $conectar = $this->Conexion();
+    //         $sql = "SELECT * FROM `area` WHERE esActivo = 1 AND nombre_area LIKE ?";
+    //         $stmt = $conectar->prepare($sql);
+    //         $stmt->bindValue(1, '%' . $textoBusqueda . '%');
+    //         $stmt->execute();
+        
+    //         $resultados = array();
+    //         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    //             $resultados[] = $fila["nombre_area"];
+    //         }
+
+    //         echo json_encode($resultados);
+    //     } catch (PDOException $e) {
+    //         echo "Error: " . $e->getMessage();
+    //     }
+    // }
+    public function buscarArea($pagina = 1) {
+        $cantidadXHoja = 5;
+        $textoBusqueda = $_POST['textoBusqueda'];
+        try {
+            $conectar = $this->Conexion();
+            // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+            // //Para comprobar si se a mandado el parametro de registros
+            // if (isset($_POST['registros'])) {
+            // $limit = $_POST['registros'];
+            // $sLimit = "LIMIT $limit";
+            // }
+            $inicio = ($pagina-1)*$cantidadXHoja;
+            //echo $inicio;
+            $sql = "SELECT * FROM `area` WHERE esActivo = 1 AND nombre_area LIKE '$textoBusqueda%'  ORDER BY id_area LIMIT $inicio,$cantidadXHoja";
+            $stmt = $conectar->prepare($sql);
+            //echo $sql;
+            //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
+            $stmt->execute();
+            //echo $sql;
+            //$resultados = array();
+            $json = [];
+            $areas =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!empty($areas)){
+                $listado = array();
+                foreach($areas as $area){
+                    $listado[] = array(
+                        "id" => $area["id_area"],
+                        "nombre" => $area["nombre_area"]
+                    );
+                }
+
+                $sqlNroFilas = "SELECT count(id_area) as cantidad FROM area WHERE esActivo = 1";
+                $fila2 = $conectar->prepare($sqlNroFilas);
+                $fila2->execute();
+    
+                $array = $fila2->fetch(PDO::FETCH_LAZY);
+                $paginas = ceil($array['cantidad']/$cantidadXHoja);
+                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
+                $jsonString  = json_encode($json);
+                echo $jsonString;
+
+            }else{
+                $resultado = array("listado" => "vacio");
+                $jsonString = json_encode($resultado);
+                echo $jsonString;
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }  
 }
+?>
