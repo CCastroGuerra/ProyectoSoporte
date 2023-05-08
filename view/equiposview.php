@@ -225,7 +225,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-4">
                                 <div class="table-length my-1 text-start">
                                     <label>Mostrar
-                                        <select name="tablaAreas_length" aria-controls="tablaAreas">
+                                        <select name="tbEquipos-length" aria-controls="tbEquipos">
                                             <option value="5">5</option>
                                             <option value="10">10</option>
                                             <option value="15">15</option>
@@ -235,7 +235,7 @@ include('../templates/cabecera.php');
                             </div>
                             <div class="col-lg-2 col-sm-4 text-end">
                                 <div class="mb-2">
-                                    <input type="search" class="form-control" id="inputbuscarArea" placeholder="Buscar..." size="14" maxlength="14">
+                                    <input type="search" class="form-control" id="inputbuscarEquipos" placeholder="Buscar..." size="14" maxlength="14">
                                 </div>
                                 </>
                             </div>
