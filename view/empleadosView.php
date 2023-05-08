@@ -68,32 +68,57 @@ include('../templates/cabecera.php');
         </div>
         <div class="col-xs-1-12">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"><strong>#</strong></th>
-                                <th scope="col"><strong>Apellidos</strong></th>
-                                <th scope="col"><strong>Nombre</strong></th>
-                                <th scope="col"><strong>Cargo</strong></th>
-                                <th scope="col"><strong>Usuario</strong></th>
-                                <th scope="col"><strong>Contraseña</strong></th>
-                                <th scope='col'><strong>Acciones</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbEquipos">
-                            <tr>
-                                <td><a href="#" id="href" data-coreui-toggle="modal" data-coreui-target="#ModalName">01</a></td>
-                                <td>Viera Burneo</td>
-                                <td>Cristian</td>
-                                <td>Practicante</td>
-                                <td>CrisVieraB</td>
-                                <td><input type="password" id="contra-01" value="contraseña" size=11 disabled></td>
-                                <td><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text');} else{x.setAttribute('type','password');}">DEL</a></td>
-                            </tr>
+                <div class="card-body">
+                    <!-- encabezado--->
+                    <div class="container text-center">
+                        <div class="row mb-auto">
+                            <div class="col-lg-10 col-sm-4">
+                                <div class="table-length my-1 text-start">
+                                    <label>Mostrar
+                                        <select name="tbEquipos-_length" aria-controls="tbEquipos">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                        </select>
+                                        Entradas</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-4 text-end">
+                                <div class="mb-2">
+                                    <input type="search" class="form-control" id="inputbuscarEmpleado" placeholder="Buscar..." size="14" maxlength="14">
+                                </div>
+                                </>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /encabezado--->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong>Apellidos</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Cargo</strong></th>
+                                    <th scope="col"><strong>Usuario</strong></th>
+                                    <th scope="col"><strong>Contraseña</strong></th>
+                                    <th scope='col'><strong>Acciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbEquipos">
+                                <tr>
+                                    <td><a href="#" id="href" data-coreui-toggle="modal" data-coreui-target="#ModalName">01</a></td>
+                                    <td>Viera Burneo</td>
+                                    <td>Cristian</td>
+                                    <td>Practicante</td>
+                                    <td>CrisVieraB</td>
+                                    <td><input type="password" id="contra-01" value="contraseña" size=11 disabled></td>
+                                    <td><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text');} else{x.setAttribute('type','password');}">DEL</a></td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
