@@ -92,22 +92,35 @@ include('../templates/cabecera.php');
           <!-- /encabezado--->
 
           <!-- tabla area -->
-          <table class="table" id="tablaAreas">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col"><strong>#</strong></th>
                 <th scope="col"><strong>Nombre</strong></th>
-                <th scope="col"><strong></strong></th>
-                <th scope="col"><strong></strong></th>
-                <th scope="col"><strong></strong></th>
+                <th scope="col"><strong>Opciones</strong></th>
+                
 
               </tr>
 
             </thead>
-            <tbody>
+            <tbody id="tbArea">
 
             </tbody>
           </table>
+          <!-- Paginador Inicio -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+              <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+              <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+              <label>&nbsp;de&nbsp;</label>
+              <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+              <label>&nbsp;paginas.&nbsp;</label>
+              <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+              <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+            </div>
+          </div>
+          <!-- Paginador Final -->
           <!-- /tabla area -->
         </div>
       </div>

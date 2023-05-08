@@ -3,18 +3,20 @@ var numPagina = 1;
 var cantidadFilas = 0;
 var linkEditar ="";
 var linkBorrar= "";
-buscar('',1,4);
-//listar();
-var formArea = document.getElementById("frmArea");
+
+buscarArea('',1,4);
+listarArea();
+
+var formArea = document.getElementById("formArea");
 var respuesta = document.getElementById("alerta");
 
 /* Control de campos vacios*/
 formArea.onsubmit = function (e) {
-  var nombre = document.getElementById("nombreArea").value;
+  var nombre = document.getElementById("nombre_area").value;
   e.preventDefault();
   // console.log(nombre);
   if (nombre.length > 0) {
-    guardar();
+    guardarArea();
   } else {
     mensaje = "Completa los campos";
     respuesta.innerHTML = `
@@ -25,7 +27,7 @@ formArea.onsubmit = function (e) {
   }
 };
 /*Listar datos */
-function listar() {
+function listarArea() {
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/areaController.php", true);
@@ -39,8 +41,9 @@ function listar() {
   ajax.onload = function () {
     //Se guarda la respuesta del servidor
     let respuesta = ajax.responseText;
+    console.log(respuesta);
     const area = JSON.parse(respuesta);
-    console.log(area);
+
     let template = ""; // Estructura de la tabla html
     if (area.length > 0) {
       area.forEach(function (area) {
@@ -48,8 +51,8 @@ function listar() {
                 <tr>
                     <td>${area.id}</td>
                     <td>${area.nombre}</td>
-                    <td><button type="button" class="btn btn-info" data-coreui-toggle="modal" data-coreui-target="#exampleModal" data-fila = "${area.id}">Editar</button>
-                    <button type="button" class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
+                    <td><button type="button" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal" data-fila = "${area.id}">Editar</button>
+                    <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
 
                     
                 
@@ -67,7 +70,7 @@ function listar() {
   ajax.send(data);
 }
 /* Insertar registros */
-function guardar() {
+function guardarArea() {
   // var respuesta = document.getElementById("alerta");
   var realizado = "";
   var mensaje = "";
@@ -83,21 +86,9 @@ function guardar() {
     realizado = ajax.responseText;
     console.log(realizado);
     if (realizado * 1 > 0) {
-      mensaje = "Se registro correctamente";
-      respuesta.innerHTML = `
-            <div class="alert alert-success" role="alert id="alerta"">
-            ${mensaje}
-            </div>
-            `;
-    } else {
-      mensaje = "No se registro correctamente";
-      respuesta.innerHTML = `
-      <div class="alert alert-danger" role="alert id="alerta"">
-      ${mensaje}
-      </div
-            `;
+      swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
-    buscar();
+    buscarArea();
     formArea.reset();
   };
   ajax.send(data);
@@ -128,7 +119,7 @@ function seleccionar(){
     }
 }
 /********Buscar en tabla*/
-function buscar(valor = '',pagina = 1, cantidad = 3){
+function buscarArea(valor = '',pagina = 1, cantidad = 3){
     const ajax = new XMLHttpRequest();
     ajax.open('POST', "../controller/areaController.php", true);
     var data = new FormData();
@@ -139,10 +130,9 @@ function buscar(valor = '',pagina = 1, cantidad = 3){
     data.append('accion','buscar');
     ajax.onload = function(){
         let respuesta = ajax.responseText;
+        console.log(respuesta);
         const datos = JSON.parse(respuesta);
         let area = datos.listado;
-        console.log(respuesta);
-        console.log(datos);
         let template = "";
 
         if(area !== 'vacio'){
@@ -152,7 +142,7 @@ function buscar(valor = '',pagina = 1, cantidad = 3){
                     <td>${area.id}</td>
                     <td>${area.nombre}</td>
                     <td><button type="button" class="btn btn-info" data-coreui-toggle="modal" data-coreui-target="#exampleModal" data-fila = "${area.id}">Editar</button>
-                    <button type="button" class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
+                    <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
 
                     
                 
@@ -179,6 +169,8 @@ function buscar(valor = '',pagina = 1, cantidad = 3){
     }
     ajax.send(data);
 }
+
+
 let pagInicio = document.querySelector('#btnPrimero');
 pagInicio.addEventListener('click', function (e) {
     numPagina = 1;
@@ -222,14 +214,14 @@ pagFinal.addEventListener('click', function (e) {
 
 /****************************/
 //Buscar elementos
-let campoBusqueda = document.getElementById("txtBuscarArea");
+let campoBusqueda = document.getElementById("inputbuscarArea");
 campoBusqueda.addEventListener("keyup", function(e){
     var valor = campoBusqueda.value;
     console.log(valor);
     valorBuscar ="where nombre_area like '%"+valor+"%'";
     numPagina = 1;
     cantidadFilas = 3;
-    buscar(valorBuscar,numPagina,cantidadFilas);
+    buscarArea(valorBuscar,numPagina,cantidadFilas);
 
 
 });
@@ -240,4 +232,94 @@ function seleccionar(){
   var datosInput = document.querySelectorAll('#frmArea input');
   var datosSelect = document.querySelectorAll('#frmArea select');
   
+}
+
+/**********ELIMINAR*/
+// function eliminar() {
+//   linkBorrar = document.querySelectorAll('#tbArea ');
+//   btnBorrar = document.querySelectorAll('button');
+//   //console.log(linkEditar.length);
+//   var elementoRpta = document.getElementById('aviso');
+//   for (let i = 0; i < linkBorrar.length; i++) {
+//       linkBorrar[i].addEventListener('click', function (e) {
+//           var respuesta = '';
+//           var mensaje = '';
+//           enlaceBorrar = e.target.dataset.fila;
+//           var ajax = new XMLHttpRequest();
+//           ajax.open('POST', '../controller/areaController.php', true);
+//           console.log(enlaceBorrar);
+//           var data = new FormData();
+//           data.append('valor', enlaceBorrar);
+//           data.append('pag', '1');
+//           data.append('accion', 'Eliminar');
+//           console.log(numPagina);
+//           ajax.onload = function () {
+//               //console.log(ajax.responseText);
+//               respuesta = ajax.responseText;
+//               if (respuesta == 'true') {
+//                   mensaje = "Los datos se eliminaron con exito.";
+//                   elementoRpta.innerHTML = `
+//                   <div  class="alert alert-success alert-link" id="msjalerta" role="alert">
+//                   <span class="alert-dismissible">`+ mensaje + `</span>
+//                   </div>`;
+//               }
+//               else {
+//                   mensaje = "Los datos no se lograron eliminar.";
+//                   elementoRpta.innerHTML = `
+//                   <div  class="alert alert-danger alert-link" id="msjalerta" role="alert">
+//                   <span class="alert-dismissible">`+ mensaje + `</span>
+//                   </div>`;
+//               }
+             
+//               buscar();
+//               e.preventDefault();
+//           }
+//           console.log(numPagina);
+//           ajax.send(data);
+//           // console.log(enlace);
+//           // numPagina = e.target.dataset.pagina;
+//           e.preventDefault();
+//           var alerta = document.querySelector('#aviso');
+//           setTimeout(function () { alerta.innerHTML = ''; }, 2000);
+
+//       });
+//   }
+// }
+
+function eliminarArea(id){
+  console.log(id);
+  swal
+    .fire({
+      title: "CRUD",
+      text: "Desea Eliminar el Registro?",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "../controller/areaController.php", true);
+        const data = new FormData();
+        data.append("id", id);
+        //data.append('valor', enlaceBorrar);
+        data.append('pag', '1');
+        data.append('accion', 'eliminar');
+        ajax.onload = function () {
+          console.log(ajax.responseText);
+          //cargarTabla();
+          //listarTareas();
+          listarArea();
+          swal.fire(
+            "Eliminado!",
+            "El registro se elimino correctamente.",
+            "success"
+          );
+        };
+        console.log("id=" + id);
+        ajax.send(data);
+      }
+    });
 }
