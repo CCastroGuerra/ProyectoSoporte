@@ -19,11 +19,11 @@ frmArea.onsubmit = function (e) {
 };
 
 /*limit para el select*/
-var numRegistors = document.getElementById('numeroRegistros');
+var numRegistors = document.getElementById('numRegistros');
 numRegistors.addEventListener("change", listarArea);
 
 function listarArea() {
-  let num_registros = document.getElementById('numeroRegistros').value;
+  let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/areaController.php", true);
   var data = new FormData();
@@ -42,7 +42,7 @@ function listarArea() {
                   <tr>
                       <td>${area.id}</td>
                       <td>${area.nombre}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila = "${area.id}">Editar</button>
+                      <td><button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal" data-fila = "${area.id}">Editar</button>
                       <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
                   </tr>
                   `;
@@ -58,7 +58,7 @@ function listarArea() {
 function buscarArea() {
   var cajaBuscar = document.getElementById("inputbuscarArea");
   const textoBusqueda = cajaBuscar.value;
-  let num_registros = document.getElementById('numeroRegistros').value;
+  let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/areaController.php", true);
   var data = new FormData();
