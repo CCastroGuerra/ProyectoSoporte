@@ -68,7 +68,7 @@ include('../templates/cabecera.php');
                                 <div class="col-lg-10 col-sm-4">
                                     <div class="table-length my-1 text-start">
                                         <label>Mostrar
-                                            <select name="tablaAreas_length" aria-controls="tablaAreas">
+                                            <select name="tbInventario-length" aria-controls="tbInventario">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -78,7 +78,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="col-lg-2 col-sm-4 text-end">
                                     <div class="mb-2">
-                                        <input type="search" class="form-control" id="inputbuscarArea" placeholder="Buscar..." size="14" maxlength="14">
+                                        <input type="search" class="form-control" id="inputbuscarInventario" placeholder="Buscar..." size="14" maxlength="14">
                                     </div>
                                     </>
                                 </div>
@@ -109,7 +109,7 @@ include('../templates/cabecera.php');
                                 <div class="col-lg-10 col-sm-4">
                                     <div class="table-length my-1 text-start">
                                         <label>Mostrar
-                                            <select name="tablaAreas_length" aria-controls="tablaAreas">
+                                            <select name="tbEntradas-length" aria-controls="tbEntradas">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -119,7 +119,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="col-lg-2 col-sm-4 text-end">
                                     <div class="mb-2">
-                                        <input type="search" class="form-control" id="inputbuscarArea" placeholder="Buscar..." size="14" maxlength="14">
+                                        <input type="search" class="form-control" id="inputbuscarEntradas" placeholder="Buscar..." size="14" maxlength="14">
                                     </div>
                                     </>
                                 </div>
@@ -151,7 +151,7 @@ include('../templates/cabecera.php');
                                 <div class="col-lg-10 col-sm-4">
                                     <div class="table-length my-1 text-start">
                                         <label>Mostrar
-                                            <select name="tablaAreas_length" aria-controls="tablaAreas">
+                                            <select name="tbSalidas-length" aria-controls="tbSalidas">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -161,7 +161,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="col-lg-2 col-sm-4 text-end">
                                     <div class="mb-2">
-                                        <input type="search" class="form-control" id="inputbuscarArea" placeholder="Buscar..." size="14" maxlength="14">
+                                        <input type="search" class="form-control" id="inputbuscarSalidas" placeholder="Buscar..." size="14" maxlength="14">
                                     </div>
                                     </>
                                 </div>
