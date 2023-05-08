@@ -74,7 +74,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-4">
                                 <div class="table-length my-1 text-start">
                                     <label>Mostrar
-                                        <select name="tbPersonal-length" aria-controls="tbPersonal">
+                                        <select name="tbPersonal-length" aria-controls="tbPersonal"  id="numRegistros">
                                             <option value="5">5</option>
                                             <option value="10">10</option>
                                             <option value="15">15</option>
