@@ -46,13 +46,11 @@ include('../templates/cabecera.php');
                         <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#inventarioModal"><strong>Añadir</strong></button></div>
                     </div>
                 </h3>
-                
-                
             </div>
         </div>
         <div class="card">
             <div class="card-body">
-            <h5 class=" card-title mb-4" style="color:00000">
+                <h5 class=" card-title mb-4" style="color:00000">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-inventario-tab" data-coreui-toggle="tab" data-coreui-target="#nav-inventario" type="button" role="tab" aria-controls="nav-inventario" aria-selected="true">Resumen</button>
@@ -64,6 +62,29 @@ include('../templates/cabecera.php');
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-inventario" role="tabpanel" aria-labelledby="nav-inventario-tab" tabindex="0">
                         <!--tabla inventario -->
+                        <!-- encabezado--->
+                        <div class="container text-center">
+                            <div class="row mb-auto">
+                                <div class="col-lg-10 col-sm-4">
+                                    <div class="table-length my-1 text-start">
+                                        <label>Mostrar
+                                            <select name="tbInventario-length" aria-controls="tbInventario">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                            </select>
+                                            Entradas</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 text-end">
+                                    <div class="mb-2">
+                                        <input type="search" class="form-control" id="inputbuscarInventario" placeholder="Buscar..." size="14" maxlength="14">
+                                    </div>
+                                    </>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /encabezado--->
                         <table class="table">
                             <thead>
                                 <tr>
@@ -82,6 +103,30 @@ include('../templates/cabecera.php');
                     </div>
                     <div class="tab-pane fade" id="nav-entradas" role="tabpanel" aria-labelledby="nav-entradas-tab" tabindex="0">
                         <!--tabla entradas -->
+                        <!-- encabezado--->
+                        <div class="container text-center">
+                            <div class="row mb-auto">
+                                <div class="col-lg-10 col-sm-4">
+                                    <div class="table-length my-1 text-start">
+                                        <label>Mostrar
+                                            <select name="tbEntradas-length" aria-controls="tbEntradas">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                            </select>
+                                            Entradas</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 text-end">
+                                    <div class="mb-2">
+                                        <input type="search" class="form-control" id="inputbuscarEntradas" placeholder="Buscar..." size="14" maxlength="14">
+                                    </div>
+                                    </>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /encabezado--->
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -100,6 +145,29 @@ include('../templates/cabecera.php');
                     </div>
                     <div class="tab-pane fade" id="nav-salidas" role="tabpanel" aria-labelledby="nav-salidas-tab" tabindex="0">
                         <!--tabla salidas -->
+                        <!-- encabezado--->
+                        <div class="container text-center">
+                            <div class="row mb-auto">
+                                <div class="col-lg-10 col-sm-4">
+                                    <div class="table-length my-1 text-start">
+                                        <label>Mostrar
+                                            <select name="tbSalidas-length" aria-controls="tbSalidas">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                            </select>
+                                            Entradas</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 text-end">
+                                    <div class="mb-2">
+                                        <input type="search" class="form-control" id="inputbuscarSalidas" placeholder="Buscar..." size="14" maxlength="14">
+                                    </div>
+                                    </>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /encabezado--->
                         <table class="table">
                             <thead>
                                 <tr>

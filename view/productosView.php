@@ -60,13 +60,37 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-6">Lista Productos </div>
                             <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#productosModal"><strong>Añadir</strong></button></div>
                         </div>
-                    </h3>              
+                    </h3>
                 </div>
             </div>
         </div>
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
+                    <!-- encabezado--->
+                    <div class="container text-center">
+                        <div class="row mb-auto">
+                            <div class="col-lg-10 col-sm-4">
+                                <div class="table-length my-1 text-start">
+                                    <label>Mostrar
+                                        <select name="tbProductos-length" aria-controls="tbProductos">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                        </select>
+                                        Entradas</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-4 text-end">
+                                <div class="mb-2">
+                                    <input type="search" class="form-control" id="inputbuscarProducto" placeholder="Buscar..." size="14" maxlength="14">
+                                </div>
+                                </>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /encabezado--->
+
                     <table class="table">
                         <thead>
                             <tr>

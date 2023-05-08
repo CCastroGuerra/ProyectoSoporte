@@ -197,6 +197,29 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
+                    <!-- encabezado--->
+                    <div class="container text-center">
+                        <div class="row mb-auto">
+                            <div class="col-lg-10 col-sm-4">
+                                <div class="table-length my-1 text-start">
+                                    <label>Mostrar
+                                        <select name="tbTrabajos-length" aria-controls="tbTrabajos">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                        </select>
+                                        Entradas</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-4 text-end">
+                                <div class="mb-2">
+                                    <input type="search" class="form-control" id="inputbuscarTrabajo" placeholder="Buscar..." size="14" maxlength="14">
+                                </div>
+                                </>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /encabezado--->
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -211,7 +234,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>
                             </thead>
-                            <tbody id="tbArea">
+                            <tbody id="tbTrabajos">
                                 <tr>
                                     <td>01</td>
                                     <td>48961871</td>
