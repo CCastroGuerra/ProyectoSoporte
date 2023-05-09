@@ -14,7 +14,7 @@ include('../templates/cabecera.php');
                     <div class="row">
                         <!--formulario de datos de equipo -->
                         <div class="col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card col-md-4 col-lg-3">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="mb-2">Codigo:</label>
@@ -59,64 +59,17 @@ include('../templates/cabecera.php');
                         <!--/formulario de datos de equipo -->
 
                         <!--tabla temporal de componentes-->
-                        <div class="col-md-8 col-lg-9">
-
-                            <div class="row ">
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="card-title mb-auto">
-                                                <div class="row">
-                                                    <div class="col-lg-10 col-sm-6">Lista de componentes </div>
-                                                    <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><strong>Añadir</strong></button></div>
-                                                </div>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table" id="tableModal">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col"><strong>#</strong></th>
-                                                            <th scope="col"><strong>Tipo</strong></th>
-                                                            <th scope="col"><strong>Clase</strong></th>
-                                                            <th scope="col"><strong>Marca</strong></th>
-                                                            <th scope="col"><strong>Modelo</strong></th>
-                                                            <th scope="col"><strong># Serie</strong></th>
-                                                            <th scope="col"><strong>Capacidad</strong></th>
-                                                            <th scope="col"><strong>Estado</strong></th>
-                                                            <th scope="col"><strong>Fecha</strong></th>
-                                                            <th scope="col"><strong>Opciones</strong></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbEquipos">
-                                                        <tr>
-                                                            <td>01</td>
-                                                            <td>tipo 1</td>
-                                                            <td>clase 1</td>
-                                                            <td>marca 1</td>
-                                                            <td>modelo 1</td>
-                                                            <td>##########</td>
-                                                            <td>16 tb</td>
-                                                            <td>nuevo</td>
-                                                            <td>02/05/2023</td>
-                                                            <td>[ ] [ ] [ ]</td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="row">
+                        <div class="col-md-8 col-lg-9">                           
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Lista de componentes</h5>
                                 </div>
                             </div>
-
+                        </div>
                         </div>
                         <!-- /fin tabla temporal de componentes -->
+
                     </div>
                 </div>
                 <div class="modal-footer">
