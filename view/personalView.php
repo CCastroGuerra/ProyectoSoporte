@@ -55,7 +55,7 @@ include('../templates/cabecera.php');
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista del Personal </div>
                             <div class="col-lg-2 col-sm-5 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEmpleado">
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEmpleado" onclick="limpiarFormulario()">
                                     <strong>Añadir</strong>
                                 </button>
                             </div>

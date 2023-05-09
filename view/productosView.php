@@ -58,7 +58,7 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista Productos </div>
-                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#productosModal"><strong>Añadir</strong></button></div>
+                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#productosModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
                         </div>
                     </h3>
                 </div>

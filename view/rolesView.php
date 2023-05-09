@@ -52,7 +52,7 @@ include('../templates/cabecera.php');
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Asignación de Roles </div>
                             <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><strong>Añadir</strong></button>
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#rolesModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
                             </div>
                         </div>
                     </h3>

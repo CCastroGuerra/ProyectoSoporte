@@ -45,7 +45,7 @@ include('../templates/cabecera.php');
         <div class="col-xs-1-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">Lista del Personal <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEmpleado"><strong>Añadir</strong></button></h3>
+                    <h3 class="card-title mb-4">Lista del Personal <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEmpleado" onclick="limpiarFormulario()"><strong>Añadir</strong></button></h3>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="input-group input-group-sm mb-3">
