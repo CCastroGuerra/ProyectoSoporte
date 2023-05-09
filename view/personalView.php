@@ -36,8 +36,8 @@ include('../templates/cabecera.php');
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
         </div>
@@ -71,8 +71,8 @@ include('../templates/cabecera.php');
                     <!-- encabezado--->
                     <div class="container text-center">
                         <div class="row mb-auto">
-                            <div class="col-lg-10 col-sm-4">
-                                <div class="table-length my-1 text-start">
+                            <div class="col-lg-8 col-sm-4">
+                                <div class="table-length mb-auto my-1 text-start">
                                     <label>Mostrar
                                         <select name="tbPersonal-length" aria-controls="tbPersonal" id="numRegistros">
                                             <option value="5">5</option>
@@ -82,8 +82,8 @@ include('../templates/cabecera.php');
                                         Entradas</label>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-sm-4 text-end">
-                                <div class="mb-2">
+                            <div class="col-lg-4 col-sm-4 text-end">
+                                <div class="mb-auto">
                                     <input type="search" class="form-control" id="inputbuscarPersonal" placeholder="Buscar..." size="14" maxlength="14">
                                 </div>
                                 </>
