@@ -129,12 +129,12 @@ include('../templates/cabecera.php');
 <!-- Fin del modal  -->
 
 <!--Modal añadir componente-->
-<div class="modal fade" id="añadirComponente" tabindex="-1" aria-labelledby="añadirComponente" aria-hidden="true">
+<div class="modal fade" id="añadirComponente" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="añadirComponente" aria-hidden="true">
     <div class="modal-dialog" modal-sm>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="añadirComponente">Añadir Componente</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" data-coreui-target="#añadirEquipo" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="formAcomponente">
                 <div class="modal-body">

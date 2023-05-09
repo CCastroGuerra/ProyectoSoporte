@@ -139,7 +139,7 @@ include('../templates/cabecera.php');
 <!-- /*Fin del modal Trabajo*/ -->
 
 <!--modal servicios-->
-<div class="modal fade" id="ServiciosModal" tabindex="-1" aria-labelledby="ServiciosModalLabel" aria-hidden="true">
+<div class="modal fade" id="ServiciosModal"  data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="ServiciosModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
