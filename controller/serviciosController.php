@@ -1,36 +1,36 @@
 <?php
 require_once("../config/conexion.php");
-require_once("../model/rolesModel.php");
-$rol = new Rol();
+require_once("../model/serviciosModel.php");
+$servicio = new Servicio();
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch($accion){
     case "listar":
-        $rol-> listarRoles();
+        $servicio-> listarServicio();
         break;
     case "guardar":
-        $rol->agregarRoles($_POST["nombre_"]);
+        $servicio->agregarServicio($_POST["nombre_servicios"]);
         break;
     case "mostrar":
-        $datos = $area->traerAreaXId($_POST["id"]);
+        $datos = $servicio->traerServicioXId($_POST["id"]);
         if(is_array($datos)==true && count($datos)>0){
             foreach($datos as $row){
-                $output['id'] = $row['id_area'];
-                $output['nombre'] = $row['nombre_area'];
+                $output['id'] = $row['id_servicios'];
+                $output['nombre'] = $row['nombre_servicios'];
             }
             echo json_encode($output);
         }
         break;
     case "actualizar":
-            $area ->actulizarArea($_POST["id"],$_POST["nombre"]);
+            $servicio ->actualizarServicio($_POST["id"],$_POST["nombre"]);
             echo "actualizado correctamente";
             break;
     case "eliminar":
-            $area -> eliminarArea($_POST["id"]);
+            $servicio -> eliminarServicio($_POST["id"]);
             break;
     case "buscar":
         //var_dump($_POST);
-        $area ->buscarArea(intval($_POST['pag']));
+        $servicio ->buscarServicio(intval($_POST['pag']));
 
 }
 
