@@ -18,10 +18,10 @@ include('../templates/cabecera.php');
               <div class="form-group">
                 <div class="visually-hidden">
                   <label class="control-label">Código</label>
-                  <input type="text" class="form-control" id="inputCodigo" placeholder="Código">
+                  <input type="text" class="form-control" id="inputCodigo" placeholder="Ingrese el Código">
                 </div>
                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese Servicio">
+                <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
                 <div id="alerta"></div>
               </div>
             </div>
@@ -94,6 +94,20 @@ include('../templates/cabecera.php');
 
             </tbody>
           </table>
+          <!-- Paginador Inicio -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+              <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+              <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+              <label>&nbsp;de&nbsp;</label>
+              <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+              <label>&nbsp;paginas.&nbsp;</label>
+              <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+              <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+            </div>
+          </div>
+          <!-- Paginador Final -->
         </div>
       </div>
     </div>
