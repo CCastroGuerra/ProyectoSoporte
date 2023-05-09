@@ -26,7 +26,7 @@ class Servicio extends Conectar{
             foreach ($resultado as $row) {
                 $listado[] = array(
                     'id' => $row['id_servicios'],
-                    'nombre' => $row['nombre_servicios'],
+                    'nombre' => $row['nombre_servicios']
                 );
             }
             $jsonString = json_encode($listado);

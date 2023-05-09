@@ -2,16 +2,16 @@ var id;
 var numPagina = 1;
 var formServicio = document.getElementById("formServicio");
 console.log(numPagina);
-buscarArea();
-listarArea();
+buscarServicio();
+listarServicio();
 formServicio.onsubmit = function (e) {
   e.preventDefault();
   if (formServicio.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarArea();
-    listarArea();
+    guardarServicio();
+    listarServicio();
     console.log("guardo");
   }
   formServicio.reset();
@@ -24,7 +24,7 @@ numRegistors.addEventListener("change", listarServicio);
 function listarServicio() {
   let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
-  ajax.open("POST", "../controller/servicosController", true);
+  ajax.open("POST", "../controller/serviciosController.php", true);
   var data = new FormData();
   data.append("accion", "listar");
   data.append("valor", "");
@@ -41,8 +41,8 @@ function listarServicio() {
                   <tr>
                       <td>${servicio.id}</td>
                       <td>${servicio.nombre}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${servicio.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal">Editar</button>
-                      <button type="button" onClick = eliminarArea("${servicio.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
+                      <td><button type="button" onClick=mostrarEnModal("${servicio.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal">Editar</button>
+                      <button type="button" onClick = eliminarServicio("${servicio.id}") class="btn btn-danger" data-fila = "${servicio.id}">Borrar</button></td>
                   </tr>
                   `;
       });
@@ -81,10 +81,10 @@ function buscarServicio() {
               <td>${servicio.id}</td>
               <td>${servicio.nombre}</td>
               <td>
-                <button type="button" onClick=mostrarEnModal("${servicio.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila="${area.id}">
+                <button type="button" onClick=mostrarEnModal("${servicio.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#servicioModal" data-fila="${servicio.id}">
                   Editar
                 </button>
-                <button type="button" onClick=eliminarArea("${servicio.id}") class="btn btn-danger" data-fila="${area.id}">
+                <button type="button" onClick=eliminarServicio("${servicio.id}") class="btn btn-danger" data-fila="${servicio.id}">
                   Borrar
                 </button>
               </td>
@@ -113,7 +113,7 @@ function guardarServicio() {
   var mensaje = "";
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
-  ajax.open("POST", "../controller/servicioController.php", true);
+  ajax.open("POST", "../controller/serviciosController.php", true);
   var data = new FormData(formServicio);
   data.append("accion", "guardar");
   ajax.onload = function () {
@@ -141,7 +141,7 @@ function mostrarEnModal(servicioId) {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
-    document.getElementById("nombre_area").value = datos.nombre;
+    document.getElementById("nombreServicio").value = datos.nombre;
     document.getElementById("inputCodigo").value = datos.id;
   };
   ajax.send(data);
@@ -164,7 +164,7 @@ function actualizar(id) {
     .then((result) => {
       if (result.isConfirmed) {
         const ajax = new XMLHttpRequest();
-        ajax.open("POST", "../controller/servicioController.php", true);
+        ajax.open("POST", "../controller/serviciosController.php", true);
         const data = new FormData();
         data.append("id", id);
         data.append("nombre", nombre);
@@ -202,7 +202,7 @@ function eliminarServicio(id) {
     .then((result) => {
       if (result.isConfirmed) {
         const ajax = new XMLHttpRequest();
-        ajax.open("POST", "../controller/servicioController.php", true);
+        ajax.open("POST", "../controller/serviciosController.php", true);
         const data = new FormData();
         data.append("id", id);
         data.append("accion", "eliminar");

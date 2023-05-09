@@ -9,7 +9,7 @@ switch($accion){
         $servicio-> listarServicio();
         break;
     case "guardar":
-        $servicio->agregarServicio($_POST["nombre_servicios"]);
+        $servicio->agregarServicio($_POST["nombreServicio"]);
         break;
     case "mostrar":
         $datos = $servicio->traerServicioXId($_POST["id"]);
