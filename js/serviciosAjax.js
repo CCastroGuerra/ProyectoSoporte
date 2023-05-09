@@ -41,7 +41,7 @@ function listarServicio() {
                   <tr>
                       <td>${servicio.id}</td>
                       <td>${servicio.nombre}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${servicio.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal">Editar</button>
+                      <td><button type="button" onClick='mostrarEnModal("${servicio.id}") 'id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal">Editar</button>
                       <button type="button" onClick = eliminarServicio("${servicio.id}") class="btn btn-danger" data-fila = "${servicio.id}">Borrar</button></td>
                   </tr>
                   `;
@@ -81,7 +81,7 @@ function buscarServicio() {
               <td>${servicio.id}</td>
               <td>${servicio.nombre}</td>
               <td>
-                <button type="button" onClick=mostrarEnModal("${servicio.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#servicioModal" data-fila="${servicio.id}">
+                <button type="button" onClick='mostrarEnModal("${servicio.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal" data-fila="${servicio.id}">
                   Editar
                 </button>
                 <button type="button" onClick=eliminarServicio("${servicio.id}") class="btn btn-danger" data-fila="${servicio.id}">
@@ -171,13 +171,14 @@ function actualizar(id) {
         data.append("accion", "actualizar");
         ajax.onload = function () {
           console.log(ajax.responseText);
-          listarArea();
+          listarServicio();
           swal.fire(
             "Actualizado!",
             "El registro se actualizó correctamente.",
             "success"
           );
         };
+        cajaBuscar.value = '';
         ajax.send(data);
       }
     });
@@ -230,9 +231,9 @@ cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
   if (textoBusqueda.trim() == "") {
-    listarArea();
+    listarServicio();
   } else{
-    buscarArea();
+    buscarServicio();
   }//{
   //   data.append("textoBusqueda", textoBusqueda);
   //   const ajax = new XMLHttpRequest();

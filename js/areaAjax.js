@@ -41,7 +41,7 @@ function listarArea() {
                   <tr>
                       <td>${area.id}</td>
                       <td>${area.nombre}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal">Editar</button>
+                      <td><button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal">Editar</button>
                       <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
                   </tr>
                   `;
@@ -81,7 +81,7 @@ function buscarArea() {
               <td>${area.id}</td>
               <td>${area.nombre}</td>
               <td>
-                <button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila="${area.id}">
+                <button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal" data-fila="${area.id}">
                   Editar
                 </button>
                 <button type="button" onClick=eliminarArea("${area.id}") class="btn btn-danger" data-fila="${area.id}">
@@ -130,8 +130,9 @@ function guardarArea() {
 }
 
 function mostrarEnModal(areaid) {
-  console.log(id);
   id = areaid;
+  console.log(id);
+
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/areaController.php", true);
   const data = new FormData();
@@ -178,6 +179,7 @@ function actualizar(id) {
             "success"
           );
         };
+        cajaBuscar.value = '';
         ajax.send(data);
       }
     });
