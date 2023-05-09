@@ -16,20 +16,20 @@ include('../templates/cabecera.php');
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="mb-2">Apellidos:</label>
-                                <input type="text" class="form-control form-control-sm mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
+                                <input type="text" class="form-control form-control-sm mb-2" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos">
                                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="marca" name="marca" placeholder="Ingrese marca">
+                                <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el nombre">
                                 <label for="exampleInputEmail1" class="mb-2">Cargo:</label>
                                 <select class="form-select form-select-sm" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Impresora</option>
-                                    <option value="2">Laptop</option>
-                                    <option value="3">Todo en uno</option>
+                                    <option selected>Seleccione el cargo </option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Secretaria</option>
+                                    <option value="3">Practicante</option>
                                 </select>
                                 <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
+                                <input type="text" class="form-control  form-control-sm mb-2" id="usuario" name="usuario" placeholder="Ingrese el Usuario">
                                 <label for="exampleInputEmail1" class="mb-2">Contraseña:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+                                <input type="password" class="form-control  form-control-sm mb-2" id="password" name="password" placeholder="Ingrese la contraseña">
                             </div>
                         </div>
                     </div>

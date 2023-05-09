@@ -3,8 +3,7 @@ var numPagina = 1;
 var frmArea = document.getElementById("formArea");
 console.log(numPagina);
 buscarArea();
-
-//listarArea();
+listarArea();
 frmArea.onsubmit = function (e) {
   e.preventDefault();
   if (frmArea.querySelector("#inputCodigo").value !== "") {
@@ -42,7 +41,7 @@ function listarArea() {
                   <tr>
                       <td>${area.id}</td>
                       <td>${area.nombre}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal" data-fila = "${area.id}">Editar</button>
+                      <td><button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal">Editar</button>
                       <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
                   </tr>
                   `;
