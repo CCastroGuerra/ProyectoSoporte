@@ -115,7 +115,7 @@ include('../templates/cabecera.php');
 </div>
 <!--/Contenido-->
 
-<script src="../js/areaAjax.js"></script>
+<script src="../js/serviciosAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

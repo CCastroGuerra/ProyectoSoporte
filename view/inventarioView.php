@@ -99,6 +99,20 @@ include('../templates/cabecera.php');
                                 <td>##</td>
                             </tbody>
                         </table>
+                        <!-- Paginador Inicio -->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;de&nbsp;</label>
+                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;paginas.&nbsp;</label>
+                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                            </div>
+                        </div>
+                        <!-- Paginador Final -->
                         <!-- /tabla inventario -->
                     </div>
                     <div class="tab-pane fade" id="nav-entradas" role="tabpanel" aria-labelledby="nav-entradas-tab" tabindex="0">
@@ -141,6 +155,20 @@ include('../templates/cabecera.php');
                                 <td>###</td>
                             </tbody>
                         </table>
+                        <!-- Paginador Inicio -->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;de&nbsp;</label>
+                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;paginas.&nbsp;</label>
+                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                            </div>
+                        </div>
+                        <!-- Paginador Final -->
                         <!-- /tabla entradas -->
                     </div>
                     <div class="tab-pane fade" id="nav-salidas" role="tabpanel" aria-labelledby="nav-salidas-tab" tabindex="0">
@@ -182,6 +210,20 @@ include('../templates/cabecera.php');
                                 <td>####</td>
                             </tbody>
                         </table>
+                        <!-- Paginador Inicio -->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;de&nbsp;</label>
+                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;paginas.&nbsp;</label>
+                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                            </div>
+                        </div>
+                        <!-- Paginador Final -->
                         <!-- /tabla salidas -->
                     </div>
                 </div>
