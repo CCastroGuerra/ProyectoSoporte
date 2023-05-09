@@ -128,7 +128,7 @@ include('../templates/cabecera.php');
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary"  data-coreui-dismiss="modal">Guardar</button>
 
                 </div>
             </form>
@@ -164,8 +164,8 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
         </div>
@@ -184,7 +184,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-6">Lista Trabajos
                             </div>
                             <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal" onclick="limpiarFormulario()">Añadir</button>
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal" onclick="console.log(this);">Añadir</button>
                             </div>
                         </div>
                     </h3>
@@ -200,8 +200,8 @@ include('../templates/cabecera.php');
                     <!-- encabezado--->
                     <div class="container text-center">
                         <div class="row mb-auto">
-                            <div class="col-lg-10 col-sm-4">
-                                <div class="table-length my-1 text-start">
+                            <div class="col-lg-8 col-sm-4">
+                                <div class="table-length mb-auto my-1 text-start">
                                     <label>Mostrar
                                         <select name="tbTrabajos-length" aria-controls="tbTrabajos" id="numRegistros">
                                             <option value="5">5</option>
@@ -211,8 +211,8 @@ include('../templates/cabecera.php');
                                         Entradas</label>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-sm-4 text-end">
-                                <div class="mb-2">
+                            <div class="col-lg-4 col-sm-4 text-end">
+                                <div class="mb-auto">
                                     <input type="search" class="form-control" id="inputbuscarTrabajo" placeholder="Buscar..." size="14" maxlength="14">
                                 </div>
                                 </>
@@ -247,8 +247,10 @@ include('../templates/cabecera.php');
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- Paginador Inicio -->
-                        <div class="row">
+                        
+                    </div>
+                    <!-- Paginador Inicio -->
+                    <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                                 <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
@@ -261,7 +263,6 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                         <!-- Paginador Final -->
-                    </div>
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
                 </div>
             </form>
@@ -65,8 +65,8 @@ include('../templates/cabecera.php');
                         <!-- encabezado--->
                         <div class="container text-center">
                             <div class="row mb-auto">
-                                <div class="col-lg-10 col-sm-4">
-                                    <div class="table-length my-1 text-start">
+                                <div class="col-lg-8 col-sm-4">
+                                    <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
                                             <select name="tbInventario-length" aria-controls="tbInventario">
                                                 <option value="5">5</option>
@@ -76,8 +76,8 @@ include('../templates/cabecera.php');
                                             Entradas</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-sm-4 text-end">
-                                    <div class="mb-2">
+                                <div class="col-lg-4 col-sm-4 text-end">
+                                    <div class="mb-auto">
                                         <input type="search" class="form-control" id="inputbuscarInventario" placeholder="Buscar..." size="14" maxlength="14">
                                     </div>
                                     </>
@@ -101,18 +101,18 @@ include('../templates/cabecera.php');
                         </table>
                         <!-- Paginador Inicio -->
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;de&nbsp;</label>
-                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;paginas.&nbsp;</label>
-                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                    <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                    <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                                    <label>&nbsp;de&nbsp;</label>
+                                    <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                                    <label>&nbsp;paginas.&nbsp;</label>
+                                    <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                    <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Paginador Final -->
+                            <!-- Paginador Final -->
                         <!-- /tabla inventario -->
                     </div>
                     <div class="tab-pane fade" id="nav-entradas" role="tabpanel" aria-labelledby="nav-entradas-tab" tabindex="0">
@@ -120,8 +120,8 @@ include('../templates/cabecera.php');
                         <!-- encabezado--->
                         <div class="container text-center">
                             <div class="row mb-auto">
-                                <div class="col-lg-10 col-sm-4">
-                                    <div class="table-length my-1 text-start">
+                                <div class="col-lg-8 col-sm-4">
+                                    <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
                                             <select name="tbEntradas-length" aria-controls="tbEntradas" id="numRegistros">
                                                 <option value="5">5</option>
@@ -131,8 +131,8 @@ include('../templates/cabecera.php');
                                             Entradas</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-sm-4 text-end">
-                                    <div class="mb-2">
+                                <div class="col-lg-4 col-sm-4 text-end">
+                                    <div class="mb-auto">
                                         <input type="search" class="form-control" id="inputbuscarEntradas" placeholder="Buscar..." size="14" maxlength="14">
                                     </div>
                                     </>
@@ -176,8 +176,8 @@ include('../templates/cabecera.php');
                         <!-- encabezado--->
                         <div class="container text-center">
                             <div class="row mb-auto">
-                                <div class="col-lg-10 col-sm-4">
-                                    <div class="table-length my-1 text-start">
+                                <div class="col-lg-8 col-sm-4">
+                                    <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
                                             <select name="tbSalidas-length" aria-controls="tbSalidas">
                                                 <option value="5">5</option>
@@ -187,8 +187,8 @@ include('../templates/cabecera.php');
                                             Entradas</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-sm-4 text-end">
-                                    <div class="mb-2">
+                                <div class="col-lg-4 col-sm-4 text-end">
+                                    <div class="mb-auto">
                                         <input type="search" class="form-control" id="inputbuscarSalidas" placeholder="Buscar..." size="14" maxlength="14">
                                     </div>
                                     </>
