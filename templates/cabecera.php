@@ -49,7 +49,7 @@
   <link href="../css/examples.css" rel="stylesheet">
   <!--   stylo de paginacion -->
   <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/paginador.css">
 
   <!-- Datables -->
   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
@@ -152,6 +152,10 @@
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-memory"></use>
               </svg> Productos</a>
           </li>
+          <li class="nav-item"><a class="nav-link" href="../view/componentesview.php">
+              <svg class="nav-icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-devices"></use>
+              </svg> Componentes</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/equiposview.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-devices"></use>

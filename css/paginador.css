@@ -1,0 +1,21 @@
+.cuadroPaginador {
+    padding: 0.11rem 0.2rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #f5efef;
+    width: 25px;
+    font-weight: bold;
+    background-color: #d68408;
+    border: 0 solid transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .cuadrosPaginas{
+    font-size: 0.9rem;
+      text-align: center;
+      color: #000000;
+      width: 25px;
+      font-weight: bold;
+      border-width:0;
+      pointer-events: none;
+  }

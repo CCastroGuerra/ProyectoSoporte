@@ -1,133 +1,7 @@
 <?php
 include('../templates/cabecera.php');
 ?>
-<!-- Modal  añadir equipo-->
-<div class="modal fade" id="añadirEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Añadir Equipo</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="formAEquipo">
-                <div class="modal-body">
-                    <div class="row">
-                        <!--formulario de datos de equipo -->
-                        <div class="col-md-4 col-lg-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="mb-2">Codigo:</label>
-                                        <input type="text" class="form-control form-control-sm mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
-                                        <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Impresora</option>
-                                            <option value="2">Laptop</option>
-                                            <option value="3">Todo en uno</option>
-                                        </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Marca:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="marca" name="marca" placeholder="Ingrese marca">
-                                        <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
-                                        <label for="exampleInputEmail1" class="mb-2">Serie:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
-                                        <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
-                                        <label for="exampleInputEmail1" class="mb-2">Area:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Estadisitiaca</option>
-                                            <option value="2">Soporte</option>
-                                            <option value="3">Administracion</option>
-                                        </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Estado:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Bueno</option>
-                                            <option value="2">Regular</option>
-                                            <option value="3">Malo</option>
-                                        </select>
-                                        <label for="exampleInputEmail1" class="mb-2">MAC:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
-                                        <label for="exampleInputEmail1" class="mb-2">IP:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/formulario de datos de equipo -->
 
-                        <!--tabla temporal de componentes-->
-                        <div class="col-md-8 col-lg-9">
-
-                            <div class="row ">
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="card-title mb-auto">
-                                                <div class="row">
-                                                    <div class="col-lg-10 col-sm-6">Lista de componentes </div>
-                                                    <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><strong>Añadir</strong></button></div>
-                                                </div>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table" id="tableModal">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col"><strong>#</strong></th>
-                                                            <th scope="col"><strong>Tipo</strong></th>
-                                                            <th scope="col"><strong>Clase</strong></th>
-                                                            <th scope="col"><strong>Marca</strong></th>
-                                                            <th scope="col"><strong>Modelo</strong></th>
-                                                            <th scope="col"><strong># Serie</strong></th>
-                                                            <th scope="col"><strong>Capacidad</strong></th>
-                                                            <th scope="col"><strong>Estado</strong></th>
-                                                            <th scope="col"><strong>Fecha</strong></th>
-                                                            <th scope="col"><strong>Opciones</strong></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbEquipos">
-                                                        <tr>
-                                                            <td>01</td>
-                                                            <td>tipo 1</td>
-                                                            <td>clase 1</td>
-                                                            <td>marca 1</td>
-                                                            <td>modelo 1</td>
-                                                            <td>##########</td>
-                                                            <td>16 tb</td>
-                                                            <td>nuevo</td>
-                                                            <td>02/05/2023</td>
-                                                            <td>[ ] [ ] [ ]</td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /fin tabla temporal de componentes -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Fin del modal  -->
 
 <!--Modal añadir componente-->
 <div class="modal fade" id="añadirComponente" tabindex="-1" aria-labelledby="añadirComponente" aria-hidden="true">
@@ -146,27 +20,27 @@ include('../templates/cabecera.php');
                                 <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
 
                                 <label for="exampleInputEmail1" class="mb-2">Tipo de Componente:</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
+                                <select class="form-select" aria-label="Default select example" id="selTipo" name="selTipo">
+                                    <option selected>Seleccione el tipo</option>
                                     <option value="1">CPU</option>
                                     <option value="2">Disco Duro</option>
                                     <option value="3">Memoria RAM</option>
                                 </select>
 
                                 <label for="exampleInputEmail1" class="mb-2">Clase de Componente </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
+                                <select class="form-select" aria-label="Default select example" id="selClase" name="selClase">
+                                    <option selected>Seleccione la clase</option>
                                     <option value="1">Clase 1</option>
                                     <option value="2">Clase 2</option>
                                     <option value="3">Clase 3</option>
                                 </select>
 
                                 <label for="exampleInputEmail1" class="mb-2">Marca </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Clase 1</option>
-                                    <option value="2">Clase 2</option>
-                                    <option value="3">Clase 3</option>
+                                <select class="form-select" aria-label="Default select example" id="selMarca" name="selMarca">
+                                    <option selected>Seleccione la marca</option>
+                                    <option value="1">Marca 1</option>
+                                    <option value="2">Marca 2</option>
+                                    <option value="3">Marca 3</option>
                                 </select>
 
                                 <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
@@ -179,8 +53,8 @@ include('../templates/cabecera.php');
                                 <input type="text" class="form-control mb-2" id="capacidad" name="capacidad" placeholder="Ingrese capacidad">
 
                                 <label for="exampleInputEmail1" class="mb-2">Estado: </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
+                                <select class="form-select" aria-label="Default select example" id="selEstado" name="selEstado">
+                                    <option selected>Seleccione estado</option>
                                     <option value="1">Bueno</option>
                                     <option value="2">Regular</option>
                                     <option value="3">Malo</option>
@@ -192,7 +66,7 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-coreui-toggle="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
