@@ -184,7 +184,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-6">Lista Trabajos
                             </div>
                             <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal" onclick="limpiarFormulario()">Añadir</button>
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal" onclick="console.log(this);">Añadir</button>
                             </div>
                         </div>
                     </h3>
