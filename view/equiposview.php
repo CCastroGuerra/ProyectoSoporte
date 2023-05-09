@@ -210,7 +210,7 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-4">Lista de Equipos </div>
-                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><strong>Añadir</strong></button></div>
+                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
                         </div>
                     </h3>
                 </div>
