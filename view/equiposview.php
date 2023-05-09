@@ -11,10 +11,29 @@ include('../templates/cabecera.php');
             </div>
             <form id="formAEquipo">
                 <div class="modal-body">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                            <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <!--formulario de datos de equipo -->
                         <div class="col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card col-md-4 col-lg-3">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="mb-2">Codigo:</label>
@@ -59,64 +78,17 @@ include('../templates/cabecera.php');
                         <!--/formulario de datos de equipo -->
 
                         <!--tabla temporal de componentes-->
+
                         <div class="col-md-8 col-lg-9">
-
-                            <div class="row ">
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="card-title mb-auto">
-                                                <div class="row">
-                                                    <div class="col-lg-10 col-sm-6">Lista de componentes </div>
-                                                    <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><strong>Añadir</strong></button></div>
-                                                </div>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table" id="tableModal">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col"><strong>#</strong></th>
-                                                            <th scope="col"><strong>Tipo</strong></th>
-                                                            <th scope="col"><strong>Clase</strong></th>
-                                                            <th scope="col"><strong>Marca</strong></th>
-                                                            <th scope="col"><strong>Modelo</strong></th>
-                                                            <th scope="col"><strong># Serie</strong></th>
-                                                            <th scope="col"><strong>Capacidad</strong></th>
-                                                            <th scope="col"><strong>Estado</strong></th>
-                                                            <th scope="col"><strong>Fecha</strong></th>
-                                                            <th scope="col"><strong>Opciones</strong></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbEquipos">
-                                                        <tr>
-                                                            <td>01</td>
-                                                            <td>tipo 1</td>
-                                                            <td>clase 1</td>
-                                                            <td>marca 1</td>
-                                                            <td>modelo 1</td>
-                                                            <td>##########</td>
-                                                            <td>16 tb</td>
-                                                            <td>nuevo</td>
-                                                            <td>02/05/2023</td>
-                                                            <td>[ ] [ ] [ ]</td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="card col-md-8 col-lg-9">
+                                <div class="card-body">
+                                    <h5>Lista de componentes</h5>
                                 </div>
                             </div>
-
                         </div>
+
                         <!-- /fin tabla temporal de componentes -->
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -225,7 +197,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-4">
                                 <div class="table-length my-1 text-start">
                                     <label>Mostrar
-                                        <select name="tbEquipos-length" aria-controls="tbEquipos"  id="numRegistros">
+                                        <select name="tbEquipos-length" aria-controls="tbEquipos" id="numRegistros">
                                             <option value="5">5</option>
                                             <option value="10">10</option>
                                             <option value="15">15</option>
@@ -242,7 +214,7 @@ include('../templates/cabecera.php');
                         </div>
                     </div>
                     <!-- /encabezado--->
-                    
+
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -276,22 +248,22 @@ include('../templates/cabecera.php');
                                 </tr>
 
                             </tbody>
-                        </table>                        
+                        </table>
                     </div>
                     <!-- Paginador Inicio -->
                     <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                    <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                    <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                                    <label>&nbsp;de&nbsp;</label>
-                                    <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                                    <label>&nbsp;paginas.&nbsp;</label>
-                                    <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                    <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
-                                </div>
-                            </div>
-                            <!-- Paginador Final -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                            <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                            <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;de&nbsp;</label>
+                            <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;paginas.&nbsp;</label>
+                            <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                            <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                        </div>
+                    </div>
+                    <!-- Paginador Final -->
                 </div>
             </div>
         </div>
