@@ -1,20 +1,21 @@
 var id;
 var numPagina = 1;
-var formServicio = document.getElementById("formServicio");
+var frmServicio = document.getElementById("formServicio");
 console.log(numPagina);
 buscarServicio();
 listarServicio();
-formServicio.onsubmit = function (e) {
+
+frmServicio.onsubmit = function (e) {
   e.preventDefault();
-  if (formServicio.querySelector("#inputCodigo").value !== "") {
-    console.log("actualizo");
+  if (frmServicio.querySelector("#inputCodigo").value !== "") {
     actualizar(id);
+    console.log("actualizo");
   } else {
     guardarServicio();
     listarServicio();
     console.log("guardo");
   }
-  formServicio.reset();
+  frmServicio.reset();
 };
 
 /*limit para el select*/
@@ -55,7 +56,7 @@ function listarServicio() {
 }
 
 function buscarServicio() {
-  var cajaBuscar = document.getElementById("inputbuscarArea");
+  var cajaBuscar = document.getElementById("inputbuscarServicios");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
@@ -114,7 +115,7 @@ function guardarServicio() {
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/serviciosController.php", true);
-  var data = new FormData(formServicio);
+  var data = new FormData(frmServicio);
   data.append("accion", "guardar");
   ajax.onload = function () {
     realizado = ajax.responseText;
@@ -124,7 +125,7 @@ function guardarServicio() {
     }
     buscarServicio();
     //listarArea();
-    formServicio.reset();
+    frmServicio.reset();
   };
   ajax.send(data);
 }
@@ -223,7 +224,7 @@ function eliminarServicio(id) {
 }
 
 /*BUSCAR*/
-var cajaBuscar = document.getElementById("inputbuscarArea");
+var cajaBuscar = document.getElementById("inputbuscarServicios");
 const data = new FormData();
 data.append("accion", "buscar");
 
@@ -286,7 +287,7 @@ let pagInicio = document.querySelector('#btnPrimero');
 pagInicio.addEventListener('click', function (e) {
     numPagina = 1;
     document.getElementById('txtPagVista').value = numPagina;
-    buscarArea();
+    buscarServicio();
     pagInicio.blur();
 });
 let pagAnterior = document.querySelector('#btnAnterior');
@@ -297,7 +298,7 @@ pagAnterior.addEventListener('click', function (e) {
         pagDestino = pagVisitada - 1;
         numPagina = pagDestino;
         document.getElementById('txtPagVista').value = numPagina;
-        buscarArea();
+        buscarServicio();
         pagAnterior.blur();
     }
 });
@@ -310,7 +311,7 @@ pagSiguiente.addEventListener('click', function (e) {
         pagDestino = pagVisitada + 1;
         numPagina = pagDestino;
         document.getElementById('txtPagVista').value = numPagina;
-        buscarArea();
+        buscarServicio();
         pagSiguiente.blur();
     }
 });
@@ -319,7 +320,7 @@ pagFinal.addEventListener('click', function (e) {
     numPagina = document.getElementById('txtPagTotal').value;
     document.getElementById('txtPagVista').value = numPagina;
     console.log(numPagina);
-    buscarArea();
+    buscarServicio();
     pagFinal.blur();
 });
 
