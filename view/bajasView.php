@@ -16,6 +16,10 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
+                                <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                    <label class="control-label">Código</label>
+                                    <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                </div>
                                 <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
                                 <div id="Equipo"></div>
                                 <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="Ingrese código">
@@ -140,7 +144,7 @@ include('../templates/cabecera.php');
 </div>
 <!--/Contenido-->
 
-<script src="../js/areaAjax.js"></script>
+<script src="../js/rolesAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

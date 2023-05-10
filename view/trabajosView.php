@@ -19,7 +19,11 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
+                                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                            <label class="control-label">Código</label>
+                                            <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                        </div>
+                                        <label for="exampleInputEmail1" class="mb-2">Usuario del Equipo:</label>
                                         <input type="text" class="form-control mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese Usuario">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
                                         <select class="form-select" aria-label="Default select example" id="selArea" name="selArea">
@@ -127,8 +131,8 @@ include('../templates/cabecera.php');
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary"  data-coreui-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal" id="btncerrar" name="btncerrar">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" >Guardar</button>
 
                 </div>
             </form>
@@ -139,7 +143,7 @@ include('../templates/cabecera.php');
 <!-- /*Fin del modal Trabajo*/ -->
 
 <!--modal servicios-->
-<div class="modal fade" id="ServiciosModal"  data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="ServiciosModalLabel" aria-hidden="true">
+<div class="modal fade" id="ServiciosModal" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="ServiciosModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -184,7 +188,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-6">Lista Trabajos
                             </div>
                             <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal" onclick="console.log(this);">Añadir</button>
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal">Añadir</button>
                             </div>
                         </div>
                     </h3>
@@ -247,28 +251,30 @@ include('../templates/cabecera.php');
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                     </div>
                     <!-- Paginador Inicio -->
                     <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;de&nbsp;</label>
-                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;paginas.&nbsp;</label>
-                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
-                            </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                            <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                            <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;de&nbsp;</label>
+                            <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;paginas.&nbsp;</label>
+                            <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                            <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>
-                        <!-- Paginador Final -->
+                    </div>
+                    <!-- Paginador Final -->
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
+
 <!--/contenido ventana -->
 <script src="../js/trabajosAjax.js"></script>
 <?php

@@ -53,6 +53,8 @@
 
   <!-- Datables -->
   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  
 
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -200,11 +202,17 @@
           <li class="nav-item"><a class="nav-link" href="../view/rolesView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-control"></use>
-              </svg> Roles</a></li>
+              </svg> Roles</a>
+          </li>
           <li class="nav-item"><a class="nav-link" href="../view/serviciosView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-playlist-add"></use>
               </svg> Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
+              <svg class="nav-icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-control"></use>
+              </svg> Asignar Roles</a>
+          </li>
           <li class="nav-item"><a class="nav-link" href="../view/personalView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
