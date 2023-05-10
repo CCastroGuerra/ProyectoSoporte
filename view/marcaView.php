@@ -15,7 +15,7 @@ include('../templates/cabecera.php');
         <div class="modal-body">
           <div class="card">
             <div class="card-body">
-              <div class="visually-hidden">
+              <div class="visually-hidden" id="divcodigo" name="divcodigo">
                 <label for="exampleInputEmail1" class="mb-2">Código:</label>
                 <input type="text" class="form-control mb-2" id="codigoMarca" name="codigoMarca" readonly>
               </div>
@@ -36,7 +36,7 @@ include('../templates/cabecera.php');
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
           <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
         </div>

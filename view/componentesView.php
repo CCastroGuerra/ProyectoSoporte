@@ -16,8 +16,10 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="mb-2">Codigo:</label>
-                                <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
+                                <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                    <label class="control-label">Código</label>
+                                    <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                </div>
 
                                 <label for="exampleInputEmail1" class="mb-2">Tipo de Componente:</label>
                                 <select class="form-select" aria-label="Default select example" id="selTipo" name="selTipo">
@@ -149,22 +151,22 @@ include('../templates/cabecera.php');
 
                             </tbody>
                         </table>
-                        
+
                     </div>
                     <!-- Paginador Inicio -->
                     <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;de&nbsp;</label>
-                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;paginas.&nbsp;</label>
-                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
-                            </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                            <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                            <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;de&nbsp;</label>
+                            <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;paginas.&nbsp;</label>
+                            <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                            <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>
-                        <!-- Paginador Final -->
+                    </div>
+                    <!-- Paginador Final -->
                 </div>
             </div>
         </div>

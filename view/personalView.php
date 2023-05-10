@@ -15,6 +15,10 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
+                                <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                    <label class="control-label">Código</label>
+                                    <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                </div>
                                 <label for="exampleInputEmail1" class="mb-2">Apellidos:</label>
                                 <input type="text" class="form-control form-control-sm mb-2" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos">
                                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
@@ -36,7 +40,7 @@ include('../templates/cabecera.php');
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
@@ -117,22 +121,22 @@ include('../templates/cabecera.php');
                                     <td scope="col"><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text')} else{x.setAttribute('type','password');}">DEL</a></td>
                                 </tr>
                             </tbody>
-                        </table>                       
+                        </table>
                     </div>
-                     <!-- Paginador Inicio -->
-                     <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;de&nbsp;</label>
-                                <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;paginas.&nbsp;</label>
-                                <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
-                            </div>
+                    <!-- Paginador Inicio -->
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                            <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                            <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;de&nbsp;</label>
+                            <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                            <label>&nbsp;paginas.&nbsp;</label>
+                            <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                            <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>
-                        <!-- Paginador Final -->
+                    </div>
+                    <!-- Paginador Final -->
                 </div>
             </div>
         </div>

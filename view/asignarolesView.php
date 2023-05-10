@@ -16,19 +16,23 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <div class="visually-hidden" id="divcodigo" name="divcodigo">
-                                    <label class="control-label">Código</label>
-                                    <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
-                                </div>
+                                <label for="exampleInputEmail1" class="mb-2">DNI:</label>
+                                <div id="nombreEmpleado"></div>
+                                <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI">
                                 <label for="exampleInputEmail1" class="mb-2">Rol:</label>
-                                <input type="text" class="form-control mb-2" id="inputRol" name="inputRol" placeholder="Ingrese el Rol">                                
+                                <select class="form-select" aria-label="Roles">
+                                    <option selected>Seleccione el rol</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Técnico</option>
+                                    <option value="3">Secretaria</option>
+                                </select>
                                 <div id="alerta"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
                 </div>
@@ -46,7 +50,7 @@ include('../templates/cabecera.php');
                 <div class="card-body">
                     <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-6">Roles </div>
+                            <div class="col-lg-10 col-sm-6">Asignación de Roles </div>
                             <div class="col-lg-2 col-sm-4 text-end">
                                 <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#rolesModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
                             </div>
@@ -88,12 +92,16 @@ include('../templates/cabecera.php');
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Apellidos</strong></th>
+                                    <th scope="col"><strong>Rol</strong></th>
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>
                             </thead>
                             <tbody id="tbRoles">
                                 <tr>
                                     <td>01</td>
+                                    <td>Nombre 1</td>
+                                    <td>Apellidos 1</td>
                                     <td>Rol 1</td>
                                     <td>[] [] []</td>
                                 </tr>
@@ -107,7 +115,7 @@ include('../templates/cabecera.php');
 </div>
 <!--/Contenido-->
 
-<script src="../js/rolesAjax.js"></script>
+<script src="../js/areaAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

@@ -18,11 +18,13 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="mb-2">Codigo:</label>
-                                        <input type="text" class="form-control form-control-sm mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
+                                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                            <label class="control-label">Código</label>
+                                            <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                        </div>
                                         <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
+                                            <option selected>Seleccione el tipo</option>
                                             <option value="1">Impresora</option>
                                             <option value="2">Laptop</option>
                                             <option value="3">Todo en uno</option>
@@ -37,14 +39,14 @@ include('../templates/cabecera.php');
                                         <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
+                                            <option selected>Seleccione el Área</option>
                                             <option value="1">Estadisitiaca</option>
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
                                         <label for="exampleInputEmail1" class="mb-2">Estado:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
+                                            <option selected>Seleccione el estado</option>
                                             <option value="1">Bueno</option>
                                             <option value="2">Regular</option>
                                             <option value="3">Malo</option>
@@ -81,28 +83,26 @@ include('../templates/cabecera.php');
                                                 <thead>
                                                     <tr>
                                                         <th scope="col"><strong>#</strong></th>
+                                                        <th scope="col"><strong># Serie</strong></th>
                                                         <th scope="col"><strong>Tipo</strong></th>
                                                         <th scope="col"><strong>Clase</strong></th>
                                                         <th scope="col"><strong>Marca</strong></th>
                                                         <th scope="col"><strong>Modelo</strong></th>
-                                                        <th scope="col"><strong># Serie</strong></th>
                                                         <th scope="col"><strong>Capacidad</strong></th>
                                                         <th scope="col"><strong>Estado</strong></th>
-                                                        <th scope="col"><strong>Fecha</strong></th>
                                                         <th scope="col"><strong>Opciones</strong></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbEquipos">
                                                     <tr>
-                                                        <td>01</td>
+                                                        <td>01</td>                                                        
+                                                        <td>##########</td>
                                                         <td>tipo 1</td>
                                                         <td>clase 1</td>
                                                         <td>marca 1</td>
                                                         <td>modelo 1</td>
-                                                        <td>##########</td>
                                                         <td>16 tb</td>
                                                         <td>nuevo</td>
-                                                        <td>02/05/2023</td>
                                                         <td>[ ] [ ] [ ]</td>
                                                     </tr>
 
@@ -119,8 +119,8 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary"  data-coreui-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
         </div>
@@ -136,65 +136,23 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="añadirComponente">Añadir Componente</h5>
                 <button type="button" class="btn-close" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="formAcomponente">
+            <form id="formAcomponente">
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="mb-2">Codigo:</label>
-                                <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
-
-                                <label for="exampleInputEmail1" class="mb-2">Tipo de Componente:</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">CPU</option>
-                                    <option value="2">Disco Duro</option>
-                                    <option value="3">Memoria RAM</option>
-                                </select>
-
-                                <label for="exampleInputEmail1" class="mb-2">Clase de Componente </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Clase 1</option>
-                                    <option value="2">Clase 2</option>
-                                    <option value="3">Clase 3</option>
-                                </select>
-
-                                <label for="exampleInputEmail1" class="mb-2">Marca </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Clase 1</option>
-                                    <option value="2">Clase 2</option>
-                                    <option value="3">Clase 3</option>
-                                </select>
-
-                                <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
-                                <input type="text" class="form-control mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
-
-                                <label for="exampleInputEmail1" class="mb-2"># Serie:</label>
-                                <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie">
-
-                                <label for="exampleInputEmail1" class="mb-2">Capacidad:</label>
-                                <input type="text" class="form-control mb-2" id="capacidad" name="capacidad" placeholder="Ingrese capacidad">
-
-                                <label for="exampleInputEmail1" class="mb-2">Estado: </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Bueno</option>
-                                    <option value="2">Regular</option>
-                                    <option value="3">Malo</option>
-                                </select>
-                                <label for="exampleInputEmail1" class="mb-2">Fecha:</label>
-                                <input type="date" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
+                                <label for="exampleInputEmail1" class="mb-2"># de Serie:</label>
+                                <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese el #">
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
                     <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
