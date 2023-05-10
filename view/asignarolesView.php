@@ -32,7 +32,7 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
                 </div>
@@ -79,7 +79,7 @@ include('../templates/cabecera.php');
                             </div>
                             <div class="col-lg-4 col-sm-4 text-end">
                                 <div class="mb-auto">
-                                    <input type="search" class="form-control" id="inputbuscarRoles" placeholder="Buscar..." size="14" maxlength="14">
+                                    <input type="search" class="form-control" id="inputbuscarARoles" placeholder="Buscar..." size="14" maxlength="14">
                                 </div>
                                 </>
                             </div>
