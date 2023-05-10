@@ -85,7 +85,7 @@ include('../templates/cabecera.php');
               </div>
               <div class="col-lg-4 col-sm-4 text-end">
                 <div class="mb-auto">
-                  <input type="search" class="form-control" id="inputbuscarArea" placeholder="Buscar..." size="14" maxlength="14">
+                  <input type="search" class="form-control" id="inputbuscarMarca" placeholder="Buscar..." size="14" maxlength="14">
                 </div>
                 </>
               </div>

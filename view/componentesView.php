@@ -11,7 +11,7 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="añadirComponente">Añadir Componente</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="formAcomponente">
+            <form id="formAcomponente">
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
@@ -68,10 +68,10 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-toggle="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-toggle="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -111,7 +111,7 @@ include('../templates/cabecera.php');
                             </div>
                             <div class="col-lg-4 col-sm-4 text-end">
                                 <div class="mb-auto">
-                                    <input type="search" class="form-control" id="inputbuscarEquipos" placeholder="Buscar..." size="14" maxlength="14">
+                                    <input type="search" class="form-control" id="inputbuscarComponentes" placeholder="Buscar..." size="14" maxlength="14">
                                 </div>
                                 </>
                             </div>
