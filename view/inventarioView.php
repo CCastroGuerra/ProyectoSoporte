@@ -13,7 +13,7 @@ include('../templates/cabecera.php');
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="mb-2">Acción:</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="selAccion" name="selAccion">
                             <option value="1" selected>Entrada</option>
                             <option value="2">Salida</option>
                         </select>

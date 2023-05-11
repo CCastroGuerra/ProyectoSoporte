@@ -20,7 +20,7 @@ include('../templates/cabecera.php');
                                 <div id="nombreEmpleado"></div>
                                 <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI">
                                 <label for="exampleInputEmail1" class="mb-2">Rol:</label>
-                                <select class="form-select" aria-label="Roles">
+                                <select class="form-select" aria-label="ARoles" id="selAroles" name="selAroles">
                                     <option selected>Seleccione el rol</option>
                                     <option value="1">Administrador</option>
                                     <option value="2">Técnico</option>
