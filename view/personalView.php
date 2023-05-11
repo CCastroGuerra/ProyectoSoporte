@@ -10,7 +10,7 @@ include('../templates/cabecera.php');
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form id="frmEmpleados">
+            <form id="formEmpleados">
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
