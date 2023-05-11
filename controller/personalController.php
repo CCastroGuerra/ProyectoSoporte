@@ -6,8 +6,10 @@ $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch($accion){
     case "listar":
-        $area-> listarArea();
+        $personal-> listarPersonal();
         break;
+    case "guardar":
+        $personal-> agregarPersonal($_POST['inputCodigo'],$_POST['apellidos'],$_POST['nombre'],$_POST['selCargo'],$_POST['usuario'],$_POST['password']);
    
 
 }

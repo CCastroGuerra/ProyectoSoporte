@@ -42,7 +42,17 @@ class Personal extends Conectar{
             echo $jsonString;
         }
     }
-    
+    public function agregarPersonal($apellidoPersonal,$nombrePersonal,$nombreUsuario,$passwordUsuario,$valorSeleccionado)
+    {
+        $conectar = parent::conexion();
+        $sql = "INSERT INTO `personal` (`id_personal`, `apellidos_personal`, `nombres_personal`, `nombre_usuario`, `password_usuario`, `usuario_alta`, `usuario_elimina`, `usuario_modifica`, `es_activo`, `cargo_personal`) VALUES (NULL, '$apellidoPersonal', '$nombrePersonal', '$nombreUsuario', '$passwordUsuario', now(), '', '', '1', '$valorSeleccionado');";
+        $fila = $conectar->prepare($sql);
+        if ($fila->execute()) {
+            echo '1';
+        } else {
+            echo '0';
+        }
+    }
 
 }
 
