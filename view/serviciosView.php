@@ -18,7 +18,7 @@ include('../templates/cabecera.php');
               <div class="form-group">
                 <div class="visually-hidden" id="divcodigo" name="divcodigo">
                   <label class="control-label">Código</label>
-                  <input type="text" class="form-control" id="inputCodigo" placeholder="Ingrese el Código">
+                  <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Ingrese el Código">
                 </div>
                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                 <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">

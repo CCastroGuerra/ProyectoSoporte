@@ -24,7 +24,7 @@ include('../templates/cabecera.php');
                                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                 <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el nombre">
                                 <label for="exampleInputEmail1" class="mb-2">Cargo:</label>
-                                <select class="form-select form-select-sm" aria-label="Default select example">
+                                <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
                                     <option selected>Seleccione el cargo </option>
                                     <option value="1">Admin</option>
                                     <option value="2">Secretaria</option>
