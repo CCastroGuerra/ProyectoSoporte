@@ -19,3 +19,7 @@
       border-width:0;
       pointer-events: none;
   }
+
+  .row.paginador {
+    text-align: center;
+}

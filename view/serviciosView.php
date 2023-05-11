@@ -95,7 +95,7 @@ include('../templates/cabecera.php');
             </tbody>
           </table>
           <!-- Paginador Inicio -->
-          <div class="row">
+          <div class="row paginador">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
               <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
