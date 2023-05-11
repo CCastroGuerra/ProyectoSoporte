@@ -65,7 +65,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-8 col-sm-4">
                                 <div class="table-length mb-auto my-1 text-start">
                                     <label>Mostrar
-                                        <select name="tbRoles-length" aria-controls="tbRoles">
+                                        <select name="tbRoles-length" aria-controls="tbRoles" id="numRegistros">
                                             <option value="5">5</option>
                                             <option value="10">10</option>
                                             <option value="15">15</option>
