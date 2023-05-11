@@ -24,14 +24,14 @@ include('../templates/cabecera.php');
                                 <div id="Equipo"></div>
                                 <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="Ingrese código">
                                 <label for="exampleInputEmail1" class="mb-2">Área:</label>
-                                <select class="form-select" aria-label="Roles">
+                                <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
                                     <option selected>Seleccione el Área</option>
                                     <option value="1">Área 1</option>
                                     <option value="2">Área 2</option>
                                     <option value="3">Área 3</option>
                                 </select>
                                 <label for="exampleInputEmail1" class="mb-2">Motivo:</label>
-                                <select class="form-select" aria-label="Roles">
+                                <select class="form-select" aria-label="Motivo" id="selMotivo" name="selMotivo">
                                     <option selected>Seleccione el Motivo</option>
                                     <option value="1">Motivo 1</option>
                                     <option value="2">Motivo 2</option>

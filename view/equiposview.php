@@ -23,7 +23,7 @@ include('../templates/cabecera.php');
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
                                         <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example">
+                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
                                             <option selected>Seleccione el tipo</option>
                                             <option value="1">Impresora</option>
                                             <option value="2">Laptop</option>
@@ -38,14 +38,14 @@ include('../templates/cabecera.php');
                                         <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example">
+                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
                                             <option value="1">Estadisitiaca</option>
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
                                         <label for="exampleInputEmail1" class="mb-2">Estado:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example">
+                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selEstado" name="selEstado">
                                             <option selected>Seleccione el estado</option>
                                             <option value="1">Bueno</option>
                                             <option value="2">Regular</option>

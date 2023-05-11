@@ -26,7 +26,7 @@ include('../templates/cabecera.php');
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="nombreArea" name="nombreArea" placeholder="Ingrese cantidad">
                                     <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" id="selAlmacen" name="selAlmacen">
                                         <option selected>Seleccione el Almacén</option>
                                         <option value="1">Almacén 1</option>
                                         <option value="2">Almacén 2</option>
