@@ -97,16 +97,16 @@ include('../templates/cabecera.php');
               <thead>
                 <tr>
                   <th scope="col"><strong>#</strong></th>
-                  <th scope="col"><strong>Nombre</strong></th>
                   <th scope="col"><strong>Modelo</strong></th>
+                  <th scope="col"><strong>Marca</strong></th>
                   <th scope="col"><strong>Opciones</strong></th>
                 </tr>
               </thead>
               <tbody id="tbModelo">
                 <tr>
                   <td>01</td>
-                  <td>Nombre 01</td>
-                  <td>Modelo A</td>
+                  <td>Modelo 01</td>
+                  <td>Marca A</td>
                   <td>[] [] []</td>
                 </tr>
               </tbody>
