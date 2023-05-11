@@ -16,11 +16,12 @@ switch($accion){
         $marca->agregarMarca($_POST['nombreMarca'],$_POST["selMarca"]);
         break;
     case "actualizar":
-        //var_dump($_POST);
+        // var_dump($_POST);
         $marca ->actulizarMarca($_POST['id'],$_POST['nombre'],$_POST["combo"]);
         echo "actualizado correctamente";
         break;
     case "mostrar": 
+        
         $datos = $marca->traeMarcaXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){

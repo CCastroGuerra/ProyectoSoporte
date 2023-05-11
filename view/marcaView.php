@@ -25,10 +25,10 @@ include('../templates/cabecera.php');
               <label for="exampleInputPassword1" class="mb-2">Categoría:</label>
               <select class="form-select form-select-sm" id="selMarca" name="selMarca" aria-label="Default select example">
                 <option selected>Selecciona la categoría</option>
-                <option value="1">Monitores</option>
+                <!-- <option value="1">Monitores</option>
                 <option value="2">Componentes</option>
                 <option value="3">Suministros e impresoras</option>
-                <option value="4">Equipos</option>
+                <option value="4">Equipos</option> -->
               </select>
               <div id="alerta"></div>
             </div>

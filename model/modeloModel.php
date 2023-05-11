@@ -103,14 +103,14 @@ class Modelo extends Conectar{
     public function traeModeloXId($idModelo){
         $conectar= parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql ="SELECT mo.id_modelo, mo.nombre_modelo,mar.nombre_marca FROM modelo AS mo INNER JOIN marca AS mar ON mo.marca_id = mar.id_marca WHERE mo.esActivo = 1";
+        $sql ="SELECT mo.id_modelo, mo.nombre_modelo,mar.nombre_marca as nombre_marca, mo.marca_id FROM modelo AS mo INNER JOIN marca AS mar ON mo.marca_id = mar.id_marca WHERE mo.id_modelo = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1,$idModelo);
         $sql->execute();
         return $resultado=$sql->fetchAll();
     }
 
-    public function buscarMarca($pagina = 1) {
+    public function buscarModelo($pagina = 1) {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
@@ -124,7 +124,7 @@ class Modelo extends Conectar{
             $inicio = ($pagina-1)*$cantidadXHoja;
             //echo $inicio;
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
-            $sql = "SELECT mo.id_modelo, mo.nombre_modelo,mar.nombre_marca FROM modelo AS mo INNER JOIN marca AS mar ON mo.marca_id = mar.id_marca WHERE mo.esActivo = 1ctivo = 1 AND nombre_modelo LIKE '$textoBusqueda%'  ORDER BY id_modelo LIMIT $inicio,$cantidadXHoja ";
+            $sql = "SELECT mo.id_modelo, mo.nombre_modelo,mar.nombre_marca FROM modelo AS mo INNER JOIN marca AS mar ON mo.marca_id = mar.id_marca WHERE mo.esActivo  = 1 AND nombre_modelo LIKE '$textoBusqueda%'  ORDER BY id_modelo LIMIT $inicio,$cantidadXHoja ";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
