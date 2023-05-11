@@ -13,7 +13,7 @@ switch($accion){
         $marca -> listarMarcas();
         break;
     case "guardar":
-        $marca->agregarMarca($_POST['nombreMarca'],$_POST["cbxMarcas"]);
+        $marca->agregarMarca($_POST['nombreMarca'],$_POST["selMarca"]);
         break;
     case "actualizar":
         //var_dump($_POST);

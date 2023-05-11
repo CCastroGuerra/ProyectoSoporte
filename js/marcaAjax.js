@@ -1,8 +1,8 @@
 var numPagina = 1;
 let id ='';
 listarSelectMarca();
-//listarMarca();
 buscarMarca();
+//listarMarca();
 let frmMarca = document.getElementById('frmMarca');
 
 frmMarca.onsubmit = function (e) {
@@ -42,7 +42,7 @@ function listarSelectMarca() {
                 
                     `;
         });
-        var elemento = document.getElementById("cbxMarcas");
+        var elemento = document.getElementById("selMarca");
         elemento.innerHTML = template;
        
       }
@@ -51,7 +51,7 @@ function listarSelectMarca() {
   }
 
 
-  var elemento = document.getElementById("cbxMarcas");
+  var elemento = document.getElementById("selMarca");
   elemento.onchange = function() {
     var valorSeleccionado = elemento.value;
     console.log("Valor seleccionado:", valorSeleccionado);
@@ -98,7 +98,7 @@ function listarMarca() {
                       <td>${marca.id}</td>
                       <td>${marca.nombre}</td>
                       <td>${marca.nombreCategoria}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${marca.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#marcaModal" data-fila = "${marca.id}">Editar</button>
+                      <td><button type="button" onClick=mostrarEnModal("${marca.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#marcaModal" data-fila = "${marca.id}">Editar</button>
                       <button type="button" onClick = eliminarMarcas("${marca.id}") class="btn btn-danger" data-fila = "${marca.id}">Borrar</button></td>
                   </tr>
                   `;
@@ -144,6 +144,7 @@ function actualizar(id) {
             "success"
           );
         };
+        cajaBuscar.value ='';
         ajax.send(data);
       }
     });
@@ -192,7 +193,7 @@ function buscarMarca() {
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
-  ajax.open("POST", "../controller/marcasController.php", true);
+  ajax.open("POST", "../controller/marcaController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
   data.append("cantidad", "4");
@@ -214,7 +215,7 @@ function buscarMarca() {
                       <td>${marca.id}</td>
                       <td>${marca.nombre}</td>
                       <td>${marca.nombreCategoria}</td>
-                      <td><button type="button" onClick=mostrarEnModal("${marca.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#marcaModal" data-fila = "${marca.id}">Editar</button>
+                      <td><button type="button" onClick=mostrarEnModal("${marca.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#marcaModal" data-fila = "${marca.id}">Editar</button>
                       <button type="button" onClick = eliminarMarcas("${marca.id}") class="btn btn-danger" data-fila = "${marca.id}">Borrar</button></td>
                   </tr>
                   `;
@@ -308,7 +309,7 @@ function mostrarEnModal(marcaId){
     let datos = JSON.parse(respuesta);
     //console.log(datos);
     document.getElementById("nombreMarca").value = datos.nombre;
-    document.getElementById("cbxMarcas").value = datos.nombreCategoria;
+    document.getElementById("selMarca").value = datos.nombreCategoria;
     document.getElementById("codigoMarca").value = datos.id;
   };
   ajax.send(data);
