@@ -9,7 +9,7 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="exampleModalLabel">Editar inventario</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form>
+            <form id="formInventario">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="mb-2">Acción:</label>

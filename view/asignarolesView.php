@@ -11,7 +11,7 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="exampleModalLabel">Editar Roles</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="formRoles">
+            <form id="formARoles">
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
