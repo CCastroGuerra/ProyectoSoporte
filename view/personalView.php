@@ -24,9 +24,10 @@ include('../templates/cabecera.php');
                                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                 <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el nombre">
                                 <label for="exampleInputEmail1" class="mb-2">Cargo:</label>
+                                <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el cargo">
                                 <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
                                     <option selected>Seleccione el cargo </option>
-                                    <option value="1">Admin</option>
+                                    <option value="1">Administrador</option>
                                     <option value="2">Secretaria</option>
                                     <option value="3">Practicante</option>
                                 </select>
@@ -124,7 +125,7 @@ include('../templates/cabecera.php');
                         </table>
                     </div>
                     <!-- Paginador Inicio -->
-                    <div class="row">
+                    <div class="row paginador">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
