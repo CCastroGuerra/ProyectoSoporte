@@ -2,7 +2,7 @@
 
 class Rol extends Conectar{
 
-    public function listarRoles()
+    public function listarRol()
     {
         $conectar = parent::conexion();
         $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
@@ -34,10 +34,10 @@ class Rol extends Conectar{
         }
     }
 
-    public function agregarRoles($nombreRol)
+    public function agregarRol($nombreRol)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `roles`(`nombre_roles`,`esActivo`) VALUES ('$nombreRol',1)";
+        $sql = "INSERT INTO `area`(`nombre_area`,`esActivo`) VALUES ('$nombreRol',1)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -46,7 +46,7 @@ class Rol extends Conectar{
         }
     }
 
-    public function actualizarRoles($idRoles,$nombreRol){
+    public function actulizarRol($idRol,$nombreRol){
         $conectar= parent::conexion();
         $sql="UPDATE roles
             SET
@@ -55,24 +55,24 @@ class Rol extends Conectar{
                 id_roles = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1,$nombreRol);
-        $sql->bindValue(2,$idRoles);
+        $sql->bindValue(2,$idRol);
         $sql->execute();
         return $resultado=$sql->fetchAll();
     }
-    public function traerRolesXId($idRoles){
+    public function traerRolXId($idRol){
         $conectar= parent::conexion();
         $sql="SELECT * FROM roles WHERE id_roles = ?";
         $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$idRoles);
+        $sql->bindValue(1,$idRol);
         $sql->execute();
         return $resultado=$sql->fetchAll();
     }
-    public function eliminarRoles($id){
+    public function eliminarRol($id){
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
-            $sql = "UPDATE roles SET esActivo = 0 WHERE id_area = ?";
+            $sql = "UPDATE roles SET esActivo = 0 WHERE id_roles = ?";
             $sql = $conectar ->prepare($sql);
             $sql -> bindValue(1, $id);
             $sql->execute();
@@ -82,7 +82,7 @@ class Rol extends Conectar{
         }
     }
 
-    // public function buscarArea() {
+//public function buscarArea() {
     //     $textoBusqueda = $_POST['textoBusqueda'];
 
     //     try {
@@ -102,7 +102,9 @@ class Rol extends Conectar{
     //         echo "Error: " . $e->getMessage();
     //     }
     // }
-    public function buscarRoles($pagina = 1) {
+
+
+    public function buscarRol($pagina = 1) {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
@@ -134,7 +136,7 @@ class Rol extends Conectar{
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_roles) as cantidad FROM area WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_roles) as cantidad FROM roles WHERE esActivo = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
     
@@ -154,4 +156,5 @@ class Rol extends Conectar{
         }
     }  
 }
+
 ?>
