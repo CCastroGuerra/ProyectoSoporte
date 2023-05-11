@@ -136,7 +136,7 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title" id="añadirComponente">Añadir Componente</h5>
                 <button type="button" class="btn-close" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="formAcomponente">
+            <form id="formEquipos">
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
