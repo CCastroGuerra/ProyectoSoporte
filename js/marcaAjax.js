@@ -48,7 +48,7 @@ function listarSelectMarca() {
       }
     };
     ajax.send(data);
-  }
+}
 
 
   var elemento = document.getElementById("selMarca");
