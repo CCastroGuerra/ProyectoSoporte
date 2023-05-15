@@ -197,16 +197,16 @@
               </svg> Modelos</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/areaView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-asterisk-circle"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-book"></use>
               </svg> Áreas</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/rolesView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-control"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
               </svg> Roles</a>
           </li>
           <li class="nav-item"><a class="nav-link" href="../view/serviciosView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-playlist-add"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-browser"></use>
               </svg> Servicios</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
               <svg class="nav-icon">
