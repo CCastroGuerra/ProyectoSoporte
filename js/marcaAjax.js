@@ -249,50 +249,7 @@ cajaBuscar.addEventListener("keyup", function (e) {
     listarMarca();
   } else{
     buscarMarca();
-  }//{
-  //   data.append("textoBusqueda", textoBusqueda);
-  //   const ajax = new XMLHttpRequest();
-  //   ajax.open("POST", "../controller/areaController.php", true);
-  //   ajax.onload = function () {
-  //     let respuesta = ajax.responseText;
-  //     console.log(respuesta);
-  //     const datos = JSON.parse(respuesta);
-  //     let area = datos.listado;
-  //     console.log(area);
-  //     let template = ""; // Estructura de la tabla html
-  //     if (area != 'vacio') {
-  //       area.forEach(function (area) {
-  //         template += `
-  //           <tr>
-  //             <td>${area.id}</td>
-  //             <td>${area.nombre}</td>
-  //             <td>
-  //               <button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila="${area.id}">
-  //                 Editar
-  //               </button>
-  //               <button type="button" onClick=eliminarArea("${area.id}") class="btn btn-danger" data-fila="${area.id}">
-  //                 Borrar
-  //               </button>
-  //             </td>
-  //           </tr>
-  //         `;
-  //       });
-  //       var elemento = document.getElementById("tbArea");
-  //       elemento.innerHTML = template;
-  //       document.getElementById('txtPagVista').value = numPagina;
-  //       document.getElementById('txtPagTotal').value = datos.paginas;
-
-  //     } else {
-  //       var elemento = document.getElementById("tbArea");
-  //       elemento.innerHTML = `
-  //         <tr>
-  //           <td colspan="3" class="text-center">No se encontraron resultados</td>
-  //         </tr>
-  //       `;
-  //     }
-  //   };
-  //   ajax.send(data);
-  // }
+  }
 });
 
 function mostrarEnModal(marcaId){

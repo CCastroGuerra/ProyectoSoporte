@@ -10,16 +10,18 @@ switch($accion){
         break;
 
     case "guardar":
-        var_dump($_POST);
+        //var_dump($_POST);
         $personal-> agregarPersonal($_POST['apellidos'],$_POST['nombre'],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
+        break;
 
     case "actualizar":
-            // var_dump($_POST);
-            $personal ->actulizarPersonal($_POST['inputCodigo'],$_POST['apellidos'],$_POST["nombre"],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
+        //var_dump($_POST);
+            $personal ->actulizarPersonal($_POST['id'],$_POST['apellido'],$_POST["nombre"],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
             echo "actualizado correctamente";
             break;
     case "mostrar": 
-        
+        //var_dump($_POST);
+
         $datos = $personal->traePersonalXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
@@ -34,6 +36,13 @@ switch($accion){
                 }
                 echo json_encode($output);
             }
+            break;
+    case "eliminar":
+        $personal -> eliminarPersonal($_POST["id"]);
+        break;
+    case "buscar":
+            //var_dump($_POST);
+            $personal ->buscarPersonal(intval($_POST['pag']));
             break;
     
 }

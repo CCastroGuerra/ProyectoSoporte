@@ -82,26 +82,6 @@ class Area extends Conectar{
         }
     }
 
-    // public function buscarArea() {
-    //     $textoBusqueda = $_POST['textoBusqueda'];
-
-    //     try {
-    //         $conectar = $this->Conexion();
-    //         $sql = "SELECT * FROM `area` WHERE esActivo = 1 AND nombre_area LIKE ?";
-    //         $stmt = $conectar->prepare($sql);
-    //         $stmt->bindValue(1, '%' . $textoBusqueda . '%');
-    //         $stmt->execute();
-        
-    //         $resultados = array();
-    //         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    //             $resultados[] = $fila["nombre_area"];
-    //         }
-
-    //         echo json_encode($resultados);
-    //     } catch (PDOException $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
     public function buscarArea($pagina = 1) {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
