@@ -129,7 +129,7 @@ include('../templates/cabecera.php');
 </div>
 <!--/Contenido-->
 
-<script src="../js/areaAjax.js"></script>
+<script src="../js/asignarRoles.js"></script>
 <?php
 include '../templates/footer.php';
 ?>
