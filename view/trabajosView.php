@@ -23,6 +23,10 @@ include('../templates/cabecera.php');
                                             <label class="control-label">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
+                                        <label for="exampleInputEmail1" class="mb-2"># de Serie:</label>
+                                        <input type="text" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
+                                        <label for="exampleInputEmail1" class="mb-2">Marquesi:</label>
+                                        <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
                                         <label for="exampleInputEmail1" class="mb-2">Usuario del Equipo:</label>
                                         <input type="text" class="form-control mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese Usuario">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
@@ -55,10 +59,6 @@ include('../templates/cabecera.php');
                                             <option value="2">Asus X555Y</option>
                                             <option value="3">Sentrix N4</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2"># de Serie:</label>
-                                        <input type="text" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
-                                        <label for="exampleInputEmail1" class="mb-2">Marquesi:</label>
-                                        <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
                                         <label for="exampleInputEmail1" class="mb-2">Falla observada:</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         <label for="exampleInputEmail1" class="mb-2">Técnico:</label>
@@ -132,7 +132,7 @@ include('../templates/cabecera.php');
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal" id="btncerrar" name="btncerrar">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" >Guardar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
                 </div>
             </form>

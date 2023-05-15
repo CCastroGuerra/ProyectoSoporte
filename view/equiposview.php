@@ -22,6 +22,10 @@ include('../templates/cabecera.php');
                                             <label class="control-label">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
+                                        <label for="exampleInputEmail1" class="mb-2">Serie:</label>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+                                        <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
                                         <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
                                             <option selected>Seleccione el tipo</option>
@@ -33,23 +37,22 @@ include('../templates/cabecera.php');
                                         <input type="text" class="form-control  form-control-sm mb-2" id="marca" name="marca" placeholder="Ingrese marca">
                                         <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
-                                        <label for="exampleInputEmail1" class="mb-2">Serie:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
-                                        <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
+                                        <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="usuario" name="usuario" placeholder="Ingrese Usuario">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
-                                            <option value="1">Estadisitiaca</option>
+                                            <option value="1">Estadistica</option>
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
                                         <label for="exampleInputEmail1" class="mb-2">Estado:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selEstado" name="selEstado">
                                             <option selected>Seleccione el estado</option>
-                                            <option value="1">Bueno</option>
-                                            <option value="2">Regular</option>
-                                            <option value="3">Malo</option>
+                                            <option value="1">Nuevo</option>
+                                            <option value="2">Bueno</option>
+                                            <option value="3">Regular</option>
+                                            <option value="4">Malo</option>
                                         </select>
                                         <label for="exampleInputEmail1" class="mb-2">MAC:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
@@ -95,7 +98,7 @@ include('../templates/cabecera.php');
                                                 </thead>
                                                 <tbody id="tbEquipos">
                                                     <tr>
-                                                        <td>01</td>                                                        
+                                                        <td>01</td>
                                                         <td>##########</td>
                                                         <td>tipo 1</td>
                                                         <td>clase 1</td>
@@ -143,7 +146,7 @@ include('../templates/cabecera.php');
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="mb-2"># de Serie:</label>
                                 <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese el #">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -210,9 +213,9 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Modelo</strong></th>
                                     <th scope="col"><strong># Serie</strong></th>
                                     <th scope="col"><strong>Magesi</strong></th>
-                                    <th scope="col"><strong>Estado</strong></th>
                                     <th scope="col"><strong>IP</strong></th>
-                                    <th scope="col"><strong>MAC</strong></th>
+                                    <th scope="col"><strong>MAC</strong></th>                                    
+                                    <th scope="col"><strong>Estado</strong></th>
                                     <th scope="col"><strong>Alta</strong></th>
                                     <th scope='col'><strong>Acciones</strong></th>
                                 </tr>
@@ -225,9 +228,9 @@ include('../templates/cabecera.php');
                                     <td>SCR1023</td>
                                     <td>1544816718</td>
                                     <td>######</td>
-                                    <td>Bueno</td>
                                     <td>192.168.2.145</td>
-                                    <td>8d:5f:6c:7a:6b</td>
+                                    <td>8d:5f:6c:7a:6b</td>                                    
+                                    <td>Bueno</td>
                                     <td>22/10/2022</td>
                                     <td><a href="">DEL</a></td>
                                 </tr>
