@@ -146,17 +146,17 @@
       <!--item almacen-->
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
-            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-storage"></use>
           </svg> Almacén</a>
         <ul class="nav-group-items">
           <li class="nav-item"><a class="nav-link" href="../view/productosView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-memory"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-airplay"></use>
               </svg> Productos</a>
           </li>
           <li class="nav-item"><a class="nav-link" href="../view/componentesview.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-devices"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-memory"></use>
               </svg> Componentes</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/equiposview.php">
               <svg class="nav-icon">
@@ -164,12 +164,12 @@
               </svg> Equipos</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/inventarioView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-apps"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-chart"></use>
               </svg>
               Inventario</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/bajasView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-hand-point-down"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-trash"></use>
               </svg> Bajas</a></li>
         </ul>
       </li>
@@ -177,7 +177,7 @@
       <!--item Trabajos-->
       <li class="nav-item"><a class="nav-link" href="../view/trabajosView.php">
           <svg class="nav-icon">
-            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-task"></use>
           </svg> Trabajos</a>
       </li>
       <!--fin trabajos-->
@@ -189,11 +189,11 @@
         <ul class="nav-group-items">
           <li class="nav-item"><a class="nav-link" href="../view/marcaView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-eyedropper"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-aperture"></use>
               </svg> Marcas</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/modeloView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-factory"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-apps"></use>
               </svg> Modelos</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/areaView.php">
               <svg class="nav-icon">
@@ -210,7 +210,7 @@
               </svg> Servicios</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
               <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-control"></use>
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
               </svg> Asignar Roles</a>
           </li>
           <li class="nav-item"><a class="nav-link" href="../view/personalView.php">

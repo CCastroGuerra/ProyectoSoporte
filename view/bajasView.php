@@ -144,7 +144,7 @@ include('../templates/cabecera.php');
 </div>
 <!--/Contenido-->
 
-<script src="../js/rolesAjax.js"></script>
+<script src="../js/bajasAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>
