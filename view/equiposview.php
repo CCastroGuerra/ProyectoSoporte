@@ -153,7 +153,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal">Guardar</button>
                 </div>
             </form>
         </div>
