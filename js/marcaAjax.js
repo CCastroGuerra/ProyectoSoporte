@@ -51,11 +51,11 @@ function listarSelectMarca() {
 }
 
 
-  var elemento = document.getElementById("selMarca");
-  elemento.onchange = function() {
+var elemento = document.getElementById("selMarca");
+elemento.onchange = function() {
     var valorSeleccionado = elemento.value;
     console.log("Valor seleccionado:", valorSeleccionado);
-  };
+};
 
 function guardarMarca() {
     var realizado = "";

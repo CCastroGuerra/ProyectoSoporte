@@ -7,10 +7,14 @@ $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch($accion){
     case "listar":
-        $asignar -> obtenerDatosPersonal($_POST['inputDni']);
+        // var_dump($_POST);
+
+        $asignar -> obtenerDatosPersonal($_POST['dni']); // Enviar los datos obtenidos como respuesta JSON
         break;
+      
+    
     case "guardar":
-        $asignar -> guardarRoles($_POST['apellido'],$_POST['nombre'],$_POST['combo']);
+        $asignar -> guardarRoles($_POST['apellidos'],$_POST['nombre'],$_POST['combo']);
         break;
     case "listarCombo":
         $asignar -> listarRol();

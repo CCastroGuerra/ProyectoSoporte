@@ -16,6 +16,11 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
+                                <div class="visually-hidden">
+                                    <label class="control-label">Código</label>
+                                    <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
+
+                                </div>
                                 <label for="exampleInputEmail1" class="mb-2">DNI:</label>
                                 <div id="nombreEmpleado"></div>
                                 <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI">
