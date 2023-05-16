@@ -38,6 +38,7 @@ switch($accion){
     case "buscar":
             //var_dump($_POST);
             $marca ->buscarMarca(intval($_POST['pag']));
+        break;
 }
 
 
