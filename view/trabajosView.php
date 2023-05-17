@@ -8,7 +8,7 @@ include('../templates/cabecera.php');
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Trabajos</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Trabajos</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="frmTrabajoa">
@@ -147,7 +147,7 @@ include('../templates/cabecera.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ServiciosModalLabel">Servicios</h5>
+                <h5 class="modal-title" id="ServiciosModalLabel">Agregar Servicios</h5>
                 <button type="button" class="btn-close" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formServicios">
