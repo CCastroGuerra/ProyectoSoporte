@@ -3,7 +3,7 @@ let id ='';
 listarSelectMarca();
 buscarMarca();
 //listarMarca();
-let frmMarca = document.getElementById('frmMarca');
+let frmMarca = document.getElementById('formMarca');
 
 frmMarca.onsubmit = function (e) {
   e.preventDefault();
@@ -229,7 +229,7 @@ function buscarMarca() {
         var elemento = document.getElementById("tbMarca");
         elemento.innerHTML = `
           <tr>
-            <td colspan="3" class="text-center">No se encontraron resultados</td>
+            <td colspan="6" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
       }

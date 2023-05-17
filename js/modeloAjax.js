@@ -229,7 +229,7 @@ function buscarModelo() {
         var elemento = document.getElementById("tbModelo");
         elemento.innerHTML = `
           <tr>
-            <td colspan="3" class="text-center">No se encontraron resultados</td>
+            <td colspan="6" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
       }

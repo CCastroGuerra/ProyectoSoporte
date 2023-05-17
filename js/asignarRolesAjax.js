@@ -6,9 +6,10 @@ var numPagina = 1;
 
 document.body.onload = ()=>{
   listarSelectRol();
-  listarAsignarRol();
+  //listarAsignarRol();
+
 }
-//buscar();
+buscar();
 
 
 frmAsignarRol.onsubmit = function (e) {
@@ -19,7 +20,7 @@ frmAsignarRol.onsubmit = function (e) {
   } else {
    
     guardarDatos();
-    listarAsignarRol();
+    //listarAsignarRol();
 
   }
   frmAsignarRol.reset();
@@ -90,7 +91,7 @@ function guardarDatos() {
         console.log(resp);
         if (resp === '1') {
           console.log("Datos guardados correctamente");
-          listarAsignarRol();
+          buscar();
           swal.fire(
             "Registrado!",
             "Se registro correctamente.",
@@ -146,6 +147,7 @@ function listarAsignarRol() {
                       <button type="button" onClick = eliminar("${asigRol.id}") class="btn btn-danger" data-fila = "${asigRol.id}">Borrar</button></td>
                   </tr>
                   `;
+                  
       });
       var elemento = document.getElementById("tbRoles");
       elemento.innerHTML = template;
@@ -154,7 +156,7 @@ function listarAsignarRol() {
       var elemento = document.getElementById("tbRoles");
       elemento.innerHTML = `
         <tr>
-          <td colspan="6" class="text-center">No se encontraron datos</td>
+          <td colspan="6" class="text-center">LISTA VACIA</td>
         </tr>
       `;  
     }
@@ -228,7 +230,8 @@ function eliminar(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          listarAsignarRol();
+          //listarAsignarRol();
+          buscar();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
@@ -262,7 +265,7 @@ function mostrarEnModal(asigPerId){
 
 /*limit para el select*/
 var numRegistors = document.getElementById('numRegistros');
-numRegistors.addEventListener("change", listarAsignarRol);
+numRegistors.addEventListener("change", buscar);
 
 function buscar() {
   var cajaBuscar = document.getElementById("inputbuscarARoles");
@@ -301,7 +304,9 @@ function buscar() {
         document.getElementById('txtPagVista').value = numPagina;
         document.getElementById('txtPagTotal').value = datos.paginas;
 
-      } else {
+      
+      }
+      else {
         var elemento = document.getElementById("tbRoles");
         elemento.innerHTML = `
           <tr>
@@ -322,6 +327,7 @@ cajaBuscar.addEventListener("keyup", function (e) {
   console.log(textoBusqueda);
   if (textoBusqueda.trim() == "") {
     listarAsignarRol();
+    //buscar();
   } else{
 
     buscar();
