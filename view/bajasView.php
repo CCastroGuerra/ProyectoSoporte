@@ -22,13 +22,19 @@ include('../templates/cabecera.php');
                                 </div>
                                 <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
                                 <div id="Equipo"></div>
-                                <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="Ingrese código">
+                                <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="Ingrese #serie">
                                 <label for="exampleInputEmail1" class="mb-2">Área:</label>
                                 <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
                                     <option selected>Seleccione el Área</option>
                                     <option value="1">Área 1</option>
                                     <option value="2">Área 2</option>
                                     <option value="3">Área 3</option>
+                                </select>
+                                <label for="exampleInputEmail1" class="mb-2">Tipo:</label>
+                                <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
+                                    <option selected>Seleccione el Tipo</option>
+                                    <option value="1">Temporal</option>
+                                    <option value="2">Permanente</option>
                                 </select>
                                 <label for="exampleInputEmail1" class="mb-2">Motivo:</label>
                                 <select class="form-select" aria-label="Motivo" id="selMotivo" name="selMotivo">

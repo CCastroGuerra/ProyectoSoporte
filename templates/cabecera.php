@@ -158,10 +158,7 @@
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-memory"></use>
               </svg> Componentes</a></li>
-          <li class="nav-item"><a class="nav-link" href="../view/equiposview.php">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-devices"></use>
-              </svg> Equipos</a></li>
+          
           <li class="nav-item"><a class="nav-link" href="../view/inventarioView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-chart"></use>
@@ -174,13 +171,20 @@
         </ul>
       </li>
       <!--fin almacen-->
+      <!--item Equipos-->
+      <li class="nav-item"><a class="nav-link" href="../view/equiposview.php">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-devices"></use>
+          </svg> Equipos</a>
+      </li>
+      <!--/item Equipos-->
       <!--item Trabajos-->
       <li class="nav-item"><a class="nav-link" href="../view/trabajosView.php">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-task"></use>
           </svg> Trabajos</a>
       </li>
-      <!--fin trabajos-->
+      <!--/item Trabajos-->
       <!--item almacen-->
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
