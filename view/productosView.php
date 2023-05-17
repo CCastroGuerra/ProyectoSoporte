@@ -8,7 +8,7 @@ include('../templates/cabecera.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Guardar Producto</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formProducto">
@@ -22,9 +22,9 @@ include('../templates/cabecera.php');
                                         <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
                                     </div>
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                                    <input type="text" class="form-control mb-2" id="nombreArea" name="nombreArea" placeholder="Ingrese Nombre">
+                                    <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
-                                    <input type="text" class="form-control mb-2" id="nombreArea" name="nombreArea" placeholder="Ingrese cantidad">
+                                    <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
                                     <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
                                     <select class="form-select" aria-label="Default select example" id="selAlmacen" name="selAlmacen">
                                         <option selected>Seleccione el Almacén</option>
