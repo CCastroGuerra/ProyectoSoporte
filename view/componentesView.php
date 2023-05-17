@@ -46,8 +46,12 @@ include('../templates/cabecera.php');
                                 </select>
 
                                 <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
-                                <input type="text" class="form-control mb-2" id="modelo" name="modelo" placeholder="Ingrese modelo">
-
+                                <select class="form-select" aria-label="Default select example" id="selModelo" name="selModelo">
+                                    <option selected>Seleccione el modelo</option>
+                                    <option value="1">Modelo 1</option>
+                                    <option value="2">Modelo 2</option>
+                                    <option value="3">Modelo 3</option>
+                                </select>
                                 <label for="exampleInputEmail1" class="mb-2"># Serie:</label>
                                 <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie">
 
