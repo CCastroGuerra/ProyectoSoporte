@@ -18,9 +18,11 @@ include('../templates/cabecera.php');
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="visually-hidden" id="divcodigo" name="divcodigo">
-                                        <label class="control-label">Código</label>
-                                        <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
+                                        <label class="control-label">ID</label>
+                                        <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
                                     </div>
+                                    <label class="control-label">Codigo</label>
+                                    <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código">
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                     <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
@@ -95,6 +97,7 @@ include('../templates/cabecera.php');
                         <thead>
                             <tr>
                                 <th scope="col"><strong>#</strong></th>
+                                <th scope="col"><strong>Codigo</strong></th>
                                 <th scope="col"><strong>Nombre</strong></th>
                                 <th scope="col"><strong>Cantidad</strong></th>
                                 <th scope="col"><strong>Almacen</strong></th>
@@ -103,6 +106,7 @@ include('../templates/cabecera.php');
                         <tbody id="tbProductos">
                             <tr>
                                 <td>##</td>
+                                <td>#####</td>
                                 <td>Producto ##</td>
                                 <td>##.##</td>
                                 <td>Almacen ##</td>
