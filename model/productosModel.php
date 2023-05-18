@@ -55,10 +55,10 @@ class Producto extends Conectar
         }
     }
 
-    public function actualizarPersonal($idProductos, $nombreProducto, $cantidadProducto, $valorSeleccionado)
+    public function actualizarProductos($idProductos, $nombreProducto, $cantidadProducto, $valorSeleccionado)
     {
         $conectar = parent::conexion();
-        $sql = "UPDATE personal
+        $sql = "UPDATE productos
             SET
                nombre_productos=? ,
                cantidad =?,
@@ -78,7 +78,7 @@ class Producto extends Conectar
     {
         $conectar = parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql = "SELECT id_productos,nombre_productos,cantidad,
+        $sql = "SELECT id_productos,nombre_productos,cantidad,almacen_id,
         CASE
             WHEN almacen_id = 1 THEN 'Almacen 1'
             WHEN almacen_id = 2 THEN 'Almacen 2'
@@ -107,7 +107,7 @@ class Producto extends Conectar
         }
     }
 
-    public function buscarPersonal($pagina = 1)
+    public function buscarProductos($pagina = 1)
     {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];

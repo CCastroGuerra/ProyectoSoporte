@@ -11,38 +11,35 @@ switch($accion){
 
     case "guardar":
         //var_dump($_POST);
-        $producto-> agregarProductos($_POST['nombre'],$_POST['cantidad'],$_POST['selAlmacen']);
+        $producto-> agregarProductos($_POST['nombreProducto'],$_POST['ctdProducto'],$_POST['selAlmacen']);
         break;
 
     case "actualizar":
         //var_dump($_POST);
-            $personal ->actulizarPersonal($_POST['id'],$_POST['apellido'],$_POST["nombre"],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
+            $producto ->actualizarProductos($_POST['id'],$_POST['nombre'],$_POST["cantidad"],$_POST['selAlmacen']);
             echo "actualizado correctamente";
             break;
     case "mostrar": 
         //var_dump($_POST);
 
-        $datos = $personal->traePersonalXId($_POST["id"]);
+        $datos = $producto->traeProductosXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
-                    $output['id'] = $row['id_personal'];
-                    $output['apellidos'] = $row['apellidos_personal'];
-                    $output['nombre'] = $row['nombres_personal'];
-                    $output['cargoId'] = $row['cargoId'];
-                    $output['cargoPersonal'] = $row['cargoPersonal'];
-                    $output['nombreUsuario'] = $row['nombre_usuario'];
-                    $output['contraseña'] = $row['password_usuario'];
+                    $output['id'] = $row['id_productos'];
+                    $output['nombre'] = $row['nombre_productos'];
+                    $output['cantidad'] = $row['cantidad'];
+                    $output['almacen'] = $row['almacen_id'];
                     
                 }
                 echo json_encode($output);
             }
             break;
     case "eliminar":
-        $personal -> eliminarPersonal($_POST["id"]);
+        $producto -> eliminarProductos($_POST["id"]);
         break;
     case "buscar":
             //var_dump($_POST);
-            $personal ->buscarPersonal(intval($_POST['pag']));
+            $producto ->buscarProductos(intval($_POST['pag']));
             break;
     
 }
