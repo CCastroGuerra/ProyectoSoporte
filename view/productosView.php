@@ -25,6 +25,8 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código">
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                     <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
+                                    <label for="exampleInputEmail1" class="mb-2">Unidad:</label>
+                                    <input type="text" class="form-control mb-2" id="undeProducto" name="undProducto" placeholder="Ingrese Unidad">
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
                                     <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
@@ -34,6 +36,8 @@ include('../templates/cabecera.php');
                                         <option value="2">Almacén 2</option>
                                         <option value="3">Almacén 3</option>
                                     </select>
+                                    <label for="exampleInputEmail1" class="mb-2">Detalles:</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="9" name='detalleProducto' id='detalleProducto'></textarea>
 
                                     <div id="alerta"></div>
                                 </div>
@@ -99,6 +103,7 @@ include('../templates/cabecera.php');
                                 <th scope="col"><strong>#</strong></th>
                                 <th scope="col"><strong>Codigo</strong></th>
                                 <th scope="col"><strong>Nombre</strong></th>
+                                <th scope="col"><strong>Unidad</strong></th>
                                 <th scope="col"><strong>Cantidad</strong></th>
                                 <th scope="col"><strong>Almacen</strong></th>
                             </tr>
@@ -108,6 +113,7 @@ include('../templates/cabecera.php');
                                 <td>##</td>
                                 <td>#####</td>
                                 <td>Producto ##</td>
+                                <td>UND</td>
                                 <td>##.##</td>
                                 <td>Almacen ##</td>
                             </tr>
