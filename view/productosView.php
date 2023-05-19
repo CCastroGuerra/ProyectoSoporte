@@ -14,31 +14,45 @@ include('../templates/cabecera.php');
                     <div class="form-group">
                         <div class="card">
                             <div class="card-body">
-                                <input type="search" class="form-control" id="buscarPres" placeholder="Buscar..." size="14" maxlength="14">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" aria-describedby="button-addon2" size="10" maxlength="10">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">Guardar</button>
+                                </div>
+
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col"><strong>#</strong></th>
-                                            <th scope="col"><strong>Codigo</strong></th>
                                             <th scope="col"><strong>Nombre</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbPres">
                                         <tr>
-                                            <td>##</td>
-                                            <td>#####</td>
+                                            <td>#</td>
                                             <td>Producto ##</td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p>Modal body text goes here.</p>
+                                <!-- Paginador Inicio -->
+                                <div class="row paginador">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                        <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                        <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                                        <label>&nbsp;de&nbsp;</label>
+                                        <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                                        <label>&nbsp;paginas.&nbsp;</label>
+                                        <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                        <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                                    </div>
+                                </div>
+                                <!-- Paginador Final -->
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#productosModal" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#productosModal" data-coreui-toggle="modal">Guardar</button>
                 </div>
             </form>
         </div>
