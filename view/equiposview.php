@@ -22,10 +22,6 @@ include('../templates/cabecera.php');
                                             <label class="control-label">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
-                                        <label for="exampleInputEmail1" class="mb-2">Serie:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
-                                        <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
                                         <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
                                             <option selected>Seleccione el tipo</option>
@@ -33,6 +29,11 @@ include('../templates/cabecera.php');
                                             <option value="2">Laptop</option>
                                             <option value="3">Todo en uno</option>
                                         </select>
+                                        <label for="exampleInputEmail1" class="mb-2">Serie:</label>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+                                        <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
+                                        
                                         <label for="exampleInputEmail1" class="mb-2">Marca:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selMarcaEquipo" name="selMarcaEquipo">
                                             <option selected>Seleccione la marca</option>
@@ -49,8 +50,8 @@ include('../templates/cabecera.php');
                                             <option value="3">Modelo 3</option>
                                         </select>
                                         
-                                        <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="usuario" name="usuario" placeholder="Ingrese Usuario">
+                                        <label for="exampleInputEmail1" class="mb-2">Responsable:</label>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
