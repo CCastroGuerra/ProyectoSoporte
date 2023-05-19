@@ -65,12 +65,10 @@ include('../templates/cabecera.php');
                                         <label class="control-label">ID</label>
                                         <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
                                     </div>
-                                    <label class="control-label">Codigo</label>
-                                    <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código">
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                     <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
-                                    <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
-                                    <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
+                                    <label for="exampleInputEmail1" class="mb-2">Tipo de Producto:</label>
+                                    <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoProducto" name="selTipoProducto">
                                         <option selected>Seleccione el tipo</option>
                                         <option value="1">Equipo</option>
                                         <option value="2">Componente</option>
