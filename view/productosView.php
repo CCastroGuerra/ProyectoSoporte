@@ -1,6 +1,50 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+<!-- modal presentacion -->
+<div class="modal" tabindex="-1" id="presentacionModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Presentación</h5>
+                <button type="button" class="btn-close" data-coreui-target="#productosModal" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formPresentacion">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <input type="search" class="form-control" id="buscarPres" placeholder="Buscar..." size="14" maxlength="14">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><strong>#</strong></th>
+                                            <th scope="col"><strong>Codigo</strong></th>
+                                            <th scope="col"><strong>Nombre</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbProductos">
+                                        <tr>
+                                            <td>##</td>
+                                            <td>#####</td>
+                                            <td>Producto ##</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>Modal body text goes here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#productosModal" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#productosModal" data-coreui-toggle="modal">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /modal presentacion -->
 
 
 <!-- Modal -->
@@ -25,8 +69,28 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código">
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                     <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
-                                    <label for="exampleInputEmail1" class="mb-2">Unidad:</label>
-                                    <input type="text" class="form-control mb-2" id="undeProducto" name="undProducto" placeholder="Ingrese Unidad">
+                                    <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
+                                    <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
+                                        <option selected>Seleccione el tipo</option>
+                                        <option value="1">Equipo</option>
+                                        <option value="2">Componente</option>
+                                        <option value="3">Herramienta</option>
+                                        <option value="4">Insumo</option>
+                                    </select>
+                                    <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
+                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
+                                    <select class="form-select form-select-sm" aria-label="Default select example" id="selUnidad" name="selUnidad">
+                                        <option selected>Seleccione la Presentación</option>
+                                        <option value="1">UNID</option>
+                                        <option value="2">MILLAR</option>
+                                        <option value="3">KIT</option>
+                                        <option value="4">CAJAx10 UNID</option>
+                                        <option value="5">CAJAx100 UNID</option>
+                                        <option value="6">CAJAx305 MTS</option>
+                                        <option value="7">CAJAx350 MTS</option>
+                                        <option value="8">BOLSAx100 UNID</option>
+                                        <option value="9">BLISTERx5 UNID</option>
+                                    </select>
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
                                     <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
@@ -103,9 +167,11 @@ include('../templates/cabecera.php');
                                 <th scope="col"><strong>#</strong></th>
                                 <th scope="col"><strong>Codigo</strong></th>
                                 <th scope="col"><strong>Nombre</strong></th>
+                                <th scope="col"><strong>Tipo</strong></th>
                                 <th scope="col"><strong>Unidad</strong></th>
                                 <th scope="col"><strong>Cantidad</strong></th>
                                 <th scope="col"><strong>Almacen</strong></th>
+                                <th scope="col"><strong>Acciones</strong></th>
                             </tr>
                         </thead>
                         <tbody id="tbProductos">
@@ -113,9 +179,11 @@ include('../templates/cabecera.php');
                                 <td>##</td>
                                 <td>#####</td>
                                 <td>Producto ##</td>
+                                <td>Tipo A</td>
                                 <td>UND</td>
                                 <td>##.##</td>
                                 <td>Almacen ##</td>
+                                <td>[][]</td>
                             </tr>
                         </tbody>
                     </table>
