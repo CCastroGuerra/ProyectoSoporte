@@ -23,7 +23,7 @@ include('../templates/cabecera.php');
                                             <th scope="col"><strong>Nombre</strong></th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbProductos">
+                                    <tbody id="tbPres">
                                         <tr>
                                             <td>##</td>
                                             <td>#####</td>
