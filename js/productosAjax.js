@@ -5,7 +5,7 @@ let clickBuscar = false;
 let frmProductos = document.getElementById("formProducto");
 let frmPresentacion = document.getElementById("formPresentacion");
 buscarProducto();
-//listarProductos();
+listarSelecPresentacion();
 buscarPresentacion();
 
 frmProductos.onsubmit = function (e) {
@@ -76,6 +76,38 @@ frmPresentacion.onsubmit = (e) => {
 //   };
 //   ajax.send(data);
 // }
+
+function listarSelecPresentacion() {
+  //let num_registros = document.getElementById('numeroRegistros').value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/productosController.php", true);
+  var data = new FormData();
+  data.append("accion", "listarCombo");
+  // data.append("valor", "");
+  // data.append("cantidad", "4");
+  // data.append('registros',num_registros);
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const presentacion = JSON.parse(respuesta);
+    let template = ""; // Estructura de la tabla html
+    if (presentacion.length > 0) {
+      template = `<option value="0">Seleccione Presentacion</option>
+      `;
+      presentacion.forEach(function (presentacion) {
+        template += `
+                 
+                  <option value="${presentacion.id}">${presentacion.nombre}</option>
+              
+                  `;
+      });
+      var elemento = document.getElementById("selUnidad");
+      elemento.innerHTML = template;
+     
+    }
+  };
+  ajax.send(data);
+}
 
 function guardarProdcutos() {
   var realizado = "";

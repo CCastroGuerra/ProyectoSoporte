@@ -345,5 +345,27 @@ class Producto extends Conectar
             echo "Error: " . $e->getMessage();
         }
     }
-}
 
+    public function listarCombo(){
+        $conectar = parent::conexion();
+        $sql = "SELECT id_presentacion, nombre_presentacion from presentacion where es_activo = 1";
+        $fila = $conectar->prepare($sql);
+        $fila-> execute();
+        $resultado = $fila->fetchAll();
+        if (empty($resultado)) {
+            $resultado = array('listado' => 'vacio');
+            $jsonString = json_encode($resultado);
+            echo $jsonString;
+        } else {
+            $listado = array();
+            foreach ($resultado as $row) {
+                $listado[] = array(
+                    'id' => $row['id_presentacion'],
+                    'nombre' => $row['nombre_presentacion']
+                );
+            }
+            $jsonString = json_encode($listado);
+            echo $jsonString;
+        }
+    }
+}

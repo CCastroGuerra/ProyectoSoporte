@@ -5,8 +5,8 @@ $producto = new Producto();
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch($accion){
-    case "listar":
-        $producto-> listarProductos();
+    case "listarCombo":
+        $producto-> listarCombo();
         break;
 
     case "guardar":
