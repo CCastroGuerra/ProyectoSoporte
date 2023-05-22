@@ -86,11 +86,10 @@ include('../templates/cabecera.php');
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <!-- <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                    <div class="visually-hidden" id="divcodigo" name="divcodigo">
                                         <label class="control-label">ID</label>
                                         <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
-                                    </div> -->
-                                    <input type="text" class="form-control" id="inputIDPro" name="inputIDPro" placeholder="ID" readonly>
+                                    </div>
                                     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                     <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
                                     <label for="exampleInputEmail1" class="mb-2">Tipo de Producto:</label>
