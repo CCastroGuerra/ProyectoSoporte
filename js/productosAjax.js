@@ -30,7 +30,7 @@ frmPresentacion.onsubmit = (e) => {
   } else {
     // guardarArea();
     // listarArea();
-    //guardarPresentacion();
+    guardarPresentacion();
     console.log("guardo");
     //cajaBuscar.disabled = false;
   }

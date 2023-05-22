@@ -12,22 +12,23 @@ include('../templates/cabecera.php');
             <form id="formPresentacion">
                 <div class="modal-body">
                     <div class="form-group">
-                    <div class="visually-hidden" id="divcodigo" name="divcodigo">
-                                        <label class="control-label">ID</label>
-                                        <input type="text" class="form-control" id="inputID"
-                                         name="inputID" placeholder="ID" readonly>
-                                    </div>
+                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                            <label class="control-label">ID</label>
+                            <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion"
-                                    id="BuscarPre" name="BuscarPre"  aria-describedby="button-addon2" size="10" maxlength="10">
+                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="10">
                                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Guardar</button>
-                                </div>
-
-                                <table class="table">
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                            <table class="table">
                                     <thead>
-                                        <tr >
+                                        <tr>
                                             <th scope="col"><strong>#</strong></th>
                                             <th scope="col"><strong>Nombre</strong></th>
                                         </tr>
@@ -124,7 +125,7 @@ include('../templates/cabecera.php');
                                         <option value="3">Almacén 3</option>
                                     </select>
                                     <label for="exampleInputEmail1" class="mb-2">Detalles:</label>
-                                    <textarea class="form-control"  rows="9" name='detalleProducto' id='detalleProducto'></textarea>
+                                    <textarea class="form-control" rows="9" name='detalleProducto' id='detalleProducto'></textarea>
 
                                     <div id="alerta"></div>
                                 </div>
