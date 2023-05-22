@@ -12,14 +12,21 @@ include('../templates/cabecera.php');
             <form id="formPresentacion">
                 <div class="modal-body">
                     <div class="form-group">
+                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                            <label class="control-label">ID</label>
+                            <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" aria-describedby="button-addon2" id ="buscarPres" name="buscarPres" size="10" maxlength="10">
-                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">Guardar</button>
-                                </div>
-
-                                <table class="table">
+                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="10">
+                                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Guardar</button>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                            <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col"><strong>#</strong></th>
@@ -36,14 +43,14 @@ include('../templates/cabecera.php');
                                 <!-- Paginador Inicio -->
                                 <div class="row paginador">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                        <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                        <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
+                                        <button id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                        <button id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                        <input type="text" id="txtPagVistaPre" class="cuadrosPaginas" readonly>
                                         <label>&nbsp;de&nbsp;</label>
-                                        <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
+                                        <input type="text" id="txtPagTotalPre" class="cuadrosPaginas" readonly>
                                         <label>&nbsp;paginas.&nbsp;</label>
-                                        <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                        <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                                        <button id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                        <button id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                                     </div>
                                 </div>
                                 <!-- Paginador Final -->
@@ -59,6 +66,11 @@ include('../templates/cabecera.php');
     </div>
 </div>
 <!-- /modal presentacion -->
+
+
+
+
+
 
 
 <!-- Modal -->
@@ -113,7 +125,7 @@ include('../templates/cabecera.php');
                                         <option value="3">Almacén 3</option>
                                     </select>
                                     <label for="exampleInputEmail1" class="mb-2">Detalles:</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="9" name='detalleProducto' id='detalleProducto'></textarea>
+                                    <textarea class="form-control" rows="9" name='detalleProducto' id='detalleProducto'></textarea>
 
                                     <div id="alerta"></div>
                                 </div>
