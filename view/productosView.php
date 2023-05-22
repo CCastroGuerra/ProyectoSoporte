@@ -24,6 +24,7 @@ include('../templates/cabecera.php');
                                 </div>                                
                             </div>
                         </div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                             <table class="table">
@@ -56,7 +57,7 @@ include('../templates/cabecera.php');
                                 <!-- Paginador Final -->
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#productosModal" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
