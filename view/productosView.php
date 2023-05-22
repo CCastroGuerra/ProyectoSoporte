@@ -15,7 +15,7 @@ include('../templates/cabecera.php');
                     <div class="form-group">
                         <div class="visually-hidden" id="divcodigo" name="divcodigo">
                             <label class="control-label">ID</label>
-                            <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
+                            <input type="text" class="form-control" id="inputIDpres" name="inputIDpress" placeholder="ID" readonly>
                         </div>
                         <div class="card">
                             <div class="card-body">
