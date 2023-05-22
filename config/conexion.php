@@ -19,7 +19,7 @@ class Conectar {
 
     protected function Conexion(){
         try {
-         $conectar = $this->host = new PDO("mysql:local=localhost;dbname=bd_soporte","root","");
+         $conectar = $this->host = new PDO("mysql:local=localhost;dbname=bd_soporte","root","libutdevcom");
          return $conectar;
         } catch (Exception $e) {
             print "¡Error BD!: " . $e->getMessage() . "<br/>";
