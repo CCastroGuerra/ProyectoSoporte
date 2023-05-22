@@ -13,6 +13,7 @@ switch($accion){
         //var_dump($_POST);
         $personal-> agregarPersonal($_POST['apellidos'],$_POST['nombre'],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
         break;
+   
 
     case "actualizar":
         //var_dump($_POST);

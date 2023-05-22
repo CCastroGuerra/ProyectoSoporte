@@ -11,12 +11,14 @@ switch($accion){
 
     case "guardar":
         //var_dump($_POST);
-        $producto-> agregarProductos($_POST['nombreProducto'],$_POST['ctdProducto'],$_POST['selAlmacen']);
+        $producto-> agregarProductos($_POST['nombreProducto'],$_POST['selTipoProducto'],$_POST['selUnidad'],$_POST["ctdProducto"],$_POST['selAlmacen'],$_POST['detalleProducto']);
         break;
-
+    case "guardarPresentacion":
+        $producto -> agregarPresentacion($_POST['BuscarPre']);
+        break;
     case "actualizar":
         //var_dump($_POST);
-            $producto ->actualizarProductos($_POST['id'],$_POST['nombre'],$_POST["cantidad"],$_POST['selAlmacen']);
+            $producto ->actualizarProductos($_POST['id'],$_POST['nombre'],$_POST['selTipoProducto'],$_POST['selUnidad'],$_POST["cantidad"],$_POST['selAlmacen'],$_POST['detalleProducto']);
             echo "actualizado correctamente";
             break;
     case "mostrar": 
@@ -27,8 +29,14 @@ switch($accion){
                 foreach($datos as $row){
                     $output['id'] = $row['id_productos'];
                     $output['nombre'] = $row['nombre_productos'];
-                    $output['cantidad'] = $row['cantidad'];
-                    $output['almacen'] = $row['almacen_id'];
+                    $output['tipoId'] = $row['tipoId'];
+                    $output['tipo'] = $row['Tipo'];
+                    $output['presentacionId'] = $row['presentacionId'];
+                    $output['cantidad'] = $row['cantidad_productos'];
+                    $output['almacenId'] = $row['almacenId'];
+                    $output['almacen'] = $row['Almacen'];
+                    $output['descripcion'] = $row['descripcion_productos'];
+
                     
                 }
                 echo json_encode($output);
@@ -37,11 +45,16 @@ switch($accion){
     case "eliminar":
         $producto -> eliminarProductos($_POST["id"]);
         break;
+    case "eliminarPre":
+        $producto -> eliminarPresentacion($_POST["idPre"]);
+        break;
     case "buscar":
             //var_dump($_POST);
             $producto ->buscarProductos(intval($_POST['pag']));
             break;
-    
+    case "buscarPresentacion":
+        $producto -> bucarPresentacion(intval($_POST['pag']));
+        break;
 }
 
 ?>
