@@ -9,8 +9,9 @@ include('../templates/cabecera.php');
                 <h5 class="modal-title">Presentación</h5>
                 <button type="button" class="btn-close" data-coreui-target="#productosModal" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="formPresentacion">
-                <div class="modal-body">
+
+            <div class="modal-body">
+                <form id="formPresentacion">
                     <div class="form-group">
                         <div class="visually-hidden" id="divcodigo" name="divcodigo">
                             <label class="control-label">ID</label>
@@ -21,48 +22,49 @@ include('../templates/cabecera.php');
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="10">
                                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Guardar</button>
-                                </div>                                
-                            </div>
-                        </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                            <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"><strong>#</strong></th>
-                                            <th scope="col"><strong>Nombre</strong></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbPres">
-                                        <tr>
-                                            <td>#</td>
-                                            <td>Producto ##</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!-- Paginador Inicio -->
-                                <div class="row paginador">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <button id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                        <button id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
-                                        <input type="text" id="txtPagVistaPre" class="cuadrosPaginas" readonly>
-                                        <label>&nbsp;de&nbsp;</label>
-                                        <input type="text" id="txtPagTotalPre" class="cuadrosPaginas" readonly>
-                                        <label>&nbsp;paginas.&nbsp;</label>
-                                        <button id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                        <button id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
-                                    </div>
                                 </div>
-                                <!-- Paginador Final -->
                             </div>
                         </div>
-                    
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>#</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbPres">
+                                <tr>
+                                    <td>#</td>
+                                    <td>Producto ##</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Paginador Inicio -->
+                        <div class="row paginador">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                <button id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                <input type="text" id="txtPagVistaPre" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;de&nbsp;</label>
+                                <input type="text" id="txtPagTotalPre" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;paginas.&nbsp;</label>
+                                <button id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                <button id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                            </div>
+                        </div>
+                        <!-- Paginador Final -->
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#productosModal" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
-                </div>
-            </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#productosModal" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
+            </div>
+
         </div>
     </div>
 </div>
