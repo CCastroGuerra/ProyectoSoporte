@@ -183,7 +183,7 @@ include('../templates/cabecera.php');
                         <thead>
                             <tr>                                
                             <tr>
-                                <th scope="col"><strong>#</strong></th>
+                                <th scope="col" class="visually-hidden"><strong>#</strong></th>
                                 <th scope="col"><strong>Codigo</strong></th>
                                 <th scope="col"><strong>Nombre</strong></th>
                                 <th scope="col"><strong>Tipo</strong></th>
