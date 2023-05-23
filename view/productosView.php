@@ -107,16 +107,7 @@ include('../templates/cabecera.php');
                                     <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
                                     <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
                                     <select class="form-select form-select-sm" aria-label="Default select example" id="selUnidad" name="selUnidad">
-                                        <option selected>Seleccione la Presentación</option>
-                                        <option value="1">UNID</option>
-                                        <option value="2">MILLAR</option>
-                                        <option value="3">KIT</option>
-                                        <option value="4">CAJAx10 UNID</option>
-                                        <option value="5">CAJAx100 UNID</option>
-                                        <option value="6">CAJAx305 MTS</option>
-                                        <option value="7">CAJAx350 MTS</option>
-                                        <option value="8">BOLSAx100 UNID</option>
-                                        <option value="9">BLISTERx5 UNID</option>
+                                        
                                     </select>
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
