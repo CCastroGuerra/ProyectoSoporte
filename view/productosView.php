@@ -182,6 +182,8 @@ include('../templates/cabecera.php');
                     <table class="table">
                         <thead>
                             <tr>                                
+                            <tr>
+                                <th scope="col"><strong>#</strong></th>
                                 <th scope="col"><strong>Codigo</strong></th>
                                 <th scope="col"><strong>Nombre</strong></th>
                                 <th scope="col"><strong>Tipo</strong></th>
@@ -192,15 +194,7 @@ include('../templates/cabecera.php');
                             </tr>
                         </thead>
                         <tbody id="tbProductos">
-                            <tr>
-                                <td>#####</td>
-                                <td>Producto ##</td>
-                                <td>Tipo A</td>
-                                <td>UND</td>
-                                <td>##.##</td>
-                                <td>Almacen ##</td>
-                                <td>[][]</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                     <!-- Paginador Inicio -->
