@@ -10,7 +10,7 @@ buscarPresentacion();
 
 frmProductos.onsubmit = function (e) {
   e.preventDefault();
-  if (frmProductos.querySelector("#inputIDPro").value !== "") {
+  if (frmProductos.querySelector("#inputID").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
@@ -24,7 +24,7 @@ frmProductos.onsubmit = function (e) {
 
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
-  if (frmPresentacion.querySelector("#inputID").value !== "") {
+  if (frmPresentacion.querySelector("#inputIDpres").value !== "") {
     console.log("actualizo");
     //actualizar(id);
   } else {
@@ -143,6 +143,7 @@ function guardarPresentacion() {
       swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
     buscarPresentacion();
+    listarSelecPresentacion();
     frmPresentacion.reset();
     cajaBuscarPre.value ='';
   };
@@ -168,7 +169,7 @@ function mostrarEnModal(productoId) {
     document.getElementById("ctdProducto").value = datos.cantidad;
     document.getElementById("selAlmacen").value = datos.almacenId;
     document.getElementById("detalleProducto").value = datos.descripcion;
-    document.getElementById("inputIDPro").value = datos.id;
+    document.getElementById("inputID").value = datos.id;
   };
   ajax.send(data);
 }
@@ -205,7 +206,7 @@ function actualizar(id) {
 
   swal
     .fire({
-      title: "CRUD",
+      title: "Aviso del sistema",
       text: "Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
@@ -269,7 +270,14 @@ function eliminarProducto(id) {
             "El registro se elimino correctamente.",
             "success"
           );
+          
         };
+        let tab = document.getElementById('tbProductos');
+          if(tab.rows.length == 1) {
+          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
+          numPagina = numPagina - 1;
+        
+        }
         ajax.send(data);
       }
     });
@@ -289,6 +297,7 @@ var cajaBuscar = document.getElementById("inputbuscarProducto");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
+  numPagina = 1;
   buscarProducto();
 });
 
@@ -362,7 +371,7 @@ function buscarProducto() {
   ajax.open("POST", "../controller/productosController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
-  data.append("cantidad", "4");
+  data.append("cantidad", "5");
   data.append("registros", num_registros);
   data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);
@@ -379,7 +388,7 @@ function buscarProducto() {
       producto.forEach(function (producto) {
         template += `
         <tr>
-            <td>${producto.id}</td>
+           
             <td>${producto.codigo}</td>
             <td>${producto.nombre}</td>
             <td>${producto.tipo}</td>
@@ -403,7 +412,16 @@ function buscarProducto() {
       document.getElementById("txtPagTotal").value = datos.paginas;
 
       /** */
-    } else {
+    } 
+    else {
+      var elemento = document.getElementById("tbProductos");
+      elemento.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center">No se encontraron resultados</td>
+          </tr>
+        `;
+    }
+    /*else {
       if (textoBusqueda.trim() === "") {
         var elemento = document.getElementById("tbProductos");
         elemento.innerHTML = `
@@ -416,11 +434,11 @@ function buscarProducto() {
         var elemento = document.getElementById("tbProductos");
         elemento.innerHTML = `
             <tr>
-              <td colspan="5" class="text-center">No se encontraron resultados</td>
+              <td colspan="8" class="text-center">No se encontraron resultados</td>
             </tr>
           `;
       }
-    }
+    }*/
   };
 
   ajax.send(data);
@@ -432,8 +450,11 @@ var cajaBuscarPre = document.getElementById("BuscarPre");
 cajaBuscarPre.addEventListener("keyup", function (e) {
   const textoBusquedaPre = cajaBuscarPre.value;
   console.log(textoBusquedaPre);
+  numPagina = 1;
   buscarPresentacion();
 });
+
+
 function buscarPresentacion() {
   var cajaBuscarPre = document.getElementById("BuscarPre");
   const textoBusquedaPre = cajaBuscarPre.value;
@@ -442,7 +463,7 @@ function buscarPresentacion() {
   ajax.open("POST", "../controller/productosController.php", true);
   var data = new FormData();
   data.append("accion", "buscarPresentacion");
-  data.append("cantidad", "4");
+  data.append("cantidad", "5");
   data.append("registros", num_registros);
   data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusquedaPre);
@@ -482,7 +503,7 @@ function buscarPresentacion() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVistaPre").value = numPagina;
       document.getElementById("txtPagTotalPre").value = datos.paginas;
-
+      console.log('Pagina ultima: '+numPagina);
       /* Seleccionar datos de la tabla */
       /*Modal presentación*/
       let modalPre = document.getElementById("presentacionModal");
@@ -513,28 +534,36 @@ function buscarPresentacion() {
           //Seleccionar la opción en el combo o select
           select.value = nombre;
           frmPresentacion.reset();
-          //buscarPresentacion();
           console.log(select.value);
         });
       }
-    } else {
-      if (textoBusquedaPre.trim() === "") {
-        var elemento = document.getElementById("tbPres");
-        elemento.innerHTML = `
-            <tr>
-              <td colspan="5" class="text-center">VACIO</td>
-            </tr>
-          `;
-        cajaBuscar.disabled = true;
-      } else {
-        var elemento = document.getElementById("tbPres");
+    }else{
+      let elemento = document.getElementById("tbPres");
         elemento.innerHTML = `
             <tr>
               <td colspan="5" class="text-center">No se encontraron resultados</td>
             </tr>
           `;
-      }
-    }
+    } 
+    // else {
+    //   if (textoBusquedaPre.trim() === "") {
+    //     var elemento = document.getElementById("tbPres");
+    //     elemento.innerHTML = `
+    //         <tr>
+    //           <td colspan="5" class="text-center">VACIO</td>
+    //         </tr>
+    //       `;
+    //     cajaBuscar.disabled = true;
+        
+    //   } else {
+    //     var elemento = document.getElementById("tbPres");
+    //     elemento.innerHTML = `
+    //         <tr>
+    //           <td colspan="5" class="text-center">No se encontraron resultados</td>
+    //         </tr>
+    //       `;
+    //   }
+    // }
   };
 
   ajax.send(data);
@@ -562,13 +591,22 @@ function eliminarPresentacion (idPre){
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          buscarProducto();
+          buscarPresentacion();
+          listarSelecPresentacion();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
             "success"
           );
         };
+        let tab = document.getElementById('tbPres');
+        if(tab.rows.length == 1) {
+          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
+          numPagina = numPagina - 1;
+        
+        }
+        
+
         ajax.send(data);
       }
     });
