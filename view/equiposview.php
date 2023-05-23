@@ -33,7 +33,7 @@ include('../templates/cabecera.php');
                                         <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
                                         <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
-                                        
+
                                         <label for="exampleInputEmail1" class="mb-2">Marca:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selMarcaEquipo" name="selMarcaEquipo">
                                             <option selected>Seleccione la marca</option>
@@ -41,7 +41,7 @@ include('../templates/cabecera.php');
                                             <option value="2">Marca 2</option>
                                             <option value="3">Marca 3</option>
                                         </select>
-                                        
+
                                         <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selModeloEquipo" name="selModeloEquipo">
                                             <option selected>Seleccione el modelo</option>
@@ -49,7 +49,7 @@ include('../templates/cabecera.php');
                                             <option value="2">Modelo 2</option>
                                             <option value="3">Modelo 3</option>
                                         </select>
-                                        
+
                                         <label for="exampleInputEmail1" class="mb-2">Responsable:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable">
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
@@ -228,7 +228,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong># Serie</strong></th>
                                     <th scope="col"><strong>Magesi</strong></th>
                                     <th scope="col"><strong>IP</strong></th>
-                                    <th scope="col"><strong>MAC</strong></th>                                    
+                                    <th scope="col"><strong>MAC</strong></th>
                                     <th scope="col"><strong>Estado</strong></th>
                                     <th scope="col"><strong>Alta</strong></th>
                                     <th scope='col'><strong>Acciones</strong></th>
@@ -243,7 +243,7 @@ include('../templates/cabecera.php');
                                     <td>1544816718</td>
                                     <td>######</td>
                                     <td>192.168.2.145</td>
-                                    <td>8d:5f:6c:7a:6b</td>                                    
+                                    <td>8d:5f:6c:7a:6b</td>
                                     <td>Bueno</td>
                                     <td>22/10/2022</td>
                                     <td><a href="">DEL</a></td>
@@ -254,6 +254,7 @@ include('../templates/cabecera.php');
                     </div>
                     <!-- Paginador Inicio -->
                     <div class="row paginador">
+                        <div class="texto-registros" id="txtcontador" name="txtcontador"></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
