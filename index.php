@@ -75,13 +75,13 @@
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                     </svg></span>
-                  <input class="form-control .form-control-sm" type="text" placeholder="Usuario">
+                  <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id='usuario' name='usuario'>
                 </div>
                 <div class="input-group mb-4"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                     </svg></span>
-                  <input class="form-control .form-control-sm" type="password" placeholder="Contraseña">
+                  <input class="form-control .form-control-sm" type="password" placeholder="Contraseña" id='passwd' name='passwd'>
                 </div>
                 <div class="row">
                   <div class="col-6">
