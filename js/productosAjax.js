@@ -411,7 +411,11 @@ function buscarProducto() {
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 
-      /** */
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando ${producto.length} de ${datos.total} registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     } 
     else {
       var elemento = document.getElementById("tbProductos");

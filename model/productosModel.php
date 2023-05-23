@@ -265,7 +265,7 @@ class Producto extends Conectar
                 $fila2->execute();
 
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad'] / $cantidadXHoja);
+                $paginas = ceil($array['cantidad'] / $limit);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
