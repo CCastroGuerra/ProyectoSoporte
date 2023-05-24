@@ -1,9 +1,10 @@
 <?php
 	
 	session_start();
-	session_destroy();
-    
     $_SESSION = array();
+
+	session_destroy();
+
     
     if (ini_get("session.use_cookies")) 
     {

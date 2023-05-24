@@ -17,6 +17,8 @@
   <meta name="author" content="Łukasz Holeczek">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
   <title>Soporte Ténico</title>
+  <link rel="android-touch-icon" sizes="144x144" href="../assets/favicon/android-icon-144x144.png">
+
   <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="../assets/favicon/apple-icon-72x72.png">
@@ -68,7 +70,7 @@
         header("Location: ../view/areaView.php");  
     }
 
-    $nombre = $_SESSION['nombre'];
+   // $nombre = $_SESSION['nombre'];
    // $tipo_usuario = $_SESSION['tipo_usuario'];
 
 ?>
@@ -117,8 +119,8 @@
   <!-- CoreUI and necessary plugins-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-  <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-  <script src="vendors/simplebar/js/simplebar.min.js"></script>
+  <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+  <script src="../vendors/simplebar/js/simplebar.min.js"></script>
   <script src="../js/loginAjax.js"></script>
 
 
