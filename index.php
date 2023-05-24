@@ -40,10 +40,10 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <!-- Vendors styles-->
-  <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-  <link rel="stylesheet" href="css/vendors/simplebar.css">
+  <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
+  <link rel="stylesheet" href="../css/vendors/simplebar.css">
   <!-- Main styles for this application-->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
   <!-- We use those styles to show code examples, you should remove them in your application.-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
   <link href="css/examples.css" rel="stylesheet">
@@ -67,7 +67,7 @@
     session_start();
 
     if (isset($_SESSION['id'])) {
-        header("Location: ../view/areaView.php");  
+        header("Location: ../view/dashboardView.php");  
     }
 
    // $nombre = $_SESSION['nombre'];
