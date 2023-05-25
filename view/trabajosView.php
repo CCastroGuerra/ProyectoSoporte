@@ -103,7 +103,7 @@ include('../templates/cabecera.php');
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table table-hover align-middle" id="tableModal">
+                                                <table class="table table-hover align-middle text-center" id="tableModal">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col"><strong>#</strong></th>
@@ -225,7 +225,7 @@ include('../templates/cabecera.php');
                     </div>
                     <!-- /encabezado--->
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle">
+                        <table class="table table-hover align-middle text-center">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>

@@ -92,7 +92,7 @@ include('../templates/cabecera.php');
           <!-- /encabezado--->
 
           <!-- tabla area -->
-          <table class="table table-hover align-middle">
+          <table class="table table-hover align-middle text-center">
             <thead>
               <tr>
                 <th scope="col"><strong>#</strong></th>
