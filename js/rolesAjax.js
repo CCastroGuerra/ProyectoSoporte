@@ -3,40 +3,42 @@ var numPagina = 1;
 var frmRol = document.getElementById("formRoles");
 console.log(numPagina);
 buscarRol();
-listarRoles();
+//listarRoles();
 frmRol.onsubmit = function (e) {
   e.preventDefault();
   if (frmRol.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
-    actualizar(id); 
+    actualizar(id);
   } else {
     guardarRol();
-    listarRoles();
+
     console.log("guardo");
   }
   frmRol.reset();
 };
 
 /*limit para el select*/
-var numRegistors = document.getElementById('numRegistros');
-numRegistors.addEventListener("change", listarRoles);
+var numRegistors = document.getElementById("numRegistros");
+numRegistors.addEventListener("change", () => {
+  buscarRol();
+});
 
 function listarRoles() {
-  let num_registros = document.getElementById('numRegistros').value;
+  let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/rolesController.php", true);
   var data = new FormData();
   data.append("accion", "listar");
   data.append("valor", "");
   data.append("cantidad", "4");
-  data.append('registros',num_registros);
+  data.append("registros", num_registros);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     const rol = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (rol.length > 0) {
-        rol.forEach(function (rol) {
+      rol.forEach(function (rol) {
         template += `
                   <tr>
                       <td>${rol.id}</td>
@@ -48,7 +50,6 @@ function listarRoles() {
       });
       var elemento = document.getElementById("tbRoles");
       elemento.innerHTML = template;
-     
     }
   };
   ajax.send(data);
@@ -57,55 +58,62 @@ function listarRoles() {
 function buscarRol() {
   var cajaBuscar = document.getElementById("inputbuscarRoles");
   const textoBusqueda = cajaBuscar.value;
-  let num_registros = document.getElementById('numRegistros').value;
+  let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/rolesController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
   data.append("cantidad", "4");
-  data.append('registros',num_registros);
-  data.append('pag',numPagina);
+  data.append("registros", num_registros);
+  data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);
-    ajax.onload = function () {
-      let respuesta = ajax.responseText;
-      console.log(respuesta);
-      const datos = JSON.parse(respuesta);
-      console.log(datos);
-      let rol = datos.listado;
-      console.log(rol);
-      let template = ""; // Estructura de la tabla html
-      if (rol != 'vacio') {
-        rol.forEach(function (rol) {
-          template += `
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const datos = JSON.parse(respuesta);
+    console.log(datos);
+    let rol = datos.listado;
+    console.log(rol);
+    let template = ""; // Estructura de la tabla html
+    if (rol != "vacio") {
+      rol.forEach(function (rol) {
+        template += `
             <tr>
-              <td>${rol.id}</td>
+              
               <td>${rol.nombre}</td>
               <td>
-                <button type="button" onClick='mostrarEnModal("${rol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal" data-fila="${rol.id}">
-                  Editar
-                </button>
-                <button type="button" onClick=eliminarRol("${rol.id}") class="btn btn-danger" data-fila="${rol.id}">
-                  Borrar
-                </button>
+              <button type="button" onClick='mostrarEnModal("${rol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+
+            
+              <button type="button" onClick='eliminarRol("${rol.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+
+
+                
               </td>
             </tr>
           `;
-        });
-        var elemento = document.getElementById("tbRoles");
-        elemento.innerHTML = template;
-        // document.getElementById('txtPagVista').value = numPagina;
-        // document.getElementById('txtPagTotal').value = datos.paginas;
-
-      } else {
-        var elemento = document.getElementById("tbRoles");
-        elemento.innerHTML = `
+      });
+      var elemento = document.getElementById("tbRoles");
+      elemento.innerHTML = template;
+      // document.getElementById('txtPagVista').value = numPagina;
+      // document.getElementById('txtPagTotal').value = datos.paginas;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando ${rol.length} de ${datos.total} registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
+    } else {
+      var elemento = document.getElementById("tbRoles");
+      elemento.innerHTML = `
           <tr>
             <td colspan="3" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      }
-    };
-    ajax.send(data);
+    }
+  };
+  ajax.send(data);
 }
 
 function guardarRol() {
@@ -154,8 +162,8 @@ function actualizar(id) {
   const nombre = nombreInput.value;
   swal
     .fire({
-      title: "CRUD",
-      text: "Desea actualizar el registro?",
+      title: "Aviso del Sistema",
+      text: "¿Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -172,14 +180,14 @@ function actualizar(id) {
         data.append("accion", "actualizar");
         ajax.onload = function () {
           console.log(ajax.responseText);
-          listarRoles();
+          buscarRol();
           swal.fire(
             "Actualizado!",
             "El registro se actualizó correctamente.",
             "success"
           );
         };
-        cajaBuscar.value = '';
+        cajaBuscar.value = "";
         ajax.send(data);
       }
     });
@@ -193,8 +201,8 @@ function eliminarRol(id) {
   console.log(id);
   swal
     .fire({
-      title: "CRUD",
-      text: "Desea Eliminar el Registro?",
+      title: "Aviso del Sistema",
+      text: "¿Desea Eliminar el Registro?",
       icon: "error",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -231,13 +239,5 @@ data.append("accion", "buscar");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
-  if (textoBusqueda.trim() == "") {
-    listarRoles();
-  } else{
-    buscarRol();
-  }
+  buscarRol();
 });
-
-
-
-
