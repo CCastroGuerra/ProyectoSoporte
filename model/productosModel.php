@@ -3,7 +3,44 @@
 class Producto extends Conectar
 {
 
-    
+    // public function listarProductos()
+    // {
+    //     $conectar = parent::conexion();
+    //     $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+    //     //Para comprobar si se a mandado el parametro de registros
+    //     if (isset($_POST['registros'])) {
+    //         $limit = $_POST['registros'];
+    //         $sLimit = "LIMIT $limit";
+    //     }
+    //     $sql = "SELECT id_productos,nombre_productos,cantidad,
+    //     CASE
+    //         WHEN almacen_id = 1 THEN 'Almacen 1'
+    //         WHEN almacen_id = 2 THEN 'Almacen 2'
+    //         WHEN almacen_id = 3 THEN 'Almacen 3'
+    //     END as Almacen
+    //     FROM productos WHERE es_activo = 1 $sLimit ";
+    //     $fila = $conectar->prepare($sql);
+    //     $fila->execute();
+
+    //     $resultado = $fila->fetchAll();
+    //     if (empty($resultado)) {
+    //         $resultado = array('listado' => 'vacio');
+    //         $jsonString = json_encode($resultado);
+    //         echo $jsonString;
+    //     } else {
+    //         $listado = array();
+    //         foreach ($resultado as $row) {
+    //             $listado[] = array(
+    //                 'id' => $row['id_productos'],
+    //                 'nombre' => $row['nombre_productos'],
+    //                 'cantidad' => $row['cantidad'],
+    //                 'almacen' => $row['Almacen']
+    //             );
+    //         }
+    //         $jsonString = json_encode($listado);
+    //         echo $jsonString;
+    //     }
+    // }
 
     public function listarProductos() {
         $conectar = parent::conexion();
@@ -100,12 +137,10 @@ class Producto extends Conectar
         $conectar = parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
         $sql = "SELECT
-        @con := @con + 1 as NRO,
         id_productos,
         codigo_productos,
         nombre_productos,tipo_productos tipoId,
         CASE
-            WHEN tipo_productos = 0 THEN 'Vacio'
             WHEN tipo_productos = 1 THEN 'Equipo'
             WHEN tipo_productos = 2 THEN 'Componente'
             WHEN tipo_productos = 3 THEN 'Herramienta'
@@ -114,7 +149,6 @@ class Producto extends Conectar
         pre.id_presentacion presentacionId,
         cantidad_productos, almacen_id almacenId,
         CASE
-            WHEN almacen_id = 0 THEN 'Vacio'
             WHEN almacen_id = 1 THEN 'Almacen 1'
             WHEN almacen_id = 2 THEN 'Almacen 2'
             WHEN almacen_id = 3 THEN 'Almacen 3'
@@ -122,7 +156,6 @@ class Producto extends Conectar
         descripcion_productos
     FROM
         productos p
-    cross join(select @con := 0) r
     INNER JOIN
         presentacion pre ON p.presentacion_productos = pre.id_presentacion
    
@@ -196,17 +229,13 @@ class Producto extends Conectar
                 $limit = $_POST['registros'];
                 $sLimit = "LIMIT $limit";
             }
-             $inicio = ($pagina - 1) * $limit;
-            //  echo 'Trae de inicio:'.$inicio;
-            //  echo 'Trae de limit:'.$limit;
-           /* $filtro ="AND nombre_productos LIKE '%$textoBusqueda%' 
+             $inicio = ($pagina - 1) * $cantidadXHoja;
+
+            $filtro ="AND nombre_productos LIKE '%$textoBusqueda%' 
             OR cantidad_productos LIKE '%$textoBusqueda%'
             OR codigo_productos LIKE '%$textoBusqueda%'
-             ORDER BY id_productos $sLimit"; */
-             $sql = "SELECT @con :=@con + 1 as nro, id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p
-             cross join(select @con := 0) r
-              INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY nombre_productos  LIMIT $inicio,$limit";
-             
+             ORDER BY id_productos $sLimit"; 
+             $sql = "SELECT id_productos, codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY id_productos LIMIT $inicio,$cantidadXHoja";
              $fila = $conectar ->prepare($sql);
              //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
              $fila ->execute();
@@ -219,7 +248,6 @@ class Producto extends Conectar
                 $listado = array();
                 foreach ($productos as $producto) {
                     $listado[] = array(
-                        'nro' => $producto['nro'],
                         'id' => $producto['id_productos'],
                         'codigo' => $producto['codigo_productos'],
                         'nombre' => $producto['nombre_productos'],
@@ -230,12 +258,12 @@ class Producto extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_productos) as cantidad FROM productos WHERE esActivo = 1 ";
+                $sqlNroFilas = "SELECT count(id_productos) as cantidad FROM productos WHERE esActivo = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad'] / $limit);
+                $paginas = ceil($array['cantidad'] / $cantidadXHoja);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
@@ -280,16 +308,8 @@ class Producto extends Conectar
                 $limit = $_POST['registros'];
                 $sLimit = "LIMIT $limit";
             }
-            $inicio = ($pagina - 1) * $limit;
-            
-
-            // if($textoBusqueda ==''){
-            //     $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 LIMIT $inicio,$limit  ";
-            // }
-            // else{
-            //     $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY id_presentacion LIMIT $inicio,$limit  ";
-            // }
-            $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY nombre_presentacion  LIMIT $inicio,$limit  ";
+             $inicio = ($pagina - 1) * $cantidadXHoja;
+             $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY id_presentacion  $sLimit";
              $fila = $conectar ->prepare($sql);
              $fila ->execute();
             //echo $sql;
@@ -325,27 +345,5 @@ class Producto extends Conectar
             echo "Error: " . $e->getMessage();
         }
     }
-
-    public function listarCombo(){
-        $conectar = parent::conexion();
-        $sql = "SELECT id_presentacion, nombre_presentacion from presentacion where es_activo = 1";
-        $fila = $conectar->prepare($sql);
-        $fila-> execute();
-        $resultado = $fila->fetchAll();
-        if (empty($resultado)) {
-            $resultado = array('listado' => 'vacio');
-            $jsonString = json_encode($resultado);
-            echo $jsonString;
-        } else {
-            $listado = array();
-            foreach ($resultado as $row) {
-                $listado[] = array(
-                    'id' => $row['id_presentacion'],
-                    'nombre' => $row['nombre_presentacion']
-                );
-            }
-            $jsonString = json_encode($listado);
-            echo $jsonString;
-        }
-    }
 }
+

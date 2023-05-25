@@ -17,7 +17,7 @@
   <meta name="author" content="Łukasz Holeczek">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
   <title>Soporte Ténico</title>
-  <link rel="android-touch-icon" sizes="144x144" href="../assets/favicon/android-icon-144x144.png">
+  <link rel="android-touch-icon" sizes="144x144" href="assets/favicon/android-icon-144x144.png">
 
   <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">

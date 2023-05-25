@@ -1,30 +1,35 @@
 var valorBuscar="";
 var numPagina=1;
-
-let selecModelo = document.getElementById('selModelo');
-
-selecModelo.addEventListener('change',() =>{
-    let modeloId = selecModelo.value;
-    console.log(modeloId);
+buscar();
+function buscar(){
     const ajax = new XMLHttpRequest();
-    ajax.open("POST", "../controller/componentesController.php", true);
+    //Se establace la direccion del archivo php que procesara la peticion
+    ajax.open('POST', '../model/componentesModel.php', true); 
     var data = new FormData();
-    data.append('accion','listarMarca');
-    data.append('id',modeloId);
-    ajax.onload = () =>{
+    data.append('accion','listar');
+    //Funcion onload, se ejecuta cuando recibe respuesta del servidor
+    ajax.onload=function(){
+        //Se guarda la respuesta del servidor
         let respuesta = ajax.responseText;
-        console.log(respuesta);
-        let marcas = JSON.parse(respuesta);
-        console.log(marcas);
-        let options = "<option value=''>Seleccione una Marca</option>";
-       if(marcas.length > 0){
-        marcas.forEach(){
-
-        
-       }
-        //Actualizar combo
-        document.getElementById('selMarca').innerHTML=options;
-
+        const componentes = JSON.parse(respuesta);
+        let template = ""; // Estructura de la tabla html
+        if(componentes.length > 0){
+            componentes.forEach(function(componentes) {
+                template += `
+                <tr>
+                    <td>${componentes.id}</td>
+                    <td>${componentes.serie}</td>
+                    <td>${componentes.fecha_alta}</td>                
+                </tr>
+                `;
+                var elemento = document.getElementById("tbComponentes");
+                elemento.innerHTML = template;
+            });
+        }
+      
     }
     ajax.send(data);
-});
+   
+
+
+}

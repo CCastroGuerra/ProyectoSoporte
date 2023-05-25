@@ -82,7 +82,26 @@ class Rol extends Conectar{
         }
     }
 
+//public function buscarArea() {
+    //     $textoBusqueda = $_POST['textoBusqueda'];
 
+    //     try {
+    //         $conectar = $this->Conexion();
+    //         $sql = "SELECT * FROM `area` WHERE esActivo = 1 AND nombre_area LIKE ?";
+    //         $stmt = $conectar->prepare($sql);
+    //         $stmt->bindValue(1, '%' . $textoBusqueda . '%');
+    //         $stmt->execute();
+        
+    //         $resultados = array();
+    //         while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    //             $resultados[] = $fila["nombre_area"];
+    //         }
+
+    //         echo json_encode($resultados);
+    //     } catch (PDOException $e) {
+    //         echo "Error: " . $e->getMessage();
+    //     }
+    // }
 
 
     public function buscarRol($pagina = 1) {
@@ -90,15 +109,15 @@ class Rol extends Conectar{
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
             $conectar = $this->Conexion();
-            $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            //Para comprobar si se a mandado el parametro de registros
-            if (isset($_POST['registros'])) {
-            $limit = $_POST['registros'];
-            $sLimit = "LIMIT $limit";
-            }
-            $inicio = ($pagina-1)*$limit;
+            // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+            // //Para comprobar si se a mandado el parametro de registros
+            // if (isset($_POST['registros'])) {
+            // $limit = $_POST['registros'];
+            // $sLimit = "LIMIT $limit";
+            // }
+            $inicio = ($pagina-1)*$cantidadXHoja;
             //echo $inicio;
-            $sql = "SELECT * FROM `roles` WHERE esActivo = 1 AND nombre_roles LIKE '$textoBusqueda%'  ORDER BY nombre_roles LIMIT $inicio,$limit";
+            $sql = "SELECT * FROM `roles` WHERE esActivo = 1 AND nombre_roles LIKE '$textoBusqueda%'  ORDER BY id_roles LIMIT $inicio,$cantidadXHoja";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -122,7 +141,7 @@ class Rol extends Conectar{
                 $fila2->execute();
     
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$limit);
+                $paginas = ceil($array['cantidad']/$cantidadXHoja);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
