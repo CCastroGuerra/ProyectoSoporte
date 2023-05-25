@@ -14,7 +14,7 @@ frmLogin.onsubmit = function (e) {
     elemento.innerHTML = `<p>El usuario o la contraseña son erroneos</p>`;
   }
   frmLogin.reset();
-};
+}; 
 
 function buscarUsuario() {
   const ajax = new XMLHttpRequest();

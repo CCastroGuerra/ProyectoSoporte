@@ -226,7 +226,7 @@
       <!--fin almacen-->
 
       <!--depurar-->
-
+ 
       <!--fin depurar-->
 
       <li class="nav-divider"></li>
