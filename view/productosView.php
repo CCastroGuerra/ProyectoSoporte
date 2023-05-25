@@ -29,7 +29,7 @@ include('../templates/cabecera.php');
                 </form>
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover align-middle text-center">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
@@ -180,7 +180,7 @@ include('../templates/cabecera.php');
                     <!-- /encabezado--->
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle text-center">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
                                 <tr>
