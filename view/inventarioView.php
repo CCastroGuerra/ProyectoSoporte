@@ -85,10 +85,10 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                         <!-- /encabezado--->
-                        <table class="table table-hover align-middle text-center">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>
@@ -142,10 +142,10 @@ include('../templates/cabecera.php');
                         </div>
                         <!-- /encabezado--->
 
-                        <table class="table table-hover align-middle text-center">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>
@@ -198,10 +198,10 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                         <!-- /encabezado--->
-                        <table class="table table-hover align-middle text-center">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>

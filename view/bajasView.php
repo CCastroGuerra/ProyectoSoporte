@@ -105,10 +105,10 @@ include('../templates/cabecera.php');
                     <!-- /encabezado--->
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle text-center">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    
                                     <th scope="col"><strong>Equipo</strong></th>
                                     <th scope="col"><strong>Area</strong></th>
                                     <th scope="col"><strong>Motivo</strong></th>
