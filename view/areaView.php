@@ -70,7 +70,7 @@ include('../templates/cabecera.php');
           <!-- encabezado--->
           <div class="container text-center">
             <div class="row mb-auto">
-              <div class="col-lg-8 col-sm-4">
+              <div class="col-lg-8 col-sm-8">
                 <div class="table-length mb-auto my-1 text-start">
                   <label>Mostrar
                     <select name="tbArea-length" aria-controls="tbArea" id="numRegistros">
@@ -92,16 +92,13 @@ include('../templates/cabecera.php');
           <!-- /encabezado--->
 
           <!-- tabla area -->
-          <table class="table">
+          <table class="table table-hover align-middle">
             <thead>
               <tr>
                 <th scope="col"><strong>#</strong></th>
                 <th scope="col"><strong>Nombre</strong></th>
                 <th scope="col"><strong>Opciones</strong></th>
-
-
               </tr>
-
             </thead>
             <tbody id="tbArea">
 

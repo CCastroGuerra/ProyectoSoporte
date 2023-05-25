@@ -65,7 +65,7 @@ include('../templates/cabecera.php');
                         <!-- encabezado--->
                         <div class="container text-center">
                             <div class="row mb-auto">
-                                <div class="col-lg-8 col-sm-4">
+                                <div class="col-lg-8 col-sm-8">
                                     <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
                                             <select name="tbInventario-length" aria-controls="tbInventario" id="numRegistros">
@@ -85,7 +85,7 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                         <!-- /encabezado--->
-                        <table class="table">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
@@ -121,7 +121,7 @@ include('../templates/cabecera.php');
                         <!-- encabezado--->
                         <div class="container text-center">
                             <div class="row mb-auto">
-                                <div class="col-lg-8 col-sm-4">
+                                <div class="col-lg-8 col-sm-8">
                                     <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
                                             <select name="tbEntradas-length" aria-controls="tbEntradas" id="numRegistros">
@@ -142,7 +142,7 @@ include('../templates/cabecera.php');
                         </div>
                         <!-- /encabezado--->
 
-                        <table class="table">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
@@ -178,7 +178,7 @@ include('../templates/cabecera.php');
                         <!-- encabezado--->
                         <div class="container text-center">
                             <div class="row mb-auto">
-                                <div class="col-lg-8 col-sm-4">
+                                <div class="col-lg-8 col-sm-8">
                                     <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
                                             <select name="tbSalidas-length" aria-controls="tbSalidas" id="numRegistros">
@@ -198,7 +198,7 @@ include('../templates/cabecera.php');
                             </div>
                         </div>
                         <!-- /encabezado--->
-                        <table class="table">
+                        <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
