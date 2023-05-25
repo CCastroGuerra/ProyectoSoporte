@@ -106,7 +106,7 @@ include('../templates/cabecera.php');
                                                 <table class="table table-hover align-middle" id="tableModal">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col"><strong>#</strong></th>
+                                                            
                                                             <th scope="col"><strong>Servicio</strong></th>
                                                         </tr>
                                                     </thead>

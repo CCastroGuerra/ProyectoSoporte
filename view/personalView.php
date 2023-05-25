@@ -99,7 +99,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    
                                     <th scope="col"><strong>Apellidos</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
                                     <th scope="col"><strong>Cargo</strong></th>
