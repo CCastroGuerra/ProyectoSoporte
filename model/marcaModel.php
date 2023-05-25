@@ -4,7 +4,7 @@ class Marca extends Conectar{
     public function listarSelectMarca()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `categoria` WHERE esActivo = 1 ORDER BY nombre_categoria ASC";
+        $sql = "SELECT * FROM `categoria` WHERE esActivo = 1 ORDER BY nombre_categoria  ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -26,38 +26,7 @@ class Marca extends Conectar{
             echo $jsonString;
         }
     }
-    public function listarMarcas()
-    {
-        $conectar = parent::conexion();
-        $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-        //Para comprobar si se a mandado el parametro de registros
-        if (isset($_POST['registros'])) {
-        $limit = $_POST['registros'];
-        $sLimit = "LIMIT $limit";
-        }
-        $sql = "SELECT m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria FROM marca AS m INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria WHERE m.esActivo = 1 $sLimit ";
-        $fila = $conectar->prepare($sql);
-        $fila->execute();
-
-        $resultado = $fila->fetchAll();
-        if (empty($resultado)) {
-            $resultado = array('listado' => 'vacio');
-            $jsonString = json_encode($resultado);
-            echo $jsonString;
-        } else {
-            $json = array();
-            $listado = array();
-            foreach ($resultado as $row) {
-                $listado[] = array(
-                    'id' => $row['id_marca'],
-                    'nombre' => $row['nombre_marca'],
-                    'nombreCategoria'=>$row['nombre_categoria']
-                );
-            }
-            $jsonString = json_encode($listado);
-            echo $jsonString;
-        }
-    }
+    
     public function agregarMarca($nombreMarca, $valorSeleccionado)
     {
         $conectar = parent::conexion();
@@ -103,8 +72,9 @@ class Marca extends Conectar{
     public function traeMarcaXId($idMarca){
         $conectar= parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql ="SELECT m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria, m.categoria_marca_id
+        $sql ="SELECT @con := @con + 1 as NRO, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria, m.categoria_marca_id
         FROM marca AS m
+        cross join(select @con := 0) r
         INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria where m.id_marca = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1,$idMarca);
@@ -113,20 +83,23 @@ class Marca extends Conectar{
     }
 
     public function buscarMarca($pagina = 1) {
+        $conectar = parent::conexion();
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-            $conectar = $this->Conexion();
+            //$conectar = $this->Conexion();
             // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             // //Para comprobar si se a mandado el parametro de registros
-            // if (isset($_POST['registros'])) {
-            // $limit = $_POST['registros'];
-            // $sLimit = "LIMIT $limit";
-            // }
-            $inicio = ($pagina-1)*$cantidadXHoja;
+            if (isset($_POST['registros'])) {
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
+            }
+            $inicio = ($pagina-1)*$limit;
             //echo $inicio;
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
-            $sql = "SELECT m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria FROM marca AS m INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria WHERE m.esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja ";
+            $sql = "SELECT @con:=@con + 1 as nro, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria FROM marca AS m
+            cross join(select @con := 0) r
+            INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria WHERE m.esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY nombre_marca LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -140,6 +113,7 @@ class Marca extends Conectar{
                 $listado = array();
                 foreach($marcas as $marca){
                     $listado[] = array(
+                        'nro' => $marca['nro'],
                         "id" => $marca["id_marca"],
                         "nombre" => $marca["nombre_marca"],
                         'nombreCategoria' => $marca["nombre_categoria"]
@@ -151,7 +125,7 @@ class Marca extends Conectar{
                 $fila2->execute();
     
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$cantidadXHoja);
+                $paginas = ceil($array['cantidad']/$limit);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;

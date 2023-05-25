@@ -11,7 +11,7 @@ frmRol.onsubmit = function (e) {
     actualizar(id); 
   } else {
     guardarRol();
-    listarRoles();
+   
     console.log("guardo");
   }
   frmRol.reset();
@@ -19,7 +19,9 @@ frmRol.onsubmit = function (e) {
 
 /*limit para el select*/
 var numRegistors = document.getElementById('numRegistros');
-numRegistors.addEventListener("change", listarRoles);
+numRegistors.addEventListener("change", ()=>{
+  buscarRol();
+});
 
 function listarRoles() {
   let num_registros = document.getElementById('numRegistros').value;
@@ -78,15 +80,18 @@ function buscarRol() {
         rol.forEach(function (rol) {
           template += `
             <tr>
-              <td>${rol.id}</td>
+              
               <td>${rol.nombre}</td>
               <td>
-                <button type="button" onClick='mostrarEnModal("${rol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal" data-fila="${rol.id}">
-                  Editar
-                </button>
-                <button type="button" onClick=eliminarRol("${rol.id}") class="btn btn-danger" data-fila="${rol.id}">
-                  Borrar
-                </button>
+              <button type="button" onClick='mostrarEnModal("${rol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+
+            
+              <button type="button" onClick='eliminarRol("${rol.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+
+
+                
               </td>
             </tr>
           `;
@@ -154,8 +159,8 @@ function actualizar(id) {
   const nombre = nombreInput.value;
   swal
     .fire({
-      title: "CRUD",
-      text: "Desea actualizar el registro?",
+      title: "Aviso del Sistema",
+      text: "¿Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -193,8 +198,8 @@ function eliminarRol(id) {
   console.log(id);
   swal
     .fire({
-      title: "CRUD",
-      text: "Desea Eliminar el Registro?",
+      title: "Aviso del Sistema",
+      text: "¿Desea Eliminar el Registro?",
       icon: "error",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -231,11 +236,7 @@ data.append("accion", "buscar");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
-  if (textoBusqueda.trim() == "") {
-    listarRoles();
-  } else{
-    buscarRol();
-  }
+  buscarRol();
 });
 
 

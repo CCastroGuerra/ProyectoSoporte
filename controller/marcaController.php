@@ -9,9 +9,9 @@ switch($accion){
     case "listarCombo":
         $marca -> listarSelectMarca();
         break;
-    case "listar":
-        $marca -> listarMarcas();
-        break;
+    // case "listar":
+    //     $marca -> listarMarcas();
+    //     break;
     case "guardar":
         $marca->agregarMarca($_POST['nombreMarca'],$_POST["selMarca"]);
         break;
@@ -25,6 +25,7 @@ switch($accion){
         $datos = $marca->traeMarcaXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
+                    $output['nro'] = $row['NRO'];
                     $output['id'] = $row['id_marca'];
                     $output['nombre'] = $row['nombre_marca'];
                     $output['nombreCategoria'] = $row['categoria_marca_id'];

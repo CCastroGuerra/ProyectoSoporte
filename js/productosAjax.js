@@ -5,12 +5,12 @@ let clickBuscar = false;
 let frmProductos = document.getElementById("formProducto");
 let frmPresentacion = document.getElementById("formPresentacion");
 buscarProducto();
-//listarProductos();
+listarSelecPresentacion();
 buscarPresentacion();
 
 frmProductos.onsubmit = function (e) {
   e.preventDefault();
-  if (frmProductos.querySelector("#inputIDPro").value !== "") {
+  if (frmProductos.querySelector("#inputID").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
@@ -21,10 +21,9 @@ frmProductos.onsubmit = function (e) {
   frmProductos.reset();
 };
 
-
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
-  if (frmPresentacion.querySelector("#inputID").value !== "") {
+  if (frmPresentacion.querySelector("#inputIDpres").value !== "") {
     console.log("actualizo");
     //actualizar(id);
   } else {
@@ -35,8 +34,7 @@ frmPresentacion.onsubmit = (e) => {
     //cajaBuscar.disabled = false;
   }
   frmPresentacion.reset();
-
-}
+};
 
 // function listarProductos() {
 //   let num_registros = document.getElementById('numRegistros').value;
@@ -77,6 +75,37 @@ frmPresentacion.onsubmit = (e) => {
 //   ajax.send(data);
 // }
 
+function listarSelecPresentacion() {
+  //let num_registros = document.getElementById('numeroRegistros').value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/productosController.php", true);
+  var data = new FormData();
+  data.append("accion", "listarCombo");
+  // data.append("valor", "");
+  // data.append("cantidad", "4");
+  // data.append('registros',num_registros);
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const presentacion = JSON.parse(respuesta);
+    let template = ""; // Estructura de la tabla html
+    if (presentacion.length > 0) {
+      template = `<option value="0">Seleccione Presentacion</option>
+      `;
+      presentacion.forEach(function (presentacion) {
+        template += `
+                 
+                  <option value="${presentacion.id}">${presentacion.nombre}</option>
+              
+                  `;
+      });
+      var elemento = document.getElementById("selUnidad");
+      elemento.innerHTML = template;
+    }
+  };
+  ajax.send(data);
+}
+
 function guardarProdcutos() {
   var realizado = "";
   const ajax = new XMLHttpRequest();
@@ -111,8 +140,9 @@ function guardarPresentacion() {
       swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
     buscarPresentacion();
+    listarSelecPresentacion();
     frmPresentacion.reset();
-    cajaBuscarPre.value ='';
+    cajaBuscarPre.value = "";
   };
   ajax.send(data);
 }
@@ -136,7 +166,7 @@ function mostrarEnModal(productoId) {
     document.getElementById("ctdProducto").value = datos.cantidad;
     document.getElementById("selAlmacen").value = datos.almacenId;
     document.getElementById("detalleProducto").value = datos.descripcion;
-    document.getElementById("inputIDPro").value = datos.id;
+    document.getElementById("inputID").value = datos.id;
   };
   ajax.send(data);
 }
@@ -173,7 +203,7 @@ function actualizar(id) {
 
   swal
     .fire({
-      title: "CRUD",
+      title: "Aviso del sistema",
       text: "Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
@@ -238,6 +268,11 @@ function eliminarProducto(id) {
             "success"
           );
         };
+        let tab = document.getElementById("tbProductos");
+        if (tab.rows.length == 1) {
+          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
+          numPagina = numPagina - 1;
+        }
         ajax.send(data);
       }
     });
@@ -249,7 +284,10 @@ function limpiarFormulario() {
 
 /*limit para el select*/
 var numRegistors = document.getElementById("numRegistros");
-numRegistors.addEventListener("change", buscarProducto);
+numRegistors.addEventListener("change", function () {
+  numPagina = 1;
+  buscarProducto();
+});
 
 /*BUSCAR*/
 var cajaBuscar = document.getElementById("inputbuscarProducto");
@@ -257,6 +295,7 @@ var cajaBuscar = document.getElementById("inputbuscarProducto");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
+  numPagina = 1;
   buscarProducto();
 });
 
@@ -330,7 +369,7 @@ function buscarProducto() {
   ajax.open("POST", "../controller/productosController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
-  data.append("cantidad", "4");
+  data.append("cantidad", "5");
   data.append("registros", num_registros);
   data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);
@@ -347,7 +386,7 @@ function buscarProducto() {
       producto.forEach(function (producto) {
         template += `
         <tr>
-            <td>${producto.id}</td>
+             <td class="visually-hidden" >${producto.nro}</td>
             <td>${producto.codigo}</td>
             <td>${producto.nombre}</td>
             <td>${producto.tipo}</td>
@@ -357,10 +396,10 @@ function buscarProducto() {
             <td>
               <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
+              
               <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger" data-fila="${producto.id}"><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               
- 
             </td>
         </tr>
         `;
@@ -370,24 +409,18 @@ function buscarProducto() {
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 
-      /** */
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando ${producto.length} de ${datos.total} registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     } else {
-      if (textoBusqueda.trim() === "") {
-        var elemento = document.getElementById("tbProductos");
-        elemento.innerHTML = `
-            <tr>
-              <td colspan="5" class="text-center">VACIO</td>
-            </tr>
-          `;
-        cajaBuscar.disabled = true;
-      } else {
-        var elemento = document.getElementById("tbProductos");
-        elemento.innerHTML = `
-            <tr>
-              <td colspan="5" class="text-center">No se encontraron resultados</td>
-            </tr>
-          `;
-      }
+      var elemento = document.getElementById("tbProductos");
+      elemento.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center">No se encontraron resultados</td>
+          </tr>
+        `;
     }
   };
 
@@ -400,8 +433,10 @@ var cajaBuscarPre = document.getElementById("BuscarPre");
 cajaBuscarPre.addEventListener("keyup", function (e) {
   const textoBusquedaPre = cajaBuscarPre.value;
   console.log(textoBusquedaPre);
+  numPagina = 1;
   buscarPresentacion();
 });
+
 function buscarPresentacion() {
   var cajaBuscarPre = document.getElementById("BuscarPre");
   const textoBusquedaPre = cajaBuscarPre.value;
@@ -410,7 +445,7 @@ function buscarPresentacion() {
   ajax.open("POST", "../controller/productosController.php", true);
   var data = new FormData();
   data.append("accion", "buscarPresentacion");
-  data.append("cantidad", "4");
+  data.append("cantidad", "5");
   data.append("registros", num_registros);
   data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusquedaPre);
@@ -427,21 +462,17 @@ function buscarPresentacion() {
       presentacion.forEach(function (presentacion) {
         template += `
         <tr>
-            <td>${presentacion.id}</td>
+            <td class="visually-hidden" >${presentacion.id}</td>
             <td>${presentacion.nombre}</td>
 
             <td>
             <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
 
-              </button>
-              <button type="button" onClick='mostrarEnModalPre("${presentacion.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button type="button" onClick='eliminarPresentacion("${presentacion.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
+            
+            <button type="button" onClick='eliminarPresentacion("${presentacion.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
 
               
-              
- 
             </td>
         </tr>
         `;
@@ -450,10 +481,10 @@ function buscarPresentacion() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVistaPre").value = numPagina;
       document.getElementById("txtPagTotalPre").value = datos.paginas;
-
+      console.log("Pagina ultima: " + numPagina);
       /* Seleccionar datos de la tabla */
       /*Modal presentación*/
-      let modalPre = document.getElementById("presentacionModal");
+
       // Obtén una referencia a la tabla después de su generación
       const tabla = document.getElementById("tbPres");
 
@@ -481,34 +512,42 @@ function buscarPresentacion() {
           //Seleccionar la opción en el combo o select
           select.value = nombre;
           frmPresentacion.reset();
-          //buscarPresentacion();
           console.log(select.value);
         });
       }
     } else {
-      if (textoBusquedaPre.trim() === "") {
-        var elemento = document.getElementById("tbPres");
-        elemento.innerHTML = `
-            <tr>
-              <td colspan="5" class="text-center">VACIO</td>
-            </tr>
-          `;
-        cajaBuscar.disabled = true;
-      } else {
-        var elemento = document.getElementById("tbPres");
-        elemento.innerHTML = `
+      let elemento = document.getElementById("tbPres");
+      elemento.innerHTML = `
             <tr>
               <td colspan="5" class="text-center">No se encontraron resultados</td>
             </tr>
           `;
-      }
     }
+    // else {
+    //   if (textoBusquedaPre.trim() === "") {
+    //     var elemento = document.getElementById("tbPres");
+    //     elemento.innerHTML = `
+    //         <tr>
+    //           <td colspan="5" class="text-center">VACIO</td>
+    //         </tr>
+    //       `;
+    //     cajaBuscar.disabled = true;
+
+    //   } else {
+    //     var elemento = document.getElementById("tbPres");
+    //     elemento.innerHTML = `
+    //         <tr>
+    //           <td colspan="5" class="text-center">No se encontraron resultados</td>
+    //         </tr>
+    //       `;
+    //   }
+    // }
   };
 
   ajax.send(data);
 }
 
-function eliminarPresentacion (idPre){
+function eliminarPresentacion(idPre) {
   console.log(idPre);
   swal
     .fire({
@@ -530,101 +569,111 @@ function eliminarPresentacion (idPre){
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          buscarProducto();
+          buscarPresentacion();
+          listarSelecPresentacion();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
             "success"
           );
         };
+        let tab = document.getElementById("tbPres");
+        if (tab.rows.length == 1) {
+          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
+          numPagina = numPagina - 1;
+        }
+
         ajax.send(data);
       }
     });
 }
 
-
 /**************************/
 /* BOTONES DE PAGINACIÓN PRODUCTO*/
-let pagInicio = document.querySelector('#btnPrimero');
-pagInicio.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVista').value = numPagina;
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarProducto();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarProducto();
-    pagInicio.blur();
+    pagAnterior.blur();
+  }
 });
-let pagAnterior = document.querySelector('#btnAnterior');
-pagAnterior.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagDestino = 0;
-    if ((pagVisitada - 1) >= 1) {
-        pagDestino = pagVisitada - 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarProducto();
-        pagAnterior.blur();
-    }
-});
-let pagSiguiente = document.querySelector('#btnSiguiente');
-pagSiguiente.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
-    var pagDestino = 0;
-    if ((pagVisitada + 1) <= pagFinal) {
-        pagDestino = pagVisitada + 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarProducto();
-        pagSiguiente.blur();
-    }
-});
-let pagFinal = document.querySelector('#btnUltimo');
-pagFinal.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotal').value;
-    document.getElementById('txtPagVista').value = numPagina;
-    console.log(numPagina);
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarProducto();
-    pagFinal.blur();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarProducto();
+  pagFinal.blur();
 });
 
 /*BOTONES PAGINACION PRESENTACION */
 
-let pagInicioPre = document.querySelector('#btnPrimeroPre');
-pagInicioPre.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVistaPre').value = numPagina;
+let pagInicioPre = document.querySelector("#btnPrimeroPre");
+pagInicioPre.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVistaPre").value = numPagina;
+  buscarPresentacion();
+  pagInicioPre.blur();
+});
+let pagAnteriorPre = document.querySelector("#btnAnteriorPre");
+pagAnteriorPre.addEventListener("click", function (e) {
+  var pagVisitadaPre = parseInt(
+    document.getElementById("txtPagVistaPre").value
+  );
+  var pagDestinoPre = 0;
+  if (pagVisitadaPre - 1 >= 1) {
+    pagDestinoPre = pagVisitadaPre - 1;
+    numPagina = pagDestinoPre;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarPresentacion();
-    pagInicioPre.blur();
+    pagAnteriorPre.blur();
+  }
 });
-let pagAnteriorPre = document.querySelector('#btnAnteriorPre');
-pagAnteriorPre.addEventListener('click', function (e) {
-    var pagVisitadaPre = parseInt(document.getElementById('txtPagVistaPre').value);
-    var pagDestinoPre = 0;
-    if ((pagVisitadaPre - 1) >= 1) {
-        pagDestinoPre = pagVisitadaPre - 1;
-        numPagina = pagDestinoPre;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarPresentacion();
-        pagAnteriorPre.blur();
-    }
-});
-let pagSiguientePre = document.querySelector('#btnSiguientePre');
-pagSiguientePre.addEventListener('click', function (e) {
-    var pagVisitadaPre = parseInt(document.getElementById('txtPagVistaPre').value);
-    var pagFinalPre = parseInt(document.getElementById('txtPagTotalPre').value);
-    var pagDestinoPre = 0;
-    if ((pagVisitadaPre + 1) <= pagFinalPre) {
-      pagDestinoPre = pagVisitadaPre + 1;
-        numPagina = pagDestinoPre;
-        document.getElementById('txtPagVistaPre').value = numPagina;
-        buscarPresentacion();
-        pagSiguientePre.blur();
-    }
-});
-let pagFinalPre = document.querySelector('#btnUltimoPre');
-pagFinalPre.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotalPre').value;
-    document.getElementById('txtPagVistaPre').value = numPagina;
-    console.log(numPagina);
+let pagSiguientePre = document.querySelector("#btnSiguientePre");
+pagSiguientePre.addEventListener("click", function (e) {
+  var pagVisitadaPre = parseInt(
+    document.getElementById("txtPagVistaPre").value
+  );
+  var pagFinalPre = parseInt(document.getElementById("txtPagTotalPre").value);
+  var pagDestinoPre = 0;
+  if (pagVisitadaPre + 1 <= pagFinalPre) {
+    pagDestinoPre = pagVisitadaPre + 1;
+    numPagina = pagDestinoPre;
+    document.getElementById("txtPagVistaPre").value = numPagina;
     buscarPresentacion();
-    pagFinalPre.blur();
+    pagSiguientePre.blur();
+  }
+});
+let pagFinalPre = document.querySelector("#btnUltimoPre");
+pagFinalPre.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotalPre").value;
+  document.getElementById("txtPagVistaPre").value = numPagina;
+  console.log(numPagina);
+  buscarPresentacion();
+  pagFinalPre.blur();
 });
