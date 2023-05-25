@@ -21,7 +21,6 @@ frmProductos.onsubmit = function (e) {
   frmProductos.reset();
 };
 
-
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
   if (frmPresentacion.querySelector("#inputIDpres").value !== "") {
@@ -35,8 +34,7 @@ frmPresentacion.onsubmit = (e) => {
     //cajaBuscar.disabled = false;
   }
   frmPresentacion.reset();
-
-}
+};
 
 // function listarProductos() {
 //   let num_registros = document.getElementById('numRegistros').value;
@@ -103,7 +101,6 @@ function listarSelecPresentacion() {
       });
       var elemento = document.getElementById("selUnidad");
       elemento.innerHTML = template;
-     
     }
   };
   ajax.send(data);
@@ -145,7 +142,7 @@ function guardarPresentacion() {
     buscarPresentacion();
     listarSelecPresentacion();
     frmPresentacion.reset();
-    cajaBuscarPre.value ='';
+    cajaBuscarPre.value = "";
   };
   ajax.send(data);
 }
@@ -270,13 +267,11 @@ function eliminarProducto(id) {
             "El registro se elimino correctamente.",
             "success"
           );
-          
         };
-        let tab = document.getElementById('tbProductos');
-          if(tab.rows.length == 1) {
+        let tab = document.getElementById("tbProductos");
+        if (tab.rows.length == 1) {
           //document.getElementById('txtPagVistaPre').value = numPagina - 1;
           numPagina = numPagina - 1;
-        
         }
         ajax.send(data);
       }
@@ -289,7 +284,10 @@ function limpiarFormulario() {
 
 /*limit para el select*/
 var numRegistors = document.getElementById("numRegistros");
-numRegistors.addEventListener("change", buscarProducto);
+numRegistors.addEventListener("change", function () {
+  numPagina = 1;
+  buscarProducto();
+});
 
 /*BUSCAR*/
 var cajaBuscar = document.getElementById("inputbuscarProducto");
@@ -388,7 +386,7 @@ function buscarProducto() {
       producto.forEach(function (producto) {
         template += `
         <tr>
-           
+             <td class="visually-hidden" >${producto.nro}</td>
             <td>${producto.codigo}</td>
             <td>${producto.nombre}</td>
             <td>${producto.tipo}</td>
@@ -398,10 +396,10 @@ function buscarProducto() {
             <td>
               <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
+              
               <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger" data-fila="${producto.id}"><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               
- 
             </td>
         </tr>
         `;
@@ -416,8 +414,7 @@ function buscarProducto() {
       let mostrarRegistro = `
       <p><span id="totalRegistros">Mostrando ${producto.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
-    } 
-    else {
+    } else {
       var elemento = document.getElementById("tbProductos");
       elemento.innerHTML = `
           <tr>
@@ -425,24 +422,6 @@ function buscarProducto() {
           </tr>
         `;
     }
-    /*else {
-      if (textoBusqueda.trim() === "") {
-        var elemento = document.getElementById("tbProductos");
-        elemento.innerHTML = `
-            <tr>
-              <td colspan="5" class="text-center">VACIO</td>
-            </tr>
-          `;
-        cajaBuscar.disabled = true;
-      } else {
-        var elemento = document.getElementById("tbProductos");
-        elemento.innerHTML = `
-            <tr>
-              <td colspan="8" class="text-center">No se encontraron resultados</td>
-            </tr>
-          `;
-      }
-    }*/
   };
 
   ajax.send(data);
@@ -457,7 +436,6 @@ cajaBuscarPre.addEventListener("keyup", function (e) {
   numPagina = 1;
   buscarPresentacion();
 });
-
 
 function buscarPresentacion() {
   var cajaBuscarPre = document.getElementById("BuscarPre");
@@ -484,21 +462,17 @@ function buscarPresentacion() {
       presentacion.forEach(function (presentacion) {
         template += `
         <tr>
-            <td>${presentacion.id}</td>
+            <td class="visually-hidden" >${presentacion.id}</td>
             <td>${presentacion.nombre}</td>
 
             <td>
             <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
 
-              </button>
-              <button type="button" onClick='mostrarEnModalPre("${presentacion.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button type="button" onClick='eliminarPresentacion("${presentacion.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
+            
+            <button type="button" onClick='eliminarPresentacion("${presentacion.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
 
               
-              
- 
             </td>
         </tr>
         `;
@@ -507,10 +481,10 @@ function buscarPresentacion() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVistaPre").value = numPagina;
       document.getElementById("txtPagTotalPre").value = datos.paginas;
-      console.log('Pagina ultima: '+numPagina);
+      console.log("Pagina ultima: " + numPagina);
       /* Seleccionar datos de la tabla */
       /*Modal presentación*/
-      let modalPre = document.getElementById("presentacionModal");
+
       // Obtén una referencia a la tabla después de su generación
       const tabla = document.getElementById("tbPres");
 
@@ -541,14 +515,14 @@ function buscarPresentacion() {
           console.log(select.value);
         });
       }
-    }else{
+    } else {
       let elemento = document.getElementById("tbPres");
-        elemento.innerHTML = `
+      elemento.innerHTML = `
             <tr>
               <td colspan="5" class="text-center">No se encontraron resultados</td>
             </tr>
           `;
-    } 
+    }
     // else {
     //   if (textoBusquedaPre.trim() === "") {
     //     var elemento = document.getElementById("tbPres");
@@ -558,7 +532,7 @@ function buscarPresentacion() {
     //         </tr>
     //       `;
     //     cajaBuscar.disabled = true;
-        
+
     //   } else {
     //     var elemento = document.getElementById("tbPres");
     //     elemento.innerHTML = `
@@ -573,7 +547,7 @@ function buscarPresentacion() {
   ajax.send(data);
 }
 
-function eliminarPresentacion (idPre){
+function eliminarPresentacion(idPre) {
   console.log(idPre);
   swal
     .fire({
@@ -603,102 +577,103 @@ function eliminarPresentacion (idPre){
             "success"
           );
         };
-        let tab = document.getElementById('tbPres');
-        if(tab.rows.length == 1) {
+        let tab = document.getElementById("tbPres");
+        if (tab.rows.length == 1) {
           //document.getElementById('txtPagVistaPre').value = numPagina - 1;
           numPagina = numPagina - 1;
-        
         }
-        
 
         ajax.send(data);
       }
     });
 }
 
-
 /**************************/
 /* BOTONES DE PAGINACIÓN PRODUCTO*/
-let pagInicio = document.querySelector('#btnPrimero');
-pagInicio.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVista').value = numPagina;
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarProducto();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarProducto();
-    pagInicio.blur();
+    pagAnterior.blur();
+  }
 });
-let pagAnterior = document.querySelector('#btnAnterior');
-pagAnterior.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagDestino = 0;
-    if ((pagVisitada - 1) >= 1) {
-        pagDestino = pagVisitada - 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarProducto();
-        pagAnterior.blur();
-    }
-});
-let pagSiguiente = document.querySelector('#btnSiguiente');
-pagSiguiente.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
-    var pagDestino = 0;
-    if ((pagVisitada + 1) <= pagFinal) {
-        pagDestino = pagVisitada + 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarProducto();
-        pagSiguiente.blur();
-    }
-});
-let pagFinal = document.querySelector('#btnUltimo');
-pagFinal.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotal').value;
-    document.getElementById('txtPagVista').value = numPagina;
-    console.log(numPagina);
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarProducto();
-    pagFinal.blur();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarProducto();
+  pagFinal.blur();
 });
 
 /*BOTONES PAGINACION PRESENTACION */
 
-let pagInicioPre = document.querySelector('#btnPrimeroPre');
-pagInicioPre.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVistaPre').value = numPagina;
+let pagInicioPre = document.querySelector("#btnPrimeroPre");
+pagInicioPre.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVistaPre").value = numPagina;
+  buscarPresentacion();
+  pagInicioPre.blur();
+});
+let pagAnteriorPre = document.querySelector("#btnAnteriorPre");
+pagAnteriorPre.addEventListener("click", function (e) {
+  var pagVisitadaPre = parseInt(
+    document.getElementById("txtPagVistaPre").value
+  );
+  var pagDestinoPre = 0;
+  if (pagVisitadaPre - 1 >= 1) {
+    pagDestinoPre = pagVisitadaPre - 1;
+    numPagina = pagDestinoPre;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarPresentacion();
-    pagInicioPre.blur();
+    pagAnteriorPre.blur();
+  }
 });
-let pagAnteriorPre = document.querySelector('#btnAnteriorPre');
-pagAnteriorPre.addEventListener('click', function (e) {
-    var pagVisitadaPre = parseInt(document.getElementById('txtPagVistaPre').value);
-    var pagDestinoPre = 0;
-    if ((pagVisitadaPre - 1) >= 1) {
-        pagDestinoPre = pagVisitadaPre - 1;
-        numPagina = pagDestinoPre;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarPresentacion();
-        pagAnteriorPre.blur();
-    }
-});
-let pagSiguientePre = document.querySelector('#btnSiguientePre');
-pagSiguientePre.addEventListener('click', function (e) {
-    var pagVisitadaPre = parseInt(document.getElementById('txtPagVistaPre').value);
-    var pagFinalPre = parseInt(document.getElementById('txtPagTotalPre').value);
-    var pagDestinoPre = 0;
-    if ((pagVisitadaPre + 1) <= pagFinalPre) {
-      pagDestinoPre = pagVisitadaPre + 1;
-        numPagina = pagDestinoPre;
-        document.getElementById('txtPagVistaPre').value = numPagina;
-        buscarPresentacion();
-        pagSiguientePre.blur();
-    }
-});
-let pagFinalPre = document.querySelector('#btnUltimoPre');
-pagFinalPre.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotalPre').value;
-    document.getElementById('txtPagVistaPre').value = numPagina;
-    console.log(numPagina);
+let pagSiguientePre = document.querySelector("#btnSiguientePre");
+pagSiguientePre.addEventListener("click", function (e) {
+  var pagVisitadaPre = parseInt(
+    document.getElementById("txtPagVistaPre").value
+  );
+  var pagFinalPre = parseInt(document.getElementById("txtPagTotalPre").value);
+  var pagDestinoPre = 0;
+  if (pagVisitadaPre + 1 <= pagFinalPre) {
+    pagDestinoPre = pagVisitadaPre + 1;
+    numPagina = pagDestinoPre;
+    document.getElementById("txtPagVistaPre").value = numPagina;
     buscarPresentacion();
-    pagFinalPre.blur();
+    pagSiguientePre.blur();
+  }
+});
+let pagFinalPre = document.querySelector("#btnUltimoPre");
+pagFinalPre.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotalPre").value;
+  document.getElementById("txtPagVistaPre").value = numPagina;
+  console.log(numPagina);
+  buscarPresentacion();
+  pagFinalPre.blur();
 });

@@ -87,15 +87,15 @@ class Area extends Conectar{
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
             $conectar = $this->Conexion();
-            // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            // //Para comprobar si se a mandado el parametro de registros
-            // if (isset($_POST['registros'])) {
-            // $limit = $_POST['registros'];
-            // $sLimit = "LIMIT $limit";
-            // }
-            $inicio = ($pagina-1)*$cantidadXHoja;
+            $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+            //Para comprobar si se a mandado el parametro de registros
+            if (isset($_POST['registros'])) {
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
+            }
+            $inicio = ($pagina-1)*$limit;
             //echo $inicio;
-            $sql = "SELECT * FROM `area` WHERE esActivo = 1 AND nombre_area LIKE '$textoBusqueda%'  ORDER BY id_area LIMIT $inicio,$cantidadXHoja";
+            $sql = "SELECT * FROM `area` WHERE esActivo = 1 AND nombre_area LIKE '$textoBusqueda%'  ORDER BY nombre_area LIMIT $inicio,$limit";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -119,7 +119,7 @@ class Area extends Conectar{
                 $fila2->execute();
     
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$cantidadXHoja);
+                $paginas = ceil($array['cantidad']/$limit);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;

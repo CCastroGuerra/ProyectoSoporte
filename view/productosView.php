@@ -32,7 +32,7 @@ include('../templates/cabecera.php');
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    <th class="visually-hidden" scope="col"><strong>#</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
                                 </tr>
                             </thead>
@@ -183,7 +183,7 @@ include('../templates/cabecera.php');
                         <thead>
                             <tr>                                
                             <tr>
-                                <th scope="col"><strong>#</strong></th>
+                                <th class="visually-hidden" scope="col"><strong>#</strong></th>
                                 <th scope="col"><strong>Codigo</strong></th>
                                 <th scope="col"><strong>Nombre</strong></th>
                                 <th scope="col"><strong>Tipo</strong></th>
