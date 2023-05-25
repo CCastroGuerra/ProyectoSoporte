@@ -86,7 +86,6 @@ include('../templates/cabecera.php');
                         <table class="table table-hover table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>
