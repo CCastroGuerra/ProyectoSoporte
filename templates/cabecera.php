@@ -8,6 +8,7 @@
 -->
 <!-- Breadcrumb-->
 <html lang="es">
+<?php include ('../templates/sesion.php'); ?>  
 
 <head>
 
