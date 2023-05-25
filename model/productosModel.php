@@ -234,8 +234,9 @@ class Producto extends Conectar
             $filtro ="AND nombre_productos LIKE '%$textoBusqueda%' 
             OR cantidad_productos LIKE '%$textoBusqueda%'
             OR codigo_productos LIKE '%$textoBusqueda%'
-             ORDER BY id_productos $sLimit"; 
-             $sql = "SELECT id_productos, codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY id_productos LIMIT $inicio,$cantidadXHoja";
+             ORDER BY id_productos $sLimit"; */
+             $sql = "SELECT id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY codigo_productos,nombre_productos,tipo_productos  LIMIT $inicio,$limit";
+             
              $fila = $conectar ->prepare($sql);
              //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
              $fila ->execute();
@@ -308,8 +309,16 @@ class Producto extends Conectar
                 $limit = $_POST['registros'];
                 $sLimit = "LIMIT $limit";
             }
-             $inicio = ($pagina - 1) * $cantidadXHoja;
-             $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY id_presentacion  $sLimit";
+            $inicio = ($pagina - 1) * $limit;
+            
+
+            // if($textoBusqueda ==''){
+            //     $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 LIMIT $inicio,$limit  ";
+            // }
+            // else{
+            //     $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY id_presentacion LIMIT $inicio,$limit  ";
+            // }
+            $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY id_presentacion LIMIT $inicio,$limit  ";
              $fila = $conectar ->prepare($sql);
              $fila ->execute();
             //echo $sql;

@@ -230,12 +230,8 @@ data.append("accion", "buscar");
 
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
-  console.log(textoBusqueda);
-  if (textoBusqueda.trim() == "") {
-    listarArea();
-  } else{
-    buscarArea();
-  }
+  numPagina = 1;
+  buscarArea();
 });
 
 /**************************/
