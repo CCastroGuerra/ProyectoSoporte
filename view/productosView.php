@@ -29,7 +29,7 @@ include('../templates/cabecera.php');
                 </form>
                 <div class="card">
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover align-middle text-center">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
@@ -107,7 +107,7 @@ include('../templates/cabecera.php');
                                     <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
                                     <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
                                     <select class="form-select form-select-sm" aria-label="Default select example" id="selUnidad" name="selUnidad">
-                                        
+
                                     </select>
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
@@ -138,7 +138,7 @@ include('../templates/cabecera.php');
 </div>
 <!-- /*Fin del modal */ -->
 
-<div class="col-md-8 col-lg-12">
+<div class="col-md-12 col-lg-14">
     <div class="row ">
         <div class="col-xs-1-12">
             <div class="card">
@@ -158,7 +158,7 @@ include('../templates/cabecera.php');
                     <!-- encabezado--->
                     <div class="container text-center">
                         <div class="row mb-auto">
-                            <div class="col-lg-8 col-sm-4">
+                            <div class="col-lg-8 col-sm-8">
                                 <div class="table-length mb-auto my-1 text-start">
                                     <label>Mostrar
                                         <select name="tbProductos-length" aria-controls="tbProductos" id="numRegistros">
@@ -179,28 +179,26 @@ include('../templates/cabecera.php');
                     </div>
                     <!-- /encabezado--->
 
-                    <table class="table">
-                        <thead>
-                            <tr>                                
-                            <tr>
-<<<<<<< HEAD
-                                <th scope="col" class="visually-hidden"><strong>#</strong></th>
-=======
-                                <th scope="col"><strong>#</strong></th>
->>>>>>> parent of fd66c6d (Funcionalidades varias)
-                                <th scope="col"><strong>Codigo</strong></th>
-                                <th scope="col"><strong>Nombre</strong></th>
-                                <th scope="col"><strong>Tipo</strong></th>
-                                <th scope="col"><strong>Unidad</strong></th>
-                                <th scope="col"><strong>Cantidad</strong></th>
-                                <th scope="col"><strong>Almacen</strong></th>
-                                <th scope="col"><strong>Acciones</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbProductos">
-                            
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle text-center">
+                            <thead>
+                                <tr>
+                                <tr>
+                                    <th scope="col" class="visually-hidden"><strong>#</strong></th>
+                                    <th scope="col"><strong>Codigo</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Tipo</strong></th>
+                                    <th scope="col"><strong>Unidad</strong></th>
+                                    <th scope="col"><strong>Cantidad</strong></th>
+                                    <th scope="col"><strong>Almacen</strong></th>
+                                    <th scope="col"><strong>Acciones</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbProductos">
+
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- Paginador Inicio -->
                     <div class="row paginador">
                         <div class="texto-registros" id="txtcontador" name="txtcontador"></div>

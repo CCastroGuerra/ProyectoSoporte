@@ -464,7 +464,7 @@ include('../templates/cabecera.php');
                   </div>
                   <!-- /.row--><br>
                   <div class="table-responsive">
-                    <table class="table border mb-0">
+                    <table class="table table-hover border mb-0">
                       <thead class="table-light fw-semibold">
                         <tr class="align-middle">
                           <th class="text-center">
