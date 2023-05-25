@@ -71,7 +71,7 @@ include('../templates/cabecera.php');
                     <!-- encabezado--->
                     <div class="container text-center">
                         <div class="row mb-auto">
-                            <div class="col-lg-8 col-sm-4">
+                            <div class="col-lg-8 col-sm-8">
                                 <div class="table-length mb-auto my-1 text-start">
                                     <label>Mostrar
                                         <select name="tbRoles-length" aria-controls="tbRoles" id="numRegistros">
@@ -92,7 +92,7 @@ include('../templates/cabecera.php');
                     </div>
                     <!-- /encabezado--->
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-hover align-middle text-center">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>

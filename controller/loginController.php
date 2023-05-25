@@ -7,7 +7,7 @@ $login = new Login();
 session_start();
 //$test = ($_POST["usuario"]);
 
-$datos = $login->buscarUsuario($_POST["usuario"]);
+$datos = $login->buscarUsuario(trim($_POST["usuario"]));
 
 if (is_array($datos) == true && count($datos) > 0) {
     foreach ($datos as $row) {
@@ -15,7 +15,7 @@ if (is_array($datos) == true && count($datos) > 0) {
         $output['passwd'] = $row['password_usuario'];
         $output['nombre'] = $row['nombres_personal'];
 
-        if ($row['password_usuario'] == $_POST['passwd']) {
+        if ($row['password_usuario'] == trim($_POST['passwd'])) {
             $_SESSION['id'] = $row['id_personal'];
             $_SESSION['nombre'] = $row['nombre_usuario'];
 
