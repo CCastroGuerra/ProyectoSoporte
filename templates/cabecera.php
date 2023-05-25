@@ -71,7 +71,6 @@
     // Bootstrap ID
     gtag('config', 'UA-118965717-5');
   </script>
-  
 
   <!-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
@@ -129,7 +128,7 @@
     });
   </script>  -->
 
-  <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+  <!-- <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -140,7 +139,7 @@
       </svg>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-      <li class="nav-item"><a class="nav-link" href="../view/dashboardView.php">
+      <li class="nav-item"><a class="nav-link" href="index.html">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
           </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a>
@@ -336,6 +335,7 @@
               <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
                 <svg class="icon me-2">
                   <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+
                 </svg> Lock Account</a>
                 <a class="dropdown-item" href="../logout.php"> 
                 <svg class="icon me-2">
