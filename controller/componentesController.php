@@ -7,11 +7,21 @@ $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch($accion){
     case "listarModel":
-        $componente -> listarSelectModelo();
+        $componente -> listarSelectModelo($_POST['id']);
         break;
     case "listarMarca":
-        $componente -> listarSelectMarca($_POST['id']);
+        $componente -> listarSelectMarca();
         break;
+    case "listarComponentes":
+        $componente -> listarComponentes();
+        break;
+    case "listarClases":
+        $componente ->listarSelectClaseComponente();
+        break;
+    case "listarEstado":
+            $componente ->listarSelectEstado();
+            break;
 }
+
 
 ?>

@@ -1,9 +1,12 @@
-<?php 
-class Componente extends Conectar{
-    public function listarSelectTipoComponente()
+<?php
+
+class Componente extends Conectar
+{
+
+    public function listarComponentes()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `tipo_componentes` WHERE esActivo = 1 ORDER BY nombre_tipo_componente";
+        $sql = "SELECT * FROM tipo_componentes WHERE esActivo = 1";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -18,7 +21,9 @@ class Componente extends Conectar{
             foreach ($resultado as $row) {
                 $listado[] = array(
                     'id' => $row['id_tipo_componentes'],
-                    'nombre' => $row['nombre_tipo_componentes']
+                    'nombre' => $row['nombre_tipo_componente']
+
+
                 );
             }
             $jsonString = json_encode($listado);
@@ -52,10 +57,10 @@ class Componente extends Conectar{
         }
     }
 
-    public function listarSelectModelo()
+    public function listarSelectEstado()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `modelo` WHERE esActivo = 1 ORDER BY nombre_modelo ASC";
+        $sql = "SELECT * FROM estado ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -69,8 +74,8 @@ class Componente extends Conectar{
             $listado = array();
             foreach ($resultado as $row) {
                 $listado[] = array(
-                    'id' => $row['id_modelo'],
-                    'nombre' => $row['nombre_modelo']
+                    'id' => $row['id_estado'],
+                    'nombre' => $row['nombre_estado']
                 );
             }
             $jsonString = json_encode($listado);
@@ -78,12 +83,13 @@ class Componente extends Conectar{
         }
     }
 
-    public function listarSelectMarca($idModelo)
+    public function listarSelectMarca()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * from marca WHERE categoria_marca_id = ?";
+        $sql = "SELECT * from marca WHERE esActivo = 1";
         $fila = $conectar->prepare($sql);
-        $fila->bindValue(1,$idModelo);
+        // $fila->bindValue(1,$idMarca);
+
         $fila->execute();
 
         $resultado = $fila->fetchAll();
@@ -105,5 +111,30 @@ class Componente extends Conectar{
         }
     }
 
+    public function listarSelectModelo($idMarca)
+    {
+        $conectar = parent::conexion();
+        $sql = "SELECT * FROM `modelo`  WHERE marca_id = ?";
+        $fila = $conectar->prepare($sql);
+        $fila->bindValue(1, $idMarca);
+        $fila->execute();
+
+        $resultado = $fila->fetchAll();
+        if (empty($resultado)) {
+            $resultado = array('listado' => 'vacio');
+            $jsonString = json_encode($resultado);
+            echo $jsonString;
+        } else {
+            $json = array();
+            $listado = array();
+            foreach ($resultado as $row) {
+                $listado[] = array(
+                    'id' => $row['id_modelo'],
+                    'nombre' => $row['nombre_modelo']
+                );
+            }
+            $jsonString = json_encode($listado);
+            echo $jsonString;
+        }
+    }
 }
-?>
