@@ -9,7 +9,8 @@ selecMarca.addEventListener('change',() =>{
     let marcaId = selecMarca.value;
     console.log(marcaId);
     const ajax = new XMLHttpRequest();
-    ajax.open("POST", "../controller/componentesController.php", true);
+    //Se establace la direccion del archivo php que procesara la peticion
+    ajax.open('POST', '../model/componentesModel.php', true); 
     var data = new FormData();
     data.append('accion','listarModel');
     data.append('id',marcaId);

@@ -57,7 +57,7 @@ class asignarRoles extends Conectar
             $limit = $_POST['registros'];
             $sLimit = "LIMIT $limit";
         }
-        $sql = "SELECT * FROM `roles` WHERE esActivo = 1 ORDER BY nombre_roles";
+        $sql = "SELECT * FROM `roles` WHERE esActivo = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -168,21 +168,15 @@ class asignarRoles extends Conectar
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
             $conectar = $this->Conexion();
-            $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            //Para comprobar si se a mandado el parametro de registros
-            if (isset($_POST['registros'])) {
-                $limit = $_POST['registros'];
-                $sLimit = "LIMIT $limit";
-            }
-            $inicio = ($pagina - 1) * $limit;
+            $inicio = ($pagina - 1) * $cantidadXHoja;
             //echo $inicio;
             $sql = "SELECT rp.id_rol_personal, p.nombres_personal, p.apellidos_personal, r.nombre_roles
             FROM personal p
             INNER JOIN rol_personal rp ON rp.personal_id = p.id_personal
             INNER JOIN roles AS r ON rp.rol_id = r.id_roles
             WHERE rp.esActivo = 1 AND nombres_personal LIKE '%$textoBusqueda%' 
-            ORDER BY nombres_personal 
-            LIMIT $inicio, $limit";
+            ORDER BY id_rol_personal 
+            LIMIT $inicio, $cantidadXHoja"; 
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
             $json = [];
@@ -204,7 +198,7 @@ class asignarRoles extends Conectar
                 $fila2->execute();
 
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad'] / $limit);
+                $paginas = ceil($array['cantidad'] / $cantidadXHoja);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
