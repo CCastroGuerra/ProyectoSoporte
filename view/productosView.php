@@ -183,7 +183,6 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                <tr>
                                     <th scope="col" class="visually-hidden"><strong>#</strong></th>
                                     <th scope="col"><strong>Codigo</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
