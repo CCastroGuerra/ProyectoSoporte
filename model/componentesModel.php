@@ -1,40 +1,29 @@
-<?php
-include ('../controller/componentesController.php');
-$accion=(isset($_POST['accion']))?$_POST['accion']:"";
-switch ($accion) {
-    case 'listar':
-        listarComponentes();
-        break;
-    
-    default:
-        # code...S
-        break;
-}
-function listarComponentes(){
-    global $conect;
-    $sql="select * from componentes ";
-    $fila=$conect->prepare($sql);
-    $fila->execute();
+<?php 
+class Componente extends Conectar{
+    public function listarSelectTipoComponente()
+    {
+        $conectar = parent::conexion();
+        $sql = "SELECT * FROM `tipo_componentes` WHERE esActivo = 1 ORDER BY nombre_tipo_componente";
+        $fila = $conectar->prepare($sql);
+        $fila->execute();
 
-    $resultado = $fila->fetchAll();
-    if(empty($resultado)){
-       $resultado = array('listado'=>'vacio');
-       $jsonString = json_encode($resultado);
-       echo $jsonString;
-    }else{
-        $json =array();
-        $listado = array();
-        foreach($resultado as $row) {
-            $listado[]=array(
-                'id' => $row['id_componentes'],
-                'serie' => $row['serie'],
-                'fecha_alta' => $row['fecha_alta']
-               
-            );
+        $resultado = $fila->fetchAll();
+        if (empty($resultado)) {
+            $resultado = array('listado' => 'vacio');
+            $jsonString = json_encode($resultado);
+            echo $jsonString;
+        } else {
+            $json = array();
+            $listado = array();
+            foreach ($resultado as $row) {
+                $listado[] = array(
+                    'id' => $row['id_tipo_componentes'],
+                    'nombre' => $row['nombre_tipo_componentes']
+                );
+            }
+            $jsonString = json_encode($listado);
+            echo $jsonString;
         }
-        $jsonString = json_encode($listado);
-        echo $jsonString;
-    
     }
 
     public function listarSelectClaseComponente()
@@ -43,23 +32,6 @@ function listarComponentes(){
         $sql = "SELECT id_clase_componentes, nombre_clase from  clase_componentes WHERE esActivo = 1 ORDER BY nombre_clase";
         $fila = $conectar->prepare($sql);
         $fila->execute();
-<?php
-include ('../controller/componentesController.php');
-$accion=(isset($_POST['accion']))?$_POST['accion']:"";
-switch ($accion) {
-    case 'listar':
-        listarComponentes();
-        break;
-    
-    default:
-        # code...S
-        break;
-}
-function listarComponentes(){
-    global $conect;
-    $sql="select * from componentes ";
-    $fila=$conect->prepare($sql);
-    $fila->execute();
 
         $resultado = $fila->fetchAll();
         if (empty($resultado)) {
@@ -106,12 +78,12 @@ function listarComponentes(){
         }
     }
 
-    public function listarSelectModelo($idMarca)
+    public function listarSelectMarca($idModelo)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `modelo`  WHERE marca_id = ?";
+        $sql = "SELECT * from marca WHERE categoria_marca_id = ?";
         $fila = $conectar->prepare($sql);
-        $fila->bindValue(1,$idMarca);
+        $fila->bindValue(1,$idModelo);
         $fila->execute();
 
         $resultado = $fila->fetchAll();
@@ -124,8 +96,8 @@ function listarComponentes(){
             $listado = array();
             foreach ($resultado as $row) {
                 $listado[] = array(
-                    'id' => $row['id_modelo'],
-                    'nombre' => $row['nombre_modelo']
+                    'id' => $row['id_marca'],
+                    'nombre' => $row['nombre_marca']
                 );
             }
             $jsonString = json_encode($listado);

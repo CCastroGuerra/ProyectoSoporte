@@ -82,6 +82,7 @@ class Personal extends Conectar{
         //$sql="SELECT * FROM area WHERE id_area = ?";
         $sql ="SELECT id_personal, apellidos_personal, nombres_personal,cargo_personal cargoId, 
         CASE
+            WHEN cargo_personal = 0 THEN 'Vacio'
             WHEN cargo_personal = 1 THEN 'Administrador'
             WHEN cargo_personal = 2 THEN 'Secretaria'
             WHEN cargo_personal = 3 THEN 'Practicante'
@@ -113,22 +114,23 @@ class Personal extends Conectar{
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
             $conectar = $this->Conexion();
-            // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            // //Para comprobar si se a mandado el parametro de registros
-            // if (isset($_POST['registros'])) {
-            // $limit = $_POST['registros'];
-            // $sLimit = "LIMIT $limit";
-            // }
-            $inicio = ($pagina-1)*$cantidadXHoja;
+            $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+            //Para comprobar si se a mandado el parametro de registros
+            if (isset($_POST['registros'])) {
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
+            }
+            $inicio = ($pagina-1)*$limit;
             //echo $inicio;
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
             $sql = "SELECT id_personal, apellidos_personal, nombres_personal,cargo_personal cargoId, 
             CASE
+                WHEN cargo_personal = 0 THEN 'Vacio'
                 WHEN cargo_personal = 1 THEN 'Administrador'
                 WHEN cargo_personal = 2 THEN 'Secretaria'
                 WHEN cargo_personal = 3 THEN 'Practicante'
             END as cargoPersonal, nombre_usuario, password_usuario
-            FROM `personal` WHERE es_activo = 1 AND nombres_personal LIKE '%$textoBusqueda%'  ORDER BY id_personal LIMIT $inicio,$cantidadXHoja ";
+            FROM `personal` WHERE es_activo = 1 AND nombres_personal LIKE '%$textoBusqueda%'  ORDER BY nombres_personal, cargoPersonal LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -156,7 +158,7 @@ class Personal extends Conectar{
                 $fila2->execute();
     
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$cantidadXHoja);
+                $paginas = ceil($array['cantidad']/$limit);
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;

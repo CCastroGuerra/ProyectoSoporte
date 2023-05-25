@@ -1,16 +1,13 @@
 var valorBuscar="";
 var numPagina=1;
-listarSelectMarca();
-let selecModelo = document.getElementById('selModelo');
-let selecMarca = document.getElementById('selMarca');
 
-selecModelo.disabled = true;
-selecMarca.addEventListener('change',() =>{
-    let marcaId = selecMarca.value;
-    console.log(marcaId);
+let selecModelo = document.getElementById('selModelo');
+
+selecModelo.addEventListener('change',() =>{
+    let modeloId = selecModelo.value;
+    console.log(modeloId);
     const ajax = new XMLHttpRequest();
-    //Se establace la direccion del archivo php que procesara la peticion
-    ajax.open('POST', '../model/componentesModel.php', true); 
+    ajax.open("POST", "../controller/componentesController.php", true);
     var data = new FormData();
     data.append('accion','listarMarca');
     data.append('id',modeloId);

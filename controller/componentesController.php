@@ -1,10 +1,8 @@
 <?php
-include('../config/conexion.php');
-$conect= new conexion();
-$conect = $conect->conexion();
-include('../config/conexion.php');
-$conect= new conexion();
-$conect = $conect->conexion();
+require_once("../config/conexion.php");
+require_once("../model/componentesModel.php");
+
+$componente = new Componente();
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch($accion){

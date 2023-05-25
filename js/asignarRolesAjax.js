@@ -1,16 +1,12 @@
-let frmAsignarRol = document.getElementById('formARoles');
-let dni ='';
+let frmAsignarRol = document.getElementById("formARoles");
+let dni = "";
 var numPagina = 1;
 
-
-
-document.body.onload = ()=>{
+document.body.onload = () => {
   listarSelectRol();
   //listarAsignarRol();
-
-}
+};
 buscar();
-
 
 frmAsignarRol.onsubmit = function (e) {
   e.preventDefault();
@@ -18,44 +14,39 @@ frmAsignarRol.onsubmit = function (e) {
     console.log("actualizo");
     actualizar(id);
   } else {
-   
     guardarDatos();
     //listarAsignarRol();
-
   }
   frmAsignarRol.reset();
 };
 
-
-
 function listarSelectRol() {
-    //let num_registros = document.getElementById('numeroRegistros').value;
-    const ajax = new XMLHttpRequest();
-    ajax.open("POST", "../controller/asignarRolesController.php", true);
-    var data = new FormData();
-    data.append("accion", "listarCombo");
-    
-    ajax.onload = function () {
-      let respuesta = ajax.responseText;
-      console.log(respuesta);
-      const rol = JSON.parse(respuesta);
-      let template = ""; // Estructura de la tabla html
-      if (rol.length > 0) {
-        template = `<option value="0">Seleccione Marca</option>
+  //let num_registros = document.getElementById('numeroRegistros').value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/asignarRolesController.php", true);
+  var data = new FormData();
+  data.append("accion", "listarCombo");
+
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const rol = JSON.parse(respuesta);
+    let template = ""; // Estructura de la tabla html
+    if (rol.length > 0) {
+      template = `<option value="0">Seleccione Rol</option>
         `;
-        rol.forEach(function (rol) {
-          template += `
+      rol.forEach(function (rol) {
+        template += `
                    
                     <option value="${rol.id}">${rol.nombre}</option>
                 
                     `;
-        });
-        var elemento = document.getElementById("selAroles");
-        elemento.innerHTML = template;
-       
-      }
-    };
-    ajax.send(data);
+      });
+      var elemento = document.getElementById("selAroles");
+      elemento.innerHTML = template;
+    }
+  };
+  ajax.send(data);
 }
 
 function guardarDatos() {
@@ -65,12 +56,12 @@ function guardarDatos() {
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/asignarRolesController.php", true);
   var data = new FormData();
-  data.append('dni', dni);
-  data.append('accion', 'listar');
-  ajax.onload = function() {
+  data.append("dni", dni);
+  data.append("accion", "listar");
+  ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
-    if (respuesta !== '') {
+    if (respuesta !== "") {
       let datos = JSON.parse(respuesta);
       console.log(datos);
 
@@ -81,55 +72,46 @@ function guardarDatos() {
       // let nombre = datos[0].nombre;
 
       const ajaxGuardar = new XMLHttpRequest();
-      ajaxGuardar.open("POST", "../controller/asignarRolesController.php", true);
+      ajaxGuardar.open(
+        "POST",
+        "../controller/asignarRolesController.php",
+        true
+      );
       let dataGuardar = new FormData();
-      dataGuardar.append('accion', 'guardar');
-      dataGuardar.append('id', id);
-      dataGuardar.append('combo', idRolSeleccionado);
-      ajaxGuardar.onload = function() {
+      dataGuardar.append("accion", "guardar");
+      dataGuardar.append("id", id);
+      dataGuardar.append("combo", idRolSeleccionado);
+      ajaxGuardar.onload = function () {
         let resp = ajaxGuardar.responseText;
         console.log(resp);
-        if (resp === '1') {
+        if (resp === "1") {
           console.log("Datos guardados correctamente");
           buscar();
-          swal.fire(
-            "Registrado!",
-            "Se registro correctamente.",
-            "success"
-          );
+          swal.fire("Registrado!", "Se registro correctamente.", "success");
         } else {
           console.log("Error al guardar los datos");
-          swal.fire(
-            "ERROR!",
-            "Error al guardar los datos",
-            "error"
-          );
+          swal.fire("ERROR!", "Error al guardar los datos", "error");
         }
-      }
+      };
       ajaxGuardar.send(dataGuardar);
     } else {
-      console.log('NO SE ENCONTRO EL DNI');
-      swal.fire(
-        "ERROR!",
-        "No se encontro el DNI.",
-        "error"
-      );
-      
+      console.log("NO SE ENCONTRO EL DNI");
+      swal.fire("ERROR!", "No se encontro el DNI.", "error");
     }
-  }
+  };
   ajax.send(data);
-  listarAsignarRol();
+  buscar();
 }
 
 function listarAsignarRol() {
-  let num_registros = document.getElementById('numRegistros').value;
+  let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/asignarRolesController.php", true);
   var data = new FormData();
   data.append("accion", "listarTabla");
   data.append("valor", "");
   data.append("cantidad", "4");
-  data.append('registros',num_registros);
+  data.append("registros", num_registros);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
@@ -147,38 +129,36 @@ function listarAsignarRol() {
                       <button type="button" onClick = eliminar("${asigRol.id}") class="btn btn-danger" data-fila = "${asigRol.id}">Borrar</button></td>
                   </tr>
                   `;
-                  
       });
       var elemento = document.getElementById("tbRoles");
       elemento.innerHTML = template;
-     
-    }else{
+    } else {
       var elemento = document.getElementById("tbRoles");
       elemento.innerHTML = `
         <tr>
           <td colspan="6" class="text-center">LISTA VACIA</td>
         </tr>
-      `;  
+      `;
     }
   };
   ajax.send(data);
 }
 
 var elemento = document.getElementById("selAroles");
-elemento.onchange = function() {
-    var valorSeleccionado = elemento.value;
-    console.log("Valor seleccionado:", valorSeleccionado);
+elemento.onchange = function () {
+  var valorSeleccionado = elemento.value;
+  console.log("Valor seleccionado:", valorSeleccionado);
 };
 
 function actualizar(id) {
   const dni = document.getElementById("inputDni").value;
   // Obtener los valores actualizados desde los elementos del modal
-  
+
   const combo = elemento.value;
   swal
     .fire({
-      title: "",
-      text: "Desea actualizar el registro?",
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -195,14 +175,14 @@ function actualizar(id) {
         data.append("accion", "actualizar");
         ajax.onload = function () {
           console.log(ajax.responseText);
-          listarAsignarRol();
+          buscar();
           swal.fire(
             "Actualizado!",
             "El registro se actualizó correctamente.",
             "success"
           );
         };
-        cajaBuscar.value ='';
+        cajaBuscar.value = "";
         ajax.send(data);
       }
     });
@@ -212,8 +192,8 @@ function eliminar(id) {
   console.log(id);
   swal
     .fire({
-      title: "",
-      text: "Desea Eliminar el Registro?",
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea Eliminar el Registro?",
       icon: "error",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -238,12 +218,17 @@ function eliminar(id) {
             "success"
           );
         };
+        let tab = document.getElementById("tbRoles");
+        if (tab.rows.length == 1) {
+          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
+          numPagina = numPagina - 1;
+        }
         ajax.send(data);
       }
     });
 }
 
-function mostrarEnModal(asigPerId){
+function mostrarEnModal(asigPerId) {
   id = asigPerId;
   console.log(id);
   const ajax = new XMLHttpRequest();
@@ -264,60 +249,73 @@ function mostrarEnModal(asigPerId){
 }
 
 /*limit para el select*/
-var numRegistors = document.getElementById('numRegistros');
-numRegistors.addEventListener("change", buscar);
+var numRegistors = document.getElementById("numRegistros");
+numRegistors.addEventListener("change", () => {
+  numPagina = 1;
+  buscar();
+});
 
 function buscar() {
   var cajaBuscar = document.getElementById("inputbuscarARoles");
   const textoBusqueda = cajaBuscar.value;
-  let num_registros = document.getElementById('numRegistros').value;
+  let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/asignarRolesController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
   data.append("cantidad", "4");
-  data.append('registros',num_registros);
-  data.append('pag',numPagina);
+  data.append("registros", num_registros);
+  data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);
-    ajax.onload = function () {
-      let respuesta = ajax.responseText;
-      console.log(respuesta);
-      const datos = JSON.parse(respuesta);
-      console.log(datos);
-      let asigRol = datos.listado;
-      let template = ""; // Estructura de la tabla html
-      if (asigRol != 'vacio') {
-        asigRol.forEach(function (asigRol) {
-          template +=  `
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const datos = JSON.parse(respuesta);
+    console.log(datos);
+    let asigRol = datos.listado;
+    let template = ""; // Estructura de la tabla html
+    if (asigRol != "vacio") {
+      asigRol.forEach(function (asigRol) {
+        template += `
           <tr>
-              <td>${asigRol.id}</td>
+              
               <td>${asigRol.nombre}</td>
               <td>${asigRol.apellidos}</td>
               <td>${asigRol.nombreRol}</td>
-              <td><button type="button" onClick=mostrarEnModal("${asigRol.id}") id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal" data-fila = "${asigRol.id}">Editar</button>
-              <button type="button" onClick = eliminar("${asigRol.id}") class="btn btn-danger" data-fila = "${asigRol.id}">Borrar</button></td>
+              <td>
+
+              <button type="button" onClick='mostrarEnModal("${asigRol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+              
+              <button type="button" onClick='eliminar("${asigRol.id}")' class="btn btn-danger" data-fila="${asigRol.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+
+              </td>
           </tr>
           `;
-        });
-        var elemento = document.getElementById("tbRoles");
-        elemento.innerHTML = template;
-        document.getElementById('txtPagVista').value = numPagina;
-        document.getElementById('txtPagTotal').value = datos.paginas;
+      });
+      var elemento = document.getElementById("tbRoles");
+      elemento.innerHTML = template;
+      document.getElementById("txtPagVista").value = numPagina;
+      document.getElementById("txtPagTotal").value = datos.paginas;
 
-      
-      }
-      else {
-        var elemento = document.getElementById("tbRoles");
-        elemento.innerHTML = `
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando ${asigRol.length} de ${datos.total} registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
+    } else {
+      var elemento = document.getElementById("tbRoles");
+      elemento.innerHTML = `
           <tr>
             <td colspan="6" class="text-center">No se encontraron resultados</td>
           </tr>
-        `; 
-        document.getElementById('txtPagVista').value = 0;
-        document.getElementById('txtPagTotal').value = 0; 
-      }
-    };
-    ajax.send(data);
+        `;
+      document.getElementById("txtPagVista").value = 0;
+      document.getElementById("txtPagTotal").value = 0;
+    }
+  };
+  ajax.send(data);
 }
 
 /*BUSCAR*/
@@ -325,55 +323,48 @@ var cajaBuscar = document.getElementById("inputbuscarARoles");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
-  if (textoBusqueda.trim() == "") {
-    listarAsignarRol();
-    //buscar();
-  } else{
-
-    buscar();
-  }
+ buscar();
 });
-
 
 /**************************/
 /* BOTONES DE PAGINACIÓN */
-let pagInicio = document.querySelector('#btnPrimero');
-pagInicio.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVista').value = numPagina;
-    buscarArea();
-    pagInicio.blur();
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscar();
+  pagInicio.blur();
 });
-let pagAnterior = document.querySelector('#btnAnterior');
-pagAnterior.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagDestino = 0;
-    if ((pagVisitada - 1) >= 1) {
-        pagDestino = pagVisitada - 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscar();
-        pagAnterior.blur();
-    }
-});
-let pagSiguiente = document.querySelector('#btnSiguiente');
-pagSiguiente.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
-    var pagDestino = 0;
-    if ((pagVisitada + 1) <= pagFinal) {
-        pagDestino = pagVisitada + 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscar();
-        pagSiguiente.blur();
-    }
-});
-let pagFinal = document.querySelector('#btnUltimo');
-pagFinal.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotal').value;
-    document.getElementById('txtPagVista').value = numPagina;
-    console.log(numPagina);
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscar();
-    pagFinal.blur();
+    pagAnterior.blur();
+  }
+});
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscar();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscar();
+  pagFinal.blur();
 });

@@ -3,7 +3,7 @@ var numPagina = 1;
 var frmArea = document.getElementById("formArea");
 console.log(numPagina);
 buscarArea();
-listarArea();
+//listarArea();
 frmArea.onsubmit = function (e) {
   e.preventDefault();
   if (frmArea.querySelector("#inputCodigo").value !== "") {
@@ -11,7 +11,7 @@ frmArea.onsubmit = function (e) {
     actualizar(id);
   } else {
     guardarArea();
-    listarArea();
+    //listarArea();
     console.log("guardo");
   }
   frmArea.reset();
@@ -19,7 +19,10 @@ frmArea.onsubmit = function (e) {
 
 /*limit para el select*/
 var numRegistors = document.getElementById('numRegistros');
-numRegistors.addEventListener("change", listarArea);
+numRegistors.addEventListener("change", ()=>{
+  numPagina = 1;
+  buscarArea();
+});
 
 function listarArea() {
   let num_registros = document.getElementById('numRegistros').value;
@@ -39,10 +42,19 @@ function listarArea() {
       area.forEach(function (area) {
         template += `
                   <tr>
-                      <td>${area.id}</td>
+                      
                       <td>${area.nombre}</td>
-                      <td><button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal">Editar</button>
-                      <button type="button" onClick = eliminarArea("${area.id}") class="btn btn-danger" data-fila = "${area.id}">Borrar</button></td>
+
+
+                      <td>
+                      <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
+
+                      
+                      <button type="button" onClick='eliminarPresentacion("${area.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+
+              
+            </td>
                   </tr>
                   `;
       });
@@ -78,15 +90,15 @@ function buscarArea() {
         area.forEach(function (area) {
           template += `
             <tr>
-              <td>${area.id}</td>
+              
               <td>${area.nombre}</td>
               <td>
-                <button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal" data-fila="${area.id}">
-                  Editar
-                </button>
-                <button type="button" onClick=eliminarArea("${area.id}") class="btn btn-danger" data-fila="${area.id}">
-                  Borrar
-                </button>
+              <button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+
+                      
+              <button type="button" onClick='eliminarArea("${area.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
               </td>
             </tr>
           `;
@@ -95,6 +107,12 @@ function buscarArea() {
         elemento.innerHTML = template;
         document.getElementById('txtPagVista').value = numPagina;
         document.getElementById('txtPagTotal').value = datos.paginas;
+
+        /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando ${area.length} de ${datos.total} registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
 
       } else {
         var elemento = document.getElementById("tbArea");
@@ -154,8 +172,8 @@ function actualizar(id) {
   const nombre = nombreInput.value;
   swal
     .fire({
-      title: "",
-      text: "Desea actualizar el registro?",
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -172,7 +190,7 @@ function actualizar(id) {
         data.append("accion", "actualizar");
         ajax.onload = function () {
           console.log(ajax.responseText);
-          listarArea();
+          buscarArea();
           swal.fire(
             "Actualizado!",
             "El registro se actualizó correctamente.",
@@ -193,8 +211,8 @@ function eliminarArea(id) {
   console.log(id);
   swal
     .fire({
-      title: "CRUD",
-      text: "Desea Eliminar el Registro?",
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea Eliminar el Registro?",
       icon: "error",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -211,13 +229,17 @@ function eliminarArea(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          listarArea();
+          buscarArea();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
             "success"
           );
         };
+        let tab = document.getElementById("tbArea");
+        if (tab.rows.length == 1) {
+          numPagina = numPagina - 1;
+        }
         ajax.send(data);
       }
     });

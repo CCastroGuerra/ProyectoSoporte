@@ -25,6 +25,7 @@ switch($accion){
         $datos = $modelo->traeModeloXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
+                    $output['nro'] = $row['NRO'];
                     $output['id'] = $row['id_modelo'];
                     $output['nombre'] = $row['nombre_modelo'];
                     $output['nombreMarca'] = $row['marca_id'];
