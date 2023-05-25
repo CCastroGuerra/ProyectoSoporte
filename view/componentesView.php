@@ -124,7 +124,7 @@ include('../templates/cabecera.php');
                     <!-- /encabezado--->
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle text-center" id="tableModal">
+                        <table class="table table-hover align-middle" id="tableModal">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>#</strong></th>
