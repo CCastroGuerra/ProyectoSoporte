@@ -127,7 +127,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle" id="tableModal">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
+                                    
                                     <th scope="col"><strong>Tipo</strong></th>
                                     <th scope="col"><strong>Clase</strong></th>
                                     <th scope="col"><strong>Marca</strong></th>

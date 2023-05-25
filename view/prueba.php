@@ -70,7 +70,7 @@ include('../templates/cabecera.php');
           <table class="table">
             <thead>
               <tr>
-                <th scope="col"><strong>#</strong></th>
+                
                 <th scope="col"><strong>Nombre</strong></th>
                 <th scope="col"><strong>Opciones</strong></th>
               </tr>
