@@ -228,7 +228,6 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle text-center">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>#</strong></th>
                                     <th scope="col"><strong># Serie</strong></th>
                                     <th scope="col"><strong>Marquesi</strong></th>
                                     <th scope="col"><strong>Usuario</strong></th>
