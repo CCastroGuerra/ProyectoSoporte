@@ -18,7 +18,7 @@ frmLogin.onsubmit = function (e) {
 
 function buscarUsuario() {
   const ajax = new XMLHttpRequest();
-  ajax.open("POST", "controller/loginController.php", true);
+  ajax.open("POST", "../controller/loginController.php", true);
   
   var data = new FormData(frmLogin);
  // var user= document.getElementById("usuario");
@@ -32,7 +32,7 @@ function buscarUsuario() {
     if (!datos.hasOwnProperty('negativo')) {
       ///redireccion windows.replace
       //template += `<p>Estas dentro</p>`;
-      window.location.replace("view/dashboardView.php");
+      window.location.replace("../view/dashboardView.php");
       //var elemento = document.getElementById("login-mensaje");
       //elemento.innerHTML = template;
     } else {

@@ -19,27 +19,25 @@ frmServicio.onsubmit = function (e) {
 };
 
 /*limit para el select*/
-var numRegistors = document.getElementById("numRegistros");
-numRegistors.addEventListener("change", () => {
-  buscarServicio();
-});
+var numRegistors = document.getElementById('numRegistros');
+numRegistors.addEventListener("change", listarServicio);
 
 function listarServicio() {
-  let num_registros = document.getElementById("numRegistros").value;
+  let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/serviciosController.php", true);
   var data = new FormData();
   data.append("accion", "listar");
   data.append("valor", "");
   data.append("cantidad", "4");
-  data.append("registros", num_registros);
+  data.append('registros',num_registros);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     const servicio = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (servicio.length > 0) {
-      servicio.forEach(function (servicio) {
+        servicio.forEach(function (servicio) {
         template += `
                   <tr>
                       <td>${servicio.id}</td>
@@ -51,6 +49,7 @@ function listarServicio() {
       });
       var elemento = document.getElementById("tbServicio");
       elemento.innerHTML = template;
+     
     }
   };
   ajax.send(data);
@@ -59,63 +58,55 @@ function listarServicio() {
 function buscarServicio() {
   var cajaBuscar = document.getElementById("inputbuscarServicios");
   const textoBusqueda = cajaBuscar.value;
-  let num_registros = document.getElementById("numRegistros").value;
+  let num_registros = document.getElementById('numRegistros').value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/serviciosController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
   data.append("cantidad", "4");
-  data.append("registros", num_registros);
-  data.append("pag", numPagina);
+  data.append('registros',num_registros);
+  data.append('pag',numPagina);
   data.append("textoBusqueda", textoBusqueda);
-  ajax.onload = function () {
-    let respuesta = ajax.responseText;
-    console.log(respuesta);
-    const datos = JSON.parse(respuesta);
-    console.log(datos);
-    let servicio = datos.listado;
-    console.log(servicio);
-    let template = ""; // Estructura de la tabla html
-    if (servicio != "vacio") {
-      servicio.forEach(function (servicio) {
-        template += `
+    ajax.onload = function () {
+      let respuesta = ajax.responseText;
+      console.log(respuesta);
+      const datos = JSON.parse(respuesta);
+      console.log(datos);
+      let servicio = datos.listado;
+      console.log(servicio);
+      let template = ""; // Estructura de la tabla html
+      if (servicio != 'vacio') {
+        servicio.forEach(function (servicio) {
+          template += `
             <tr>
-              
+              <td>${servicio.id}</td>
               <td>${servicio.nombre}</td>
               <td>
-                
-
-                <button type="button" onClick='mostrarEnModal("${servicio.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              
-              <button type="button" onClick='eliminarServicio("${servicio.id}")' class="btn btn-danger" data-fila="${servicio.id}"><i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
-
-
+                <button type="button" onClick='mostrarEnModal("${servicio.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal" data-fila="${servicio.id}">
+                  Editar
+                </button>
+                <button type="button" onClick=eliminarServicio("${servicio.id}") class="btn btn-danger" data-fila="${servicio.id}">
+                  Borrar
+                </button>
               </td>
             </tr>
           `;
-      });
-      var elemento = document.getElementById("tbServicio");
-      elemento.innerHTML = template;
-      document.getElementById("txtPagVista").value = numPagina;
-      document.getElementById("txtPagTotal").value = datos.paginas;
+        });
+        var elemento = document.getElementById("tbServicio");
+        elemento.innerHTML = template;
+        document.getElementById('txtPagVista').value = numPagina;
+        document.getElementById('txtPagTotal').value = datos.paginas;
 
-      /* Mostrando mensaje de los registros*/
-      let registros = document.getElementById("txtcontador");
-      let mostrarRegistro = `
-      <p><span id="totalRegistros">Mostrando ${servicio.length} de ${datos.total} registros</span></p>`;
-      registros.innerHTML = mostrarRegistro;
-    } else {
-      var elemento = document.getElementById("tbServicio");
-      elemento.innerHTML = `
+      } else {
+        var elemento = document.getElementById("tbServicio");
+        elemento.innerHTML = `
           <tr>
             <td colspan="3" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-    }
-  };
-  ajax.send(data);
+      }
+    };
+    ajax.send(data);
 }
 
 function guardarServicio() {
@@ -133,6 +124,7 @@ function guardarServicio() {
       swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
     buscarServicio();
+    //listarArea();
     frmServicio.reset();
   };
   ajax.send(data);
@@ -162,8 +154,8 @@ function actualizar(id) {
   const nombre = nombreInput.value;
   swal
     .fire({
-      title: "AVISO DEL SISTEMA",
-      text: "¿Desea actualizar el registro?",
+      title: "CRUD",
+      text: "Desea actualizar el registro?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -180,29 +172,29 @@ function actualizar(id) {
         data.append("accion", "actualizar");
         ajax.onload = function () {
           console.log(ajax.responseText);
-          buscarServicio();
+          listarServicio();
           swal.fire(
             "Actualizado!",
             "El registro se actualizó correctamente.",
             "success"
           );
         };
-        cajaBuscar.value = "";
+        cajaBuscar.value = '';
         ajax.send(data);
       }
     });
 }
 
 function limpiarFormulario() {
-  frmServicio.reset();
+  formServicio.reset();
 }
 
 function eliminarServicio(id) {
   console.log(id);
   swal
     .fire({
-      title: "AVISO DEL SISTEMA",
-      text: "¿Desea Eliminar el Registro?",
+      title: "CRUD",
+      text: "Desea Eliminar el Registro?",
       icon: "error",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -219,18 +211,13 @@ function eliminarServicio(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          buscarServicio();
+          listarServicio();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
             "success"
           );
         };
-        let tab = document.getElementById("tbServicio");
-        if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
-        }
         ajax.send(data);
       }
     });
@@ -244,49 +231,96 @@ data.append("accion", "buscar");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
-  numPagina = 1;
-  buscarServicio();
+  if (textoBusqueda.trim() == "") {
+    listarServicio();
+  } else{
+    buscarServicio();
+  }//{
+  //   data.append("textoBusqueda", textoBusqueda);
+  //   const ajax = new XMLHttpRequest();
+  //   ajax.open("POST", "../controller/areaController.php", true);
+  //   ajax.onload = function () {
+  //     let respuesta = ajax.responseText;
+  //     console.log(respuesta);
+  //     const datos = JSON.parse(respuesta);
+  //     let area = datos.listado;
+  //     console.log(area);
+  //     let template = ""; // Estructura de la tabla html
+  //     if (area != 'vacio') {
+  //       area.forEach(function (area) {
+  //         template += `
+  //           <tr>
+  //             <td>${area.id}</td>
+  //             <td>${area.nombre}</td>
+  //             <td>
+  //               <button type="button" onClick=mostrarEnModal("${area.id}") id="btnEditar" class="btn btn-info btn-outline" data-bs-toggle="modal" data-bs-target="#modalArea" data-fila="${area.id}">
+  //                 Editar
+  //               </button>
+  //               <button type="button" onClick=eliminarArea("${area.id}") class="btn btn-danger" data-fila="${area.id}">
+  //                 Borrar
+  //               </button>
+  //             </td>
+  //           </tr>
+  //         `;
+  //       });
+  //       var elemento = document.getElementById("tbArea");
+  //       elemento.innerHTML = template;
+  //       document.getElementById('txtPagVista').value = numPagina;
+  //       document.getElementById('txtPagTotal').value = datos.paginas;
+
+  //     } else {
+  //       var elemento = document.getElementById("tbArea");
+  //       elemento.innerHTML = `
+  //         <tr>
+  //           <td colspan="3" class="text-center">No se encontraron resultados</td>
+  //         </tr>
+  //       `;
+  //     }
+  //   };
+  //   ajax.send(data);
+  // }
 });
 
 /**************************/
 /* BOTONES DE PAGINACIÓN */
-let pagInicio = document.querySelector("#btnPrimero");
-pagInicio.addEventListener("click", function (e) {
-  numPagina = 1;
-  document.getElementById("txtPagVista").value = numPagina;
-  buscarServicio();
-  pagInicio.blur();
-});
-let pagAnterior = document.querySelector("#btnAnterior");
-pagAnterior.addEventListener("click", function (e) {
-  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
-  var pagDestino = 0;
-  if (pagVisitada - 1 >= 1) {
-    pagDestino = pagVisitada - 1;
-    numPagina = pagDestino;
-    document.getElementById("txtPagVista").value = numPagina;
+let pagInicio = document.querySelector('#btnPrimero');
+pagInicio.addEventListener('click', function (e) {
+    numPagina = 1;
+    document.getElementById('txtPagVista').value = numPagina;
     buscarServicio();
-    pagAnterior.blur();
-  }
+    pagInicio.blur();
 });
-let pagSiguiente = document.querySelector("#btnSiguiente");
-pagSiguiente.addEventListener("click", function (e) {
-  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
-  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
-  var pagDestino = 0;
-  if (pagVisitada + 1 <= pagFinal) {
-    pagDestino = pagVisitada + 1;
-    numPagina = pagDestino;
-    document.getElementById("txtPagVista").value = numPagina;
+let pagAnterior = document.querySelector('#btnAnterior');
+pagAnterior.addEventListener('click', function (e) {
+    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
+    var pagDestino = 0;
+    if ((pagVisitada - 1) >= 1) {
+        pagDestino = pagVisitada - 1;
+        numPagina = pagDestino;
+        document.getElementById('txtPagVista').value = numPagina;
+        buscarServicio();
+        pagAnterior.blur();
+    }
+});
+let pagSiguiente = document.querySelector('#btnSiguiente');
+pagSiguiente.addEventListener('click', function (e) {
+    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
+    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
+    var pagDestino = 0;
+    if ((pagVisitada + 1) <= pagFinal) {
+        pagDestino = pagVisitada + 1;
+        numPagina = pagDestino;
+        document.getElementById('txtPagVista').value = numPagina;
+        buscarServicio();
+        pagSiguiente.blur();
+    }
+});
+let pagFinal = document.querySelector('#btnUltimo');
+pagFinal.addEventListener('click', function (e) {
+    numPagina = document.getElementById('txtPagTotal').value;
+    document.getElementById('txtPagVista').value = numPagina;
+    console.log(numPagina);
     buscarServicio();
-    pagSiguiente.blur();
-  }
+    pagFinal.blur();
 });
-let pagFinal = document.querySelector("#btnUltimo");
-pagFinal.addEventListener("click", function (e) {
-  numPagina = document.getElementById("txtPagTotal").value;
-  document.getElementById("txtPagVista").value = numPagina;
-  console.log(numPagina);
-  buscarServicio();
-  pagFinal.blur();
-});
+

@@ -1,17 +1,29 @@
 <?php
-require_once("../config/conexion.php");
-require_once("../model/componentesModel.php");
-
-$componente = new Componente();
+include('../config/conexion.php');
+$conect= new conexion();
+$conect = $conect->conexion();
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
-switch($accion){
-    case "listarModel":
-        $componente -> listarSelectModelo();
-        break;
-    case "listarMarca":
-        $componente -> listarSelectMarca($_POST['id']);
-        break;
-}
+class componentes{
+    private $idComponentes;
+    private $tipoComponentesId;
+    private $claseComponentesId;
+    private $marcaId;
+    private $modeloId;
+    private $serie;
+    private $fechaAlta;
+    private $estadoId;
+    private $esActivo;
 
+    public function __construct($idComponentes, $tipoComponentesId, $claseComponentesId, $marcaId, $modeloId, $serie, $estadoId, $esActivo){
+        $this->idComponentes = $idComponentes;
+        $this->tipoComponentesId = $tipoComponentesId;
+        $this->claseComponentesId = $claseComponentesId;
+        $this->marcaId = $marcaId;
+        $this->modeloId = $modeloId;
+        $this->serie = $serie;
+        $this->estadoId = $estadoId;
+        $this->esActivo = $esActivo;
+    }
+}
 ?>
