@@ -9,9 +9,6 @@ switch($accion){
     case "listarCombo":
         $modelo -> listarSelectMarca();
         break;
-    case "listar":
-        $modelo -> listarModelo();
-        break;
     case "guardar":
         $modelo->agregarModelo($_POST['nombreModelo'],$_POST["selMarca"]);
         break;

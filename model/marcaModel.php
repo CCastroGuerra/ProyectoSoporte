@@ -87,25 +87,17 @@ class Marca extends Conectar{
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-            //$conectar = $this->Conexion();
-            // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            // //Para comprobar si se a mandado el parametro de registros
+          
             if (isset($_POST['registros'])) {
             $limit = $_POST['registros'];
             $sLimit = "LIMIT $limit";
             }
             $inicio = ($pagina-1)*$limit;
-            //echo $inicio;
-            // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
             $sql = "SELECT @con:=@con + 1 as nro, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria FROM marca AS m
             cross join(select @con := 0) r
             INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria WHERE m.esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY nombre_marca LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
-            //echo $sql;
-            //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
             $stmt->execute();
-            //echo $sql;
-            //$resultados = array();
             $json = [];
             $marcas =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
