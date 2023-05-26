@@ -215,11 +215,7 @@ class Componente extends Conectar
             }
             $inicio = ($pagina-1)*$limit;
             $sql = "SELECT id_componentes, tipo_componentes_id, tp.nombre_tipo_componente,clase_componentes_id,cc.nombre_clase,c.marca_id, ma.nombre_marca,modelo_id, m.nombre_modelo, serie,componentes_capacidad,estado_id, e.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha FROM componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id WHERE es_activo = 1 AND tp.nombre_tipo_componente LIKE '$textoBusqueda%'  
-            OR  cc.nombre_clase LIKE '$textoBusqueda%'
-            OR  ma.nombre_marca LIKE '$textoBusqueda%'
-            OR  m.nombre_modelo LIKE '$textoBusqueda%'
-            OR  serie LIKE '$textoBusqueda%'
-            ORDER BY tp.nombre_tipo_componente LIMIT $inicio,$limit ";
+            ORDER BY tp.nombre_tipo_componente ASC , YEAR(fecha_alta) ASC, MONTH(fecha_alta) ASC LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
             $json = [];
