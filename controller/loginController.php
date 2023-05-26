@@ -4,20 +4,25 @@ require_once("../config/conexion.php");
 require_once("../model/loginModel.php");
 
 $login = new Login();
-session_start();
 //$test = ($_POST["usuario"]);
 
 $datos = $login->buscarUsuario(trim($_POST["usuario"]));
 
 if (is_array($datos) == true && count($datos) > 0) {
     foreach ($datos as $row) {
-        $output["id"] = $row["id_personal"];
-        $output['passwd'] = $row['password_usuario'];
-        $output['nombre'] = $row['nombres_personal'];
+        $output["id"] = $row["id_usuario"];
+        $output['passwd'] = $row['usuario_password'];
+        $output['idper'] = $row['personal_id'];
 
-        if ($row['password_usuario'] == trim($_POST['passwd'])) {
-            $_SESSION['id'] = $row['id_personal'];
-            $_SESSION['nombre'] = $row['nombre_usuario'];
+        if ($row['usuario_password'] == trim($_POST['passwd'])) {
+            $usuario = $login->buscarPersonal($row['personal_id']);
+            $ar = $usuario[0]['nombre_personal'] . " " . $usuario[0]['apellidos_personal'];
+            $output['nombre_usuario'] = $ar;
+            //echo $ar;
+
+            session_start();            
+            $_SESSION['id'] = $row['personal_id'];
+            $_SESSION['nombre'] = $ar;
 
             //header("Location: ../index.php");
         } else {
@@ -25,7 +30,7 @@ if (is_array($datos) == true && count($datos) > 0) {
             $output['negativo'] = "0";
         }
     }
- 
+
     echo json_encode($output);
 } else {
     //echo "NO existe usuario";
@@ -55,5 +60,3 @@ echo "user_input= ",crypt($user_input,$cryptoword),"<br>";*/
 else{
 	echo "Contraseña erronea";
 } */
-
-?>

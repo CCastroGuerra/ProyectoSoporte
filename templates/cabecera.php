@@ -8,7 +8,7 @@
 -->
 <!-- Breadcrumb-->
 <html lang="es">
-<?php include ('../templates/sesion.php'); ?>  
+<?php include('../templates/sesion.php'); ?>
 
 <head>
 
@@ -55,7 +55,7 @@
   <!-- Datables -->
   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-  
+
 
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -159,7 +159,7 @@
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-memory"></use>
               </svg> Componentes</a></li>
-          
+
           <li class="nav-item"><a class="nav-link" href="../view/inventarioView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-chart"></use>
@@ -227,7 +227,7 @@
       <!--fin almacen-->
 
       <!--depurar-->
- 
+
       <!--fin depurar-->
 
       <li class="nav-divider"></li>
@@ -282,6 +282,7 @@
           <li class="nav-item"><a class="nav-link" href="../view/dashboardView.php">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Users</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+
         </ul>
         <ul class="header-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#">
@@ -299,7 +300,8 @@
         </ul>
         <ul class="header-nav ms-3">
           <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              <div class="avatar avatar-md"><img class="avatar-img" src="../assets/img/avatars/8.jpg" alt="user@email.com"></div>
+              <div><?php echo $_SESSION['nombre'] ?></div>
+              <!-- <div class="avatar avatar-md"><img class="avatar-img" src="../assets/img/avatars/8.jpg" alt="user@email.com"></div> -->
             </a>
             <div class="dropdown-menu dropdown-menu-end pt-0">
               <div class="dropdown-header bg-light py-2">
@@ -337,7 +339,7 @@
                   <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
 
                 </svg> Lock Account</a>
-                <a class="dropdown-item" href="../logout.php"> 
+              <a class="dropdown-item" href="../logout.php">
                 <svg class="icon me-2">
                   <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                 </svg> Logout</a>
