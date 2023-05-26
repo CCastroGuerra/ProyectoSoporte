@@ -69,6 +69,8 @@ include('../templates/cabecera.php');
                                             <option value="3">Técnico 3</option>
                                             <option value="4">Técnico 4</option>
                                         </select>
+                                        <label for="exampleFormControlTextarea2" class="form-label">Solucion:</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" id="solucion" name="solucion"></textarea>
                                         <label for="exampleFormControlTextarea2" class="form-label">Recomendación:</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" id="recomendacion" name="recomendacion"></textarea>
                                         <div id="alerta"></div>
