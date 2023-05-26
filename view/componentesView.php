@@ -66,14 +66,14 @@ include('../templates/cabecera.php');
                                     <option value="3">Malo</option>
                                 </select>
                                 <label for="exampleInputEmail1" class="mb-2">Fecha:</label>
-                                <input type="date" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese codigo">
+                                <input type="date" class="form-control mb-2" id="Fecha" name="Fecha" placeholder="Ingrese codigo">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-toggle="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
         </div>
@@ -139,7 +139,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>
                             </thead>
-                            <tbody id="tbEquipos">
+                            <tbody id="tbComponentes">
                                 <tr>
                                     <td>01</td>
                                     <td>tipo 1</td>
