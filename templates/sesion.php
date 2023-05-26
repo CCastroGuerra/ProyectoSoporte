@@ -10,7 +10,7 @@
    // $tipo_usuario = $_SESSION['tipo_usuario'];
    
    // Establecer tiempo de vida de la sesión en segundos
-   $inactividad = 3000;
+   $inactividad = 600;
    // Comprobar si $_SESSION["timeout"] está establecida
    if(isset($_SESSION["timeout"])){
        // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
