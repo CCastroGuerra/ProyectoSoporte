@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal Roles -->
-<div class="modal fade" id="rolesModal" tabindex="-1" aria-labelledby="rolesModalLabel" aria-hidden="true">
+<div class="modal fade" id="rolesModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="rolesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
                                 <label for="exampleInputEmail1" class="mb-2">Rol:</label>
-                                <input type="text" class="form-control mb-2" id="inputRol" name="inputRol" placeholder="Ingrese el Rol">
+                                <input type="text" class="form-control mb-2" id="inputRol" name="inputRol" placeholder="Ingrese el Rol" required>
                                 <div id="alerta"></div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary" >Guardar</button>
 
                 </div>
             </form>

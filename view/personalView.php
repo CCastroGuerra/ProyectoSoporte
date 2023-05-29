@@ -23,6 +23,12 @@ include('../templates/cabecera.php');
                                 <input type="text" class="form-control form-control-sm mb-2" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos">
                                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                                 <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el nombre">
+                                <label for="exampleInputEmail1" class="mb-2">DNI:</label>
+                                <input type="number" class="form-control  form-control-sm mb-2" id="dniusuario" name="dniusuario" placeholder="Ingrese el DNI">
+                                <label for="exampleInputEmail1" class="mb-2">Telefono:</label>
+                                <input type="text" class="form-control  form-control-sm mb-2" id="telefono" name="telefono" placeholder="Ingrese la telefono">
+                                <label for="exampleInputEmail1" class="mb-2">Correo:</label>
+                                <input type="text" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Direccion invalida" class="form-control  form-control-sm mb-2" id="correo" name="correo" placeholder="nickname@example.com">
                                 <label for="exampleInputEmail1" class="mb-2">Cargo:</label>
                                 <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
                                     <option selected>Seleccione el cargo </option>
@@ -30,10 +36,7 @@ include('../templates/cabecera.php');
                                     <option value="2">Secretaria</option>
                                     <option value="3">Practicante</option>
                                 </select>
-                                <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="usuario" name="usuario" placeholder="Ingrese el Usuario">
-                                <label for="exampleInputEmail1" class="mb-2">Contraseña:</label>
-                                <input type="password" class="form-control  form-control-sm mb-2" id="password" name="password" placeholder="Ingrese la contraseña">
+                                
                             </div>
                         </div>
                     </div>
@@ -101,24 +104,23 @@ include('../templates/cabecera.php');
                                 <tr>
                                     
                                     <th scope="col"><strong>Apellidos</strong></th>
-                                    <th scope="col"><strong>Nombre</strong></th>
+                                    <th scope="col"><strong>Nombre</strong></th>                                    
+                                    <th scope="col"><strong>DNI</strong></th>
+                                    <th scope="col"><strong>Telefono</strong></th>
+                                    <th scope="col"><strong>Correo</strong></th>
                                     <th scope="col"><strong>Cargo</strong></th>
-                                    <th scope="col"><strong>Usuario</strong></th>
-                                    <th scope="col"><strong>Contraseña</strong></th>
                                     <th scope='col'><strong>Acciones</strong></th>
                                 </tr>
                             </thead>
                             <tbody id="tbPersonal">
                                 <tr>
-                                    <td scope="col">01</td>
                                     <td scope="col">Viera Burneo</td>
                                     <td scope="col">Cristian</td>
+                                    <td scope="col">73376279</td>
+                                    <td scope="col">977256520</td>
+                                    <td scope="col">nexcris95@gmail.com</td>
                                     <td scope="col">Practicante</td>
-                                    <td scope="col">CrisVieraB</td>
-                                    <td scope="col">
-                                        <form><input type="password" id="contra-01" value="contraseña" size=7 disabled autocomplete="on"></form>
-                                    </td>
-                                    <td scope="col"><a onclick="var x = document.getElementById('contra-01');if (x.type=='password') {x.setAttribute('type','text')} else{x.setAttribute('type','password');}">DEL</a></td>
+                                    <td scope="col">[][][]</td>
                                 </tr>
                             </tbody>
                         </table>
