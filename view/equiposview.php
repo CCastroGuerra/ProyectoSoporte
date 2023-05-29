@@ -110,7 +110,7 @@ include('../templates/cabecera.php');
                                                         <th scope="col"><strong>Opciones</strong></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tbEquipos">
+                                                <tbody id="tbComponentes">
                                                     <tr>
                                                         <td>01</td>
                                                         <td>##########</td>
