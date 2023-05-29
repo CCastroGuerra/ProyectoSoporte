@@ -767,3 +767,7 @@ include '../templates/footer.php';
 <script src="../vendors/chart.js/js/chart.min.js"></script>
 <script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
 <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
+
+<script src="../js/main.js"></script>
+
+

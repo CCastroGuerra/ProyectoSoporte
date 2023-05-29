@@ -103,7 +103,6 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbRoles">
                                 <tr>
-                                    <td>01</td>
                                     <td>Nombre 1</td>
                                     <td>Apellidos 1</td>
                                     <td>Rol 1</td>
@@ -133,7 +132,7 @@ include('../templates/cabecera.php');
     </div>
 </div>
 <!--/Contenido-->
-
+<script src="../js/limpiarForm.js"></script>
 <script src="../js/asignarRolesAjax.js"></script>
 <?php
 include '../templates/footer.php';
