@@ -9,7 +9,7 @@ let selecModelo = document.getElementById("selModelo");
 let selecMarca = document.getElementById("selMarca");
 let frmComponentes = document.getElementById("formAcomponente");
 
-formAcomponente.onsubmit = function (e) {
+frmComponentes.onsubmit = function (e) {
   e.preventDefault();
   if (frmComponentes.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
@@ -186,6 +186,7 @@ numRegistors.addEventListener("change", function () {
 });
 
 function buscarComponente() {
+  let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarComponentes");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;
@@ -193,7 +194,7 @@ function buscarComponente() {
   ajax.open("POST", "../controller/componentesController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
-  data.append("cantidad", "5");
+  //data.append("cantidad", "5");
   data.append("registros", num_registros);
   data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);

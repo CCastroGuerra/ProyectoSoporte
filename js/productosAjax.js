@@ -36,44 +36,45 @@ frmPresentacion.onsubmit = (e) => {
   frmPresentacion.reset();
 };
 
-// function listarProductos() {
-//   let num_registros = document.getElementById('numRegistros').value;
-//   const ajax = new XMLHttpRequest();
-//   ajax.open("POST", "../controller/productosController.php", true);
-//   var data = new FormData();
-//   data.append("accion", "listar");
-//   data.append("valor", "");
-//   data.append("cantidad", "4");
-//   data.append('registros',num_registros);
-//   ajax.onload = function () {
-//     let respuesta = ajax.responseText;
-//     console.log(respuesta);
-//     const producto = JSON.parse(respuesta);
-//     let template = ""; // Estructura de la tabla html
-//     if (producto.length > 0) {
-//       producto.forEach(function (producto) {
-//         template +=  `
-//         <tr>
-//             <td>${producto.id}</td>
-//             <td>${producto.codigo}</td>
-//             <td>${producto.nombre}</td>
-//             <td>${producto.unidad}</td>
-//             <td>${producto.cantidad}</td>
-//             <td>${producto.almacen}</td>
+/*function listarProductos() {
+  let num_registros = document.getElementById('numRegistros').value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/productosController.php", true);
+  var data = new FormData();
+  data.append("accion", "listar");
+  data.append("valor", "");
+  data.append("cantidad", "4");
+  data.append('registros',num_registros);
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const producto = JSON.parse(respuesta);
+    let template = ""; // Estructura de la tabla html
+    if (producto.length > 0) {
+      producto.forEach(function (producto) {
+        template +=  `
+        <tr>
+            <td>${producto.id}</td>
+            <td>${producto.codigo}</td>
+            <td>${producto.nombre}</td>
+            <td>${producto.unidad}</td>
+            <td>${producto.cantidad}</td>
+            <td>${producto.almacen}</td>
 
-//             <td>
-//               <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal">Editar</button>
-//               <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger" data-fila="${producto.id}">Borrar</button>
-//             </td>
-//         </tr>
-//         `;
-//       });
-//       var elemento = document.getElementById("tbProductos");
-//       elemento.innerHTML = template;
-//     }
-//   };
-//   ajax.send(data);
-// }
+            <td>
+              <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal">Editar</button>
+              <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger" data-fila="${producto.id}">Borrar</button>
+            </td>
+        </tr>
+        `;
+      });
+      var elemento = document.getElementById("tbProductos");
+      elemento.innerHTML = template;
+    }
+  };
+  ajax.send(data);
+}
+*/
 
 function listarSelecPresentacion() {
   //let num_registros = document.getElementById('numeroRegistros').value;
@@ -299,69 +300,10 @@ cajaBuscar.addEventListener("keyup", function (e) {
   buscarProducto();
 });
 
-// function buscarProducto() {
-//   var cajaBuscar = document.getElementById("inputbuscarProducto");
-//   const textoBusqueda = cajaBuscar.value;
-//   let num_registros = document.getElementById("numRegistros").value;
-//   const ajax = new XMLHttpRequest();
-//   ajax.open("POST", "../controller/productosController.php", true);
-//   var data = new FormData();
-//   data.append("accion", "buscar");
-//   data.append("cantidad", "4");
-//   data.append("registros", num_registros);
-//   data.append("pag", numPagina);
-//   data.append("textoBusqueda", textoBusqueda);
-//   ajax.onload = function () {
-//     let respuesta = ajax.responseText;
-//     console.log(respuesta);
-//     const datos = JSON.parse(respuesta);
-//     console.log(datos);
-//     let producto = datos.listado;
-//     console.log(producto);
-//     let template = ""; // Estructura de la tabla html
-//     if (producto != "vacio") {
-//       producto.forEach(function (producto) {
-//         template += `
-//         <tr>
-//             <td>${producto.id}</td>
-//             <td>${producto.nombre}</td>
-//             <td>${producto.cantidad}</td>
-//             <td>${producto.almacen}</td>
-//             <td><button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal">Editar</button>
-//             <button type="button" onClick = eliminarProducto("${producto.id}") class="btn btn-danger" data-fila = "${producto.id}">Borrar</button></td>
-//         </tr>
-//         `;
-//       });
-//       var elemento = document.getElementById("tbProductos");
-//       elemento.innerHTML = template;
-//       document.getElementById("txtPagVista").value = numPagina;
-//       document.getElementById("txtPagTotal").value = datos.paginas;
-//     }
 
-//     else {
-//     if(clickBuscar === true){
-//         var elemento = document.getElementById("tbProductos");
-//         elemento.innerHTML = `
-//             <tr>
-//               <td colspan="7" class="text-center">No se encontraron datos</td>
-//             </tr>
-//           `;
-//     }else{
-//         var elemento = document.getElementById("tbProductos");
-//         elemento.innerHTML = `
-//             <tr>
-//               <td colspan="7" class="text-center">VACIO</td>
-//             </tr>
-//           `;
-//     }
-
-//     }
-//   };
-//  //clickBuscar = false;
-//   ajax.send(data);
-// }
 
 function buscarProducto() {
+  let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarProducto");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

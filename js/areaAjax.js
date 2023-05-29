@@ -67,6 +67,7 @@ function listarArea() {
 }
 
 function buscarArea() {
+  let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarArea");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById('numRegistros').value;

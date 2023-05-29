@@ -218,6 +218,7 @@ cajaBuscar.addEventListener("keyup", function (e) {
 });
 
 function buscarPersonal() {
+  let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarPersonal");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

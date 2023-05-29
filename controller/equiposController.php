@@ -1,32 +1,29 @@
 <?php
-include('../config/conexion.php');
-$conect= new conexion();
-$conect = $conect->conexion();
+require_once("../config/conexion.php");
+require_once("../model/equiposModel.php");
 
-class equipos{
-    private $idEquipos;
-    private $codigo;
-    private $tipoDeCodigoId;
-    private $areaId;
-    private $clientesId;
-    private $estadoid;
-    private $fechaAlta;
-    private $ip;
-    private $mac;
-    private $esActivo;
+$equipo = new Equipos();
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
-    public function __construct($idEquipos, $codigo, $tipoDeCodigoId, $areaId, $clientesId, $estadoid, $fechaAlta, $ip, $mac, $esActivo){
-        $this->idEquipos = $idEquipos;
-        $this->codigo = $codigo;
-        $this->tipoDeCodigoId = $tipoDeCodigoId;
-        $this->areaId = $areaId;
-        $this->clientesId = $clientesId;
-        $this->estadoid = $estadoid;
-        $this->fechaAlta = $fechaAlta;
-        $this->ip = $ip;
-        $this->mac = $mac;
-        $this->esActivo = $esActivo;
-    }
-
+switch ($accion) {
+    case "traerComponentes":
+        $equipo -> obtenerDatosComponentes($_POST['serie']); // Enviar los datos obtenidos como respuesta JSON
+        break;
+    case "listarModel":
+        $equipo -> listarSelectModelo($_POST['id']);
+        break;
+    case "listarMarca":
+        $equipo -> listarSelectMarca();
+        break;
+    case "listarTipo":
+        $equipo -> listarTipoEquipo();
+        break;
+    case "listarArea":
+        $equipo -> listarArea();
+        break;
+    case "listarEstado":
+        $equipo -> listarEstado();
+        break;
 }
+
 ?>

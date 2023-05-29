@@ -56,6 +56,7 @@ function listarRoles() {
 }
 
 function buscarRol() {
+  let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarRoles");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

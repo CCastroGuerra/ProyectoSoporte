@@ -1,38 +1,66 @@
-var valorBuscar="";
-var numPagina=1;
-buscar();
-function buscar(){
+console.log('hola?');
+let serie ='';
+let frmComponentes = document.getElementById('formEquipos');
+
+frmComponentes.onsubmit = function (e) {
+    e.preventDefault();
+    guardarComponentes();
+
+  };
+
+
+function guardarComponentes() {
+    var serie = document.getElementById("codigo").value;
+  
     const ajax = new XMLHttpRequest();
-    //Se establace la direccion del archivo php que procesara la peticion
-    ajax.open('POST', '../model/equiposModel.php', true); 
+    ajax.open("POST", "../controller/equiposController.php", true);
     var data = new FormData();
-    data.append('accion','listar');
-    //Funcion onload, se ejecuta cuando recibe respuesta del servidor
-    ajax.onload=function(){
-        //Se guarda la respuesta del servidor
+    data.append("serie", serie);
+    data.append("accion", "traerComponentes");
+    ajax.onload = function () {
         let respuesta = ajax.responseText;
-        const equipos = JSON.parse(respuesta);
-        let template = ""; // Estructura de la tabla html
-        if(equipos.length > 0){
-            equipos.forEach(function(equipos) {
-                template += `
-                <tr>
-                    <td>${equipos.id}</td>
-                    <td>${equipos.codigo}</td>
-                    <td>${equipos.ip}</td>
-                    <td>${equipos.mac}</td>
-                    <td>${equipos.fecha}</td>
-                
-                </tr>
-                `;
-                var elemento = document.getElementById("tbEquipos");
-                elemento.innerHTML = template;
-            });
-        }
-      
-    }
+        console.log(respuesta);
+
+      /*let respuesta = ajax.responseText;
+      console.log(respuesta);
+      if (respuesta !== "") {
+        let datos = JSON.parse(respuesta);
+        console.log(datos);
+  
+        // let apellidos = datos.apellidos;
+        // let nombre  = datos.nombre;
+        let id = datos[0].id;
+        // let apellidos = datos[0].apellidos;
+        // let nombre = datos[0].nombre;
+  
+        const ajaxGuardar = new XMLHttpRequest();
+        ajaxGuardar.open(
+          "POST",
+          "../controller/asignarRolesController.php",
+          true
+        );
+        let dataGuardar = new FormData();
+        dataGuardar.append("accion", "guardar");
+        dataGuardar.append("id", id);
+        dataGuardar.append("combo", idRolSeleccionado);
+        ajaxGuardar.onload = function () {
+          let resp = ajaxGuardar.responseText;
+          console.log(resp);
+          if (resp === "1") {
+            console.log("Datos guardados correctamente");
+            buscar();
+            swal.fire("Registrado!", "Se registro correctamente.", "success");
+          } else {
+            console.log("Error al guardar los datos");
+            swal.fire("ERROR!", "Error al guardar los datos", "error");
+          }
+        };
+        ajaxGuardar.send(dataGuardar);
+      } else {
+        console.log("NO SE ENCONTRO EL DNI");
+        swal.fire("ERROR!", "No se encontro el DNI.", "error");
+      }*/
+    };
     ajax.send(data);
-   
-
-
-}
+    //buscar();
+  }

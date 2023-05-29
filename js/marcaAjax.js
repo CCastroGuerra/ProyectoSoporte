@@ -164,6 +164,7 @@ numRegistors.addEventListener("change", function () {
 });
 
 function buscarMarca() {
+  let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarMarca");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;
