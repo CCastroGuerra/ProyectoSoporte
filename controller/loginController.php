@@ -22,7 +22,7 @@ if (is_array($datos) == true && count($datos) > 0) {
                 $aps=substr($apm[0],0,1).".";                
             } else {
                 $aps=substr($apm[0],0,1).".". substr($apm[1],0,1).".";
-                echo session_regenerate_id();
+                //echo session_regenerate_id();
             }
                 
             $ar = $usuario[0]['nombres_personal'] . " " .$aps;
