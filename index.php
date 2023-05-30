@@ -86,18 +86,18 @@
                 <div class="card-body">
                   <h1>Login</h1>
                   <p class="text-medium-emphasis">Inicia Sesión en tu cuenta</p>
-                  <div id="login-mensaje"></div>
+                  
                   <div class="input-group mb-3"><span class="input-group-text">
                       <svg class="icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                       </svg></span>
-                    <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id="usuario" name="usuario">
+                    <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id="usuario" name="usuario" autocomplete="new-username">
                   </div>
                   <div class="input-group mb-4"><span class="input-group-text">
                       <svg class="icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                       </svg></span>
-                    <input class="form-control .form-control-sm" type="password" placeholder="Contraseña" id="passwd" name="passwd" autocomplete="on">
+                    <input class="form-control .form-control-sm" type="password" placeholder="Contraseña" id="passwd" name="passwd" autocomplete="new-password">
                   </div>
                   <div class="row">
                     <div class="col-6">
@@ -107,6 +107,7 @@
                       <button class="btn btn-link px-0" type="button">¿Olvidaste tu contraseña?</button>
                     </div>
                   </div>
+                  <div id="login-mensaje"></div>
                 </div>
               </div>
 
