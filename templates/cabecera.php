@@ -169,6 +169,22 @@
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-trash"></use>
               </svg> Bajas</a></li>
+          <li class="nav-item nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
+              </svg> Parámetros</a>
+            <ul class="nav-group-items">
+            <li class="nav-item"><a class="nav-link" href="../view/marcaView.php" target="_top">
+              <svg class="nav-icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-aperture"></use>
+              </svg> Marcas</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/modeloView.php" target="_top">
+              <svg class="nav-icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-apps"></use>
+              </svg> Modelos</a></li>
+              
+            </ul>
+          </li>
         </ul>
       </li>
       <!--fin almacen-->
@@ -192,14 +208,7 @@
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
           </svg> Configuración</a>
         <ul class="nav-group-items">
-          <li class="nav-item"><a class="nav-link" href="../view/marcaView.php">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-aperture"></use>
-              </svg> Marcas</a></li>
-          <li class="nav-item"><a class="nav-link" href="../view/modeloView.php">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-apps"></use>
-              </svg> Modelos</a></li>
+          
           <li class="nav-item"><a class="nav-link" href="../view/areaView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-book"></use>
@@ -213,7 +222,14 @@
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-browser"></use>
               </svg> Servicios</a></li>
-          <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
+          
+        </ul>
+      </li>
+      <!--fin almacen-->
+      <!-- gestion de personal -->
+      <li class="nav-divider"></li>
+      <li class="nav-title">Gestión del Personal</li>
+      <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
               </svg> Asignar Roles</a>
@@ -229,14 +245,11 @@
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
               </svg> Usuario</a>
           </li>
-        </ul>
-      </li>
-      <!--fin almacen-->
+      
+      <!-- /gestion de personal -->
 
-      <!--depurar-->
 
-      <!--fin depurar-->
-
+      <!--Reportes-->
       <li class="nav-divider"></li>
       <li class="nav-title">Reportes</li>
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -268,6 +281,7 @@
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
           </svg> Trabajos</a>
       </li>
+      <!--fin Reportes-->
 
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -287,8 +301,8 @@
           </svg></a>
         <ul class="header-nav d-none d-md-flex">
           <li class="nav-item"><a class="nav-link" href="../view/dashboardView.php">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Users</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+          <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Usuarios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
 
         </ul>
         <ul class="header-nav ms-auto">
