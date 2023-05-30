@@ -218,10 +218,17 @@
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
               </svg> Asignar Roles</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="../view/personalView.php">
+          <li class="nav-item">
+            <a class="nav-link" href="../view/personalView.php">
+              <svg class="nav-icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+              </svg> Personal</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="../view/usuariosView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
-              </svg> Personal</a></li>
+              </svg> Usuario</a>
+          </li>
         </ul>
       </li>
       <!--fin almacen-->
