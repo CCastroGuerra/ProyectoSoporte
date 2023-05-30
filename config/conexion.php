@@ -1,18 +1,5 @@
 <?php
-// require_once('config.php');
-// class conexion{
-//     protected $conexion;
-//     public function conexion(){
-//         try {
-//             $this->conexion = new PDO(HOSTNAME,USERNAME,PASSWORD);
-//             $this->conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-//             return $this->conexion;
-//         } catch (PDOException $error ) {
-//             echo 'La conexion a fallado'.$error->getLine();
-//             die('error:'.$error->getMessage());
-//         }
-//     }
-// }
+
 
 class Conectar {
     protected $host;
@@ -26,7 +13,34 @@ class Conectar {
             die();
         }
     }
+    
 }
+
+
+// class Conectar {
+//     protected $host;
+//     protected $conexion;
+
+//     protected function Conexion(){
+//         try {
+//             if ($this->conexion instanceof PDO) {
+//                 return $this->conexion;
+//             }
+//             $this->conexion = new PDO("mysql:local=localhost;dbname=bd_soporte","root","");
+//             return $this->conexion;
+//         } catch (Exception $e) {
+//             print "¡Error BD!: " . $e->getMessage() . "<br/>";
+//             die();
+//         }
+//     }
+
+//     public function obtenerConexion() {
+//         return $this->Conexion();
+//     }
+
+   
+// }
+
 
 
 ?>

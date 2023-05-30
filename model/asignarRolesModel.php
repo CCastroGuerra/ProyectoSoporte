@@ -118,7 +118,7 @@ class asignarRoles extends Conectar
         }
     }
 
-    public function actulizarAsigRol($idAsigRol, $rolId,)
+    public function actulizarAsigRol($idAsigRol, $rolId)
     {
         $conectar = parent::conexion();
         $sql = "UPDATE rol_personal

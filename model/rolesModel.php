@@ -37,7 +37,7 @@ class Rol extends Conectar{
     public function agregarRol($nombreRol)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `area`(`nombre_area`,`esActivo`) VALUES ('$nombreRol',1)";
+        $sql = "INSERT INTO `roles`(`nombre_roles`,`esActivo`) VALUES ('$nombreRol',1)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
