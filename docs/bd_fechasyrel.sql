@@ -115,7 +115,7 @@ CREATE TABLE `permisos_secciones` (
 );
 
 CREATE TABLE `personal` (
-  `id_personal` int PRIMARY KEY NOT NULL COMMENT 'primary key',
+  `id_personal` int PRIMARY KEY NOT NULL auto_increment COMMENT 'primary key',
   `nombre_personal` varchar(50) NOT NULL,
   `apellidos_personal` varchar(50) NOT NULL,
   `dni_personal` varchar(8) NOT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE `roles_permisos` (
 );
 
 CREATE TABLE `rol_usuario` (
-  `id_rol_personal` int NOT NULL,
+  `id_rol_personal` int NOT NULL primary KEY auto_increment COMMENT 'primary key',
   `rol_id` int NOT NULL,
   `usuario_id` int NOT NULL,
   `esActivo` int NOT NULL DEFAULT "1",
