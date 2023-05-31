@@ -65,8 +65,7 @@ include('../templates/cabecera.php');
                                     <option value="2">Regular</option>
                                     <option value="3">Malo</option>
                                 </select>
-                                <label for="exampleInputEmail1" class="mb-2">Fecha:</label>
-                                <input type="date" class="form-control mb-2" id="Fecha" name="Fecha" placeholder="Ingrese codigo">
+                                
                             </div>
                         </div>
                     </div>
@@ -141,7 +140,6 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbComponentes">
                                 <tr>
-                                    <td>01</td>
                                     <td>tipo 1</td>
                                     <td>clase 1</td>
                                     <td>marca 1</td>
