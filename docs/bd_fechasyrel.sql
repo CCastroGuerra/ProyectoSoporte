@@ -1,8 +1,8 @@
 CREATE TABLE `almacen` (
   `id_almacen` int NOT NULL primary KEY auto_increment COMMENT 'primary key',
   `inventario_id` int DEFAULT NULL,
-  `fecha_entrada` TIMESTAMP DEFAULT NULL,
-  `fecha_salida` TIMESTAMP DEFAULT NULL,
+  `fecha_entrada` TIMESTAMP NULL DEFAULT NULL,
+  `fecha_salida` TIMESTAMP NULL DEFAULT NULL,
   `observaciones` varchar(100) DEFAULT NULL,
   `cantidad` int DEFAULT NULL
 );
@@ -126,7 +126,7 @@ CREATE TABLE `personal` (
   `esActivo_personal` int NOT NULL DEFAULT "1",
   `create_time` timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP),
   `modify_time` timestamp NULL on update CURRENT_TIMESTAMP,
-  `erase_time` timestamp DEFAULT NULL
+  `erase_time` TIMESTAMP NULL DEFAULT NULL
 );
 
 CREATE TABLE `presentacion` (
@@ -173,7 +173,7 @@ CREATE TABLE `rol_usuario` (
   `esActivo` int NOT NULL DEFAULT "1",
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_time` timestamp NULL ON UPDATE CURRENT_TIMESTAMP,
-  `erase_time` timestamp DEFAULT NULL
+  `erase_time` TIMESTAMP NULL DEFAULT NULL
 );
 
 CREATE TABLE `secciones` (
@@ -233,7 +233,7 @@ CREATE TABLE `usuario` (
   `esActivo` int NOT NULL DEFAULT "1",
   `create_time` timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP),
   `modify_time` timestamp NULL ON UPDATE CURRENT_TIMESTAMP,
-  `erase_time` timestamp DEFAULT NULL
+  `erase_time` TIMESTAMP NULL DEFAULT NULL
 );
 
 CREATE TABLE `trabajo_servicio` (
@@ -243,7 +243,7 @@ CREATE TABLE `trabajo_servicio` (
   `esActivo` int NOT NULL DEFAULT "1",
   `create_time` timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP),
   `modify_time` timestamp NULL ON UPDATE CURRENT_TIMESTAMP,
-  `erase_time` timestamp DEFAULT NULL
+  `erase_time` TIMESTAMP NULL DEFAULT NULL
 );
 
 ALTER TABLE `equipos` ADD FOREIGN KEY (`area_id`) REFERENCES `area` (`id_area`);
