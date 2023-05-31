@@ -139,10 +139,10 @@ class Componente extends Conectar
     }
 
 
-    public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie,$capacidad, $estadoSelect, $fecha)
+    public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie,$capacidad, $estadoSelect)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`, `fecha_alta`, `es_activo`) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect','$fecha',1)";
+        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect')";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -151,7 +151,7 @@ class Componente extends Conectar
         }
     }
 
-    public function actulizarComponentes($idComponentes,$componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie,$capacidad, $estadoSelect, $fecha){
+    public function actulizarComponentes($idComponentes,$componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie,$capacidad, $estadoSelect){
         $conectar= parent::conexion();
         $sql="UPDATE componentes
             SET
@@ -161,8 +161,7 @@ class Componente extends Conectar
                modelo_id=?,
                serie = ?,
                componentes_capacidad = ?,
-               estado_id = ?,
-               fecha_alta = ?
+               estado_id = ?
             WHERE
             id_componentes = ?";
         $sql=$conectar->prepare($sql);
@@ -173,8 +172,7 @@ class Componente extends Conectar
         $sql->bindValue(5,$serie);
         $sql->bindValue(6,$capacidad);
         $sql->bindValue(7,$estadoSelect);
-        $sql->bindValue(8,$fecha);
-        $sql->bindValue(9,$idComponentes);
+        $sql->bindValue(8,$idComponentes);
         $sql->execute();
         return $resultado=$sql->fetchAll();
     }
@@ -222,9 +220,6 @@ class Componente extends Conectar
             $stmt->execute();
             $json = [];
             $marcas =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 
             if(!empty($marcas)){
                 $listado = array();

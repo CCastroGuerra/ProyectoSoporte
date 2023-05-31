@@ -4,7 +4,7 @@ class Marca extends Conectar{
     public function listarSelectMarca()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `categoria` WHERE esActivo = 1 ORDER BY nombre_categoria  ";
+        $sql = "SELECT * FROM `categoria_marca`ORDER BY nombre_categoria_marca  ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -18,8 +18,8 @@ class Marca extends Conectar{
             $listado = array();
             foreach ($resultado as $row) {
                 $listado[] = array(
-                    'id' => $row['id_categoria'],
-                    'nombre' => $row['nombre_categoria']
+                    'id' => $row['id_categoria_marca'],
+                    'nombre' => $row['nombre_categoria_marca']
                 );
             }
             $jsonString = json_encode($listado);

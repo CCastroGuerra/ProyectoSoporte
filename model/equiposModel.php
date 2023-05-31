@@ -90,7 +90,7 @@ class Equipos extends Conectar {
     public function listarTipoEquipo()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM tipo_equipo WHERE es_activo = 1";
+        $sql = "SELECT * FROM tipo_equipo";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -231,7 +231,7 @@ class Equipos extends Conectar {
     {
        $conectar = parent::conexion();
         
-        $sql = "SELECT id_componente,serie,tp.nombre_tipo_componente,cc.nombre_clase,ma.nombre_marca, m.nombre_modelo,c.componentes_capacidad, e.nombre_estado FROM temp_componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id; 
+        $sql = "SELECT id_componentes,serie,tp.nombre_tipo_componente,cc.nombre_clase,ma.nombre_marca, m.nombre_modelo,c.componentes_capacidad, e.nombre_estado FROM temp_componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id; 
         ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
@@ -246,7 +246,7 @@ class Equipos extends Conectar {
             $listado = array();
             foreach ($resultado as $row) {
                 $listado[] = array(
-                    "id" => $row["id_componente"],
+                    "id" => $row["id_componentes"],
                     "nombreTipo" => $row["nombre_tipo_componente"],
                     'nombreClase' => $row["nombre_clase"],
                     'nombreMarca' => $row["nombre_marca"],
@@ -269,7 +269,7 @@ class Equipos extends Conectar {
             $id = $_POST["id"];
             // Resto del código para eliminar
             $conectar = parent::conexion();
-            $sql = "DELETE FROM `temp_componentes` WHERE id_componente = ?; ";
+            $sql = "DELETE FROM `temp_componentes` WHERE id_componentes = ?; ";
             $sql = $conectar ->prepare($sql);
             $sql -> bindValue(1, $id);
             $sql->execute();
@@ -347,6 +347,23 @@ class Equipos extends Conectar {
             echo "Error: " . $e->getMessage();
         }
     } 
+
+    public function mostrarComponentes($idSerie){
+        $conectar= parent::conexion();
+        $sql ="SELECT ec.equipo_id,ec.serie_id,c.serie,tp.id_tipo_componentes, tp.nombre_tipo_componente,cl.id_clase_componentes,cl.nombre_clase, ma.id_marca, ma.nombre_marca, mo.id_modelo, mo.nombre_modelo,c.componentes_capacidad,est.id_estado, est.nombre_estado  
+        FROM equipo_componentes ec 
+        INNER JOIN componentes c ON c.serie = ec.serie_id
+        INNER JOIN tipo_componentes tp ON tp.id_tipo_componentes = c.tipo_componentes_id
+        INNER JOIN clase_componentes cl ON cl.id_clase_componentes = c.clase_componentes_id
+        INNER JOIN marca ma on ma.id_marca = c.marca_id
+        INNER JOIN modelo mo on mo.id_modelo = c.modelo_id
+        INNER JOIN estado est on est.id_estado  = c.estado_id
+        WHERE ec.serie_id= '?';";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1,$idSerie);
+        $sql->execute();
+        return $resultado=$sql->fetchAll();
+    }
 }
 
 

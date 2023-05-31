@@ -25,7 +25,7 @@ if (is_array($datos) == true && count($datos) > 0) {
                 //echo session_regenerate_id();
             }
                 
-            $ar = $usuario[0]['nombres_personal'] . " " .$aps;
+            $ar = $usuario[0]['nombre_personal'] . " " .$aps;
             
             //$output['nombre_usuario'] = session_id()."-".$ar;
             //echo $ar;

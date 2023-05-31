@@ -41,18 +41,18 @@ switch($accion){
                         $output['serie'] = $row["serie"];
                         $output['capacidad'] = $row["componentes_capacidad"];
                         $output['estado'] = $row["estado_id"];
-                        $output['fecha'] = $row["Fecha"];
+                       
                     }
                     echo json_encode($output);
                 }
         break;
     case "actualizar":
             //var_dump($_POST);
-            $componente ->actulizarComponentes($_POST['id'],$_POST['nombreTipo'],$_POST["nombreClase"],$_POST["nombreMarca"],$_POST["nombreModelo"],$_POST["serie"],$_POST["capacidad"],$_POST["estado"],$_POST["fecha"]);
+            $componente ->actulizarComponentes($_POST['id'],$_POST['nombreTipo'],$_POST["nombreClase"],$_POST["nombreMarca"],$_POST["nombreModelo"],$_POST["serie"],$_POST["capacidad"],$_POST["estado"]);
             echo "actualizado correctamente";
             break;
 
     case "guardar":
-                $componente->agregarComponetes($_POST['selTipo'],$_POST["selClase"],$_POST["selMarca"],$_POST["selModelo"],$_POST["serie"],$_POST["capacidad"],$_POST["selEstado"],$_POST["Fecha"]);
+                $componente->agregarComponetes($_POST['selTipo'],$_POST["selClase"],$_POST["selMarca"],$_POST["selModelo"],$_POST["serie"],$_POST["capacidad"],$_POST["selEstado"]);
                 break;
 }

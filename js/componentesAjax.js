@@ -333,10 +333,10 @@ function mostrarEnModal(componenteId) {
     document.getElementById("serie").value = datos.serie;
     document.getElementById("capacidad").value = datos.capacidad;
     document.getElementById("selEstado").value = datos.estado;
-    var fechaParts = datos.fecha.split("/"); // Divide la cadena de fecha en partes: día, mes y año
-    var fechaFormateada =
-      "20" + fechaParts[2] + "-" + fechaParts[1] + "-" + fechaParts[0]; // Formatea la fecha como "yyyy-mm-dd"
-    document.getElementById("Fecha").value = fechaFormateada;
+    // var fechaParts = datos.fecha.split("/"); // Divide la cadena de fecha en partes: día, mes y año
+    // var fechaFormateada =
+    //   "20" + fechaParts[2] + "-" + fechaParts[1] + "-" + fechaParts[0]; // Formatea la fecha como "yyyy-mm-dd"
+    // document.getElementById("Fecha").value = fechaFormateada;
 
     //document.getElementById("Fecha").value = datos.fecha;
     document.getElementById("inputCodigo").value = datos.id;
@@ -353,7 +353,7 @@ function actualizar(id) {
   let serie = document.getElementById("serie").value;
   let capacidad = document.getElementById("capacidad").value;
   let estado = document.getElementById("selEstado").value;
-  let fecha = document.getElementById("Fecha").value;
+  //let fecha = document.getElementById("Fecha").value;
   // Obtener los valores actualizados desde los elementos del modal
   // const nombre = nombreInput.value;
   // const combo = elemento.value;
@@ -380,7 +380,7 @@ function actualizar(id) {
         data.append("serie", serie);
         data.append("capacidad", capacidad);
         data.append("estado", estado);
-        data.append("fecha", fecha);
+        //data.append("fecha", fecha);
         data.append("accion", "actualizar");
         ajax.onload = function () {
           console.log(ajax.responseText);

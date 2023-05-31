@@ -12,7 +12,7 @@ frmMarca.onsubmit = function (e) {
     actualizar(id);
   } else {
     guardarMarca();
-    listarMarca();
+    //listarMarca();
     console.log("guardo");
   }
   frmMarca.reset();

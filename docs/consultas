@@ -1,7 +1,7 @@
 ---equipo componente con detalles
-select id_tabla,equipo_id, componente_id,nombre_componente,comp.tipo_componente,tcom.nombre_tipo_componente, comp.clase_componente,tclase.nombre_clase, comp.marca_componente, marca.nombre_marca, comp.modelo_componente, nombre_modelo from temp_equipocomp  as tem 
-    inner join componente as comp on tem.componente_id = comp.id_componente
-    inner join tipo_componente as tcom on comp.tipo_componente = tcom.id_tipo_componente
-    inner join clase_componentes as tclase on comp.clase_componente = tclase.id_clase_componentes
-    inner join marca on comp.marca_componente = marca.id_marca
-    inner join modelo on comp.modelo_componente = modelo.id_modelo;
+select * from equipo_componentes  as ec 
+    inner join componentes as comp on ec.serie_id = comp.id_componente
+    inner join tipo_componentes as tcom on comp.tipo_componentes_id = tcom.id_tipo_componentes
+    inner join clase_componentes as tclase on comp.clase_componentes_id = tclase.id_clase_componentes
+    inner join marca on comp.marca_id = marca.id_marca
+    inner join modelo on comp.modelo_id = modelo.id_modelo;
