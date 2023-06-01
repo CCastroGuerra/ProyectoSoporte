@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                         <div class="card">
                             <div class="card-body">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Busca al responsable" aria-label="busca_resp" id="buscaRes" name="buscaRes" aria-describedby="button-addon2" size="10" maxlength="10">
+                                    <input type="search" class="form-control" placeholder="Busca al responsable" aria-label="busca_resp" id="buscaRes" name="buscaRes" aria-describedby="button-addon2" size="10" maxlength="10">
                                     
                                 </div>
                             </div>
