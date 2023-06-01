@@ -53,9 +53,13 @@
   <link rel="stylesheet" href="../css/paginador.css">
 
   <!-- Datables -->
-  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
-  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  
 
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -71,6 +75,7 @@
     // Bootstrap ID
     gtag('config', 'UA-118965717-5');
   </script>
+
 
   <!-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
@@ -174,15 +179,15 @@
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
               </svg> Parámetros</a>
             <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="../view/marcaView.php" target="_top">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-aperture"></use>
-              </svg> Marcas</a></li>
-          <li class="nav-item"><a class="nav-link" href="../view/modeloView.php" target="_top">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-apps"></use>
-              </svg> Modelos</a></li>
-              
+              <li class="nav-item"><a class="nav-link" href="../view/marcaView.php" target="_top">
+                  <svg class="nav-icon">
+                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-aperture"></use>
+                  </svg> Marcas</a></li>
+              <li class="nav-item"><a class="nav-link" href="../view/modeloView.php" target="_top">
+                  <svg class="nav-icon">
+                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-apps"></use>
+                  </svg> Modelos</a></li>
+
             </ul>
           </li>
         </ul>
@@ -208,7 +213,7 @@
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
           </svg> Configuración</a>
         <ul class="nav-group-items">
-          
+
           <li class="nav-item"><a class="nav-link" href="../view/areaView.php">
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-book"></use>
@@ -222,7 +227,7 @@
               <svg class="nav-icon">
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-browser"></use>
               </svg> Servicios</a></li>
-          
+
         </ul>
       </li>
       <!--fin almacen-->
@@ -230,22 +235,22 @@
       <li class="nav-divider"></li>
       <li class="nav-title">Gestión del Personal</li>
       <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
-              </svg> Asignar Roles</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../view/personalView.php">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-              </svg> Personal</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="../view/usuariosView.php">
-              <svg class="nav-icon">
-                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
-              </svg> Usuario</a>
-          </li>
-      
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
+          </svg> Asignar Roles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../view/personalView.php">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+          </svg> Personal</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="../view/usuariosView.php">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
+          </svg> Usuario</a>
+      </li>
+
       <!-- /gestion de personal -->
 
 
