@@ -46,8 +46,8 @@ class Usuario extends Conectar
     public function guardarUsuario($idPersonal, $usuario, $password)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO usuario (nombre_usuario,usuario_password,personal_id_id)
-        VALUES ($usuario, $password,$idPersonal)";
+        $sql = "INSERT INTO usuario (nombre_usuario,usuario_password,personal_id)
+        VALUES ('$usuario', '$password','$idPersonal')";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -80,7 +80,7 @@ class Usuario extends Conectar
                             FROM personal p
             INNER JOIN usuario u ON p.id_personal = u.personal_id
                             WHERE u.esActivo = 1 AND nombre_personal LIKE '%$textoBusqueda%' 
-            ORDER BY nombre_personal 
+            ORDER BY apellidos_personal,nombre_personal 
             LIMIT $inicio, $limit";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
@@ -120,6 +120,22 @@ class Usuario extends Conectar
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function eliminarUsuario($id)
+    {
+        if (isset($_POST["id"])) {
+            $id = $_POST["id"];
+            // Resto del código para eliminar la tarea
+            $conectar = parent::conexion();
+            $sql = "UPDATE usuario SET esActivo = 0 WHERE id_usuario = ?";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        } else {
+            echo "El parámetro 'id' no ha sido enviado";
         }
     }
 }

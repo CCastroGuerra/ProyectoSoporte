@@ -1,9 +1,10 @@
 var numPagina = 1;
+let dni = '';
 var frmUsuario = document.getElementById('formEmpleados');
 buscarUsuario();
 frmUsuario.onsubmit = function (e) {
     e.preventDefault();
-    if (frmUsuario.querySelector("#codPersonal").value !== "") {
+    if (frmUsuario.querySelector("#inputCodigo").value !== "") {
       console.log("actualizo");
       //actualizar(id);
     } else {
@@ -32,11 +33,12 @@ cajaBuscar.addEventListener("keyup", function (e) {
 function guardarDatos() {
 
   var dni = document.getElementById("codPersonal").value;
-
+  let usuario = document.getElementById("username").value;
+  let pass = document.getElementById("userpass").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/usuariosController.php", true);
   var data = new FormData();
-  data.append("dni", dni);
+  data.append("codPersonal", dni);
   data.append("accion", "listar");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
@@ -60,12 +62,19 @@ function guardarDatos() {
       let dataGuardar = new FormData();
       dataGuardar.append("accion", "guardar");
       dataGuardar.append("id", id);
+      //dataGuardar.append("codPersonal", dni);
+      dataGuardar.append("username", usuario);
+      dataGuardar.append("userpass", pass);
+
+      
+      /*data.append("username", usuario);
+      data.append("userpass", pass);*/
       ajaxGuardar.onload = function () {
         let resp = ajaxGuardar.responseText;
         console.log(resp);
         if (resp === "1") {
           console.log("Datos guardados correctamente");
-          buscar();
+          buscarUsuario();
           swal.fire("Registrado!", "Se registro correctamente.", "success");
         } else {
           console.log("Error al guardar los datos");
@@ -73,13 +82,14 @@ function guardarDatos() {
         }
       };
       ajaxGuardar.send(dataGuardar);
+
     } else {
       console.log("NO SE ENCONTRO EL DNI");
       swal.fire("ERROR!", "No se encontro el DNI.", "error");
     }
   };
   ajax.send(data);
-  buscar();
+  buscarUsuario();
 }
 
 function buscarUsuario() {
@@ -114,8 +124,6 @@ function buscarUsuario() {
                 <td>${usuario.usuario}</td>
                 <td>
   
-                <button type="button" onClick='mostrarEnModal("${usuario.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </button>
                 
                 <button type="button" onClick='eliminar("${usuario.id}")' class="btn btn-danger" data-fila="${usuario.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
@@ -146,4 +154,87 @@ function buscarUsuario() {
       }
     };
     ajax.send(data);
+}
+
+function eliminar(id) {
+  console.log(id);
+  swal
+    .fire({
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea Eliminar el Registro?",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "../controller/usuariosController.php", true);
+        const data = new FormData();
+        data.append("id", id);
+        data.append("accion", "eliminar");
+        ajax.onload = function () {
+          var respuesta = ajax.responseText;
+          console.log(respuesta);
+          //listarAsignarRol();
+          buscarUsuario();
+          swal.fire(
+            "Eliminado!",
+            "El registro se elimino correctamente.",
+            "success"
+          );
+        };
+        let tab = document.getElementById("tbUsuarios");
+        if (tab.rows.length == 1) {
+          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
+          numPagina = numPagina - 1;
+        }
+        ajax.send(data);
+      }
+    });
+}
+
+/**************************/
+/* BOTONES DE PAGINACIÓN */
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarUsuario();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarUsuario();
+    pagAnterior.blur();
   }
+});
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarUsuario();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarUsuario();
+  pagFinal.blur();
+});

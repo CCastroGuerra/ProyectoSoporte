@@ -7,13 +7,17 @@ $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 switch ($accion) {
     case "guardar":
-        $usuarios -> guardarUsuario($_POST['codPersonal'],$_POST['username'],$_POST['userpass']);
+        //var_dump($_POST);
+        $usuarios -> guardarUsuario($_POST['id'],$_POST['username'],$_POST['userpass']);
         break;
     case "buscar":
         $usuarios -> buscarUsuario(intval($_POST['pag']));
         break;
     case "listar":
-        $usuarios ->obtenerDatosPersonal(($_POST['dni'])); // Enviar los datos obtenidos como respuesta JSON
+        $usuarios ->obtenerDatosPersonal(($_POST['codPersonal']));
+        break;
+    case "eliminar":
+        $usuarios ->eliminarUsuario($_POST["id"]);
         break;
 }
 

@@ -178,9 +178,11 @@ class asignarRoles extends Conectar
             //echo $inicio;
             $sql = "SELECT rp.id_rol_usuario, p.nombre_personal, p.apellidos_personal, r.nombre_roles
             FROM personal p
-            INNER JOIN rol_usuario rp ON rp.usuario_id = p.id_personal
+            inner JOIN usuario u on u.personal_id = p.id_personal
+            INNER JOIN rol_usuario rp ON rp.usuario_id = u.id_usuario
             INNER JOIN roles AS r ON rp.rol_id = r.id_roles
-            WHERE rp.esActivo = 1 AND nombre_personal LIKE '%$textoBusqueda%' 
+            WHERE (nombre_personal LIKE '%$textoBusqueda%' )
+            AND rp.esActivo = 1 
             ORDER BY nombre_personal 
             LIMIT $inicio, $limit";
             $stmt = $conectar->prepare($sql);
