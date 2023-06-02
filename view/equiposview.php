@@ -1,6 +1,76 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+
+<!-- modal responsable -->
+<div class="modal" tabindex="-1" id="responsableModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Presentación</h5>
+                <button type="button" class="btn-close" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="formResponsable">
+                    <div class="form-group">
+                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                            <label class="control-label">ID</label>
+                            <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <input type="search" class="form-control" placeholder="Busca al responsable" aria-label="busca_resp" id="buscaRes" name="buscaRes" aria-describedby="button-addon2" size="10" maxlength="10">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>                             
+                                    <th scope="col"><strong>Código</strong></th>       
+                                    <th scope="col"><strong>Nombre</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbresp">
+                                <tr>
+                                    <td>#</td>
+                                    <td>Nombre ##</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Paginador Inicio -->
+                        <div class="row paginador">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                <button id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                <input type="text" id="txtPagVistaPre" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;de&nbsp;</label>
+                                <input type="text" id="txtPagTotalPre" class="cuadrosPaginas" readonly>
+                                <label>&nbsp;paginas.&nbsp;</label>
+                                <button id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                <button id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                            </div>
+                        </div>
+                        <!-- Paginador Final -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /modal responsable -->
+
 <!-- Modal  añadir equipo-->
 <div class="modal fade" id="añadirEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -50,8 +120,11 @@ include('../templates/cabecera.php');
                                             <option value="3">Modelo 3</option>
                                         </select>
 
-                                        <label for="exampleInputEmail1" class="mb-2">Responsable:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable">
+                                        <label for="responsable" class="mb-2">Responsable:</label>
+                                        <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
+                                        <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Seleccione responsable" data-coreui-toggle="modal" data-coreui-target="#responsableModal" readonly>
+
+                                        <!-- <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable"> -->
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
@@ -99,7 +172,7 @@ include('../templates/cabecera.php');
                                             <table class="table table-hover align-middle" id="tableModal">
                                                 <thead>
                                                     <tr>
-                                                        
+
                                                         <th scope="col"><strong># Serie</strong></th>
                                                         <th scope="col"><strong>Tipo</strong></th>
                                                         <th scope="col"><strong>Clase</strong></th>
@@ -184,7 +257,7 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-4">Lista de Equipos </div>
-                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
+                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo" onclick=""><strong>Añadir</strong></button></div>
                         </div>
                     </h3>
                 </div>
@@ -221,7 +294,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Area</strong></th>
                                     <th scope="col"><strong>Marca</strong></th>
                                     <th scope="col"><strong>Modelo</strong></th>
