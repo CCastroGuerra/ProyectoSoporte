@@ -1,58 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
-  <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #popUpDiv {
+      z-index: 100;
+      position: relative;
+      display: none;
+      top: 0;
+      left: 0;
+      width: auto;
+      height: auto;
+    }
 
-  <div class="container">
-    <div class="row">
-      <h2>Bootstrap-select example</h2>
-      <p>This uses <a href="https://silviomoreto.github.io/bootstrap-select/">https://silviomoreto.github.io/bootstrap-select/</a></p>
-      <hr />
-    </div>
+    #popupSelect {
+      z-index: 1;
+      position: relative;
+    }
+  </style>
+</head>
 
-    <div class="row-fluid">
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-        <option data-subtext="Rep California">Tom Foolery</option>
-        <option data-subtext="Sen California">Bill Gordon</option>
-        <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
-        <option data-subtext="Rep Alabama">Mario Flores</option>
-        <option data-subtext="Rep Alaska">Don Young</option>
-        <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
-      </select>
-      <span class="help-inline">With <code>data-show-subtext="true" data-live-search="true"</code>. Try searching for california</span>
-    </div>
+<body>
+  <div id="baseDiv">Click Me</div>
+  <input id="fbus" placeholder="filtro" size="10">
+  <div id="popUpDiv">
+    <select id="popupSelect" length="10">
+      <option value="1">First</option>
+      <option value="2">Firsts</option>
+      <option value="3">Second</option>
+      <option value="4">Third</option>
+      <option value="5">Fourth</option>
+    </select>
   </div>
 
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <form action="">
-    <div class="form-title">
-        <span>Title</span>
-    </div>
-    <div class="form-body">
-        <label for="in_search">Opciones</label>
-        <input type="search" id="id_search">
-        <div class="menu">
-            <div id=divbbus>
-                <input type="search">
-            </div>
-            <div id="opciones">
-                <option value="1">opcion 1</option>
-                <option value="1">opcion 2</option>
-                <option value="1">opcion 3</option>
-            </div>
-        </div>
-    </div>
-  </form>
-  <script>
-    var bus = document.getElementById('id_search');
-    bus.addEventListener("click", function(event) {
-        alert("Submit button is clicked!");
-       // event.preventDefault();
-    });
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  </html>
+<script>
+  
+var $origen = $('#popUpDiv option:contains("")');
+
+$("#fbus").on('keyup',function(e){	
+  $("#popUpDiv").show();
+  var text=this.value;
+  var ta;
+  console.log('comprobando: '+text);
+  text=="" ? ta='0' : ta='4';  
+    $("#popupSelect").attr('size', ta);
+      console.log('no es vacio');
+  if (ta > 0){
+  	console.log('buscando..')
+    var enc=$('#popUpDiv option:contains('+text+')')
+    //enc.trigger('change');
+    $("#popupSelect").empty();
+    $("#popupSelect").append(enc);
+    console.log('fin busqueda')
+  }else{
+  	console.log('recargando...')
+  	 $("#popUpDiv").hide();
+     $("#popupSelect").empty();
+    $("#popupSelect").append($origen);
+     
+  }
+});
+$("#baseDiv").click(function(ev) {
+  $("#popUpDiv").show(); 
+  $("#popupSelect").attr('size', $("option").length);
+//$('#popUpDiv option:contains("Second")').prop('selected', 'selected').trigger();
+  //$('#popupSelect option:contains("Fourth")');
+});
+$("#popupSelect").change(function(e) {
+  $("#baseDiv").html($("#popupSelect").val() + ' clicked. Click again to change.');
+  $('#fbus').val($("#popupSelect").find(":selected")[0].text);
+  $("#baseDiv").html($("#popupSelect").val() + ' clicked. Click again to change.');
+  $("#popUpDiv").hide();
+  console.log("click en option: "+$("#popupSelect").find(":selected").text())
+});
+
+$('option').on('click', function(e){
+	console.log("click en option");
+	//console.log("click en option: "+$("#popupSelect").find(":selected").text())
+  $('#fbus').val($("#popupSelect").find(":selected")[0].text());
+  $("#baseDiv").html($("#popupSelect").val() + ' clicked. Click again to change.');
+    $("#popUpDiv").hide();
+
+});
+
+</script>
+
+</html>
