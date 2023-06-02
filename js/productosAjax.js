@@ -10,7 +10,7 @@ buscarPresentacion();
 
 frmProductos.onsubmit = function (e) {
   e.preventDefault();
-  if (frmProductos.querySelector("#inputID").value !== "") {
+  if (frmProductos.querySelector("#divcodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
@@ -23,7 +23,7 @@ frmProductos.onsubmit = function (e) {
 
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
-  if (frmPresentacion.querySelector("#inputIDpres").value !== "") {
+  if (frmPresentacion.querySelector("#inputID").value !== "") {
     console.log("actualizo");
     //actualizar(id);
   } else {
@@ -404,7 +404,6 @@ function buscarPresentacion() {
       presentacion.forEach(function (presentacion) {
         template += `
         <tr>
-            <td class="visually-hidden" >${presentacion.id}</td>
             <td>${presentacion.nombre}</td>
 
             <td>

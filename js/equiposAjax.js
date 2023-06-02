@@ -457,7 +457,7 @@ function buscarEquipo() {
       var elemento = document.getElementById("tbEquipos");
       elemento.innerHTML = `
           <tr>
-            <td colspan="6" class="text-center">No se encontraron resultados</td>
+            <td colspan="10" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
 

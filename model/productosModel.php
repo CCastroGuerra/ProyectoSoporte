@@ -170,26 +170,7 @@ class Producto extends Conectar
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-            // $conectar = $this->Conexion();
-            // // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            // // //Para comprobar si se a mandado el parametro de registros
-            // // if (isset($_POST['registros'])) {
-            // // $limit = $_POST['registros'];
-            // // $sLimit = "LIMIT $limit";
-            // // }
-            // $inicio = ($pagina - 1) * $cantidadXHoja;
-            // //echo $inicio;
-            // // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
-            // $sql = "SELECT id_productos,nombre_productos,cantidad,
-            // CASE
-            //     WHEN almacen_id = 1 THEN 'Almacen 1'
-            //     WHEN almacen_id = 2 THEN 'Almacen 2'
-            //     WHEN almacen_id = 3 THEN 'Almacen 3'
-            // END as Almacen
-            // FROM productos WHERE es_activo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY id_productos LIMIT $inicio,$cantidadXHoja ";
-            // $stmt = $conectar->prepare($sql);
-            //echo $sql;
-            //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
+           
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
@@ -254,26 +235,7 @@ class Producto extends Conectar
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-            // $conectar = $this->Conexion();
-            // // $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            // // //Para comprobar si se a mandado el parametro de registros
-            // // if (isset($_POST['registros'])) {
-            // // $limit = $_POST['registros'];
-            // // $sLimit = "LIMIT $limit";
-            // // }
-            // $inicio = ($pagina - 1) * $cantidadXHoja;
-            // //echo $inicio;
-            // // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
-            // $sql = "SELECT id_productos,nombre_productos,cantidad,
-            // CASE
-            //     WHEN almacen_id = 1 THEN 'Almacen 1'
-            //     WHEN almacen_id = 2 THEN 'Almacen 2'
-            //     WHEN almacen_id = 3 THEN 'Almacen 3'
-            // END as Almacen
-            // FROM productos WHERE es_activo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY id_productos LIMIT $inicio,$cantidadXHoja ";
-            // $stmt = $conectar->prepare($sql);
-            //echo $sql;
-            //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
+            
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
@@ -281,14 +243,6 @@ class Producto extends Conectar
                 $sLimit = "LIMIT $limit";
             }
             $inicio = ($pagina - 1) * $limit;
-            
-
-            // if($textoBusqueda ==''){
-            //     $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 LIMIT $inicio,$limit  ";
-            // }
-            // else{
-            //     $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY id_presentacion LIMIT $inicio,$limit  ";
-            // }
             $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY nombre_presentacion  LIMIT $inicio,$limit  ";
              $fila = $conectar ->prepare($sql);
              $fila ->execute();
