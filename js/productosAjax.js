@@ -10,7 +10,7 @@ buscarPresentacion();
 
 frmProductos.onsubmit = function (e) {
   e.preventDefault();
-  if (frmProductos.querySelector("#divcodigo").value !== "") {
+  if (frmProductos.querySelector("#inputID").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
@@ -23,7 +23,7 @@ frmProductos.onsubmit = function (e) {
 
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
-  if (frmPresentacion.querySelector("#inputID").value !== "") {
+  if (frmPresentacion.querySelector("#divcodigo").value !== "") {
     console.log("actualizo");
     //actualizar(id);
   } else {
@@ -432,6 +432,9 @@ function buscarPresentacion() {
       // Obtén todas las filas de la tabla
       const filas = tabla.getElementsByTagName("tr");
 
+      //Obteniendo referencia del input
+      const inputUnidad = document.getElementById("selUnidad");
+
       // Itera sobre las filas y agrega un evento de clic a cada una
       for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
@@ -441,19 +444,13 @@ function buscarPresentacion() {
 
           // Obtener los datos de las celdas
           const celdas = fila.getElementsByTagName("td");
-          const nombre = celdas[1].innerText;
+          const nombre = celdas[0].innerText;
+          console.log(nombre);
 
-          const select = document.getElementById("selUnidad");
-          // Mostrar los datos en el combo o select
-
-          const option = document.createElement("option");
-          option.text = nombre;
-          option.value = nombre;
-          select.appendChild(option);
-          //Seleccionar la opción en el combo o select
-          select.value = nombre;
+          // Mostrar valor en input
+          inputUnidad.value = nombre;
           frmPresentacion.reset();
-          console.log(select.value);
+          
         });
       }
     } else {

@@ -27,7 +27,7 @@ switch($accion){
         $datos = $producto->traeProductosXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
-                    $output['nro'] = $row['NRO'];
+                    // $output['nro'] = $row['NRO'];
                     $output['id'] = $row['id_productos'];
                     $output['nombre'] = $row['nombre_productos'];
                     $output['tipoId'] = $row['tipoId'];
