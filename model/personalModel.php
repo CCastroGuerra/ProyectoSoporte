@@ -42,10 +42,10 @@ class Personal extends Conectar{
             echo $jsonString;
         }
     }
-    public function agregarPersonal($apellidoPersonal,$nombrePersonal,$nombreUsuario,$passwordUsuario,$valorSeleccionado)
+    public function agregarPersonal($apellidoPersonal,$nombrePersonal,$dni,$correo,$telefono,$valorSeleccionado)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `personal` (`id_personal`, `apellidos_personal`, `nombres_personal`, `nombre_usuario`, `password_usuario`, `usuario_alta`, `usuario_elimina`, `usuario_modifica`, `es_activo`, `cargo_personal`) VALUES (NULL, '$apellidoPersonal', '$nombrePersonal', '$nombreUsuario', '$passwordUsuario', now(), '', '', '1', '$valorSeleccionado');";
+        $sql = "INSERT INTO `personal` (`apellidos_personal`, `nombre_personal`, `dni_personal`, `correo_personal`, `telefono_personal`, `cargo_personal`) VALUES ('$apellidoPersonal', '$nombrePersonal', '$dni', '$correo','$telefono', '$valorSeleccionado');";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -54,25 +54,26 @@ class Personal extends Conectar{
         }
     }
 
-    public function actulizarPersonal($idPersonal,$apellidoPersonal,$nombrePersonal,$nombreUsuario,$passwordUsuario,$valorSeleccionado){
+    public function actulizarPersonal($idPersonal,$apellidoPersonal,$nombrePersonal,$dni,$correo,$telefono,$valorSeleccionado){
         $conectar= parent::conexion();
         $sql="UPDATE personal
             SET
                apellidos_personal=? ,
-               nombres_personal =?,
-               nombre_usuario =?,
-               password_usuario =?,
-               cargo_personal = ?,
-               usuario_modifica = now()
+               nombre_personal =?,
+               dni_personal =?,
+               correo_personal =?,
+               telefono_personal =?,
+               cargo_personal = ?
             WHERE
                 id_personal = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1,$apellidoPersonal);
         $sql->bindValue(2,$nombrePersonal);
-        $sql->bindValue(3,$nombreUsuario);
-        $sql->bindValue(4,$passwordUsuario);
-        $sql->bindValue(5,$valorSeleccionado);
-        $sql->bindValue(6,$idPersonal);
+        $sql->bindValue(3,$dni);
+        $sql->bindValue(4,$correo);
+        $sql->bindValue(5,$telefono);
+        $sql->bindValue(6,$valorSeleccionado);
+        $sql->bindValue(7,$idPersonal);
         $sql->execute();
        return $resultado=$sql->fetchAll();
     }
@@ -80,13 +81,13 @@ class Personal extends Conectar{
     public function traePersonalXId($idPersonal){
         $conectar= parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql ="SELECT id_personal, apellidos_personal, nombres_personal,cargo_personal cargoId, 
+        $sql ="SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
         CASE
             WHEN cargo_personal = 0 THEN 'Vacio'
             WHEN cargo_personal = 1 THEN 'Administrador'
             WHEN cargo_personal = 2 THEN 'Secretaria'
             WHEN cargo_personal = 3 THEN 'Practicante'
-        END as cargoPersonal, nombre_usuario, password_usuario
+        END as cargoPersonal
         FROM `personal` WHERE id_personal = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1,$idPersonal);
@@ -99,7 +100,7 @@ class Personal extends Conectar{
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
-            $sql = "UPDATE personal SET es_activo = 0,usuario_elimina=now() WHERE id_personal = ?";
+            $sql = "UPDATE personal SET esActivo_personal = 0 WHERE id_personal = ?";
             $sql = $conectar ->prepare($sql);
             $sql -> bindValue(1, $id);
             $sql->execute();
@@ -123,14 +124,16 @@ class Personal extends Conectar{
             $inicio = ($pagina-1)*$limit;
             //echo $inicio;
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
-            $sql = "SELECT id_personal, apellidos_personal, nombres_personal,cargo_personal cargoId, 
+            $sql = "SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
             CASE
                 WHEN cargo_personal = 0 THEN 'Vacio'
                 WHEN cargo_personal = 1 THEN 'Administrador'
                 WHEN cargo_personal = 2 THEN 'Secretaria'
                 WHEN cargo_personal = 3 THEN 'Practicante'
-            END as cargoPersonal, nombre_usuario, password_usuario
-            FROM `personal` WHERE es_activo = 1 AND nombres_personal LIKE '%$textoBusqueda%'  ORDER BY nombres_personal, cargoPersonal LIMIT $inicio,$limit ";
+            END as cargoPersonal
+            FROM `personal` WHERE (nombre_personal LIKE '%$textoBusqueda%' 
+            OR apellidos_personal LIKE '%$textoBusqueda%') and esActivo_personal = 1 
+            ORDER BY nombre_personal, cargoPersonal LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -146,14 +149,16 @@ class Personal extends Conectar{
                     $listado[] = array(
                     'id' => $personal['id_personal'],
                     'apellidos' => $personal['apellidos_personal'],
-                    'nombre' => $personal['nombres_personal'],
-                    'cargoPersonal'=>$personal['cargoPersonal'],
-                    'nombreUsuario' => $personal['nombre_usuario'],
-                    'contraseña' => $personal['password_usuario']
+                    'nombre' => $personal['nombre_personal'],
+                    'dni' => $personal['dni_personal'],
+                    'telefono' => $personal['telefono_personal'],
+                    'correo' => $personal['correo_personal'],
+                    'cargoPersonal'=>$personal['cargoPersonal']
+                    
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal WHERE es_activo = 1";
+                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal WHERE esActivo_personal = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
     

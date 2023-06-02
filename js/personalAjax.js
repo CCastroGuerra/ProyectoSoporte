@@ -91,8 +91,9 @@ function mostrarEnModal(personalId) {
     document.getElementById("apellidos").value = datos.apellidos;
     document.getElementById("nombre").value = datos.nombre;
     document.getElementById("selCargo").value = datos.cargoId;
-    document.getElementById("usuario").value = datos.nombreUsuario;
-    document.getElementById("password").value = datos.contraseña;
+    document.getElementById("dniusuario").value = datos.dniusuario;
+    document.getElementById("telefono").value = datos.telefono;
+    document.getElementById("correo").value = datos.correo;
     document.getElementById("inputCodigo").value = datos.id;
   };
   ajax.send(data);
@@ -101,14 +102,16 @@ function mostrarEnModal(personalId) {
 function actualizar(id) {
   const apellidosInput = document.getElementById("apellidos");
   const nombreInput = document.getElementById("nombre");
-  const usuarioInput = document.getElementById("usuario");
-  const passworInput = document.getElementById("password");
+  const dniInput = document.getElementById("dniusuario");
+  const telefonoInput = document.getElementById("telefono");
+  const correoInput = document.getElementById("correo");
   const codigoInput = document.getElementById("inputCodigo");
   // Obtener los valores actualizados desde los elementos del modal
   const apellido = apellidosInput.value;
   const nombre = nombreInput.value;
-  const usuario = usuarioInput.value;
-  const password = passworInput.value;
+  const dni = dniInput.value;
+  const telefono = telefonoInput.value;
+  const correo = correoInput.value;
   const codigo = codigoInput.value;
   const combo = elemento.value;
   swal
@@ -129,8 +132,9 @@ function actualizar(id) {
         data.append("id", id);
         data.append("apellido", apellido);
         data.append("nombre", nombre);
-        data.append("usuario", usuario);
-        data.append("password", password);
+        data.append("dniusuario", dni);
+        data.append("telefono", telefono);
+        data.append("correo", correo);
         data.append("codigo", codigo);
         data.append("selCargo", combo);
         data.append("accion", "actualizar");
@@ -245,10 +249,10 @@ function buscarPersonal() {
           
           <td>${personal.apellidos}</td>
           <td>${personal.nombre}</td>
+          <td>${personal.dni}</td>
+          <td>${personal.telefono}</td>
+          <td>${personal.correo}</td>
           <td>${personal.cargoPersonal}</td>
-          <td>${personal.nombreUsuario}</td>
-          <td>${personal.contraseña}</td>
-
           <td>
           
 

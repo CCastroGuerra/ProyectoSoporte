@@ -11,13 +11,13 @@ switch($accion){
 
     case "guardar":
         //var_dump($_POST);
-        $personal-> agregarPersonal($_POST['apellidos'],$_POST['nombre'],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
+        $personal-> agregarPersonal($_POST['apellidos'],$_POST['nombre'],$_POST['dniusuario'],$_POST['correo'],$_POST['telefono'],$_POST['selCargo']);
         break;
    
 
     case "actualizar":
         //var_dump($_POST);
-            $personal ->actulizarPersonal($_POST['id'],$_POST['apellido'],$_POST["nombre"],$_POST['usuario'],$_POST['password'],$_POST['selCargo']);
+            $personal ->actulizarPersonal($_POST['id'],$_POST['apellido'],$_POST["nombre"],$_POST['dniusuario'],$_POST['correo'],$_POST['telefono'],$_POST['selCargo']);
             echo "actualizado correctamente";
             break;
     case "mostrar": 
@@ -28,11 +28,13 @@ switch($accion){
                 foreach($datos as $row){
                     $output['id'] = $row['id_personal'];
                     $output['apellidos'] = $row['apellidos_personal'];
-                    $output['nombre'] = $row['nombres_personal'];
+                    $output['nombre'] = $row['nombre_personal'];
+                    $output['dniusuario'] = $row['dni_personal'];
+                    $output['telefono'] = $row['telefono_personal'];
+                    $output['correo'] = $row['correo_personal'];
                     $output['cargoId'] = $row['cargoId'];
                     $output['cargoPersonal'] = $row['cargoPersonal'];
-                    $output['nombreUsuario'] = $row['nombre_usuario'];
-                    $output['contraseña'] = $row['password_usuario'];
+                   
                     
                 }
                 echo json_encode($output);
