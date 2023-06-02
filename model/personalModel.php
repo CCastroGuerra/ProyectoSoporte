@@ -10,13 +10,13 @@ class Personal extends Conectar{
         $limit = $_POST['registros'];
         $sLimit = "LIMIT $limit";
         }
-        $sql = "SELECT id_personal, apellidos_personal, nombres_personal,cargo_personal cargoId, 
+        $sql = "SELECT id_personal, nombre_personal,apellidos_personal, dni_personal,correo_personal,telefono_personal,cargo_personal cargoId, 
         CASE
             WHEN cargo_personal = 1 THEN 'Administrador'
             WHEN cargo_personal = 2 THEN 'Secretaria'
             WHEN cargo_personal = 3 THEN 'Practicante'
-        END as cargoPersonal, nombre_usuario, password_usuario
-        FROM `personal` WHERE es_activo = 1 $sLimit ";
+        END as cargoPersonal
+        FROM `personal` WHERE esActivo_personal = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 
@@ -32,10 +32,12 @@ class Personal extends Conectar{
                 $listado[] = array(
                     'id' => $row['id_personal'],
                     'apellidos' => $row['apellidos_personal'],
-                    'nombre' => $row['nombres_personal'],
-                    'cargoPersonal'=>$row['cargoPersonal'],
-                    'nombreUsuario' => $row['nombre_usuario'],
-                    'contraseña' => $row['password_usuario']
+                    'nombre' => $row['nombre_personal'],
+                    'dni' => $row['dni_personal'],
+                    'correo' => $row['correo_personal'],
+                    'telefono' => $row['telefono_personal'],
+                    'cargoPersonal'=>$row['cargoPersonal']
+                    
                 );
             }
             $jsonString = json_encode($listado);

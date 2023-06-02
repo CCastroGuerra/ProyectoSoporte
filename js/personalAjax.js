@@ -90,10 +90,10 @@ function mostrarEnModal(personalId) {
     let datos = JSON.parse(respuesta);
     document.getElementById("apellidos").value = datos.apellidos;
     document.getElementById("nombre").value = datos.nombre;
-    document.getElementById("selCargo").value = datos.cargoId;
-    document.getElementById("dniusuario").value = datos.dniusuario;
+    document.getElementById("dniusuario").value = datos.dni;
     document.getElementById("telefono").value = datos.telefono;
     document.getElementById("correo").value = datos.correo;
+    document.getElementById("selCargo").value = datos.cargoId;
     document.getElementById("inputCodigo").value = datos.id;
   };
   ajax.send(data);

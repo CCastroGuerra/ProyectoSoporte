@@ -22,8 +22,8 @@ switch($accion){
         $datos = $asignar->traerAsigRolXId($_POST["id"]);
             if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
-                    $output['id'] = $row['id_rol_personal'];
-                    $output['dni'] = $row['nombre_usuario'];
+                    $output['id'] = $row['id_rol_usuario'];
+                    $output['dni'] = $row['dni_personal'];
                     $output['nombreRol'] = $row['rol_id'];
 
 
@@ -39,7 +39,7 @@ switch($accion){
             $asignar ->buscarAsigRol(intval($_POST['pag']));
             break;
     case "actualizar":
-            var_dump($_POST);
+            //var_dump($_POST);
              $asignar ->actulizarAsigRol($_POST['id'],$_POST["combo"]);
                 echo "actualizado correctamente";
                 break;

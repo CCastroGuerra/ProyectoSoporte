@@ -24,6 +24,9 @@ switch ($accion) {
     case "listarEstado":
         $equipo -> listarEstado();
         break;
+    case "listarResponsable":
+        $equipo -> listarResponsable(); 
+        break;
     case "guardarTempo":
         $equipo->guardarComponetesTemp($_POST['codigo']);
         break;

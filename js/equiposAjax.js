@@ -5,6 +5,7 @@ listarSelectTipo();
 listarSelectMarca();
 listarSelectArea();
 listarSelectEstado();
+listarResponsable();
 let frmComponentes = document.getElementById('formEquipos');
 let frmEquipos = document.getElementById('formAEquipo');
 let selecModelo = document.getElementById("selModeloEquipo");
@@ -151,6 +152,35 @@ function listarSelectEstado() {
   };
   ajax.send(data);
 }
+
+function listarResponsable() {
+  //let num_registros = document.getElementById('numeroRegistros').value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/equiposController.php", true);
+  var data = new FormData();
+  data.append("accion", "listarResponsable");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const responsable = JSON.parse(respuesta);
+    let template = ""; // Estructura de la tabla html
+    if (responsable.length > 0) {
+      template = `<option value="0">Seleccione Estado</option>
+          `;
+      responsable.forEach(function (responsable) {
+        template += `
+                     
+                      <option value="${responsable.id}">${responsable.nombre}</option>
+                  
+                      `;
+      });
+      var elemento = document.getElementById("responsable");
+      elemento.innerHTML = template;
+    }
+  };
+  ajax.send(data);
+}
+
 
 function listarSelectTipo() {
   //let num_registros = document.getElementById('numeroRegistros').value;

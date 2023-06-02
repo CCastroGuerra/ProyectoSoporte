@@ -227,6 +227,35 @@ class Equipos extends Conectar {
         }
     }
 
+    public function listarResponsable()
+    {
+        $conectar = parent::conexion();
+
+        $sql = "SELECT id_personal, CONCAT(nombre_personal, ' ' ,apellidos_personal)  NombrePersonal FROM personal WHERE `esActivo_personal` = 1; ";
+        $fila = $conectar->prepare($sql);
+        $fila->execute();
+
+        $resultado = $fila->fetchAll();
+        if (empty($resultado)) {
+            $resultado = array('listado' => 'vacio');
+            $jsonString = json_encode($resultado);
+            echo $jsonString;
+        } else {
+            $json = array();
+            $listado = array();
+            foreach ($resultado as $row) {
+                $listado[] = array(
+                    'id' => $row['id_personal'],
+                    'nombre' => $row['NombrePersonal']
+
+
+                );
+            }
+            $jsonString = json_encode($listado);
+            echo $jsonString;
+        }
+    }
+
     public function listarTablaTemp()
     {
        $conectar = parent::conexion();

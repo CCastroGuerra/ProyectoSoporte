@@ -2,18 +2,18 @@
 require_once("../config/conexion.php");
 require_once("../model/personalModel.php");
 $personal = new Personal();
-$accion=(isset($_POST['accion']))?$_POST['accion']:"";
+$accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
-switch($accion){
+switch ($accion) {
     case "listar":
-        $personal-> listarPersonal();
+        $personal->listarPersonal();
         break;
 
     case "guardar":
         //var_dump($_POST);
         $personal-> agregarPersonal($_POST['apellidos'],$_POST['nombre'],$_POST['dniusuario'],$_POST['correo'],$_POST['telefono'],$_POST['selCargo']);
         break;
-   
+
 
     case "actualizar":
         //var_dump($_POST);
@@ -39,15 +39,14 @@ switch($accion){
                 }
                 echo json_encode($output);
             }
-            break;
+            echo json_encode($output);
+        
+        break;
     case "eliminar":
-        $personal -> eliminarPersonal($_POST["id"]);
+        $personal->eliminarPersonal($_POST["id"]);
         break;
     case "buscar":
-            //var_dump($_POST);
-            $personal ->buscarPersonal(intval($_POST['pag']));
-            break;
-    
+        //var_dump($_POST);
+        $personal->buscarPersonal(intval($_POST['pag']));
+        break;
 }
-
-?>

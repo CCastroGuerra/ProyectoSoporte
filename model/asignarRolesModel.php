@@ -5,8 +5,8 @@ class asignarRoles extends Conectar
     public function guardarRoles($idPersonal, $idRolSeleccionado)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO rol_personal ( personal_id, rol_id,esActivo)
-        VALUES ( $idPersonal, $idRolSeleccionado,1)";
+        $sql = "INSERT INTO rol_usuario (usuario_id,rol_id)
+        VALUES ( $idPersonal, $idRolSeleccionado)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -19,9 +19,9 @@ class asignarRoles extends Conectar
     {
         $conectar = parent::conexion();
 
-        $sql = "SELECT id_personal, apellidos_personal, nombres_personal
+        $sql = "SELECT id_personal, apellidos_personal, nombre_personal
                 FROM personal
-                WHERE nombre_usuario = ?";
+                WHERE dni_personal = ?";
 
         $fila = $conectar->prepare($sql);
         $fila->bindValue(1, $dni);
@@ -37,7 +37,7 @@ class asignarRoles extends Conectar
                 $listado[] = array(
                     'id' => $row['id_personal'],
                     'apellidos' => $row['apellidos_personal'],
-                    'nombre' => $row['nombres_personal'],
+                    'nombre' => $row['nombre_personal'],
                 );
             }
 
@@ -90,9 +90,9 @@ class asignarRoles extends Conectar
             $sLimit = "LIMIT $limit";
         }
 
-        $sql = "SELECT rp.id_rol_personal, p.nombres_personal, p.apellidos_personal, r.nombre_roles
+        $sql = "SELECT rp.id_rol_personal, p.nombre_personal, p.apellidos_personal, r.nombre_roles
         FROM personal p
-        INNER JOIN rol_personal rp ON rp.personal_id = p.id_personal
+        INNER JOIN rol_usuario rp ON rp.personal_id = p.id_personal
         INNER JOIN roles AS r ON rp.rol_id = r.id_roles WHERE rp.esActivo = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
         $fila->execute();
@@ -121,11 +121,11 @@ class asignarRoles extends Conectar
     public function actulizarAsigRol($idAsigRol, $rolId)
     {
         $conectar = parent::conexion();
-        $sql = "UPDATE rol_personal
+        $sql = "UPDATE rol_usuario
             SET
                rol_id=?
             WHERE
-                id_rol_personal = ?";
+                id_rol_usuario = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $rolId);
         $sql->bindValue(2, $idAsigRol);
@@ -136,10 +136,10 @@ class asignarRoles extends Conectar
     public function traerAsigRolXId($idAsigRol)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT rp.id_rol_personal, p.nombre_usuario, r.nombre_roles, rp.rol_id 
+        $sql = "SELECT rp.id_rol_usuario, p.dni_personal, r.nombre_roles, rp.rol_id 
         FROM personal p
-        INNER JOIN rol_personal rp ON rp.personal_id = p.id_personal
-        INNER JOIN roles AS r ON rp.rol_id = r.id_roles WHERE rp.id_rol_personal = ?";
+        INNER JOIN rol_usuario rp ON rp.usuario_id = p.id_personal
+        INNER JOIN roles AS r ON rp.rol_id = r.id_roles WHERE rp.id_rol_usuario = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idAsigRol);
         $sql->execute();
@@ -152,7 +152,7 @@ class asignarRoles extends Conectar
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
-            $sql = "UPDATE rol_personal SET esActivo = 0 WHERE id_rol_personal = ?";
+            $sql = "UPDATE rol_usuario SET esActivo = 0 WHERE id_rol_usuario = ?";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $id);
             $sql->execute();
@@ -176,12 +176,12 @@ class asignarRoles extends Conectar
             }
             $inicio = ($pagina - 1) * $limit;
             //echo $inicio;
-            $sql = "SELECT rp.id_rol_personal, p.nombres_personal, p.apellidos_personal, r.nombre_roles
+            $sql = "SELECT rp.id_rol_usuario, p.nombre_personal, p.apellidos_personal, r.nombre_roles
             FROM personal p
-            INNER JOIN rol_personal rp ON rp.personal_id = p.id_personal
+            INNER JOIN rol_usuario rp ON rp.usuario_id = p.id_personal
             INNER JOIN roles AS r ON rp.rol_id = r.id_roles
-            WHERE rp.esActivo = 1 AND nombres_personal LIKE '%$textoBusqueda%' 
-            ORDER BY nombres_personal 
+            WHERE rp.esActivo = 1 AND nombre_personal LIKE '%$textoBusqueda%' 
+            ORDER BY nombre_personal 
             LIMIT $inicio, $limit";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
@@ -192,14 +192,14 @@ class asignarRoles extends Conectar
                 $listado = array();
                 foreach ($asigRols as $asigRol) {
                     $listado[] = array(
-                        'id' => $asigRol['id_rol_personal'],
-                        'nombre' => $asigRol['nombres_personal'],
+                        'id' => $asigRol['id_rol_usuario'],
+                        'nombre' => $asigRol['nombre_personal'],
                         'apellidos' => $asigRol['apellidos_personal'],
                         'nombreRol' => $asigRol['nombre_roles']
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_rol_personal) as cantidad FROM rol_personal WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_rol_usuario) as cantidad FROM rol_usuario WHERE esActivo = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

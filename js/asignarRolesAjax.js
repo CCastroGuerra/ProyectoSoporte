@@ -312,8 +312,8 @@ function buscar() {
             <td colspan="6" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      document.getElementById("txtPagVista").value = 0;
-      document.getElementById("txtPagTotal").value = 0;
+      // document.getElementById("txtPagVista").value = 0;
+      // document.getElementById("txtPagTotal").value = 0;
     }
   };
   ajax.send(data);

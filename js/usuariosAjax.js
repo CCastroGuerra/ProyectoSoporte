@@ -1,34 +1,149 @@
-var valorBuscar="";
-var numPagina=1;
-buscar();
-function buscar(){
-    const ajax = new XMLHttpRequest();
-    //Se establace la direccion del archivo php que procesara la peticion
-    ajax.open('POST', '../model/usuariosModel.php', true); 
-    var data = new FormData();
-    data.append('accion','listar');
-    //Funcion onload, se ejecuta cuando recibe respuesta del servidor
-    ajax.onload=function(){
-        //Se guarda la respuesta del servidor
-        let respuesta = ajax.responseText;
-        const usuarios = JSON.parse(respuesta);
-        let template = ""; // Estructura de la tabla html
-        if(usuarios.length > 0){
-            usuarios.forEach(function(usuarios) {
-                template += `
-                <tr>
-                    <td>${usuarios.id}</td>
-                    <td>${usuarios.nombre}</td>
-                </tr>
-                `;
-                var elemento = document.getElementById("tbUsuarios");
-                elemento.innerHTML = template;
-            });
-        }
-      
+var numPagina = 1;
+var frmUsuario = document.getElementById('formEmpleados');
+buscarUsuario();
+frmUsuario.onsubmit = function (e) {
+    e.preventDefault();
+    if (frmUsuario.querySelector("#codPersonal").value !== "") {
+      console.log("actualizo");
+      //actualizar(id);
+    } else {
+      guardarDatos();
+      console.log('registro');
     }
-    ajax.send(data);
-   
+    frmUsuario.reset();
+};
 
 
+/*limit para el select*/
+var numRegistors = document.getElementById("numRegistros");
+numRegistors.addEventListener("change", () => {
+  numPagina = 1;
+  buscarUsuario();
+});
+
+/*BUSCAR*/
+var cajaBuscar = document.getElementById("inputbuscarUsuario");
+cajaBuscar.addEventListener("keyup", function (e) {
+  const textoBusqueda = cajaBuscar.value;
+  console.log(textoBusqueda);
+ buscarUsuario();
+});
+
+function guardarDatos() {
+
+  var dni = document.getElementById("codPersonal").value;
+
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/usuariosController.php", true);
+  var data = new FormData();
+  data.append("dni", dni);
+  data.append("accion", "listar");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    if (respuesta !== "") {
+      let datos = JSON.parse(respuesta);
+      console.log(datos);
+
+      // let apellidos = datos.apellidos;
+      // let nombre  = datos.nombre;
+      let id = datos[0].id;
+      // let apellidos = datos[0].apellidos;
+      // let nombre = datos[0].nombre;
+
+      const ajaxGuardar = new XMLHttpRequest();
+      ajaxGuardar.open(
+        "POST",
+        "../controller/usuariosController.php",
+        true
+      );
+      let dataGuardar = new FormData();
+      dataGuardar.append("accion", "guardar");
+      dataGuardar.append("id", id);
+      ajaxGuardar.onload = function () {
+        let resp = ajaxGuardar.responseText;
+        console.log(resp);
+        if (resp === "1") {
+          console.log("Datos guardados correctamente");
+          buscar();
+          swal.fire("Registrado!", "Se registro correctamente.", "success");
+        } else {
+          console.log("Error al guardar los datos");
+          swal.fire("ERROR!", "Error al guardar los datos", "error");
+        }
+      };
+      ajaxGuardar.send(dataGuardar);
+    } else {
+      console.log("NO SE ENCONTRO EL DNI");
+      swal.fire("ERROR!", "No se encontro el DNI.", "error");
+    }
+  };
+  ajax.send(data);
+  buscar();
 }
+
+function buscarUsuario() {
+    let numPagina = 1;
+    var cajaBuscar = document.getElementById("inputbuscarUsuario");
+    const textoBusqueda = cajaBuscar.value;
+    let num_registros = document.getElementById("numRegistros").value;
+    const ajax = new XMLHttpRequest();
+    ajax.open("POST", "../controller/usuariosController.php", true);
+    var data = new FormData();
+    data.append("accion", "buscar");
+    data.append("cantidad", "4");
+    data.append("registros", num_registros);
+    data.append("pag", numPagina);
+    data.append("textoBusqueda", textoBusqueda);
+    ajax.onload = function () {
+      let respuesta = ajax.responseText;
+      console.log(respuesta);
+      const datos = JSON.parse(respuesta);
+      console.log(datos);
+      let usuario = datos.listado;
+      let template = ""; // Estructura de la tabla html
+      if (usuario != "vacio") {
+        usuario.forEach(function (usuario) {
+          template += `
+            <tr>
+                
+                <td>${usuario.dni}</td>
+                <td>${usuario.apellidos}</td>
+                <td>${usuario.nombre}</td>
+                <td>${usuario.nombreCargo}</td>
+                <td>${usuario.usuario}</td>
+                <td>
+  
+                <button type="button" onClick='mostrarEnModal("${usuario.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+                
+                <button type="button" onClick='eliminar("${usuario.id}")' class="btn btn-danger" data-fila="${usuario.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+  
+                </td>
+            </tr>
+            `;
+        });
+        var elemento = document.getElementById("tbUsuarios");
+        elemento.innerHTML = template;
+        document.getElementById("txtPagVista").value = numPagina;
+        document.getElementById("txtPagTotal").value = datos.paginas;
+  
+        /* Mostrando mensaje de los registros*/
+        let registros = document.getElementById("txtcontador");
+        let mostrarRegistro = `
+        <p><span id="totalRegistros">Mostrando ${usuario.length} de ${datos.total} registros</span></p>`;
+        registros.innerHTML = mostrarRegistro;
+      } else {
+        var elemento = document.getElementById("tbUsuarios");
+        elemento.innerHTML = `
+            <tr>
+              <td colspan="6" class="text-center">No se encontraron resultados</td>
+            </tr>
+          `;
+        // document.getElementById("txtPagVista").value = 0;
+        // document.getElementById("txtPagTotal").value = 0;
+      }
+    };
+    ajax.send(data);
+  }
