@@ -304,7 +304,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>IP</strong></th>
                                     <th scope="col"><strong>MAC</strong></th>
                                     <th scope="col"><strong>Estado</strong></th>
-                                    <th scope="col"><strong>Alta</strong></th>
+                                    <th scope="col"><strong>Fecha</strong></th>
                                     <th scope='col'><strong>Acciones</strong></th>
                                 </tr>
                             </thead>
