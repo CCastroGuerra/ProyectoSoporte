@@ -107,7 +107,7 @@ include('../templates/cabecera.php');
                                     <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
                                     <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
                                     <input type="text" class="form-control mb-2" id="selUnidad" name="selUnidad" placeholder="Ingrese Presentacion" data-coreui-toggle="modal" data-coreui-target="#presentacionModal" readonly>
-                                    <input type="presValue" class="visually-hidden">
+                                    <input type="text" id="presValue" class="visually-hidden">
                                     
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
