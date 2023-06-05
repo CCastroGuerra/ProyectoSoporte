@@ -123,6 +123,7 @@ include('../templates/cabecera.php');
                                         <label for="responsable" class="mb-2">Responsable:</label>
                                         <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Seleccione responsable" data-coreui-toggle="modal" data-coreui-target="#responsableModal" readonly>
+                                        <input type="text" id="respValue" name="respValue" class="visually-hidden">
 
                                         <!-- <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable"> -->
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
