@@ -1,32 +1,33 @@
-
 buscarEquipo();
+buscarResponsable();
 listarTablaTemp();
 listarSelectTipo();
 listarSelectMarca();
 listarSelectArea();
 listarSelectEstado();
-listarResponsable();
-let frmComponentes = document.getElementById('formEquipos');
-let frmEquipos = document.getElementById('formAEquipo');
+
+let frmComponentes = document.getElementById("formEquipos");
+let frmEquipos = document.getElementById("formAEquipo");
+let frmResponsable = document.getElementById("formResponsable");
 let selecModelo = document.getElementById("selModeloEquipo");
 let selecMarca = document.getElementById("selMarcaEquipo");
 let selectTipo = document.getElementById("selTipoEquipo");
 let selectEstado = document.getElementById("selEstado");
 
-
 frmComponentes.onsubmit = function (e) {
-    e.preventDefault();
-    guardarComponentes();
-
+  e.preventDefault();
+  guardarComponentes();
 };
 
 frmEquipos.onsubmit = function (e) {
   e.preventDefault();
   guardarEquipo();
-
-
 };
-
+/*
+frmResponsable.onsubmit = function (e) {
+  e.preventDefault();
+ 
+};*/
 
 selecModelo.disabled = true;
 selecMarca.addEventListener("change", () => {
@@ -153,34 +154,103 @@ function listarSelectEstado() {
   ajax.send(data);
 }
 
-function listarResponsable() {
-  //let num_registros = document.getElementById('numeroRegistros').value;
+/*BUSCAR RESPONSABLE*/
+var cajaBuscarrResp = document.getElementById("buscaRes");
+
+cajaBuscarrResp.addEventListener("keyup", function (e) {
+  const textoBusquedaPre = cajaBuscarrResp.value;
+  console.log(textoBusquedaPre);
+  numPagina = 1;
+  buscarResponsable();
+});
+
+function buscarResponsable() {
+  let numPagina = 1;
+  var cajaBuscar = document.getElementById("buscaRes");
+  const textoBusqueda = cajaBuscar.value;
+  //let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/equiposController.php", true);
   var data = new FormData();
-  data.append("accion", "listarResponsable");
+  data.append("accion", "buscarResponsable");
+  data.append("cantidad", "5");
+  //data.append("registros", num_registros);
+  data.append("pag", numPagina);
+  data.append("buscaRes", textoBusqueda);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
-    const responsable = JSON.parse(respuesta);
+    const datos = JSON.parse(respuesta);
+    console.log(datos);
+    let responsable = datos.listado;
+    //console.log(equipos);
     let template = ""; // Estructura de la tabla html
-    if (responsable.length > 0) {
-      template = `<option value="0">Seleccione Estado</option>
-          `;
+    if (responsable != "vacio") {
       responsable.forEach(function (responsable) {
         template += `
-                     
-                      <option value="${responsable.id}">${responsable.nombre}</option>
-                  
-                      `;
+                  <tr>
+                      <td style="visibility:collapse; display:none;">${responsable.id}</td>
+                      <td>${responsable.dni}</td>
+                      <td>${responsable.nombre}</td>
+                      <td>
+                      <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><i class="fa fa-plus" aria-hidden="true"></i>
+
+                      </td>
+                  </tr>
+                  `;
       });
-      var elemento = document.getElementById("responsable");
+      var elemento = document.getElementById("tbresp");
       elemento.innerHTML = template;
+      document.getElementById("txtPagVistaPre").value = numPagina;
+      document.getElementById("txtPagTotalPre").value = datos.paginas;
+
+      /* Seleccionar datos de la tabla */
+      /*Modal presentación*/
+
+      // Obtén una referencia a la tabla después de su generación
+      const tabla = document.getElementById("tbresp");
+
+      // Obtén todas las filas de la tabla
+      const filas = tabla.getElementsByTagName("tr");
+
+      //Obteniendo referencia del input
+      const inputResponsable = document.getElementById("responsable");
+      const inputIdResponsable = document.getElementById("respValue");
+
+      // Itera sobre las filas y agrega un evento de clic a cada una
+      for (let i = 0; i < filas.length; i++) {
+        const fila = filas[i];
+        fila.addEventListener("click", function () {
+          // Seleccionar la fila
+          console.log("Fila seleccionada:", fila);
+
+          // Obtener los datos de las celdas
+          const celdas = fila.getElementsByTagName("td");
+          const id = celdas[0].innerText;
+          const nombre = celdas[2].innerText;
+          console.log(nombre);
+          console.log("Id del cliente: " + id);
+
+          // Mostrar valor en input
+          inputResponsable.value = nombre;
+          inputIdResponsable.value = id;
+          frmResponsable.reset();
+        });
+      }
+    } else {
+      var elemento = document.getElementById("tbresp");
+      elemento.innerHTML = `
+          <tr>
+            <td colspan="10" class="text-center">No se encontraron resultados</td>
+          </tr>
+        `;
+
+      // document.getElementById("txtPagVista").value = 0;
+      // document.getElementById("txtPagTotal").value = 0;
     }
   };
   ajax.send(data);
 }
-
 
 function listarSelectTipo() {
   //let num_registros = document.getElementById('numeroRegistros').value;
@@ -214,57 +284,53 @@ function listarSelectTipo() {
 }
 
 function guardarComponentes() {
-    var codigo = document.getElementById("codigo").value;
-  
-    const ajax = new XMLHttpRequest();
-    ajax.open("POST", "../controller/equiposController.php", true);
-    var data = new FormData();
-    data.append("codigo", codigo);
-    data.append("accion", "traerComponentes");
-    ajax.onload = function () {
-      let respuesta = ajax.responseText;
-      console.log(respuesta);
-      if (respuesta !== "") {
-        let datos = JSON.parse(respuesta);
-        console.log(datos);
-  
-        // let apellidos = datos.apellidos;
-        // let nombre  = datos.nombre;
-        let id = datos[0].id;
-        // let apellidos = datos[0].apellidos;
-        // let nombre = datos[0].nombre;
-  
-        const ajaxGuardar = new XMLHttpRequest();
-        ajaxGuardar.open(
-          "POST",
-          "../controller/equiposController.php",
-          true
-        );
-        let dataGuardar = new FormData();
-        dataGuardar.append("accion", "guardarTempo");
-        dataGuardar.append("id", id);
-        dataGuardar.append("codigo", codigo);
+  var codigo = document.getElementById("codigo").value;
 
-        ajaxGuardar.onload = function () {
-          let resp = ajaxGuardar.responseText;
-          console.log(resp);
-          if (resp === "1") {
-            console.log("Datos guardados correctamente");
-            listarTablaTemp();
-            swal.fire("Registrado!", "Se registro correctamente.", "success");
-          } else {
-            console.log("Error al guardar los datos");
-            swal.fire("ERROR!", "Error al guardar los datos", "error");
-          }
-        };
-        ajaxGuardar.send(dataGuardar);
-      } else {
-        console.log("NO SE ENCONTRO EL COMPONENTE");
-        swal.fire("ERROR!", "No se encontro el componente.", "error");
-      }
-    };
-    ajax.send(data);
-    listarTablaTemp ();
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/equiposController.php", true);
+  var data = new FormData();
+  data.append("codigo", codigo);
+  data.append("accion", "traerComponentes");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    if (respuesta !== "") {
+      let datos = JSON.parse(respuesta);
+      console.log(datos);
+
+      // let apellidos = datos.apellidos;
+      // let nombre  = datos.nombre;
+      let id = datos[0].id;
+      // let apellidos = datos[0].apellidos;
+      // let nombre = datos[0].nombre;
+
+      const ajaxGuardar = new XMLHttpRequest();
+      ajaxGuardar.open("POST", "../controller/equiposController.php", true);
+      let dataGuardar = new FormData();
+      dataGuardar.append("accion", "guardarTempo");
+      dataGuardar.append("id", id);
+      dataGuardar.append("codigo", codigo);
+
+      ajaxGuardar.onload = function () {
+        let resp = ajaxGuardar.responseText;
+        console.log(resp);
+        if (resp === "1") {
+          console.log("Datos guardados correctamente");
+          listarTablaTemp();
+          swal.fire("Registrado!", "Se registro correctamente.", "success");
+        } else {
+          console.log("Error al guardar los datos");
+          swal.fire("ERROR!", "Error al guardar los datos", "error");
+        }
+      };
+      ajaxGuardar.send(dataGuardar);
+    } else {
+      console.log("NO SE ENCONTRO EL COMPONENTE");
+      swal.fire("ERROR!", "No se encontro el componente.", "error");
+    }
+  };
+  ajax.send(data);
+  listarTablaTemp();
 }
 
 function listarTablaTemp() {
@@ -304,7 +370,7 @@ function listarTablaTemp() {
       });
       var elemento = document.getElementById("tbComponentes");
       elemento.innerHTML = template;
-    }else{
+    } else {
       var elemento = document.getElementById("tbComponentes");
       elemento.innerHTML = ` <tr>
       <td colspan="6" class="text-center">No se encontraron datos</td>
@@ -312,16 +378,16 @@ function listarTablaTemp() {
     }
   };
   ajax.send(data);
-
-
 }
 
 function guardarEquipo() {
   var realizado = "";
+  let resp = document.getElementById("responsable");
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/equiposController.php", true);
   var data = new FormData(frmEquipos);
+  //data.append("responsable",resp);
   data.append("accion", "guardarEquipo");
   ajax.onload = function () {
     realizado = ajax.responseText;
@@ -332,6 +398,7 @@ function guardarEquipo() {
     }
     //buscarArea();
     //buscarComponente();
+    buscarEquipo();
     frmEquipos.reset();
   };
   ajax.send(data);
@@ -340,19 +407,19 @@ function guardarEquipo() {
 }
 
 function guardarEquipoComponente() {
-  let serie = document.getElementById('serie').value;
+  let serie = document.getElementById("serie").value;
   var realizado = "";
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/equiposController.php", true);
   var data = new FormData();
-  data.append('serie', serie);
+  data.append("serie", serie);
   data.append("accion", "guardarEquipoComponente");
   ajax.onload = function () {
     realizado = ajax.responseText;
     console.log(realizado);
     if (realizado * 1 > 0) {
-      console.log('Equipo Componente registrado correctamente');
+      console.log("Equipo Componente registrado correctamente");
     }
     //buscarArea();
     //buscarComponente();
@@ -434,6 +501,7 @@ function buscarEquipo() {
                       <td>${equipos.ip}</td>
                       <td>${equipos.mac}</td>
                       <td>${equipos.estado}</td>
+                      <td>${equipos.Fecha}</td>
                       <td>
 
                       <button type="button" onClick='mostrarEnModal("${equipos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>

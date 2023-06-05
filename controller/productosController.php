@@ -10,8 +10,8 @@ switch($accion){
         break;
 
     case "guardar":
-        //var_dump($_POST);
-        $producto-> agregarProductos($_POST['nombreProducto'],$_POST['selTipoProducto'],$_POST['selUnidad'],$_POST["ctdProducto"],$_POST['selAlmacen'],$_POST['detalleProducto']);
+        var_dump($_POST);
+        $producto-> agregarProductos($_POST['nombreProducto'],$_POST['selTipoProducto'],$_POST['presValue'],$_POST["ctdProducto"],$_POST['selAlmacen'],$_POST['detalleProducto']);
         break;
     case "guardarPresentacion":
         $producto -> agregarPresentacion($_POST['BuscarPre']);
@@ -33,6 +33,7 @@ switch($accion){
                     $output['tipoId'] = $row['tipoId'];
                     $output['tipo'] = $row['Tipo'];
                     $output['presentacionId'] = $row['presentacionId'];
+                    $output['nombrePresentacion'] = $row['nombre_presentacion'];
                     $output['cantidad'] = $row['cantidad_productos'];
                     $output['almacenId'] = $row['almacenId'];
                     $output['almacen'] = $row['Almacen'];

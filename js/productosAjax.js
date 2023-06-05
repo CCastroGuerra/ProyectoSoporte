@@ -1,5 +1,4 @@
 let numPagina = 1;
-
 let id = "";
 let clickBuscar = false;
 let frmProductos = document.getElementById("formProducto");
@@ -23,7 +22,7 @@ frmProductos.onsubmit = function (e) {
 
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
-  if (frmPresentacion.querySelector("#divcodigo").value !== "") {
+  if (frmPresentacion.querySelector("#inputIDpres").value !== "") {
     console.log("actualizo");
     //actualizar(id);
   } else {
@@ -35,46 +34,6 @@ frmPresentacion.onsubmit = (e) => {
   }
   frmPresentacion.reset();
 };
-
-/*function listarProductos() {
-  let num_registros = document.getElementById('numRegistros').value;
-  const ajax = new XMLHttpRequest();
-  ajax.open("POST", "../controller/productosController.php", true);
-  var data = new FormData();
-  data.append("accion", "listar");
-  data.append("valor", "");
-  data.append("cantidad", "4");
-  data.append('registros',num_registros);
-  ajax.onload = function () {
-    let respuesta = ajax.responseText;
-    console.log(respuesta);
-    const producto = JSON.parse(respuesta);
-    let template = ""; // Estructura de la tabla html
-    if (producto.length > 0) {
-      producto.forEach(function (producto) {
-        template +=  `
-        <tr>
-            <td>${producto.id}</td>
-            <td>${producto.codigo}</td>
-            <td>${producto.nombre}</td>
-            <td>${producto.unidad}</td>
-            <td>${producto.cantidad}</td>
-            <td>${producto.almacen}</td>
-
-            <td>
-              <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal">Editar</button>
-              <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger" data-fila="${producto.id}">Borrar</button>
-            </td>
-        </tr>
-        `;
-      });
-      var elemento = document.getElementById("tbProductos");
-      elemento.innerHTML = template;
-    }
-  };
-  ajax.send(data);
-}
-*/
 
 function listarSelecPresentacion() {
   //let num_registros = document.getElementById('numeroRegistros').value;
@@ -163,7 +122,7 @@ function mostrarEnModal(productoId) {
     let datos = JSON.parse(respuesta);
     document.getElementById("nombreProducto").value = datos.nombre;
     document.getElementById("selTipoProducto").value = datos.tipoId;
-    document.getElementById("selUnidad").value = datos.presentacionId;
+    document.getElementById("selUnidad").value = datos.nombrePresentacion;
     document.getElementById("ctdProducto").value = datos.cantidad;
     document.getElementById("selAlmacen").value = datos.almacenId;
     document.getElementById("detalleProducto").value = datos.descripcion;
@@ -300,8 +259,6 @@ cajaBuscar.addEventListener("keyup", function (e) {
   buscarProducto();
 });
 
-
-
 function buscarProducto() {
   let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarProducto");
@@ -393,28 +350,22 @@ function buscarPresentacion() {
   data.append("textoBusqueda", textoBusquedaPre);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
-    console.log(respuesta);
     const datos = JSON.parse(respuesta);
-    console.log(datos);
     let presentacion = datos.listado;
-    console.log(presentacion);
+
     let template = ""; // Estructura de la tabla html
 
     if (presentacion != "vacio" && presentacion.length > 0) {
       presentacion.forEach(function (presentacion) {
         template += `
         <tr>
-            <td>${presentacion.nombre}</td>
-
-            <td>
-            <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
-
-            
-            <button type="button" onClick='eliminarPresentacion("${presentacion.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
-            </button>
-
-              
-            </td>
+          <td style="visibility:collapse; display:none;">${presentacion.id}</td>
+          <td>${presentacion.nombre}</td>
+          <td>
+              <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
+              <button type="button" onClick='eliminarPresentacion("${presentacion.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+          </td>
         </tr>
         `;
       });
@@ -423,6 +374,7 @@ function buscarPresentacion() {
       document.getElementById("txtPagVistaPre").value = numPagina;
       document.getElementById("txtPagTotalPre").value = datos.paginas;
       console.log("Pagina ultima: " + numPagina);
+
       /* Seleccionar datos de la tabla */
       /*Modal presentación*/
 
@@ -434,7 +386,7 @@ function buscarPresentacion() {
 
       //Obteniendo referencia del input
       const inputUnidad = document.getElementById("selUnidad");
-
+      const inputId = document.getElementById('presValue');
       // Itera sobre las filas y agrega un evento de clic a cada una
       for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
@@ -444,13 +396,17 @@ function buscarPresentacion() {
 
           // Obtener los datos de las celdas
           const celdas = fila.getElementsByTagName("td");
-          const nombre = celdas[0].innerText;
+          const nombre = celdas[1].innerText;
+          const id = celdas[0].innerText;
+          console.log("Id de presentacion: " + id);
           console.log(nombre);
 
           // Mostrar valor en input
           inputUnidad.value = nombre;
+          inputId.value = id;
+          //data.append('id',inputId);
+
           frmPresentacion.reset();
-          
         });
       }
     } else {
@@ -461,27 +417,7 @@ function buscarPresentacion() {
             </tr>
           `;
     }
-    // else {
-    //   if (textoBusquedaPre.trim() === "") {
-    //     var elemento = document.getElementById("tbPres");
-    //     elemento.innerHTML = `
-    //         <tr>
-    //           <td colspan="5" class="text-center">VACIO</td>
-    //         </tr>
-    //       `;
-    //     cajaBuscar.disabled = true;
-
-    //   } else {
-    //     var elemento = document.getElementById("tbPres");
-    //     elemento.innerHTML = `
-    //         <tr>
-    //           <td colspan="5" class="text-center">No se encontraron resultados</td>
-    //         </tr>
-    //       `;
-    //   }
-    // }
   };
-
   ajax.send(data);
 }
 

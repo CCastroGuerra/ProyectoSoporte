@@ -38,13 +38,12 @@ class Equipos extends Conectar {
         }
     }
 
-    public function guardarEquipo($idTipo, $serie,$margesi,$marcaId,$modeloId,$responsable,$areaId,$estadoId,$mac,$ip)
+    public function guardarEquipo($serie,$margesi,$marcaId,$modeloId,$idTipo,$areaId,$responsable,$estadoId,$ip,$mac)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO equipos ( tipo_equipo_id, serie, margesi, marca_id,modelo_id, responsable,area_id, estado_id, mac, ip)
-        VALUES ( '$idTipo','$serie','$margesi','$marcaId','$modeloId','$responsable','$areaId','$estadoId','$mac','$ip');";
+        $sql = "INSERT INTO equipos (serie,margesi,marca_id,modelo_id,tipo_equipo_id,area_id,clientes_id,estado_id,ip,mac)
+        VALUES ( '$serie','$margesi','$marcaId','$modeloId','$idTipo','$areaId','$responsable','$estadoId','$ip','$mac');";
         $fila = $conectar->prepare($sql);
-
         if ($fila->execute()) {
             echo '1';
         } else {
@@ -227,32 +226,65 @@ class Equipos extends Conectar {
         }
     }
 
-    public function listarResponsable()
+    public function buscarResponsable($pagina = 1)
     {
         $conectar = parent::conexion();
-
-        $sql = "SELECT id_personal, CONCAT(nombre_personal, ' ' ,apellidos_personal)  NombrePersonal FROM personal WHERE `esActivo_personal` = 1; ";
-        $fila = $conectar->prepare($sql);
-        $fila->execute();
-
-        $resultado = $fila->fetchAll();
-        if (empty($resultado)) {
-            $resultado = array('listado' => 'vacio');
-            $jsonString = json_encode($resultado);
-            echo $jsonString;
-        } else {
-            $json = array();
-            $listado = array();
-            foreach ($resultado as $row) {
-                $listado[] = array(
-                    'id' => $row['id_personal'],
-                    'nombre' => $row['NombrePersonal']
-
-
-                );
+        $textoBusqueda = $_POST['buscaRes'];
+        $cantidadXPagina = 5;
+        try {
+           
+            if (isset($_POST['registros'])) {
+            $limit = $_POST['registros'];
             }
-            $jsonString = json_encode($listado);
-            echo $jsonString;
+            // if($pagina = 0){
+            //     $pagina = 1;
+            // }
+            $inicio = ($pagina-1)*$cantidadXPagina;
+            $sql = "SELECT id_personal, CONCAT(nombre_personal, ' ' ,apellidos_personal) as  NombrePersonal, dni_personal FROM personal
+            WHERE `esActivo_personal` = 1 AND CONCAT(nombre_personal, ' ' ,apellidos_personal) LIKE '%$textoBusqueda%' 
+            OR dni_personal LIKE '%$textoBusqueda%' 
+            ORDER BY NombrePersonal ASC
+            LIMIT $inicio, $cantidadXPagina ";
+            $stmt = $conectar->prepare($sql);
+            $stmt->execute();
+            $json = [];
+            $marcas =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+            if(!empty($marcas)){
+                $listado = array();
+                foreach($marcas as $marca){
+                    $listado[] = array(
+                        "id" => $marca["id_personal"],
+                        "nombre" => $marca["NombrePersonal"],
+                        'dni' => $marca["dni_personal"]
+                        
+                        
+
+                    );
+                }
+
+
+                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal WHERE esActivo_personal = 1";
+                $fila2 = $conectar->prepare($sqlNroFilas);
+                $fila2->execute();
+    
+                $array = $fila2->fetch(PDO::FETCH_LAZY);
+                $paginas = ceil($array['cantidad']/$cantidadXPagina);
+                //echo 'Imprimiendo paginas: '.$paginas;
+
+                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
+                $jsonString  = json_encode($json);
+                echo $jsonString;
+            }else{
+                $resultado = array("listado" => "vacio");
+                $jsonString = json_encode($resultado);
+                echo $jsonString;
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
@@ -320,14 +352,14 @@ class Equipos extends Conectar {
             //     $pagina = 1;
             // }
             $inicio = ($pagina-1)*$limit;
-            $sql = "SELECT id_equipos,e.area_id,a.nombre_area,e.marca_id, mar.nombre_marca,e.modelo_id,mo.nombre_modelo,serie,margesi, ip,mac,e.estado_id, est.nombre_estado from equipos e
+            $sql = "SELECT id_equipos,e.area_id,a.nombre_area,e.marca_id, mar.nombre_marca,e.modelo_id,mo.nombre_modelo,serie,margesi, ip,mac,e.estado_id, est.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha from equipos e
             INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo
             INNER JOIN marca mar ON mar.id_marca = e.marca_id
             INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
             INNER JOIN area a ON a.id_area = e.area_id
             INNER JOIN estado est ON est.id_estado = e.estado_id
             WHERE e.es_activo = 1  AND nombre_area LIKE '%$textoBusqueda%' 
-            ORDER BY a.nombre_area ASC
+            ORDER BY a.nombre_area, YEAR(fecha_alta) ASC, MONTH(fecha_alta) ASC 
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
@@ -349,8 +381,8 @@ class Equipos extends Conectar {
                         'margesi' => $marca["margesi"],
                         'ip' => $marca["ip"],
                         'mac' => $marca["mac"],
-                        'estado' => $marca["nombre_estado"]
-                        
+                        'estado' => $marca["nombre_estado"],
+                        'Fecha' => $marca["Fecha"]
 
                     );
                 }

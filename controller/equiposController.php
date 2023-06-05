@@ -24,8 +24,8 @@ switch ($accion) {
     case "listarEstado":
         $equipo -> listarEstado();
         break;
-    case "listarResponsable":
-        $equipo -> listarResponsable(); 
+    case "buscarResponsable":
+        $equipo -> buscarResponsable(intval($_POST['pag'])); 
         break;
     case "guardarTempo":
         $equipo->guardarComponetesTemp($_POST['codigo']);
@@ -39,7 +39,8 @@ switch ($accion) {
         $equipo -> guardarEquipoComponente($_POST['serie']);
         break;
     case "guardarEquipo":
-        $equipo -> guardarEquipo($_POST['selTipoEquipo'],$_POST['serie'],$_POST['margesi'],$_POST['selMarcaEquipo'],$_POST['selModeloEquipo'],$_POST['responsable'],$_POST['selArea'],$_POST['selEstado'],$_POST['mac'],$_POST['ip']);
+        //var_dump($_POST);
+        $equipo -> guardarEquipo($_POST['serie'],$_POST['margesi'],$_POST['selMarcaEquipo'],$_POST['selModeloEquipo'],$_POST['selTipoEquipo'],$_POST['selArea'],$_POST['respValue'],$_POST['selEstado'],$_POST['ip'],$_POST['mac']);
         break;
     case "eliminarComponenteTemp":
         $equipo -> eliminarComponentesTemp($_POST['id']);

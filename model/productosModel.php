@@ -111,7 +111,7 @@ class Producto extends Conectar
             WHEN tipo_productos = 3 THEN 'Herramienta'
             WHEN tipo_productos = 4 THEN 'Insumo'
         END as Tipo,
-        pre.id_presentacion presentacionId,
+        pre.id_presentacion presentacionId, pre.nombre_presentacion,
         cantidad_productos, almacen_id almacenId,
         CASE
             WHEN almacen_id = 0 THEN 'Vacio'
@@ -120,13 +120,13 @@ class Producto extends Conectar
             WHEN almacen_id = 3 THEN 'Almacen 3'
         END as Almacen,
         descripcion_productos
-    FROM
+        FROM
         productos p
-    cross join(select @con := 0) r
-    INNER JOIN
+        cross join(select @con := 0) r
+         INNER JOIN
         presentacion pre ON p.presentacion_productos = pre.id_presentacion
    
-     WHERE id_productos = ?";
+         WHERE id_productos = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idProductos);
         $sql->execute();
