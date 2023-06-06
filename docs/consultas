@@ -5,3 +5,24 @@ select * from equipo_componentes  as ec
     inner join clase_componentes as tclase on comp.clase_componentes_id = tclase.id_clase_componentes
     inner join marca on comp.marca_id = marca.id_marca
     inner join modelo on comp.modelo_id = modelo.id_modelo;
+
+	
+	-------actualizar data desde ptabla temporal tempequipo_componentes
+	INSERT INTO
+    `equipo_componente` (
+        `id_equipo_componente`,
+        `equipo_id`,
+        `componente_id`,
+        `esActivo`
+    )
+select
+    temp_equipocomp.id_tabla,
+    temp_equipocomp.equipo_id,
+    temp_equipocomp.componente_id,
+    temp_equipocomp.esActivo
+from temp_equipocomp
+where
+    temp_equipocomp.equipo_id = 2 on DUPLICATE KEY
+UPDATE
+    equipo_componente.esActivo = temp_equipocomp.esActivo,
+    equipo_componente.componente_id = temp_equipocomp.componente_id;
