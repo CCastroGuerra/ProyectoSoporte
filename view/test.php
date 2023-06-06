@@ -31,9 +31,10 @@
 </head>
 
 <body>
-  <div class="form-group">
-    <label for="">Ejemplo label</label>
-    <span></span>
+  <div class="form-group" style="display:inline-flex;flex-direction:column;padding-bottom:20px;">
+    <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
+    <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio"> <span></span>
+    <label for="">Selección:</label>
     <select class="select3" id="popupSelect2" length="10">
       <option value="1">First</option>
       <option value="2">Firsts</option>
