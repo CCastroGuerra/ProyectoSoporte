@@ -7,6 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prueba de select con search</title>
   <style>
+    .select3-A-container {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    .popUpDiv {
+      z-index: 100;
+      position: relative;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .popupSelect {
+      z-index: 100;
+      position: absolute;
+      width: inherit;
+    }
+
+    .select3 {
+      z-index: 100;
+      position: absolute;
+      width: inherit;
+    }
+
     #selectF {
       display: inline-flex;
       flex-direction: column;
@@ -31,16 +58,32 @@
 </head>
 
 <body>
-  <div class="form-group" style="display:inline-flex;flex-direction:column;padding-bottom:20px;">
+  <div class="form-group" style="display:inline-flex;flex-direction:column;padding-bottom:20px;background-color:red;">
+    <h4>testSel1 ->6</h4>
     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
     <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio"> <span></span>
-    <label for="">Selección:</label>
-    <select class="select3" id="popupSelect2" length="10">
-      <option value="1">First</option>
-      <option value="2">Firsts</option>
-      <option value="3">Second</option>
-      <option value="4">Third</option>
-      <option value="5">Fourth</option>
+    <label for="testSel1">Selección:</label>
+    <select class="select3" id="testSel1" length="10">
+      <option value="1">Cristian</option>
+      <option value="2">Christian</option>
+      <option value="3">Mario</option>
+      <option value="4">Brayan</option>
+      <option value="5">Aldo</option>
+      <option value="6">Juan</option>
+    </select>
+  </div>
+
+  <div class="form-group" style="display:inline-flex;flex-direction:column;padding-bottom:20px;background-color:blue;">
+    <h4>testSel2 ->5</h4>
+    <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
+    <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio"> <span></span>
+    <label for="testSel2">Selección:</label>
+    <select class="select3" id="testSel2" length="10">
+      <option value="1">Lucas</option>
+      <option value="2">Dean</option>
+      <option value="3">Samuel</option>
+      <option value="4">JeanCarlos</option>
+      <option value="5">Ronald</option>
     </select>
   </div>
 
@@ -68,7 +111,7 @@
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<!-- 
 <script>
   var $origen = $('#popUpDiv option:contains("")');
 
@@ -159,6 +202,7 @@
 
   });
 </script>
+ -->
 <script src="../libtest.js"></script>
 
 </html>
