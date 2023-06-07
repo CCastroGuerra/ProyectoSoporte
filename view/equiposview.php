@@ -14,9 +14,9 @@ include('../templates/cabecera.php');
             <div class="modal-body">
                 <form id="formResponsable">
                     <div class="form-group">
-                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                        <div class="visually-hidden" id="divmargesi" name="divmargesi">
                             <label class="control-label">ID</label>
-                            <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
+                            <input type="text" class="form-control" id="margesiRef" name="margesiRef" placeholder="ID" readonly>
                         </div>
                         <div class="card">
                             <div class="card-body">
@@ -127,14 +127,14 @@ include('../templates/cabecera.php');
 
                                         <!-- <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable"> -->
                                         <label for="exampleInputEmail1" class="mb-2">Area:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
+                                        <select class="form-select form-select-sm select3" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
                                             <option value="1">Estadistica</option>
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
                                         <label for="exampleInputEmail1" class="mb-2">Estado:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selEstado" name="selEstado">
+                                        <select class="form-select form-select-sm select3" aria-label="Default select example" id="selEstado" name="selEstado">
                                             <option selected>Seleccione el estado</option>
                                             <option value="1">Nuevo</option>
                                             <option value="2">Bueno</option>
