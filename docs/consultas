@@ -26,3 +26,31 @@ where
 UPDATE
     equipo_componente.esActivo = temp_equipocomp.esActivo,
     equipo_componente.componente_id = temp_equipocomp.componente_id;
+    
+--------------------------------
+
+INSERT INTO
+    `equipo_componente` (
+        `id_equipo_componente`,
+        `equipo_id`,
+        `componente_id`,
+        `esActivo`
+    )
+select
+    temp_equipocomp.id_tabla,
+    if(
+        temp_equipocomp.equipo_id is null, (
+            select id_equipo
+            from equipo
+            where
+                margesi = temp_equipocomp.margesi
+        ),
+        temp_equipocomp.equipo_id
+    ) as id_equipo,
+    temp_equipocomp.componente_id,
+    temp_equipocomp.esActivo
+from temp_equipocomp
+where
+    temp_equipocomp.margesi = 123456789123456 on DUPLICATE KEY
+UPDATE
+    equipo_componente.esActivo = temp_equipocomp.esActivo;
