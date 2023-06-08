@@ -54,6 +54,31 @@
       position: absolute;
       width: inherit;
     }
+
+    datalist {
+      background-color: white;
+      border: 1px solid blue;
+      border-radius: 0 0 5px 5px;
+      border-top: none;
+      font-family: sans-serif;
+      width: 350px;
+      padding: 5px;
+      max-height: 10rem;
+      overflow-y: auto;
+    }
+
+    option {
+      background-color: white;
+      padding: 4px;
+      color: blue;
+      margin-bottom: 1px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    option:hover, .active {
+      background-color: lightblue;
+    }
   </style>
 </head>
 
@@ -102,12 +127,16 @@
   </div>
   <div>Otra linea->test float</div>
 
-  <div class="select3-A-container">
-    <input id="fbus" placeholder="filtro" size="10">
-    <div id="popUpDiv">
 
-    </div>
-  </div>
+  <input type="text" list="cars" />
+  <datalist id="cars">
+    <option>Volvo</option>
+    <option>Saab</option>
+    <option>Mercedes</option>
+    <option>Audi</option>
+  </datalist>
+
+
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
