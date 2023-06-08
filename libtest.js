@@ -14,17 +14,20 @@ const ctdsel3s = document.getElementsByClassName("select3");
 for (let i = 0; i < ctdsel3s.length; i++) {
   console.log(ctdsel3s[i]);
   let el = document.getElementsByClassName("select3")[i].id;
-  let sec =document.getElementsByClassName("select3")[i].previousElementSibling;
+  let sec =
+    document.getElementsByClassName("select3")[i].previousElementSibling;
   console.log(sec);
 
   var contl = document.createElement("div");
   contl.className = "select3-A-container";
   contl.id = "select3-A-container-" + i;
+  contl.tabIndex = -1;
 
   var inpt = document.createElement("input");
   inpt.type = "search";
   inpt.id = "fbus-" + i;
   inpt.name = "fbus-" + i;
+  inpt.tabIndex = -1;
   inpt.className = "select3-input form-control  form-control-sm mb-2";
   inpt.type = "search"; //fbus
   inpt.placeholder = "filtro";
@@ -33,6 +36,7 @@ for (let i = 0; i < ctdsel3s.length; i++) {
 
   var dfloat = document.createElement("div");
   dfloat.className = "popUpDiv";
+  dfloat.tabIndex = 1;
   dfloat.id = "popUpDiv-" + i;
   let divsel = dfloat.id;
 
@@ -44,13 +48,58 @@ for (let i = 0; i < ctdsel3s.length; i++) {
 
   let $base = $("#" + el + " option");
   let $inp = inpt.id;
+  let conta = contl.id;
   console.log($base);
-  $("#" + inpt.id).on("search", function () {
+
+  $("#" + $inp).on("search", function () {
     // esto se ejecuta cuando clickea la x en el input[type='search']
     console.log("x button was clicked");
     $("#" + divsel).hide();
     $("#" + el).empty();
     $("#" + el).append($base);
+    $("#" + el).attr("size", 4);
+    $("#" + divsel).show();
+  });
+
+  $("#" + inpt.id).on("click", function () {
+    // esto se ejecuta cuando clickea la x en el input[type='search']
+    console.log("input was focus");
+    var text = this.value;
+    if (!text) {
+      console.log("el input se encuentra vacío");
+      $("#" + el).empty();
+      $("#" + el).append($base);
+      $("#" + el).attr("size", 4);
+      $("#" + divsel).show();
+    }
+
+    // $("#" + el).trigger('focus');
+  });
+
+  /* $("#" + inpt.id).on("mouseout", function (e) {
+    // esto se ejecuta cuando clickea la x en el input[type='search']
+    console.log(this.id + " focus out");
+    console.log(e.target.id)
+    $("#" + el).trigger("focus");
+    /* setTimeout(() => {
+      $("#" + el).empty();
+      $("#" + el).append($base);
+      $("#" + el).attr("size", 4);
+      $("#" + divsel).hide();
+    }, 600); */
+  /*}); */
+
+  $("#" + divsel).on("mouseleave", function (eve) {
+    // esto se ejecuta cuando clickea o coloca el mouse fuera del select
+    console.log("el select en "+divsel+ "es visible :" + $("#" + divsel).is(":visible"));
+    console.log(eve.relatedTarget);
+    if ($("#" + divsel).is(":visible")) {
+      console.log("dejo de ver el select, se ocultara");
+      $("#" + el).empty();
+      $("#" + el).append($base);
+      $("#" + el).attr("size", 4);
+      $("#" + divsel).hide();
+    }
   });
 
   $("#" + inpt.id).on("keyup", function (e) {
@@ -68,6 +117,7 @@ for (let i = 0; i < ctdsel3s.length; i++) {
       $("#" + divsel).hide();
       $("#" + el).empty();
       $("#" + el).append($base);
+      $("#" + divsel).show();
     }
     if (e.which == 8) {
       console.log("se presiono tecla Borrar keyup");
@@ -81,12 +131,15 @@ for (let i = 0; i < ctdsel3s.length; i++) {
     }
   });
 
-  $('#'+el).change(function(){
-    console.log('elemento seleccionado');
-    $('#'+$inp).val($('#'+el).find(":selected")[0].text);
-    $("#"+divsel).hide();
+  $("#" + el).change(function () {
+    console.log("elemento seleccionado");
+    $("#" + $inp).val($("#" + el).find(":selected")[0].text);
+    $("#" + divsel).hide();
   });
+}
 
+function handler(event) {
+  var target = $(event.target);
 }
 //obtener elemento relacional
 /*
@@ -110,72 +163,7 @@ document.getElementById("popUpDiv").appendChild(document.getElementById(el));
 
 //var $base = $("#" + "popUpDiv" + ' option:contains("")');
 
-$.extend($.expr[":"], {
-  containsi: function (elem, i, match, array) {
-    return (
-      (elem.textContent || elem.innerText || "")
-        .toLowerCase()
-        .indexOf((match[3] || "").toLowerCase()) >= 0
-    );
-  },
-});
 
-$("#fbus").on("keyup", function (e) {
-  var text = this.value;
-  var ta;
-  console.log("comprobando: " + text);
-  /* text == "" ? ta = '0' : ta = '4';
-    $("#" + el).attr('size', ta); */
-  if (text != " ") {
-    console.log("no es vacio");
-    buscarenselect(text);
-  } else {
-    console.log("recargando...");
-    $("#popUpDiv").hide();
-    $("#" + el).empty();
-    $("#" + el).append($base);
-  }
-  if (e.which == 8) {
-    console.log("se presiono tecla Borrar keyup");
-    $("#popUpDiv").hide();
-    $("#" + el).empty();
-    $("#" + el).append($base);
-    if (text > 0) {
-      buscarenselect(text);
-    }
-  }
-});
-
-function buscarenselect(texto) {
-  ta = 0;
-  ht = "auto";
-  $("#popUpDiv").show();
-  console.log("buscando..");
-  var enc = $("#popUpDiv option:containsi(" + texto + ")");
-  if (enc.length > 0) {
-    console.log("la busqueda tiene resultados -> " + enc.length);
-    if (enc.length == 1) {
-      ta = 2;
-      ht = "20px";
-    } else {
-      if (enc.length <= 4) {
-        ta = enc.length;
-        //ht = "auto";
-      } else {
-        ta = 4;
-      }
-    }
-    $("#" + el).attr("size", ta);
-    $("#" + el).css("height", ht);
-    //enc.trigger('change');
-    $("#" + el).empty();
-    $("#" + el).append(enc);
-    console.log("fin busqueda");
-  } else {
-    console.log("no hay resultados");
-    $("#popUpDiv").hide();
-  }
-}
 
 function buscarenselect(texto, popupdiv, selectid) {
   ta = 0;
@@ -206,6 +194,7 @@ function buscarenselect(texto, popupdiv, selectid) {
     //enc.trigger('change');
     $("#" + selectid).empty();
     $("#" + selectid).append(enc);
+
     console.log("fin busqueda");
   } else {
     console.log("no hay resultados");
