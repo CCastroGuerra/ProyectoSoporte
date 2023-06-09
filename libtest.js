@@ -58,19 +58,25 @@ for (let i = 0; i < ctdsel3s.length; i++) {
     $("#" + el).empty();
     $("#" + el).append($base);
     $("#" + el).attr("size", 4);
+    $("#" + divsel).css("display", "block");
     $("#" + divsel).show();
   });
 
-  $("#" + inpt.id).on("click", function () {
-    // esto se ejecuta cuando clickea la x en el input[type='search']
+  $("#" + $inp).on("focus", function () {
+    // esto se ejecuta cuando enfoca el input
     console.log("input was focus");
     var text = this.value;
     if (!text) {
+      //si el input esta vacío muestra todas las opciones
       console.log("el input se encuentra vacío");
       $("#" + el).empty();
       $("#" + el).append($base);
       $("#" + el).attr("size", 4);
+      $("#" + divsel).css("display", "block");
       $("#" + divsel).show();
+    } else {
+      //busca el texto
+      buscarenselect(text, divsel, el);
     }
 
     // $("#" + el).trigger('focus');
@@ -91,8 +97,10 @@ for (let i = 0; i < ctdsel3s.length; i++) {
 
   $("#" + divsel).on("mouseleave", function (eve) {
     // esto se ejecuta cuando clickea o coloca el mouse fuera del select
-    console.log("el select en "+divsel+ "es visible :" + $("#" + divsel).is(":visible"));
-    console.log(eve.relatedTarget);
+    console.log(
+      "el select en " + divsel + "es visible :" + $("#" + divsel).is(":visible")
+    );
+    //console.log(eve.relatedTarget);
     if ($("#" + divsel).is(":visible")) {
       console.log("dejo de ver el select, se ocultara");
       $("#" + el).empty();
@@ -102,7 +110,7 @@ for (let i = 0; i < ctdsel3s.length; i++) {
     }
   });
 
-  $("#" + inpt.id).on("keyup", function (e) {
+  $("#" + $inp).on("input", function (e) {
     var text = this.value;
     var ta;
     console.log("comprobando: " + text + " en: " + this.id);
@@ -119,18 +127,24 @@ for (let i = 0; i < ctdsel3s.length; i++) {
       $("#" + el).append($base);
       $("#" + divsel).show();
     }
-    if (e.which == 8) {
-      console.log("se presiono tecla Borrar keyup");
-      $("#" + divsel).hide();
-      $("#" + el).empty();
-      console.log($base);
-      $("#" + el).append($base);
-      if (text.length > 0) {
-        buscarenselect(text, divsel, el);
-      }
-    }
   });
 
+  var currentfocus = -1;
+  $("#" + $inp).on("keydown", function (e) {
+    if (e.keyCode == 40) {
+      currentfocus++;
+      console.log("se presiono tecla keydown: " + currentfocus);
+      var x= $.map($('#'+'testSel1'+' option') ,function(option) {
+        if(option.style.display=='block'){
+          return option;}
+      });
+      console.log(x);
+    }
+    if (e.keyCode == 38) {
+      currentfocus--;
+      console.log("se presiono tecla keyup: " + currentfocus);
+    }
+  });
   $("#" + el).change(function () {
     console.log("elemento seleccionado");
     $("#" + $inp).val($("#" + el).find(":selected")[0].text);
@@ -138,9 +152,6 @@ for (let i = 0; i < ctdsel3s.length; i++) {
   });
 }
 
-function handler(event) {
-  var target = $(event.target);
-}
 //obtener elemento relacional
 /*
 var el = document.getElementsByClassName("select3")[0].id;
@@ -163,8 +174,6 @@ document.getElementById("popUpDiv").appendChild(document.getElementById(el));
 
 //var $base = $("#" + "popUpDiv" + ' option:contains("")');
 
-
-
 function buscarenselect(texto, popupdiv, selectid) {
   ta = 0;
   ht = "auto";
@@ -172,9 +181,26 @@ function buscarenselect(texto, popupdiv, selectid) {
   console.log("div id=" + popupdiv);
   $("#" + popupdiv).show();
   console.log("buscando..");
+  texto = texto.toUpperCase();
   var str = "#" + selectid + " option:containsi('" + texto + "')";
   console.log(str);
-  var enc = $("#" + selectid + " option:containsi('" + texto + "')");
+  //var enc = $("#" + selectid + " option:containsi('" + texto + "')");
+  /* var enc = $("#" + selectid)
+    .find("option")
+    .map(function () {
+      if ($(this).text().toUpperCase().indexOf(texto) > -1) {
+        $(this).css("display", "block");
+        return $(this);
+      }
+      {
+        $(this).css("display", "none");
+      }
+    }); */
+var enc= $.map($('#'+ selectid+' option') ,function(option) {
+  if(option.text.toUpperCase().indexOf(texto) > -1){option.style.display='block';
+  return option;}else{option.style.display='none';}
+});
+
   console.log(enc);
   if (enc.length > 0) {
     console.log("la busqueda tiene resultados -> " + enc.length);
@@ -191,9 +217,10 @@ function buscarenselect(texto, popupdiv, selectid) {
     }
     $("#" + selectid).attr("size", ta);
     $("#" + selectid).css("height", ht);
+    //$("#" + selectid).show();
     //enc.trigger('change');
-    $("#" + selectid).empty();
-    $("#" + selectid).append(enc);
+    //$("#" + selectid).empty();
+    //$("#" + selectid).append(enc);
 
     console.log("fin busqueda");
   } else {
