@@ -62,7 +62,7 @@
   
 
   <!-- Global site tag (gtag.js) - Google Analytics-->
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+  <!-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -74,7 +74,7 @@
     gtag('config', 'UA-118965717-3');
     // Bootstrap ID
     gtag('config', 'UA-118965717-5');
-  </script>
+  </script> -->
 
 
   <!-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>

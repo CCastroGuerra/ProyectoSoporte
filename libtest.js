@@ -129,29 +129,97 @@ for (let i = 0; i < ctdsel3s.length; i++) {
     }
   });
 
-  var currentfocus = -1;
+  var currentFocus = -1;
+
   $("#" + $inp).on("keydown", function (e) {
-    if (e.keyCode == 40) {
-      currentfocus++;
-      console.log("se presiono tecla keydown: " + currentfocus);
-      var x= $.map($('#'+'testSel1'+' option') ,function(option) {
-        if(option.style.display=='block'){
-          return option;}
-      });
-      console.log(x);
+    var x = $.map($("#" + el + " option"), function (option) {
+      if (option.style.display != "none") {
+        return option;
+      }
+    });
+
+    if ($("#" + divsel).is(":visible")) {
+      console.log('el div esta visible: '+divsel);
+      if (e.keyCode == 40) {
+        currentFocus++;
+        console.log("se presiono tecla keydown: " + currentFocus);
+        console.log(x);
+        
+        addActive(x);
+      }
+      if (e.keyCode == 38) {
+        currentFocus--;
+        console.log("se presiono tecla keyup: " + currentFocus);
+        
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          console.log("click en option");
+          if (x) {x[currentFocus].selected=true;x[currentFocus].click(); console.log(x[currentFocus])};
+        }
+      }
     }
-    if (e.keyCode == 38) {
-      currentfocus--;
-      console.log("se presiono tecla keyup: " + currentfocus);
-    }
+    
   });
-  $("#" + el).change(function () {
-    console.log("elemento seleccionado");
+  
+  $("#" + el).click(function () {
     $("#" + $inp).val($("#" + el).find(":selected")[0].text);
+    document.getElementById($inp).dataset.value = $("#" + el).find(":selected")[0].value
     $("#" + divsel).hide();
-  });
+    currentFocus=-1;
+    var x = $.map($("#" + el + " option"), function (option) {
+      if (option.style.display != "none") {
+        return option;
+      }
+    });
+    removeActive(x);
+    console.log(el);
+    $("#" + x[0].parentElement.id).animate(
+      {
+        scrollTop: 0
+      },
+      300
+    );
+  }); 
 }
 
+function addActive(x) {
+  if (!x) return false;
+  removeActive(x);
+  if (currentFocus >= x.length) currentFocus = 0;
+  if (currentFocus < 0) currentFocus = x.length - 1;
+  x[currentFocus].classList.add("active");
+  console.log('focus: '+currentFocus);
+  var res=currentFocus % x[0].parentElement.size;
+  console.log('res: '+res);
+  if (res==0) {
+    $("#" + x[0].parentElement.id).animate(
+      {
+        scrollTop: x[currentFocus].offsetTop
+      },
+      300
+    );
+  } else {
+    if (res==3){
+      var pos=4-currentFocus;
+      console.log('pos: ' + pos);
+      $("#" + x[0].parentElement.id).animate(
+        {
+          scrollTop: x[currentFocus-res].offsetTop
+        },
+        300
+      );
+    }
+    
+  }
+}
+function removeActive(x) {
+  for (var i = 0; i < x.length; i++) {
+    x[i].classList.remove("active");
+  }
+}
 //obtener elemento relacional
 /*
 var el = document.getElementsByClassName("select3")[0].id;
@@ -196,10 +264,14 @@ function buscarenselect(texto, popupdiv, selectid) {
         $(this).css("display", "none");
       }
     }); */
-var enc= $.map($('#'+ selectid+' option') ,function(option) {
-  if(option.text.toUpperCase().indexOf(texto) > -1){option.style.display='block';
-  return option;}else{option.style.display='none';}
-});
+  var enc = $.map($("#" + selectid + " option"), function (option) {
+    if (option.text.toUpperCase().indexOf(texto) > -1) {
+      option.style.display = "block";
+      return option;
+    } else {
+      option.style.display = "none";
+    }
+  });
 
   console.log(enc);
   if (enc.length > 0) {

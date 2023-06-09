@@ -16,14 +16,14 @@ include('../templates/cabecera.php');
                         <div class="card-body">
                             <div class="form-group">
                             <div class="visually-hidden" id="divcodigo" name="divcodigo">
-                                    <label class="control-label">Código</label>
+                                    <label for="inputCodigo" class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>                                
-                                <label for="exampleInputEmail1" class="mb-2">Codigo de Personal:</label>
+                                <label for="codPersonal" class="mb-2">Codigo de Personal:</label>
                                 <input type="text" class="form-control form-control-sm mb-2" id="codPersonal" name="codPersonal" placeholder="PER########">
-                                <label for="exampleInputEmail1" class="mb-2">Usuario:</label>
+                                <label for="username" class="mb-2">Usuario:</label>
                                 <input type="text" class="form-control  form-control-sm mb-2" id="username" name="username" placeholder="Ejmplo: user3087k" autocomplete="new-username" required>
-                                <label for="exampleInputEmail1" class="mb-2">Contraseña:</label>
+                                <label for="userpass" class="mb-2">Contraseña:</label>
                                 <input type="password" autocomplete="new-password" class="form-control  form-control-sm mb-2" id="userpass" name="userpass" placeholder="" autocomplete="off" required>
                                 
                                 
@@ -119,9 +119,9 @@ include('../templates/cabecera.php');
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                             <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;de&nbsp;</label>
+                            <label for="txtPagVista">&nbsp;de&nbsp;</label>
                             <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;paginas.&nbsp;</label>
+                            <label for="txtPagTotal">&nbsp;paginas.&nbsp;</label>
                             <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
                             <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>

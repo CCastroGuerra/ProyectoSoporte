@@ -17,14 +17,14 @@ include('../templates/cabecera.php');
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="visually-hidden">
-                                    <label class="control-label">Código</label>
+                                    <label for="inputCodigo" class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
 
                                 </div>
-                                <label for="exampleInputEmail1" class="mb-2">DNI:</label>
+                                <label for="inputDni" class="mb-2">DNI:</label>
                                 <div id="nombreEmpleado"></div>
                                 <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI">
-                                <label for="exampleInputEmail1" class="mb-2">Rol:</label>
+                                <label for="selAroles" class="mb-2">Rol:</label>
                                 <select class="form-select" aria-label="ARoles" id="selAroles" name="selAroles">
                                     <option selected>Seleccione el rol</option>
                                     <option value="1">Administrador</option>
@@ -118,9 +118,9 @@ include('../templates/cabecera.php');
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                             <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;de&nbsp;</label>
+                            <label for="txtPagVista">&nbsp;de&nbsp;</label>
                             <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;paginas.&nbsp;</label>
+                            <label for="txtPagTotal">&nbsp;paginas.&nbsp;</label>
                             <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
                             <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>
