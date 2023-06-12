@@ -1,7 +1,8 @@
 <?php
 include('../templates/cabecera.php');
 ?>
-
+<!-- <link rel="stylesheet" href="../libtest.css">
+ -->
 <!-- modal responsable -->
 <div class="modal" tabindex="-1" id="responsableModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
@@ -15,7 +16,7 @@ include('../templates/cabecera.php');
                 <form id="formResponsable">
                     <div class="form-group">
                         <div class="" id="divmargesi" name="divmargesi">
-                            <label class="control-label">ID</label>
+                            <label for="margesiRef" class="control-label">ID</label>
                             <input type="text" class="form-control" id="margesiRef" name="margesiRef" placeholder="ID" readonly>
                         </div>
                         <div class="card">
@@ -50,9 +51,9 @@ include('../templates/cabecera.php');
                                 <button id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                                 <button id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                                 <input type="text" id="txtPagVistaPre" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;de&nbsp;</label>
+                                <label for="txtPagVistaPre">&nbsp;de&nbsp;</label>
                                 <input type="text" id="txtPagTotalPre" class="cuadrosPaginas" readonly>
-                                <label>&nbsp;paginas.&nbsp;</label>
+                                <label for="txtPagTotalPre">&nbsp;paginas.&nbsp;</label>
                                 <button id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
                                 <button id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                             </div>
@@ -77,7 +78,7 @@ include('../templates/cabecera.php');
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Añadir Equipo</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                <button id="cerrarSup" name="cerrarSup" type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formAEquipo">
                 <div class="modal-body">
@@ -89,22 +90,22 @@ include('../templates/cabecera.php');
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="" id="divcodigo" name="divcodigo">
-                                            <label class="control-label">Código</label>
+                                            <label for="inputCodigo" class="control-label">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
-                                        <label for="exampleInputEmail1" class="mb-2">Tipo de equipo:</label>
+                                        <label for="selTipoEquipo" class="mb-2">Tipo de equipo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
                                             <option selected>Seleccione el tipo</option>
                                             <option value="1">Impresora</option>
                                             <option value="2">Laptop</option>
                                             <option value="3">Todo en uno</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Serie:</label>
+                                        <label for="serie" class="mb-2">Serie:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
-                                        <label for="exampleInputEmail1" class="mb-2">Margesi:</label>
+                                        <label for="margesi" class="mb-2">Margesi:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
 
-                                        <label for="exampleInputEmail1" class="mb-2">Marca:</label>
+                                        <label for="selMarcaEquipo" class="mb-2">Marca:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selMarcaEquipo" name="selMarcaEquipo">
                                             <option selected>Seleccione la marca</option>
                                             <option value="1">Marca 1</option>
@@ -112,7 +113,7 @@ include('../templates/cabecera.php');
                                             <option value="3">Marca 3</option>
                                         </select>
 
-                                        <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
+                                        <label for="selModeloEquipo" class="mb-2">Modelo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selModeloEquipo" name="selModeloEquipo">
                                             <option selected>Seleccione el modelo</option>
                                             <option value="1">Modelo 1</option>
@@ -126,14 +127,14 @@ include('../templates/cabecera.php');
                                         <input type="text" id="respValue" name="respValue" class="">
 
                                         <!-- <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable"> -->
-                                        <label for="exampleInputEmail1" class="mb-2">Area:</label>
+                                        <label for="selArea" class="mb-2">Area:</label>
                                         <select class="form-select form-select-sm select3" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
                                             <option value="1">Estadistica</option>
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Estado:</label>
+                                        <label for="selEstado" class="mb-2">Estado:</label>
                                         <select class="form-select form-select-sm select3" aria-label="Default select example" id="selEstado" name="selEstado">
                                             <option selected>Seleccione el estado</option>
                                             <option value="1">Nuevo</option>
@@ -142,9 +143,9 @@ include('../templates/cabecera.php');
                                             <option value="4">Malo</option>
                                             <option value="5">En Reparación</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">MAC:</label>
+                                        <label for="mac" class="mb-2">MAC:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
-                                        <label for="exampleInputEmail1" class="mb-2">IP:</label>
+                                        <label for="ip" class="mb-2">IP:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP">
                                     </div>
                                 </div>
@@ -212,7 +213,7 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" id="cerrarBot" name="cerrarBot" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
@@ -234,7 +235,7 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="mb-2"># de Serie:</label>
+                                <label for="codigo" class="mb-2"># de Serie:</label>
                                 <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese el #">
 
                             </div>
@@ -334,9 +335,9 @@ include('../templates/cabecera.php');
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                             <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;de&nbsp;</label>
+                            <label for="txtPagVista">&nbsp;de&nbsp;</label>
                             <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;paginas.&nbsp;</label>
+                            <label for="txtPagTotal">&nbsp;paginas.&nbsp;</label>
                             <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
                             <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>
@@ -349,6 +350,8 @@ include('../templates/cabecera.php');
 </div>
 
 <script src='../js/equiposAjax.js'></script>
+<!-- <script src='../libtest.js'></script>
+ -->
 
 <?php
 include '../templates/footer.php';

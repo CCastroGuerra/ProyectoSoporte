@@ -1,27 +1,30 @@
 .select3-A-container {
-    display: inline-flex;
-    flex-direction: column;
-    width: 100%;
-  }
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-  .popUpDiv {
-    z-index: 100;
-    position: relative;
-    display: none;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-  }
+.popUpDiv {
+  z-index: 100;
+  position: relative;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
 
-  .popupSelect {
-    z-index: 100;
-    position: absolute;
-    width: inherit;
-  }
+.popupSelect {
+  z-index: 100;
+  position: absolute;
+  width: inherit;
+}
 
-  .select3 {
-    z-index: 100;
-    position: absolute;
-    width: inherit;
-  }
+.select3 {
+  z-index: 100;
+  position: absolute;
+  width: inherit;
+}
+option:hover,.active {
+  background-color: lightblue;
+}

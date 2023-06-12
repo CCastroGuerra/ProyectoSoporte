@@ -33,6 +33,9 @@
       position: absolute;
       width: inherit;
     }
+    option:hover,.active {
+      background-color: lightblue;
+    }
 
     #selectF {
       display: inline-flex;
@@ -74,11 +77,10 @@
       margin-bottom: 1px;
       font-size: 18px;
       cursor: pointer;
+      display: block;
     }
 
-    option:hover, .active {
-      background-color: lightblue;
-    }
+   
   </style>
 </head>
 
@@ -86,7 +88,7 @@
   <div class="form-group" style="display:inline-flex;flex-direction:column;padding-bottom:20px;background-color:red;">
     <h4>testSel1 ->6</h4>
     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-    <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio"> <span></span>
+    <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
     <label for="testSel1">Selección:</label>
     <select class="select3" id="testSel1" length="10">
       <option value="1">Cristian</option>
@@ -95,13 +97,19 @@
       <option value="4">Brayan</option>
       <option value="5">Aldo</option>
       <option value="6">Juan</option>
+      <option value="7">Joan</option>
+      <option value="8">María</option>
+      <option value="9">Marcos</option>
+      <option value="10">Ruben</option>
+      <option value="11">Sara</option>
+      <option value="12">Raquel</option>
     </select>
   </div>
 
   <div class="form-group" style="display:inline-flex;flex-direction:column;padding-bottom:20px;background-color:blue;">
     <h4>testSel2 ->5</h4>
     <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-    <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio"> <span></span>
+    <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
     <label for="testSel2">Selección:</label>
     <select class="select3" id="testSel2" length="10">
       <option value="1">Lucas</option>

@@ -17,10 +17,10 @@ include('../templates/cabecera.php');
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="visually-hidden" id="divcodigo" name="divcodigo">
-                                    <label class="control-label">Código</label>
+                                    <label for="inputCodigo" class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
-                                <label for="exampleInputEmail1" class="mb-2">Rol:</label>
+                                <label for="inputRol" class="mb-2">Rol:</label>
                                 <input type="text" class="form-control mb-2" id="inputRol" name="inputRol" placeholder="Ingrese el Rol" required>
                                 <div id="alerta"></div>
                             </div>

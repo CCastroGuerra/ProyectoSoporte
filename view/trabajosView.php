@@ -20,23 +20,23 @@ include('../templates/cabecera.php');
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="visually-hidden" id="divcodigo" name="divcodigo">
-                                            <label class="control-label">Código</label>
+                                            <label class="control-label" for="inputCodigo">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
-                                        <label for="exampleInputEmail1" class="mb-2"># de Serie:</label>
+                                        <label for="nroSerie" class="mb-2"># de Serie:</label>
                                         <input type="text" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
-                                        <label for="exampleInputEmail1" class="mb-2">Marquesi:</label>
+                                        <label for="marquesi" class="mb-2">Marquesi:</label>
                                         <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
-                                        <label for="exampleInputEmail1" class="mb-2">Usuario del Equipo:</label>
+                                        <label for="nombreUsuario" class="mb-2">Usuario del Equipo:</label>
                                         <input type="text" class="form-control mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese Usuario">
-                                        <label for="exampleInputEmail1" class="mb-2">Area:</label>
+                                        <label for="selArea" class="mb-2">Area:</label>
                                         <select class="form-select" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Selecciona el área</option>
                                             <option value="1">Administración</option>
                                             <option value="2">Adminsion</option>
                                             <option value="3">Laboratorio</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
+                                        <label for="selEquipo" class="mb-2">Equipo:</label>
                                         <select class="form-select" aria-label="Default select example" id="selEquipo" name="selEquipo">
                                             <option selected>Selecciona el equipo</option>
                                             <option value="1">Monitor</option>
@@ -45,23 +45,23 @@ include('../templates/cabecera.php');
                                             <option value="4">Impresora</option>
                                             <option value="5">Otros</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Marca:</label>
+                                        <label for="selMarca" class="mb-2">Marca:</label>
                                         <select class="form-select" aria-label="Default select example" id="selMarca" name="selMarca">
                                             <option selected>Seleccione la marca</option>
                                             <option value="1">HP</option>
                                             <option value="2">ASUS</option>
                                             <option value="3">LG</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
+                                        <label for="selModelo" class="mb-2">Modelo:</label>
                                         <select class="form-select" aria-label="Default select example" id="selModelo" name="selModelo">
                                             <option selected>Seleccione el modelo</option>
                                             <option value="1">Elite QP</option>
                                             <option value="2">Asus X555Y</option>
                                             <option value="3">Sentrix N4</option>
                                         </select>
-                                        <label for="exampleInputEmail1" class="mb-2">Falla observada:</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        <label for="exampleInputEmail1" class="mb-2">Técnico:</label>
+                                        <label for="fallaObservada" class="mb-2">Falla observada:</label>
+                                        <textarea class="form-control" id="fallaObservada" rows="3"></textarea>
+                                        <label for="selTecnico" class="mb-2">Técnico:</label>
                                         <select class="form-select" aria-label="Default select example" id="selTecnico" name="selTecnico">
                                             <option selected>Seleccione el Técnico</option>
                                             <option value="1">Técnico 1</option>
@@ -69,10 +69,10 @@ include('../templates/cabecera.php');
                                             <option value="3">Técnico 3</option>
                                             <option value="4">Técnico 4</option>
                                         </select>
-                                        <label for="exampleFormControlTextarea2" class="form-label">Solucion:</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" id="solucion" name="solucion"></textarea>
-                                        <label for="exampleFormControlTextarea2" class="form-label">Recomendación:</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" id="recomendacion" name="recomendacion"></textarea>
+                                        <label for="textSolucion" class="form-label">Solucion:</label>
+                                        <textarea class="form-control" id="textSolucion" rows="3" id="solucion" name="solucion"></textarea>
+                                        <label for="textrecom" class="form-label">Recomendación:</label>
+                                        <textarea class="form-control" id="textrecom" rows="3" id="recomendacion" name="recomendacion"></textarea>
                                         <div id="alerta"></div>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="card-form">
-                                <label for="exampleInputEmail1" class="mb-2">Servicio:</label>
+                                <label for="selServicio" class="mb-2">Servicio:</label>
                                 <select class="form-select" aria-label="Default select example" id="selServicio" name="selServicio">
                                     <option selected>Seleccione el Servicio</option>
                                     <option value="1">Servicio 1</option>
@@ -261,9 +261,9 @@ include('../templates/cabecera.php');
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                             <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;de&nbsp;</label>
+                            <label for ="txtPagVista">&nbsp;de&nbsp;</label>
                             <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
-                            <label>&nbsp;paginas.&nbsp;</label>
+                            <label for="btnSiguiente">&nbsp;paginas.&nbsp;</label>
                             <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
                             <button id="btnUltimo" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                         </div>
