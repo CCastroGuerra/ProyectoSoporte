@@ -3,7 +3,7 @@ var numPagina = 1;
 var frmServicio = document.getElementById("formServicio");
 console.log(numPagina);
 buscarServicio();
-listarServicio();
+//listarServicio();
 
 frmServicio.onsubmit = function (e) {
   e.preventDefault();
@@ -12,7 +12,7 @@ frmServicio.onsubmit = function (e) {
     console.log("actualizo");
   } else {
     guardarServicio();
-    listarServicio();
+    //listarServicio();
     console.log("guardo");
   }
   frmServicio.reset();
