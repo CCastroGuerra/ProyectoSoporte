@@ -281,10 +281,10 @@
         </ul>
       </li>
 
-      <li class="nav-item"><a class="nav-link" href="../view/trabajosView.php">
+      <li class="nav-item"><a class="nav-link" href="../plantillas/procInformaticos.php">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-          </svg> Trabajos</a>
+          </svg> Procesos Informáticos</a>
       </li>
       <!--fin Reportes-->
 

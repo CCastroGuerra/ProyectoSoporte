@@ -78,7 +78,7 @@ include('../templates/cabecera.php');
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Añadir Equipo</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                <button id="cerrarSup" name="cerrarSup" type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formAEquipo">
                 <div class="modal-body">
@@ -213,7 +213,7 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="button" id="cerrarBot" name="cerrarBot" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
                 </div>
             </form>
