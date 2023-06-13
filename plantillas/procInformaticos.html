@@ -59,23 +59,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
 
+    #enres{
+        background-color: gray;
+    }
+    @media print{
+        #enres{
+           box-shadow: inset 0 0 0 1000px gray;
+        } 
+        #nhospital {
+            color:#FFFFFF;
+            print-color-adjust: exact;
+        }
+    }
+</style>
+</head>
 
 <body>
-
-
-    <h1>Plantilla Procedimientos Informáticos</h1>
     <div class="col-md-12 col-lg-12 ">
         <div class="row">
             <div class="col-xs-1-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body">   
+                                       
+                        <div class="ALLS">
+                            <table class="border border-dark" style="display:inline-block; height:50px">
+                                <tr>
+                                    <td scope="col" style="padding-top:0;padding-bottom: 0;padding-left: 0;padding-right: 2px;width: 4%;">                                        
+                                            <div>
+                                                <img src="../pcmsalud.webp" style="height:40px;">
+                                            </div>               
+                                    </td>
+                                    <td id="nhospital" class="align-middle text-center" scope="col" style="
+                                    padding-top: 0;
+                                    padding-bottom: 0;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    width: 250px;
+                                    height: 40px;
+                                    box-shadow: inset 0 0 0 1000px red;
+                                    font-family: system-ui;
+                                    color:aliceblue;
+                                    font-size: 71%;">
+                                        <div>
+                                            <span><b>HOSPITAL DE APOYO II-1 NUESTRA SEÑORA DE LAS MERCEDES PAITA</b></span>
+                                        </div>
+                                    </td>
+                                   
+                                </tr>
+                            </table>
+                        </div>
+                                                    
 
                         <div class="table table-bordered">
                             <table class="table border border-dark align-middle text-center">
                                 <thead>
                                     <tr>
-                                        <th scope="col"><span class="align-middle"><strong>FICHA DE PROCEDMIENTOS
+                                        <th scope="col"><span class="align-middle"><strong>FICHA DE PROCEDIMIENTOS
                                                     INFORMÁTICOS</strong></span></th>
                                     </tr>
                                 </thead>
@@ -86,13 +127,14 @@
                             <table class="table table-bordered border border-dark align-middle text-center">
                                 <thead>
                                     <tr>
-                                        <div class="row">
-                                            <th scope="col"><span class="align-middle"><strong>HOSPITAL DE APOYO II-1
-                                                        NUESTRA SEÑORA DE LAS MERCEDES DE PAITA</strong></span></th>
-                                        </div>
+                                        <th scope="col" style="border-bottom-style: hidden;border-top-style: hidden;border-left-style: hidden;">
+                                            <span class="align-middle"><strong>HOSPITAL DE APOYO II-1
+                                                        NUESTRA SEÑORA DE LAS MERCEDES DE PAITA</strong></span>
+                                        </th>
+                                        
                                         <div class="row table table-bordered align-middle">
                                             <div class="col-lg-5 col-sm-4">
-                                                <th style="background-color: gray;"><strong>HLMSP-ST</strong></th>
+                                                <th id="enres"><strong>HLMSP-ST</strong></th>
                                             </div>
                                             <div class="col-lg-auto col-sm-4">
                                                 <th style="color: red;">N° 000302</th>
@@ -103,16 +145,16 @@
                             </table>
                         </div>
 
-                        <div class="table table-bordered">
-                            <table class="table align-middle text-center">
+                        <div class="table table-borderless">
+                            <table class="table table-borderless align-middle text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="w-75"
-                                            style="padding: top 0;padding-bottom: 0;padding-left: 0;">
+                                            style="padding-top:0;padding-bottom: 1;padding-left: 0;">
                                             <table class="border border-dark" style="width: 100%;">
                                                 <thead>
                                                     <tr class="border border-dark">
-                                                        <th scope="col">NOMBRES Y APELLIDOS</th>
+                                                        <th id="enres" scope="col">NOMBRES Y APELLIDOS</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -122,11 +164,11 @@
                                                 </tbody>
                                             </table>
                                         </th>
-                                        <th scope="col" class="w-25" style="padding:0%;">
+                                        <th scope="col" class="w-25" style="padding-top:0;padding-bottom: 1;padding-left: 0; padding-right: 0%;">
                                             <table class="border border-dark" style="width: 100%;">
                                                 <thead>
                                                     <tr class="border border-dark">
-                                                        <th scope="col">FECHA DE RECEPCIÓN</th>
+                                                        <th id="enres" scope="col">FECHA DE RECEPCIÓN</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -142,56 +184,60 @@
                             </table>
                         </div>
 
-                        <div class="table table-bordered">
-                            <table class="table align-middle text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="w-75"
-                                            style="padding: top 0;padding-bottom: 0;padding-left: 0;">
+                        <div class="table table-borderless">
+                            <table class="table table-borderless align-middle text-center">
+                                <tr>
+                                    <td scope="col" class="w-75"
+                                    style="padding-top:0;padding-bottom: 1;padding-left: 0;">
+                                        
+                                            <div>
+                                                <table class="border border-dark" style="width: 100%;">
+                                                    <thead>
+                                                        <tr class="border border-dark">
+                                                            <th id="enres" scope="col">DATOS DEL EQUIPO</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="container"
+                                                                style="display:flex; justify-content: space-evenly;">
+                                                                <div>
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="checkCPU">
+                                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                                        CPU</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="checkImpr">
+                                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                                        Impresora</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="checkLaptop">
+                                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                                        Laptop</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="checkOtros">
+                                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                                        Otros</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>                                                                                                    
+                                    </td>
+                                    <td scope="col" class="w-25"
+                                    style="padding-top:0;padding-bottom: 1;padding-left: 0; padding-right:0">
+                                        <div class="">
                                             <table class="border border-dark" style="width: 100%;">
                                                 <thead>
                                                     <tr class="border border-dark">
-                                                        <th scope="col">DATOS DEL EQUsIPO</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="container-fluid"
-                                                            style="display:flex; justify-content: space-evenly;">
-                                                            <div>
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                    id="checkCPU">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    CPU</label>
-                                                            </div>
-                                                            <div>
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                    id="checkImpr">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    Impresora</label>
-                                                            </div>
-                                                            <div>
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                    id="checkLaptop">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    Laptop</label>
-                                                            </div>
-                                                            <div>
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                    id="checkOtros">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    Otros</label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </th>
-                                        <th scope="col" class="w-25" style="padding:0%;">
-                                            <table class="border border-dark" style="width: 100%;">
-                                                <thead>
-                                                    <tr class="border border-dark">
-                                                        <th scope="col">OFICINA/SERVICIO</th>
+                                                        <th id="enres" scope="col">OFICINA/SERVICIO</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -200,18 +246,47 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </th>
-                                    </tr>
-                                </thead>
-
+                                        </div>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
 
                         <div class="table table-bordered">
-                            <table>
+                            <table class="table table-bordered border-dark align-middle text-center">
                                 <thead>
                                     <tr>
-                                        <th>FALLAS EN EQUIPO INFORMATICO</th>
+                                        <th id="enres">FALLAS EN EQUIPO INFORMATICO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>   ...   </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table table-bordered">
+                            <table class="table table-bordered border-dark align-middle text-center">
+                                <thead>
+                                    <tr>
+                                        <th id="enres">SOLUCIÓN O REPARACIÓN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>   ...   </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table table-bordered">
+                            <table class="table table-bordered border-dark align-middle text-center">
+                                <thead>
+                                    <tr>
+                                        <th  id="enres">RECOMENDACIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
