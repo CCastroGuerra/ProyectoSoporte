@@ -19,12 +19,12 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                        <div class="#" id="divcodigo" name="divcodigo">
                                             <label class="control-label" for="inputCodigo">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
-                                        <label for="nroSerie" class="mb-2"># de Serie:</label>
-                                        <input type="text" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
+                                        <label for="nroSerie" class="mb-2"># de Serie: <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary" ></button></label>
+                                        <input type="search" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
                                         <label for="marquesi" class="mb-2">Marquesi:</label>
                                         <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
                                         <label for="nombreUsuario" class="mb-2">Usuario del Equipo:</label>
@@ -108,7 +108,7 @@ include('../templates/cabecera.php');
                                                 <table class="table table-hover align-middle" id="tableModal">
                                                     <thead>
                                                         <tr>
-                                                            
+
                                                             <th scope="col"><strong>Servicio</strong></th>
                                                         </tr>
                                                     </thead>
@@ -261,7 +261,7 @@ include('../templates/cabecera.php');
                             <button id="btnPrimero" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
                             <button id="btnAnterior" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                             <input type="text" id="txtPagVista" class="cuadrosPaginas" readonly>
-                            <label for ="txtPagVista">&nbsp;de&nbsp;</label>
+                            <label for="txtPagVista">&nbsp;de&nbsp;</label>
                             <input type="text" id="txtPagTotal" class="cuadrosPaginas" readonly>
                             <label for="btnSiguiente">&nbsp;paginas.&nbsp;</label>
                             <button id="btnSiguiente" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
