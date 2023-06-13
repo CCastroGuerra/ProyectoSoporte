@@ -490,7 +490,7 @@ class Equipos extends Conectar
     }
 
     /*Insertar y actualizar componentes de tabla temporal */
-    public function actualizarTempComponentes($idEquipo)
+   /* public function actualizarTempComponentes($idEquipo)
     {
         $conectar = parent::conexion();
         $sql = "INSERT INTO
@@ -513,7 +513,7 @@ class Equipos extends Conectar
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
-    }
+    }*/
     /*
     public function mostrarComponentes($idSerie){
         $conectar= parent::conexion();
@@ -645,4 +645,31 @@ class Equipos extends Conectar
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }*/
+
+    // public function cerrarBoton($idEquipo){
+    //     $conectar = parent::conexion();
+    //     $consulta = "DELETE FROM temp_componentes WHERE equipo_id = ?;";
+    //    // echo"consulta para borrar".$consulta;
+    //     $consulta = $conectar -> prepare($consulta);
+    //     $consulta -> bindValue(1,$idEquipo);
+    //     $consulta -> execute();
+    //     if($consulta -> execute()){
+    //         echo "1";
+    //     }else{
+    //         echo "0";
+    //     }
+    // }
+    public function cerrarBoton($idEquipo) {
+        $conectar = parent::conexion();
+        $consulta = "DELETE FROM temp_componentes WHERE equipo_id = ?;";
+        $consulta = $conectar->prepare($consulta);
+        $consulta->bindValue(1, $idEquipo);
+        //echo $consulta;
+        if ($consulta->execute()) {
+            echo "1";
+        } else {
+            echo "0";
+        }
+    }
+
 }

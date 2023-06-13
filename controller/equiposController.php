@@ -47,16 +47,16 @@ switch ($accion) {
         $equipo -> eliminarComponentesTemp($_POST['id']);
         break;
     case "inserTablaTempActualizar":
-        var_dump($_POST);
+        //var_dump($_POST);
         $equipo->llenarCompActualizar($_POST['id']);
         //$equipo->llenarCompActua($_POST['inputCodigo']);
         break;
     case "buscarEquipos":    
         $equipo -> buscarEquipo(intval($_POST['pag']));
         break;
-    case "mostrarComponentesEquipos":
-    $equipo-> componentesEquipoXId($_POST['id']);
-     break;
+    // case "mostrarComponentesEquipos":
+    // $equipo-> componentesEquipoXId($_POST['id']);
+    //  break;
      case "mostrar": 
         //var_dump($_POST);
         $datos = $equipo->traerEquipoXId($_POST["id"]);
@@ -80,9 +80,14 @@ switch ($accion) {
                 echo json_encode($output);
             }
     break;
-    case "actualizarTempComponentes":
+    /*case "actualizarTempComponentes":
         $equipo -> actualizarTempComponentes($_POST['id']);
         break;
+        */
+    case "botonCerrar":
+        $equipo -> cerrarBoton($_POST['id']);
+        break;
+
 
 }
 

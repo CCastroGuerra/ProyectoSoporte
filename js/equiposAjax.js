@@ -14,7 +14,12 @@ let selecMarca = document.getElementById("selMarcaEquipo");
 let selectTipo = document.getElementById("selTipoEquipo");
 let selectEstado = document.getElementById("selEstado");
 let btnComponente = document.getElementById("btnComponente");
+let btnCerrar = document.getElementById("cerrarBot");
+let btnX = document.getElementById("cerrarSup");
 let id = 0;
+
+
+
 btnComponente.addEventListener("click", function (e) {
   e.preventDefault();
   if (frmEquipos.querySelector("#inputCodigo").value !== "") {
@@ -22,12 +27,25 @@ btnComponente.addEventListener("click", function (e) {
     //actualizarCompoentesTempo();
     //console.log("guardando componentes actualizados");
   } else {
+    
     guardarEquipo();
     //listarArea();
     console.log("guardados los datos del equipo...");
   }
   //frmEquipos.reset();
 });
+
+/***Evento para controlar boton cerrar al momento de editar***/
+btnCerrar.addEventListener("click", function (e) {
+  e.preventDefault();
+  cerrarEditar();
+});
+btnX.addEventListener("click", function (e) {
+  e.preventDefault();
+  cerrarEditar();
+});
+/***********************************************************/
+
 
 /*Habilitar o deshabilitar boton de añador*/
 let margesi = document.getElementById("margesi");
@@ -69,6 +87,7 @@ frmComponentes.onsubmit = function (e) {
 
 frmEquipos.onsubmit = function (e) {
   e.preventDefault();
+
   guardarEquipo();
   // guardarEquipoComponente();
 };
@@ -203,8 +222,8 @@ function listarSelectEstado() {
   ajax.send(data);
 }
 
-/*BUSCAR RESPONSABLE*/
-var cajaBuscarrResp = document.getElementById("buscaRes");
+/**************BUSCAR RESPONSABLE*************/
+let cajaBuscarrResp = document.getElementById("buscaRes");
 
 cajaBuscarrResp.addEventListener("keyup", function (e) {
   const textoBusquedaPre = cajaBuscarrResp.value;
@@ -212,6 +231,18 @@ cajaBuscarrResp.addEventListener("keyup", function (e) {
   numPagina = 1;
   buscarResponsable();
 });
+/**************BUSCAR EQUIPO*******************/
+let cajaBuscaREquipo = document.getElementById("inputbuscarEquipos");
+
+cajaBuscaREquipo.addEventListener("keyup", function (e) {
+  const textoBusquedaEquipo = cajaBuscarrResp.value;
+  console.log(textoBusquedaEquipo);
+  numPagina = 1;
+  buscarEquipo();
+});
+
+
+/*********************************************/
 
 function buscarResponsable() {
   let numPagina = 1;
@@ -477,6 +508,11 @@ function guardarEquipoComponente() {
 
     console.log(realizado);
     if (realizado * 1 > 0) {
+      swal.fire(
+        'Registrado!',
+        'El equipo se registro correctamente.',
+        'success'
+      )
       console.log("Equipo Componente registrado correctamente");
     }
     //buscarArea();
@@ -523,8 +559,7 @@ function buscarEquipo() {
                       <td>
                       <button type="button" onClick='mostrarEnModal("${equipos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button type="button" onClick='eliminarEquipos("${equipos.id}")' class="btn btn-danger" data-fila="${equipos.id}"><i class="fa fa-trash" aria-hidden="true"></i>
-                      </button>
+                      
                       </td>
 
                   </tr>
@@ -690,7 +725,7 @@ function mostrarEnModal(equipoID) {
 
 /*Funcion para cargar los componentes de los equipos existentes */
 function insertarTempParaActualizar(equipoID) {
-  let codigo = document.getElementById("codigo").value;
+  //let codigo = document.getElementById("codigo").value;
   equipoID = id;
   console.log("id del componente para guarda: " + equipoID);
   const ajax = new XMLHttpRequest();
@@ -705,7 +740,6 @@ function insertarTempParaActualizar(equipoID) {
     if (realizado * 1 > 0) {
       console.log("se insertaron datos en la tabla temporal");
       listarTablaTemp();
-
     }
     /*buscarArea();
     buscarComponente();
@@ -714,14 +748,13 @@ function insertarTempParaActualizar(equipoID) {
     */
   };
   ajax.send(data);
- 
+
   var elemento = document.getElementById("tbComponentes");
   elemento.innerHTML = ``;
   //actualizarCompoentesTempo(equipoIdTemp);
-
 }
 
-function actualizarCompoentesTempo(actuaId) {
+/*function actualizarCompoentesTempo(actuaId) {
   actuaId = id;
   console.log("id para actuañozar componenete: " + actuaId);
   const ajax = new XMLHttpRequest();
@@ -749,15 +782,14 @@ function actualizarCompoentesTempo(actuaId) {
   // }
   ajax.send(data);
   guardarEquipoComponente();
-}
+}*/
 
 function eliminarComponentesTemp(serie) {
-  
-  console.log("Id para eliminar componentes de tabla temporal: "+serie);
+  console.log("Id para eliminar componentes de tabla temporal: " + serie);
   swal
     .fire({
       title: "AVISO DEL SISTEMA",
-      text: "¿Desea Eliminar el Registro?",
+      text: "¿Desea Eliminar el Componente?",
       icon: "error",
       showCancelButton: true,
       confirmButtonText: "Si",
@@ -777,7 +809,7 @@ function eliminarComponentesTemp(serie) {
           listarTablaTemp();
           swal.fire(
             "Eliminado!",
-            "El registro se elimino correctamente.",
+            "El componente se elimino correctamente.",
             "success"
           );
         };
@@ -789,4 +821,27 @@ function eliminarComponentesTemp(serie) {
         ajax.send(data);
       }
     });
+}
+
+function cerrarEditar() {
+  let idEquipo = document.getElementById("inputCodigo").value;
+  console.log("id equipo boton: " + idEquipo);
+  const ajax = new XMLHttpRequest();
+  //Se establace la direccion del archivo php que procesara la peticion
+  ajax.open("POST", "../controller/equiposController.php", true);
+  var data = new FormData();
+  data.append("id", idEquipo);
+  data.append("accion", "botonCerrar");
+  ajax.onload = function () {
+    realizado = ajax.responseText;
+    console.log(realizado);
+    if (realizado * 1 > 0) {
+      console.log("Se borro datos de temporal");
+      //listarTablaTemp();
+    }
+  };
+  frmEquipos.reset();
+  var elemento = document.getElementById("tbComponentes");
+  elemento.innerHTML = ``;
+  ajax.send(data);
 }
