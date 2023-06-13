@@ -30,35 +30,17 @@ include('../templates/cabecera.php');
                                         <label for="nombreUsuario" class="mb-2">Usuario del Equipo:</label>
                                         <input type="text" class="form-control mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese Usuario">
                                         <label for="selArea" class="mb-2">Area:</label>
-                                        <select class="form-select" aria-label="Default select example" id="selArea" name="selArea">
-                                            <option selected>Selecciona el área</option>
-                                            <option value="1">Administración</option>
-                                            <option value="2">Adminsion</option>
-                                            <option value="3">Laboratorio</option>
-                                        </select>
+                                        <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selArea" name="selArea">
+                                        </input>
                                         <label for="selEquipo" class="mb-2">Equipo:</label>
-                                        <select class="form-select" aria-label="Default select example" id="selEquipo" name="selEquipo">
-                                            <option selected>Selecciona el equipo</option>
-                                            <option value="1">Monitor</option>
-                                            <option value="2">Laptop</option>
-                                            <option value="3">Computadora</option>
-                                            <option value="4">Impresora</option>
-                                            <option value="5">Otros</option>
-                                        </select>
+                                        <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
+                                        </input>
                                         <label for="selMarca" class="mb-2">Marca:</label>
-                                        <select class="form-select" aria-label="Default select example" id="selMarca" name="selMarca">
-                                            <option selected>Seleccione la marca</option>
-                                            <option value="1">HP</option>
-                                            <option value="2">ASUS</option>
-                                            <option value="3">LG</option>
-                                        </select>
+                                        <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selMarca" name="selMarca">
+                                        </input>
                                         <label for="selModelo" class="mb-2">Modelo:</label>
-                                        <select class="form-select" aria-label="Default select example" id="selModelo" name="selModelo">
-                                            <option selected>Seleccione el modelo</option>
-                                            <option value="1">Elite QP</option>
-                                            <option value="2">Asus X555Y</option>
-                                            <option value="3">Sentrix N4</option>
-                                        </select>
+                                        <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
+                                        </input>
                                         <label for="fallaObservada" class="mb-2">Falla observada:</label>
                                         <textarea class="form-control" id="fallaObservada" rows="3"></textarea>
                                         <label for="selTecnico" class="mb-2">Técnico:</label>
