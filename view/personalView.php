@@ -33,8 +33,9 @@ include('../templates/cabecera.php');
                                 <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
                                     <option selected>Seleccione el cargo </option>
                                     <option value="1">Administrador</option>
-                                    <option value="2">Secretaria</option>
-                                    <option value="3">Practicante</option>
+                                    <option value="2">Practicante</option>
+                                    <option value="3">Secretaria</option>
+                                    <option value="4">Técnico</option>
                                 </select>
                                 
                             </div>
