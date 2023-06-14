@@ -123,11 +123,16 @@
             align-content: center;
             align-items: flex-start;
         }
+        #imprimir{
+            display: none;
+        }
     }
 </style>
     </head>
 
     <body>
+        <input type="button" id="imprimir" name="imprimir" value="Imprimir" onclick="window.print();">   
+
         <div class="col-md-12 col-lg-12 contenidovisible">
             <div class="row">
                 <div class="col-xs-1-12">
@@ -348,7 +353,7 @@
                             <div
                                 class="table table-border border-dark tbcontainer">
                                 <table
-                                    class="table table-bordered border-dark align-middle text-center">
+                                    class="table table-bordered border-dark align-middle text-center tbcontainer">
                                     <tr>
                                         <th class="cellcort" id="enres">MARCA</th>
                                         <td class="cellcort">Marca1</td>
@@ -375,7 +380,7 @@
 
                             <div class="table table-bordered tbcontainer">
                                 <table
-                                    class="table table-bordered border-dark align-middle">
+                                    class="table table-bordered border-dark align-middle tbcontainer">
                                     <thead>
                                         <tr>
                                             <th class="cellcort lista text-center" id="enres">FALLAS EN EQUIPO
@@ -392,7 +397,7 @@
 
                             <div class="table table-bordered tbcontainer">
                                 <table
-                                    class="table table-bordered border-dark align-middle">
+                                    class="table table-bordered border-dark align-middle tbcontainer">
                                     <thead>
                                         <tr>
                                             <th class="cellcort text-center" id="enres">SOLUCIÓN O REPARACIÓN</th>
