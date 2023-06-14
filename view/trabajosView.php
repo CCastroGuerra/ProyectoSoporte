@@ -78,7 +78,7 @@ include('../templates/cabecera.php');
                                                 <div class="row">
                                                     <div class="col-lg-10 col-sm-4">Servicios Aplicados </div>
                                                     <div class="col-lg-2 col-sm-4 text-end">
-                                                        <button type="submit" id="addtoTable" name="addtoTable" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#ServiciosModal"><strong>Añadir</strong></button>
+                                                        <button type="submit" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" data-coreui-target="#ServiciosModal"><strong>Añadir</strong></button>
                                                     </div>
                                                 </div>
                                             </h5>
@@ -262,7 +262,7 @@ include('../templates/cabecera.php');
 
 
 <!--/contenido ventana -->
-<script src="../js/trabajosAjax.js"></script>
+<!-- <script src="../js/trabajosAjax.js"></script> -->
 <?php
 include '../templates/footer.php';
 ?>
