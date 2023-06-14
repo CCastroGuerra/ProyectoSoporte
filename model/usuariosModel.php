@@ -8,10 +8,13 @@ class Usuario extends Conectar
 
         $sql = "SELECT id_personal, apellidos_personal, nombre_personal, cargo_personal,
         CASE
-                    WHEN cargo_personal = 0 THEN 'Vacio'
-                    WHEN cargo_personal = 1 THEN 'Administrador'
-                    WHEN cargo_personal = 2 THEN 'Secretaria'
-                    WHEN cargo_personal = 3 THEN 'Practicante'
+            WHEN cargo_personal = 0 THEN 'Vacio'
+            WHEN cargo_personal = 1 THEN 'Administrador'
+            WHEN cargo_personal = 2
+            THEN 'Practicante'
+            WHEN cargo_personal = 3
+            THEN 'Secretaria'
+            WHEN cargo_personal = 4 THEN 'Técnico'
                 END as cargoPersonal
                         FROM personal
                         WHERE dni_personal = ?;";
@@ -72,10 +75,13 @@ class Usuario extends Conectar
             //echo $inicio;
             $sql = "SELECT id_usuario,p.dni_personal, p.apellidos_personal, p.nombre_personal, cargo_personal,
             CASE
-                        WHEN cargo_personal = 0 THEN 'Vacio'
-                        WHEN cargo_personal = 1 THEN 'Administrador'
-                        WHEN cargo_personal = 2 THEN 'Secretaria'
-                        WHEN cargo_personal = 3 THEN 'Practicante'
+            WHEN cargo_personal = 0 THEN 'Vacio'
+            WHEN cargo_personal = 1 THEN 'Administrador'
+            WHEN cargo_personal = 2
+            THEN 'Practicante'
+            WHEN cargo_personal = 3
+            THEN 'Secretaria'
+            WHEN cargo_personal = 4 THEN 'Técnico'
                     END as cargoPersonal,u.nombre_usuario
                             FROM personal p
             INNER JOIN usuario u ON p.id_personal = u.personal_id

@@ -18,8 +18,6 @@ let btnCerrar = document.getElementById("cerrarBot");
 let btnX = document.getElementById("cerrarSup");
 let id = 0;
 
-
-
 btnComponente.addEventListener("click", function (e) {
   e.preventDefault();
   if (frmEquipos.querySelector("#inputCodigo").value !== "") {
@@ -27,7 +25,6 @@ btnComponente.addEventListener("click", function (e) {
     //actualizarCompoentesTempo();
     //console.log("guardando componentes actualizados");
   } else {
-    
     guardarEquipo();
     //listarArea();
     console.log("guardados los datos del equipo...");
@@ -45,7 +42,6 @@ btnX.addEventListener("click", function (e) {
   cerrarEditar();
 });
 /***********************************************************/
-
 
 /*Habilitar o deshabilitar boton de añador*/
 let margesi = document.getElementById("margesi");
@@ -241,6 +237,12 @@ cajaBuscaREquipo.addEventListener("keyup", function (e) {
   buscarEquipo();
 });
 
+/*********limit para el select***********/
+var numRegistors = document.getElementById("numRegistros");
+numRegistors.addEventListener("change", () => {
+  numPagina = 1;
+  buscarEquipo();
+});
 
 /*********************************************/
 
@@ -509,10 +511,10 @@ function guardarEquipoComponente() {
     console.log(realizado);
     if (realizado * 1 > 0) {
       swal.fire(
-        'Registrado!',
-        'El equipo se registro correctamente.',
-        'success'
-      )
+        "Registrado!",
+        "El equipo se registro correctamente.",
+        "success"
+      );
       console.log("Equipo Componente registrado correctamente");
     }
     //buscarArea();
@@ -723,7 +725,7 @@ function mostrarEnModal(equipoID) {
 //     });
 // }
 
-/*Funcion para cargar los componentes de los equipos existentes */
+/*Funcion para cargar los componentes de los equipos existentes*/
 function insertarTempParaActualizar(equipoID) {
   //let codigo = document.getElementById("codigo").value;
   equipoID = id;
@@ -845,3 +847,45 @@ function cerrarEditar() {
   elemento.innerHTML = ``;
   ajax.send(data);
 }
+
+/*********Paginación equipo***********/
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarEquipo();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarEquipo();
+    pagAnterior.blur();
+  }
+});
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarEquipo();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarEquipo();
+  pagFinal.blur();
+});

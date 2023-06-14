@@ -3,20 +3,21 @@
 class Producto extends Conectar
 {
 
-    
 
-    public function listarProductos() {
+
+    public function listarProductos()
+    {
         $conectar = parent::conexion();
-            $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-            //Para comprobar si se a mandado el parametro de registros
-            if (isset($_POST['registros'])) {
-                $limit = $_POST['registros'];
-                $sLimit = "LIMIT $limit";
-            }
+        $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
+        //Para comprobar si se a mandado el parametro de registros
+        if (isset($_POST['registros'])) {
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
+        }
         $sql = 'call sp_listar_productos(:sLimit)';
-        $fila = $conectar ->prepare($sql);
-        $fila -> bindParam('sLimit', $sLimit,PDO::PARAM_STR);
-        $fila ->execute();
+        $fila = $conectar->prepare($sql);
+        $fila->bindParam('sLimit', $sLimit, PDO::PARAM_STR);
+        $fila->execute();
 
         $resultado = $fila->fetchAll();
         if (empty($resultado)) {
@@ -40,17 +41,17 @@ class Producto extends Conectar
         }
     }
 
-    public function agregarProductos($nombreProducto,$tipoProducto, $presentacionProducto,$cantidadProducto, $valorSeleccionado,$descripcionProductos)
+    public function agregarProductos($nombreProducto, $tipoProducto, $presentacionProducto, $cantidadProducto, $valorSeleccionado, $descripcionProductos)
     {
         $conectar = parent::conexion();
         $sql = "call sp_insertar_productos(?,?,?,?,?,?)";
         $fila = $conectar->prepare($sql);
-        $fila -> bindParam(1, $nombreProducto,PDO::PARAM_STR);
-        $fila -> bindParam(2, $tipoProducto,PDO::PARAM_INT);
-        $fila -> bindParam(3, $presentacionProducto,PDO::PARAM_INT);
-        $fila -> bindParam(4, $cantidadProducto,PDO::PARAM_INT);
-        $fila -> bindParam(5, $valorSeleccionado,PDO::PARAM_INT);
-        $fila -> bindParam(6, $descripcionProductos,PDO::PARAM_STR);
+        $fila->bindParam(1, $nombreProducto, PDO::PARAM_STR);
+        $fila->bindParam(2, $tipoProducto, PDO::PARAM_INT);
+        $fila->bindParam(3, $presentacionProducto, PDO::PARAM_INT);
+        $fila->bindParam(4, $cantidadProducto, PDO::PARAM_INT);
+        $fila->bindParam(5, $valorSeleccionado, PDO::PARAM_INT);
+        $fila->bindParam(6, $descripcionProductos, PDO::PARAM_STR);
 
         if ($fila->execute()) {
             echo '1';
@@ -59,7 +60,8 @@ class Producto extends Conectar
         }
     }
 
-    public function agregarPresentacion($nombrePresentacion){
+    public function agregarPresentacion($nombrePresentacion)
+    {
         $conectar = parent::conexion();
         $sql = "INSERT INTO `presentacion` (`id_presentacion`,`nombre_presentacion`, `es_activo`) VALUES (NULL,'$nombrePresentacion',1)";
         $fila = $conectar->prepare($sql);
@@ -70,7 +72,7 @@ class Producto extends Conectar
         }
     }
 
-    public function actualizarProductos($idProductos, $nombreProducto, $tipoProducto,$presentacionProducto,$cantidadProducto, $valorSeleccionado,$descripcionProductos)
+    public function actualizarProductos($idProductos, $nombreProducto, $tipoProducto, $presentacionProducto, $cantidadProducto, $valorSeleccionado, $descripcionProductos)
     {
         $conectar = parent::conexion();
         $sql = "UPDATE productos
@@ -149,7 +151,8 @@ class Producto extends Conectar
         }
     }
 
-    public function eliminarPresentacion($idPresentacion){
+    public function eliminarPresentacion($idPresentacion)
+    {
         if (isset($_POST["idPre"])) {
             $idPresentacion = $_POST["idPre"];
             // Resto del código para eliminar
@@ -170,27 +173,27 @@ class Producto extends Conectar
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-           
+
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
                 $limit = $_POST['registros'];
                 $sLimit = "LIMIT $limit";
             }
-             $inicio = ($pagina - 1) * $limit;
+            $inicio = ($pagina - 1) * $limit;
             //  echo 'Trae de inicio:'.$inicio;
             //  echo 'Trae de limit:'.$limit;
-           /* $filtro ="AND nombre_productos LIKE '%$textoBusqueda%' 
+            /* $filtro ="AND nombre_productos LIKE '%$textoBusqueda%' 
             OR cantidad_productos LIKE '%$textoBusqueda%'
             OR codigo_productos LIKE '%$textoBusqueda%'
              ORDER BY id_productos $sLimit"; */
-             $sql = "SELECT @con :=@con + 1 as nro, id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p
+            $sql = "SELECT @con :=@con + 1 as nro, id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p
              cross join(select @con := 0) r
-              INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 AND nombre_productos LIKE '%$textoBusqueda%'  ORDER BY nombre_productos  LIMIT $inicio,$limit";
-             
-             $fila = $conectar ->prepare($sql);
-             //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
-             $fila ->execute();
+              INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 AND nombre_productos LIKE '%$textoBusqueda%' LIMIT $inicio,$limit";
+
+            $fila = $conectar->prepare($sql);
+            //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
+            $fila->execute();
             //echo $sql;
             //$resultados = array();
             $json = [];
@@ -230,12 +233,13 @@ class Producto extends Conectar
         }
     }
 
-    public function bucarPresentacion($pagina = 1){
+    public function bucarPresentacion($pagina = 1)
+    {
         $conectar = parent::conexion();
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-            
+
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
@@ -244,8 +248,8 @@ class Producto extends Conectar
             }
             $inicio = ($pagina - 1) * $limit;
             $sql = "SELECT * FROM `presentacion` WHERE es_activo = 1 AND nombre_presentacion LIKE '$textoBusqueda%'  ORDER BY nombre_presentacion  LIMIT $inicio,$limit  ";
-             $fila = $conectar ->prepare($sql);
-             $fila ->execute();
+            $fila = $conectar->prepare($sql);
+            $fila->execute();
             //echo $sql;
             //$resultados = array();
             $json = [];
@@ -257,7 +261,7 @@ class Producto extends Conectar
                     $listado[] = array(
                         'id' => $presentacione['id_presentacion'],
                         'nombre' => $presentacione['nombre_presentacion']
-                       
+
                     );
                 }
 
@@ -280,11 +284,12 @@ class Producto extends Conectar
         }
     }
 
-    public function listarCombo(){
+    public function listarCombo()
+    {
         $conectar = parent::conexion();
         $sql = "SELECT id_presentacion, nombre_presentacion from presentacion where es_activo = 1";
         $fila = $conectar->prepare($sql);
-        $fila-> execute();
+        $fila->execute();
         $resultado = $fila->fetchAll();
         if (empty($resultado)) {
             $resultado = array('listado' => 'vacio');

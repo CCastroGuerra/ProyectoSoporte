@@ -63,7 +63,7 @@ switch ($accion) {
          if(is_array($datos)==true && count($datos)>0){
                 foreach($datos as $row){
                     $output['id'] = $row["id_equipos"];
-                    $output['nombreTipo'] = $row["id_tipo_componente"];
+                    $output['nombreTipo'] = $row["id_tipo_componentes"];
                     $output['serie'] = $row["serie"];
                     $output['margesi'] = $row["margesi"];
                     $output['nombreMarca'] = $row["id_marca"];
@@ -90,5 +90,3 @@ switch ($accion) {
 
 
 }
-
-?>

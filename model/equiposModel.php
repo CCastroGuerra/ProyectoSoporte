@@ -66,9 +66,8 @@ class Equipos extends Conectar
         }
     }
 
-    public function guardarComponetesTemp( $serie, $margesi, $equipoId)
+    public function guardarComponetesTemp($serie, $margesi, $equipoId)
     {
-        /*MANDAR ID DE EQUIPO EN VEZ DE MARGESI  */
         $conectar = parent::conexion();
 
         $sql = "INSERT INTO temp_componentes(serie_comp,margesi,equipo_id)VALUES (?,?,?);";
@@ -490,7 +489,7 @@ class Equipos extends Conectar
     }
 
     /*Insertar y actualizar componentes de tabla temporal */
-   /* public function actualizarTempComponentes($idEquipo)
+    /* public function actualizarTempComponentes($idEquipo)
     {
         $conectar = parent::conexion();
         $sql = "INSERT INTO
@@ -531,9 +530,9 @@ class Equipos extends Conectar
         $sql->execute();
         return $resultado=$sql->fetchAll();
     }
-*/
+     */
 
-    /*componenetes relacionados con los equipos */
+    /*componenetes relacionados con los equipos 
     public function componentesEquipoXId($idEquipo)
     {
         $conectar = parent::conexion();
@@ -583,12 +582,12 @@ class Equipos extends Conectar
             echo $jsonString;
         }
     }
-
+*/
     public function traerEquipoXId($idEquipo)
     {
         $conectar = parent::conexion();
         $sql = "SELECT e.id_equipos,
-        tc.id_tipo_componente,
+        tc.id_tipo_componentes,
         tc.nombre_tipo_componente,
         e.serie,
         e.margesi,
@@ -605,7 +604,7 @@ class Equipos extends Conectar
         e.mac,
         e.ip
          FROM equipos e
-        INNER JOIN tipo_componente tc ON tc.id_tipo_componente = e.tipo_equipo_id
+        INNER JOIN tipo_componentes tc ON tc.id_tipo_componentes = e.tipo_equipo_id
         INNER JOIN marca ma ON e.marca_id = ma.id_marca
         INNER JOIN modelo mo ON e.modelo_id = mo.id_modelo
         INNER JOIN personal per on per.id_personal = e.clientes_id
@@ -646,20 +645,8 @@ class Equipos extends Conectar
         return $resultado = $sql->fetchAll();
     }*/
 
-    // public function cerrarBoton($idEquipo){
-    //     $conectar = parent::conexion();
-    //     $consulta = "DELETE FROM temp_componentes WHERE equipo_id = ?;";
-    //    // echo"consulta para borrar".$consulta;
-    //     $consulta = $conectar -> prepare($consulta);
-    //     $consulta -> bindValue(1,$idEquipo);
-    //     $consulta -> execute();
-    //     if($consulta -> execute()){
-    //         echo "1";
-    //     }else{
-    //         echo "0";
-    //     }
-    // }
-    public function cerrarBoton($idEquipo) {
+    public function cerrarBoton($idEquipo)
+    {
         $conectar = parent::conexion();
         $consulta = "DELETE FROM temp_componentes WHERE equipo_id = ?;";
         $consulta = $conectar->prepare($consulta);
@@ -671,5 +658,4 @@ class Equipos extends Conectar
             echo "0";
         }
     }
-
 }

@@ -12,9 +12,13 @@ class Personal extends Conectar{
         }
         $sql = "SELECT id_personal, nombre_personal,apellidos_personal, dni_personal,correo_personal,telefono_personal,cargo_personal cargoId, 
         CASE
+            WHEN cargo_personal = 0 THEN 'Vacio'
             WHEN cargo_personal = 1 THEN 'Administrador'
-            WHEN cargo_personal = 2 THEN 'Secretaria'
-            WHEN cargo_personal = 3 THEN 'Practicante'
+            WHEN cargo_personal = 2
+            THEN 'Practicante'
+            WHEN cargo_personal = 3
+            THEN 'Secretaria'
+            WHEN cargo_personal = 4 THEN 'Técnico'
         END as cargoPersonal
         FROM `personal` WHERE esActivo_personal = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
@@ -87,8 +91,11 @@ class Personal extends Conectar{
         CASE
             WHEN cargo_personal = 0 THEN 'Vacio'
             WHEN cargo_personal = 1 THEN 'Administrador'
-            WHEN cargo_personal = 2 THEN 'Secretaria'
-            WHEN cargo_personal = 3 THEN 'Practicante'
+            WHEN cargo_personal = 2
+            THEN 'Practicante'
+            WHEN cargo_personal = 3
+            THEN 'Secretaria'
+            WHEN cargo_personal = 4 THEN 'Técnico'
         END as cargoPersonal
         FROM `personal` WHERE id_personal = ?";
         $sql=$conectar->prepare($sql);
@@ -128,10 +135,14 @@ class Personal extends Conectar{
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
             $sql = "SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
             CASE
-                WHEN cargo_personal = 0 THEN 'Vacio'
-                WHEN cargo_personal = 1 THEN 'Administrador'
-                WHEN cargo_personal = 2 THEN 'Secretaria'
-                WHEN cargo_personal = 3 THEN 'Practicante'
+            WHEN cargo_personal = 0 THEN 'Vacio'
+            WHEN cargo_personal = 1 THEN 'Administrador'
+            WHEN cargo_personal = 2
+            THEN 'Practicante'
+            WHEN cargo_personal = 3
+            THEN 'Secretaria'
+            WHEN cargo_personal = 4 THEN 'Técnico'
+                
             END as cargoPersonal
             FROM `personal` WHERE (nombre_personal LIKE '%$textoBusqueda%' 
             OR apellidos_personal LIKE '%$textoBusqueda%') and esActivo_personal = 1 
@@ -181,6 +192,3 @@ class Personal extends Conectar{
     } 
 
 }
-
-
-?>
