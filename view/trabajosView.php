@@ -19,13 +19,15 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <div class="#" id="divcodigo" name="divcodigo">
+                                        <div class="porocultar" id="divcodigo" name="divcodigo">
                                             <label class="control-label" for="inputCodigo">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                             <label class="control-label" for="idEquipo">ID Equipo</label>
                                             <input type="text" class="form-control" id="idEquipo" name="idEquipo" placeholder="id del equipo" readonly>
                                         </div>
-                                        <label for="nroSerie" class="mb-2"># de Serie: <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary" ></button></label>
+                                        <label for="nroSerie" class="mb-2"># de Serie:
+                                            <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary"></button>
+                                        </label>
                                         <input type="search" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
                                         <label for="marquesi" class="mb-2">Marquesi:</label>
                                         <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
