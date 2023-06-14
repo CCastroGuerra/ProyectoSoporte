@@ -67,46 +67,28 @@
     @media print{
         #enres{
            box-shadow: inset 0 0 0 1000px gray;
-        } 
-        #nhospital {
-            color:#FFFFFF;
-            print-color-adjust: exact;
         }
+        .contenidovisible{height:95vh;}
+        .footer{ height:5vh;}
     }
 </style>
 </head>
 
 <body>
-    <div class="col-md-12 col-lg-12 ">
+    <div class="col-md-12 col-lg-12 contenidovisible">
         <div class="row">
             <div class="col-xs-1-12">
                 <div class="card">
                     <div class="card-body">   
                                        
                         <div class="ALLS">
-                            <table class="border border-dark" style="display:inline-block; height:50px">
+                            <table class="border border-dark" style="display:inline-block; height:fit-content">
                                 <tr>
-                                    <td scope="col" style="padding-top:0;padding-bottom: 0;padding-left: 0;padding-right: 2px;width: 4%;">                                        
+                                    <td scope="col" style="padding:0;">                                        
                                             <div>
-                                                <img src="../pcmsalud.webp" style="height:40px;">
+                                                <img src="../banner.png" style="height:40px;">
                                             </div>               
-                                    </td>
-                                    <td id="nhospital" class="align-middle text-center" scope="col" style="
-                                    padding-top: 0;
-                                    padding-bottom: 0;
-                                    padding-left: 0;
-                                    padding-right: 0;
-                                    width: 250px;
-                                    height: 40px;
-                                    box-shadow: inset 0 0 0 1000px red;
-                                    font-family: system-ui;
-                                    color:aliceblue;
-                                    font-size: 71%;">
-                                        <div>
-                                            <span><b>HOSPITAL DE APOYO II-1 NUESTRA SEÑORA DE LAS MERCEDES PAITA</b></span>
-                                        </div>
-                                    </td>
-                                   
+                                    </td> 
                                 </tr>
                             </table>
                         </div>
@@ -298,15 +280,39 @@
                         </div>
 
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 </body>
+
+<div  class="footer" style="width:100%; margin-left: 0px;position:absolute;clear:both;"  >
+
+    <div class="copyright" style="width: inherit;">
+        <div class="container-fluid">
+            <table class="table" style="margin:0%">
+                <tr style="width: 100%;">
+                    <td class="w-75" style="padding-top: 0;padding-bottom: 0;">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-6"><b>(E) Soporte Técnico e Informático</b> </div>                            
+                        </div>
+                    </td>
+                    <td class="w-auto" style="padding-top: 0;padding-bottom: 0;">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-4 text-end"><strong>(E) Servicio / Oficina</strong></div>
+                        </div>
+                    </td>
+                </tr>                
+            </table>
+            <div class="text-center">
+                <span style="font-size: 10px;">AL FIRMAR ESTA FICHA, EL RESPONSABLE DEL SERVICIO U OFICINA CERTIFICA QUE ESTA CONFORME CON EL TRABAJO REALIZADO</span>
+            </div>
+             
+    
+        </div>
+    </div>
+</div>
 
 
 <script src="../js/limpiarForm.js"></script>
@@ -324,6 +330,5 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
  -->
-</body>
 
 </html>
