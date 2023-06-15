@@ -110,7 +110,7 @@ include('../templates/cabecera.php');
                                             <div class="row">
                                                 <div class="col-lg-10 col-sm-6">Servicios Aplicados </div>
                                                 <div class="col-lg-2 col-sm-4 text-end">
-                                                    <button type="submit" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" href="serviciosModal"><strong>Añadir</strong></button>
+                                                    <button type="button" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" href="serviciosModal"><strong>Añadir</strong></button>
                                                 </div>
                                             </div>
                                         </h5>
