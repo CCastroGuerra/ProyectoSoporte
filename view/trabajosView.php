@@ -1,26 +1,41 @@
+
 <?php
 include('../templates/cabecera.php');
 ?>
-
-<!-- modal test-servicios -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--modal servicios-->
+<div class="modal fade" id="serviciosModal" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="serviciosModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="serviciosModal">Agregar Servicios</h5>
+                <button type="button" class="btn-close" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            <form id="formServicios">
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="selServicio" class="mb-2">Servicio:</label>
+                                <select class="form-select" aria-label="Default select example" id="selServicio" name="selServicio">
+                                    <option selected>Seleccione el Servicio</option>
+                                    <option value="1">Servicio 1</option>
+                                    <option value="2">Servicio 2</option>
+                                    <option value="3">Servicio 3</option>
+                                    <option value="4">Servicio 4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<!-- /modal test-servicios -->
+<!--/modal servicios-->
 
 
 <!-- Modal Trabajo-->
@@ -83,52 +98,49 @@ include('../templates/cabecera.php');
                                     </div>
                                 </div>
 
-                            </div>                            
+                            </div>
                         </div>
                         <!-- /formulario cabecera-->
 
                         <!--tabla temporal-->
                         <div class="col-md-8 col-lg-9">
-                            <div class="row ">
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-auto">
-                                                <div class="row">
-                                                    <div class="col-lg-10 col-sm-4">Servicios Aplicados </div>
-                                                    <div class="col-lg-2 col-sm-4 text-end">
-                                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#ServiciosModal">Añadir</button>
-                                                    </div>
+                            <div class="col-xs-1-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-auto">
+                                            <div class="row">
+                                                <div class="col-lg-10 col-sm-6">Servicios Aplicados </div>
+                                                <div class="col-lg-2 col-sm-4 text-end">
+                                                    <button type="button" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" href="#serviciosModal"><strong>Añadir</strong></button>
                                                 </div>
-                                            </h5>
-                                        </div>
+                                            </div>
+                                        </h5>
                                     </div>
                                 </div>
-                                <div class="col-xs-1-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover align-middle" id="tableModal">
-                                                    <thead>
-                                                        <tr>
+                            </div>
+                            <div class="col-xs-1-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover align-middle" id="tableModal">
+                                                <thead>
+                                                    <tr>
 
-                                                            <th scope="col"><strong>Servicio</strong></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbEquipos">
-                                                        <tr>
-                                                            <td>01</td>
-                                                            <td>formateo</td>
-                                                        </tr>
+                                                        <th scope="col"><strong>Servicio</strong></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbEquipos">
+                                                    <tr>
+                                                        <td>01</td>
+                                                        <td>formateo</td>
+                                                    </tr>
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <!-- /tabla temporal-->
                     </div>
@@ -147,40 +159,7 @@ include('../templates/cabecera.php');
 
 <!-- /*Fin del modal Trabajo*/ -->
 
-<!--modal servicios-->
-<div class="modal fade" id="ServiciosModal" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="ServiciosModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ServiciosModalLabel">Agregar Servicios</h5>
-                <button type="button" class="btn-close" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="formServicios">
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-form">
-                                <label for="selServicio" class="mb-2">Servicio:</label>
-                                <select class="form-select" aria-label="Default select example" id="selServicio" name="selServicio">
-                                    <option selected>Seleccione el Servicio</option>
-                                    <option value="1">Servicio 1</option>
-                                    <option value="2">Servicio 2</option>
-                                    <option value="3">Servicio 3</option>
-                                    <option value="4">Servicio 4</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!--/modal servicios-->
+
 
 <!--contenido ventana-->
 <div class="col-md-8 col-lg-12 ">
