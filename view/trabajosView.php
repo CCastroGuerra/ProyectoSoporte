@@ -81,7 +81,7 @@ include('../templates/cabecera.php');
                                         <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
                                         </input>
                                         <label for="fallaObservada" class="mb-2">Falla observada:</label>
-                                        <textarea class="form-control" id="fallaObservada" rows="3"></textarea>
+                                        <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3"></textarea>
                                         <label for="selTecnico" class="mb-2">Técnico:</label>
                                         <select class="form-select" aria-label="Default select example" id="selTecnico" name="selTecnico">
                                             <option selected>Seleccione el Técnico</option>
@@ -91,9 +91,9 @@ include('../templates/cabecera.php');
                                             <option value="4">Técnico 4</option>
                                         </select>
                                         <label for="textSolucion" class="form-label">Solucion:</label>
-                                        <textarea class="form-control" id="textSolucion" rows="3" id="solucion" name="solucion"></textarea>
+                                        <textarea class="form-control" id="textSolucion" name="textSolucion" rows="3" id="solucion" name="solucion"></textarea>
                                         <label for="textrecom" class="form-label">Recomendación:</label>
-                                        <textarea class="form-control" id="textrecom" rows="3" id="recomendacion" name="recomendacion"></textarea>
+                                        <textarea class="form-control" id="textrecom" name="textrecom" rows="3" id="recomendacion" name="recomendacion"></textarea>
                                         <div id="alerta"></div>
                                     </div>
                                 </div>
