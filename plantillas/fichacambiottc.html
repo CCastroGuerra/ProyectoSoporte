@@ -85,7 +85,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <style>
         #enres {
-            background-color: gray;
+            box-shadow: inset 0 0 0 1000px rgba(151, 141, 141, 0.521);
         }
 
         .cellcort#enres {
@@ -95,17 +95,17 @@
             width: 25%;
         }
 
-        @media print {
+        @media print { 
             body{
                 writing-mode: rl;
             }
             #enres {
-                box-shadow: inset 0 0 0 1000px gray;
+                box-shadow: inset 0 0 0 1000px rgba(151, 141, 141, 0.521);
             }
 
             .contenidovisible {
                 height: 90vh;
-                font-size: 14px;
+                font-size: 18px;
             }
 
             .tbcontainer {
@@ -134,8 +134,7 @@
             }
 
             td.lista {
-                height: 160px;
-                height: 160px;
+                height: 230px;
                 display: flex;
                 justify-content: space-around;
                 flex-direction: row;
@@ -255,7 +254,7 @@
                                                 style="width:80%">
                                                 <tr>
                                                     <th class="cellcort"
-                                                        id="enres">MARCA</th>
+                                                        id="enres" style="width:30%;">MARCA</th>
                                                     <td class="cellcort">Marca1</td>
                                                 </tr>
                                                 <tr>
@@ -316,7 +315,7 @@
                                                     padding-right: 0;
                                                     padding-left: 0;">
                                                         <table
-                                                            class="border border-dark"
+                                                            class="border border-dark text-center"
                                                             style="width: 100%;">
                                                             <thead>
                                                                 <tr
@@ -354,10 +353,10 @@
                                                     class="form-check-input"
                                                     type="checkbox"
                                                     value
-                                                    id="checkCPU">
+                                                    id="checkToner">
                                                 <label
                                                     class="form-check-label"
-                                                    for="flexCheckDefault">
+                                                    for="checkToner">
                                                     Toner</label>
                                             </div>
                                             <div>
@@ -365,10 +364,10 @@
                                                     class="form-check-input"
                                                     type="checkbox"
                                                     value
-                                                    id="checkImpr">
+                                                    id="checkCinta">
                                                 <label
                                                     class="form-check-label"
-                                                    for="flexCheckDefault">
+                                                    for="checkCinta">
                                                     CINTA</label>
                                             </div>
                                             <div>
@@ -376,10 +375,10 @@
                                                     class="form-check-input"
                                                     type="checkbox"
                                                     value
-                                                    id="checkLaptop">
+                                                    id="checkTinta">
                                                 <label
                                                     class="form-check-label"
-                                                    for="flexCheckDefault">
+                                                    for="checkTinta">
                                                     TINTA</label>
                                             </div>
 
