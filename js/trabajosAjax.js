@@ -1,11 +1,12 @@
 listarSelecServicios();
 listarSelecTecnicos();
 //listarTablaTempServicios();
-
+buscarTrabajos();
 /****************************************/
 let frmServicios = document.getElementById("formServicios");
 let frmTrabajos = document.getElementById("frmTrabajoa");
 let btnCerrar = document.getElementById("btncerrar");
+let btnServicios = document.getElementById("btnServicio");
 /***************************************/
 
 frmServicios.onsubmit = function (e) {
@@ -13,10 +14,25 @@ frmServicios.onsubmit = function (e) {
   guardarServiciosTempo();
 };
 
+frmTrabajos.onsubmit = function (e) {
+  e.preventDefault();
+  guardarTrabajo();
+};
+
 let btnBuscarEquipo = document.getElementById("testBusca");
 btnBuscarEquipo.addEventListener("click", function (e) {
   e.preventDefault();
   mostrarDatosEquipoXSerie();
+});
+
+btnServicios.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (frmTrabajos.querySelector("#inputCodigo").value !== "") {
+    console.log("No deberia de hacer nada");
+  } else {
+    guardarTrabajo();
+    console.log("Trabjo guardado");
+  }
 });
 
 /**************BUSCAR TRABAJOS*************/
@@ -58,7 +74,9 @@ function mostrarDatosEquipoXSerie() {
     document.getElementById("idEquipo").value = datos.id;
     document.getElementById("marquesi").value = datos.margesi;
     document.getElementById("nombreUsuario").value = datos.nombrePersonal;
+    document.getElementById("nombreUsuarioID").value = datos.nombrePersonalId;
     document.getElementById("selArea").value = datos.nombreArea;
+    document.getElementById("selAreaID").value = datos.areaID;
     document.getElementById("selEquipo").value = datos.nombreTipo;
     document.getElementById("selMarca").value = datos.nombreMarca;
     document.getElementById("selModelo").value = datos.nombreModelo;
@@ -139,7 +157,7 @@ function listarTablaTempServicios() {
         <tr>
         <td>${temp.nombreServicio}</td>
         <td>
-        <button type="button" onClick='eliminarServicioTemp("${temp.idtemp}")' class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
+        <button type="button" onClick='eliminarServiciosTemp("${temp.idtemp}")' class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         </td>
         </tr>             `;
@@ -162,7 +180,7 @@ function guardarServiciosTempo() {
   let idEquipo = document.getElementById("idEquipo").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/trabajosController.php", true);
-  let dataGuardar = new FormData();
+  let dataGuardar = new FormData(frmServicios);
   //dataGuardar.append("idServicios", idServicios);
   dataGuardar.append("idtrabajo", idTrabajo);
   dataGuardar.append("idEquipo", idEquipo);
@@ -193,7 +211,7 @@ function guardarTrabajo() {
   data.append("accion", "guardarTrabajos");
   ajax.onload = function () {
     realizado = ajax.responseText;
-    //console.log("Contenido de realizado: "+realizado);
+    console.log("Contenido de realizado: " + realizado);
     let respuesta = JSON.parse(realizado);
     //console.log("Contenido de respuesta.listado =" + respuesta.listado);
     if (respuesta.listado * 1 > 0) {
@@ -224,13 +242,14 @@ function guardarTrabajosServicios() {
     realizado = ajax.responseText;
     console.log(realizado);
     if (realizado * 1 > 0) {
-      swal.fire(
+      /*swal.fire(
         "Registrado!",
         "El equipo se registro correctamente.",
         "success"
-      );
-      console.log("Equipo Componente registrado correctamente");
+      );*/
+      console.log("Trabajos-Servicios registrado correctamente");
     }
+    buscarTrabajos();
     //buscarArea();
     //buscarComponente();
     //frmEquipos.reset();
@@ -265,7 +284,7 @@ function buscarTrabajos() {
                   <tr>
                       <td>${trabajos.serie}</td>
                       <td>${trabajos.margesi}</td>
-                      <td>${trabajos.nombrePersonal}</td>
+                      <td>${trabajos.nombreResponsable}</td>
                       <td>${trabajos.nombreArea}</td>
                       <td>${trabajos.nombreTecnico}</td>
                       <td>${trabajos.fecha}</td>
@@ -285,7 +304,7 @@ function buscarTrabajos() {
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
       let mostrarRegistro = `
-      <p><span id="totalRegistros">Mostrando ${equipos.length} de ${datos.total} registros</span></p>`;
+      <p><span id="totalRegistros">Mostrando ${trabajos.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
     } else {
       var elemento = document.getElementById("tbTrabajos");
@@ -316,10 +335,13 @@ function mostrarEnModal(trabajoId) {
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
     console.log(datos);
+    document.getElementById("idEquipo").value = datos.idEquipos;
     document.getElementById("nroSerie").value = datos.serie;
     document.getElementById("marquesi").value = datos.margesi;
     document.getElementById("nombreUsuario").value = datos.nombreResponsable;
+    document.getElementById("nombreUsuarioID").value = datos.nombrePersonalId;
     document.getElementById("selArea").value = datos.nombreArea;
+    document.getElementById("selAreaID").value = datos.areaID;
     document.getElementById("selEquipo").value = datos.tipoEquipo;
     document.getElementById("selMarca").value = datos.nombreMarca;
     document.getElementById("selModelo").value = datos.nombreModelo;
@@ -334,6 +356,7 @@ function mostrarEnModal(trabajoId) {
   ajax.send(data);
   //componentesEquipoEnModal();
   listarTablaTempServicios();
+  buscarTrabajos();
 }
 
 /*Funcion para cargar los componentes de los equipos existentes*/
@@ -367,7 +390,7 @@ function insertarTempParaActualizar(trabajoId) {
   //actualizarCompoentesTempo(equipoIdTemp);
 }
 
-function eliminarComponentesTemp(idcomponente) {
+function eliminarServiciosTemp(idcomponente) {
   console.log(
     "Id para eliminar componentes de tabla temporal: " + idcomponente
   );

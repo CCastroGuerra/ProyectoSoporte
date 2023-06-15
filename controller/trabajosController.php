@@ -14,6 +14,7 @@ switch ($accion) {
                 $output['margesi'] = $row["margesi"];
                 $output['nombrePersonalId'] = $row["clientes_id"];
                 $output['nombrePersonal'] = $row["NombrePersonal"];
+                $output['areaID'] = $row["area_id"];
                 $output['nombreArea'] = $row["nombre_area"];
                 $output['nombreTipo'] = $row["nombre_tipo_equipo"];
                 $output['nombreMarca'] = $row["nombre_marca"];
@@ -29,13 +30,14 @@ switch ($accion) {
         $trabajo->listarTecnicos();
         break;
     case "guardarServiciosTemp":
-        $trabajo->guardarServicioTemp($_POST['idtrabajo'], $_POST['idEquipo'], $_POST['idServicios']);
+        //var_dump($_POST);
+        $trabajo->guardarServicioTemp($_POST['idtrabajo'], $_POST['idEquipo'], $_POST['selServicio']);
         break;
     case "listarTablaTempServicios":
         $trabajo->listarTablaTempServicios();
         break;
     case "guardarTrabajos":
-        $trabajo->guardarTrabajos($_POST["idTrabajo"], $_POST["idTecnico"], $_POST['idEquipo'], $_POST['idResponables'], $_POST['idArea'], $_POST['falla'], $_POST['solucion'], $_POST['recomendacion']);
+        $trabajo->guardarTrabajos($_POST["inputCodigo"], $_POST["selTecnico"], $_POST['idEquipo'], $_POST['nombreUsuarioID'], $_POST['selAreaID'], $_POST['fallaObservada'], $_POST['textSolucion'], $_POST['textrecom']);
         break;
     case "guardarTrabajosServicios":
         //var_dump($_POST);
@@ -53,9 +55,11 @@ switch ($accion) {
                 $output['id'] = $row["id_trabajos"];
                 $output['serie'] = $row["serie"];
                 $output['margesi'] = $row["margesi"];
+                $output['nombrePersonalId'] = $row["responsable_id"];
                 $output['nombreResponsable'] = $row["NombreResponsable"];
                 $output['tipoEquipo'] = $row["nombre_tipo_equipo"];
                 $output['nombreArea'] = $row["nombre_area"];
+                $output['areaID'] = $row["area_id"];
                 $output['nombreMarca'] = $row["nombre_marca"];
                 $output['nombreModelo'] = $row["nombre_modelo"];
                 $output['falla'] = $row["falla"];

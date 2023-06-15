@@ -86,7 +86,7 @@ class Trabajos extends Conectar
     {
         $conectar = parent::conexion();
 
-        $sql = "INSERT INTO temp_componentes(trabajo_id,equipo_id,servicio_id)VALUES (?,?,?);";
+        $sql = "INSERT INTO  temp_servicios(trabajo_id,equipo_id,servicio_id)VALUES (?,?,?);";
         $fila = $conectar->prepare($sql);
         //$fila->bindValue(1, $componenteId);
         $fila->bindValue(1, $trabajoId);
@@ -106,11 +106,13 @@ class Trabajos extends Conectar
             `id_trabajo_servicio`,
             `trabajo_id`,
             `servicio_id`,
+            `equipo_id`,
             `esActivo`
         )
         select temp_servicios.id_trabajo_servicio,
         temp_servicios.trabajo_id,
         temp_servicios.servicio_id,
+        temp_servicios.equipo_id,
         temp_servicios.esActivo
         from temp_servicios
         where temp_servicios.trabajo_id = '$trabajoId' on DUPLICATE KEY
@@ -141,6 +143,8 @@ class Trabajos extends Conectar
         $sql = "SELECT ts.id_temp_servicios,ts.servicio_id,ser.nombre_servicios
         from  temp_servicios  ts
         inner join servicios ser on ts.servicio_id = ser.id_servicios
+        WHERE
+        ts.esActivo = 1
         ;";
         $fila = $conectar->prepare($sql);
         $fila->execute();
@@ -171,9 +175,9 @@ class Trabajos extends Conectar
             $idTrabajos = null;
         }
         $conectar = parent::conexion();
-        $sql = "INSERT INTO trabajos  (id_trabajos,tecnico_id, equipo_id, usuarios_id, area_id, falla, solucion, recomendacion)
+        $sql = "INSERT INTO trabajos  (id_trabajos,tecnico_id, equipo_id, responsable_id, area_id, falla, solucion, recomendacion)
             VALUES ('$idTrabajos','$tecnicoID', '$equipoId', '$usuarioId', '$areaId', '$falla', '$solucion', '$recomendaciones')
-            ON DUPLICATE KEY UPDATE id_trabajos='$idTrabajos',tecnico_id = '$tecnicoID', equipo_id = '$equipoId', usuarios_id = '$usuarioId', area_id = '$areaId', falla = '$falla', solucion = '$solucion', recomendacion = '$recomendaciones';";
+            ON DUPLICATE KEY UPDATE id_trabajos='$idTrabajos',tecnico_id = '$tecnicoID', equipo_id = '$equipoId', responsable_id = '$usuarioId', area_id = '$areaId', falla = '$falla', solucion = '$solucion', recomendacion = '$recomendaciones';";
         $fila = $conectar->prepare($sql);
 
         if ($fila->execute()) {
@@ -220,8 +224,8 @@ class Trabajos extends Conectar
             INNER JOIN personal p ON p.id_personal = t.responsable_id
             INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
             INNER JOIN area a ON a.id_area = t.area_id
-        WHERE t.es_activo = 1;  AND NombreResponsable LIKE '%$textoBusqueda%' 
-            ORDER BY NombreResponsable, YEAR(fecha_alta) ASC, MONTH(fecha_alta) ASC 
+        WHERE t.es_activo = 1  AND p.nombre_personal LIKE '%$textoBusqueda%' 
+            ORDER BY NombreResponsable, YEAR(t.fecha_alta) ASC, MONTH(t.fecha_alta) ASC 
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
@@ -237,6 +241,7 @@ class Trabajos extends Conectar
                         "serie" => $trabajo["serie"],
                         "margesi" => $trabajo["margesi"],
                         'nombreResponsable' => $trabajo["NombreResponsable"],
+                        'nombreArea' => $trabajo["nombre_area"],
                         'nombreTecnico' => $trabajo["NombreTecnico"],
                         'fecha' => $trabajo["Fecha"]
 
@@ -290,7 +295,9 @@ class Trabajos extends Conectar
         $sql = "SELECT e.id_equipos,t.id_trabajos,e.serie,
         e.margesi,
         CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
+        t.responsable_id,
         tp.nombre_tipo_equipo,
+        t.area_id,
         a.nombre_area,
         m.nombre_marca,
         mo.nombre_modelo,
@@ -320,7 +327,7 @@ class Trabajos extends Conectar
             $id = $_POST["id"];
             // Resto del código para eliminar
             $conectar = parent::conexion();
-            $sql = "UPDATE  temp_servicios  SET esActivo = 0 WHERE  id_trabajo_servicio  = ?";
+            $sql = "UPDATE  temp_servicios  SET esActivo = 0 WHERE  id_temp_servicios  = ?";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $id);
             $sql->execute();
