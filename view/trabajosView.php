@@ -2,6 +2,26 @@
 include('../templates/cabecera.php');
 ?>
 
+<!-- modal test-servicios -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal test-servicios -->
+
 
 <!-- Modal Trabajo-->
 <div class="modal fade" id="TrabajoModal" tabindex="-1" aria-labelledby="TrabajoModalLabel" aria-hidden="true">
@@ -63,10 +83,7 @@ include('../templates/cabecera.php');
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="card">
-
-                            </div>
+                            </div>                            
                         </div>
                         <!-- /formulario cabecera-->
 
@@ -80,7 +97,7 @@ include('../templates/cabecera.php');
                                                 <div class="row">
                                                     <div class="col-lg-10 col-sm-4">Servicios Aplicados </div>
                                                     <div class="col-lg-2 col-sm-4 text-end">
-                                                        <button type="submit" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" data-coreui-target="#ServiciosModal"><strong>Añadir</strong></button>
+                                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#ServiciosModal">Añadir</button>
                                                     </div>
                                                 </div>
                                             </h5>
