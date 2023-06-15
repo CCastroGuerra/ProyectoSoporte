@@ -67,9 +67,11 @@ include('../templates/cabecera.php');
                                         <label for="marquesi" class="mb-2">Marquesi:</label>
                                         <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
                                         <label for="nombreUsuario" class="mb-2">Usuario del Equipo:</label>
-                                        <select class="form-select" aria-label="Usuario del Equipo" name="nombreUsuario" id="nombreUsuario"></select>                                        
+                                        <input type="text" class="form-control mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese el Area">
+                                        <input type="text" class="form-control mb-2" id="nombreUsuarioID" name="nombreUsuarioID" placeholder="Ingrese el AreaId">                                                                        
                                         <label for="selArea" class="mb-2">Area:</label>
-                                        <select class="form-select" aria-label="Area" name="selArea" id="selArea"></select> 
+                                        <input type="text" class="form-control mb-2" id="selArea" name="selArea" placeholder="Ingrese el Area">
+                                        <input type="text" class="form-control mb-2" id="selAreaID" name="selAreaID" placeholder="Ingrese el AreaId">                                        
                                         <label for="selEquipo" class="mb-2">Equipo:</label>
                                         <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
                                         </input>
@@ -110,7 +112,7 @@ include('../templates/cabecera.php');
                                             <div class="row">
                                                 <div class="col-lg-10 col-sm-6">Servicios Aplicados </div>
                                                 <div class="col-lg-2 col-sm-4 text-end">
-                                                    <button type="button" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" href="serviciosModal"><strong>Añadir</strong></button>
+                                                    <button type="submit" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" href="#serviciosModal"><strong>Añadir</strong></button>
                                                 </div>
                                             </div>
                                         </h5>
