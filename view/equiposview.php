@@ -23,7 +23,7 @@ include('../templates/cabecera.php');
                             <div class="card-body">
                                 <div class="input-group mb-3">
                                     <input type="search" class="form-control" placeholder="Busca al responsable" aria-label="busca_resp" id="buscaRes" name="buscaRes" aria-describedby="button-addon2" size="10" maxlength="10">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -33,8 +33,8 @@ include('../templates/cabecera.php');
                     <div class="card-body">
                         <table class="table table-hover align-middle">
                             <thead>
-                                <tr>                             
-                                    <th scope="col"><strong>Código</strong></th>       
+                                <tr>
+                                    <th scope="col"><strong>Código</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
                                 </tr>
                             </thead>
