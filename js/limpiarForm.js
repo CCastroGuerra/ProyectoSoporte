@@ -9,5 +9,5 @@ $("form").on('click', '.btncerrar',function (event) {
     console.log("entro");    
     fr = $(this.parentNode.parentNode);
     fr[0].reset();
-    console.log(fr);
+    console.log(fr+' se ha limpiado el form');
   });

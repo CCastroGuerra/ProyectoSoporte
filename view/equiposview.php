@@ -1,8 +1,7 @@
 <?php
 include('../templates/cabecera.php');
 ?>
-<!-- <link rel="stylesheet" href="../libtest.css">
- -->
+
 <!-- modal responsable -->
 <div class="modal" tabindex="-1" id="responsableModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
@@ -128,14 +127,14 @@ include('../templates/cabecera.php');
 
                                         <!-- <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable"> -->
                                         <label for="selArea" class="mb-2">Area:</label>
-                                        <select class="form-select form-select-sm select3" aria-label="Default select example" id="selArea" name="selArea">
+                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
                                             <option selected>Seleccione el Área</option>
                                             <option value="1">Estadistica</option>
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
                                         <label for="selEstado" class="mb-2">Estado:</label>
-                                        <select class="form-select form-select-sm select3" aria-label="Default select example" id="selEstado" name="selEstado">
+                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selEstado" name="selEstado">
                                             <option selected>Seleccione el estado</option>
                                             <option value="1">Nuevo</option>
                                             <option value="2">Bueno</option>
@@ -350,8 +349,7 @@ include('../templates/cabecera.php');
 </div>
 
 <script src='../js/equiposAjax.js'></script>
-<!-- <script src='../libtest.js'></script>
- -->
+
 
 <?php
 include '../templates/footer.php';
