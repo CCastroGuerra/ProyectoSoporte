@@ -94,11 +94,92 @@
             padding-right: 0;
             width: 25%;
         }
+        /*---- checkbox----*/
+        /*
+ * Ocultarlo siendo accesible
+ */
+.form-check-input {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+}
+
+.form-check-input + label{
+	position: relative;
+    padding-left: 30px;
+}
+
+.form-check-input + label:before {
+    content: "";
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    width: 18px;
+    height: 18px;
+    line-height: 11px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -8.5px;
+    background: white;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+    background-image: -moz-linear-gradient(#ffffff, #dddddd);
+    background-image: -o-linear-gradient(#ffffff, #dddddd);
+    background-image: linear-gradient(#ffffff, #dddddd);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+}
+
+/*
+ * Fondo para cuando se pasa el ratón por encima
+ */
+.form-check-input + label:hover:before {
+    background: #fafafa;
+}
+
+/*
+ * Fondo para cuando se está haciendo click
+ * Con filtros para ie9
+ */
+.form-check-input + label:active:before {
+    background: #f2f2f2;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
+    background-image: -webkit-linear-gradient(#dddddd, #ffffff);
+    background-image: -moz-linear-gradient(#dddddd, #ffffff);
+    background-image: -o-linear-gradient(#dddddd, #ffffff);
+    background-image: linear-gradient(#dddddd, #ffffff);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd, endColorstr=#ffffff);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#ffffff')";
+}
+
+.form-check-input:focus + label:before {
+    outline: 1px dotted;
+}
+
+.form-check-input:checked + label:before {
+    content: "\2713";
+}
+        /*---- /checkbox---*/
 
         @media print { 
             body{
-                writing-mode: rl;
+                writing-mode: lr;
             }
+            @page{size:landscape;}
             #enres {
                 box-shadow: inset 0 0 0 1000px rgba(151, 141, 141, 0.521);
             }
@@ -149,6 +230,7 @@
             
         }
     </style>
+
     </head>
 
     <body>
@@ -224,14 +306,24 @@
                                                             <tr>
                                                                 <th scope="col"
                                                                     colspan="3"
-                                                                    id="enres" style="padding: 0 0;">FECHA</th>
+                                                                    id="enres"
+                                                                    style="padding: 0 0;"><strong>FECHA</strong></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td style="padding: 0 0;">15</td>
-                                                                <td style="padding: 0 0;">06</td>
-                                                                <td style="padding: 0 0;">2023</td>
+                                                                <td
+                                                                    style="padding: 0 0;"><span
+                                                                        name="fechaDia"
+                                                                        id="fechaDia">16</span></td>
+                                                                <td
+                                                                    style="padding: 0 0;"><span
+                                                                        name="fechaMes"
+                                                                        id="fechaMes">06</span></td>
+                                                                <td
+                                                                    style="padding: 0 0;"><span
+                                                                        name="fechaAño"
+                                                                        id="fechaAño">23</span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -244,39 +336,52 @@
                             </table>
 
                             <table
-                                class="table table-borderless border-dark align-center" style="margin:0%;">
+                                class="table table-borderless border-dark align-center"
+                                style="margin:0%;">
                                 <tbody>
                                     <tr>
                                         <td class="tbcontainer"
-                                            style="width:65%; padding:0%;">
+                                            style="width:60%; padding:0%;">
                                             <table
                                                 class="table table-bordered border-dark align-middle text-center tbcontainer"
                                                 style="width:80%">
                                                 <tr>
                                                     <th class="cellcort"
-                                                        id="enres" style="width:30%;">MARCA</th>
-                                                    <td class="cellcort">Marca1</td>
+                                                        id="enres"
+                                                        style="width:30%;"><strong>MARCA</strong></th>
+                                                    <td class="cellcort"><span
+                                                            name="marca"
+                                                            id="marca">Marca1</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th class="cellcort"
-                                                        id="enres">MODELO</th>
-                                                    <td class="cellcort">Modelo
-                                                        1</td>
+                                                        id="enres"><strong>MODELO</strong></th>
+                                                    <td class="cellcort"><span
+                                                            name="modelo"
+                                                            id="modelo">Modelo
+                                                            1</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th class="cellcort"
-                                                        id="enres">MARQUESI</th>
-                                                    <td class="cellcort">984919191919195</td>
+                                                        id="enres"><strong>MARQUESI</strong></th>
+                                                    <td class="cellcort"><span
+                                                            name="marquesi"
+                                                            id="marquesi">313546494891</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th class="cellcort"
-                                                        id="enres">CONSUMIBLE</th>
-                                                    <td class="cellcort">165465651515</td>
+                                                        id="enres"><strong>CONSUMIBLE</strong></th>
+                                                    <td class="cellcort"><span
+                                                            name="consumible"
+                                                            id="consumible">Consumible
+                                                            1</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th class="cellcort"
-                                                        id="enres">IMPRESIONES</th>
-                                                    <td class="cellcort">Varios</td>
+                                                        id="enres"><strong>IMPRESIONES</strong></th>
+                                                    <td class="cellcort"><span
+                                                            name="impresiones"
+                                                            id="inpresiones">1254</span></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -295,16 +400,20 @@
                                                                     class="border border-dark">
                                                                     <th
                                                                         id="enres"
-                                                                        scope="col">NOMBRE
-                                                                        Y
-                                                                        APELLIDO
-                                                                        DE
-                                                                        RESPONSABLE</th>
+                                                                        scope="col"><strong>NOMBRE
+                                                                            Y
+                                                                            APELLIDO
+                                                                            DE
+                                                                            RESPONSABLE</strong></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>26/04/2023</td>
+                                                                    <td><span
+                                                                            id="nombreRes"
+                                                                            name="nombreRes">Cristiam
+                                                                            Viera
+                                                                            Burneo</span></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -322,12 +431,15 @@
                                                                     class="border border-dark">
                                                                     <th
                                                                         id="enres"
-                                                                        scope="col">OFICINA/SERVICIO</th>
+                                                                        scope="col"><strong>OFICINA/SERVICIO</strong></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>Oficina</td>
+                                                                    <td><span
+                                                                            name="ofServ"
+                                                                            id="ofServ">Oficina
+                                                                            1</span></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -352,8 +464,8 @@
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
-                                                    value
-                                                    id="checkToner">
+                                                    id="checkToner"
+                                                    style="accent-color: white;">
                                                 <label
                                                     class="form-check-label"
                                                     for="checkToner">
@@ -363,7 +475,6 @@
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
-                                                    value
                                                     id="checkCinta">
                                                 <label
                                                     class="form-check-label"
@@ -374,7 +485,6 @@
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
-                                                    value
                                                     id="checkTinta">
                                                 <label
                                                     class="form-check-label"
@@ -400,7 +510,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="cellcort lista">Lorem
+                                            <td class="cellcort lista"
+                                                style="font-size: 15px;"
+                                                name="fallas" id="fallas">Lorem
                                                 ipsum dolor sit amet,
                                                 consectetur adipiscing elit.
                                                 Praesent id congue nunc. Integer
@@ -438,8 +550,6 @@
                                 </table>
                             </div>
 
-                            
-
                         </div>
 
                     </div>
@@ -471,9 +581,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center" colspan="2"><span style="font-size: 15px;"><strong>AL FIRMAR ESTA FICHA, EL
-                            RESPONSABLE DEL SERVICIO U OFICINA CERTIFICA QUE ESTA
-                            CONFORME CON EL TRABAJO REALIZADO</strong></span></td>
+                        <td class="text-center" colspan="2"><span
+                                style="font-size: 15px;"><strong>AL FIRMAR ESTA
+                                    FICHA, EL
+                                    RESPONSABLE DEL SERVICIO U OFICINA CERTIFICA
+                                    QUE ESTA
+                                    CONFORME CON EL TRABAJO REALIZADO</strong></span></td>
                     </tr>
                 </table>
             </div>

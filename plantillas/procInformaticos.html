@@ -84,54 +84,164 @@
             integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <style>
+            #enres {background-color: gray;}
+            .cellcort#enres {
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0;
+            width: 25%;
+            }
 
-    #enres{
-        background-color: gray;
-    }
-    .cellcort#enres {
-            padding-top: 0;
-            padding-bottom: 0;
-            padding-right: 0;
-            width: 25%;
+            /*---- checkbox----*/
+            /*
+            * Ocultarlo siendo accesible
+            */
+            .form-check-input {
+                clip: rect(1px 1px 1px 1px);
+                clip: rect(1px, 1px, 1px, 1px);
+                position: absolute;
+            }
+
+            .form-check-input + label {
+                position: relative;
+                padding-left: 30px;
+            }
+
+            .form-check-input + label:before {
+                content: "";
+                display: inline-block;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                font-weight: bold;
+                font-size: 18px;
+                width: 13px;
+                height: 13px;
+                line-height: 4px;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                margin-top: -6.2px;
+                background: white;
+                background-image: -webkit-gradient(
+                    linear,
+                    50% 0%,
+                    50% 100%,
+                    color-stop(0%, #ffffff),
+                    color-stop(100%, #dddddd)
+                );
+                background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+                background-image: -moz-linear-gradient(#ffffff, #dddddd);
+                background-image: -o-linear-gradient(#ffffff, #dddddd);
+                background-image: linear-gradient(#ffffff, #dddddd);
+                zoom: 1;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -ms-border-radius: 3px;
+                -o-border-radius: 3px;
+                border-radius: 3px;
+                border: 1px solid #aaa;
+            }
+
+            /*
+            * Fondo para cuando se pasa el ratón por encima
+            */
+            .form-check-input + label:hover:before {
+                background: #fafafa;
+            }
+
+            /*
+            * Fondo para cuando se está haciendo click
+            * Con filtros para ie9
+            */
+            .form-check-input + label:active:before {
+                background: #f2f2f2;
+                background-image: -webkit-gradient(
+                    linear,
+                    50% 0%,
+                    50% 100%,
+                    color-stop(0%, #dddddd),
+                    color-stop(100%, #ffffff)
+                );
+                background-image: -webkit-linear-gradient(#dddddd, #ffffff);
+                background-image: -moz-linear-gradient(#dddddd, #ffffff);
+                background-image: -o-linear-gradient(#dddddd, #ffffff);
+                background-image: linear-gradient(#dddddd, #ffffff);
+                zoom: 1;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd, endColorstr=#ffffff);
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#ffffff')";
+            }
+
+            .form-check-input:focus + label:before {
+                outline: 1px dotted;
+            }
+
+            .form-check-input:checked + label:before {
+                content: "\2713";
+            }
+            /*---- /checkbox---*/
+
+            @media print {
+            body {
+                writing-mode: sideways-lr;
+            }
+
+            @page {
+                size: portrait;
+            }
+
+            #enres {
+                box-shadow: inset 0 0 0 1000px gray;
+            }
+            .contenidovisible {
+                height: 95vh;
+                font-size: 10px;
+            }
+            .tbcontainer {
+                margin-bottom: 6px;
+            }
+            .subtbcontainer {
+                margin-bottom: 0px;
+            }
+            .footer {
+                height: 5vh;
+            }
+
+            .cellcort#enres {
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-right: 0;
+                width: 25%;
+            }
+            td.cellcort {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            td.lista {
+                height: 160px;
+                height: 160px;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-content: center;
+                align-items: flex-start;
+            }
+            #imprimir {
+                display: none;
+            }
         }
-    @media print{
-        #enres{
-           box-shadow: inset 0 0 0 1000px gray;
-        }
-        .contenidovisible{height:95vh; font-size: 10px;}
-        .tbcontainer{margin-bottom:6px}
-        .subtbcontainer{margin-bottom:0px}
-        .footer{ height:5vh;}
-        
-        .cellcort#enres {
-            padding-top: 0;
-            padding-bottom: 0;
-            padding-right: 0;
-            width: 25%;
-        }
-        td.cellcort{
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-        td.lista{
-            height:160px;
-            height: 160px;
-            display: flex;
-            justify-content: space-around;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-content: center;
-            align-items: flex-start;
-        }
-        #imprimir{
-            display: none;
-        }
-    }
-</style>
+                
+        </style>
     </head>
 
     <body>
-        <input type="button" id="imprimir" name="imprimir" value="Imprimir" onclick="window.print();">   
+        <input type="button" id="imprimir" name="imprimir" value="Imprimir"
+            onclick="window.print();">
 
         <div class="col-md-12 col-lg-12 contenidovisible">
             <div class="row">
@@ -184,12 +294,15 @@
                                             </th>
 
                                             <div
-                                                class="row table table-bordered align-middle" style="margin-bottom: 0px;">
-                                                <div class="col-lg-5 col-sm-4" style="margin-bottom: 0px;">
+                                                class="row table table-bordered align-middle"
+                                                style="margin-bottom: 0px;">
+                                                <div class="col-lg-5 col-sm-4"
+                                                    style="margin-bottom: 0px;">
                                                     <th id="enres"><strong>HLMSP-ST</strong></th>
                                                 </div>
                                                 <div
-                                                    class="col-lg-auto col-sm-4" style="margin-bottom: 0px;">
+                                                    class="col-lg-auto col-sm-4"
+                                                    style="margin-bottom: 0px;">
                                                     <th style="color: red;">N°
                                                         000302</th>
                                                 </div>
@@ -202,9 +315,9 @@
                             <div class="table table-borderless tbcontainer">
                                 <table
                                     class="table table-borderless align-middle text-center subtbcontainer">
-                                    <thead>
+                                    <tbody>
                                         <tr>
-                                            <th scope="col" class="w-75"
+                                            <td scope="col" class="w-75"
                                                 style="padding-top:0;padding-bottom: 0;padding-left: 0;">
                                                 <table
                                                     class="border border-dark"
@@ -213,19 +326,19 @@
                                                         <tr
                                                             class="border border-dark">
                                                             <th id="enres"
-                                                                scope="col">NOMBRES
-                                                                Y APELLIDOS</th>
+                                                                scope="col"><strong>NOMBRES
+                                                                    Y APELLIDOS</strong></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Cristian Viera
-                                                                Burneo</td>
+                                                            <td><span name="nombre" id="nombre">Cristian Viera
+                                                                Burneo</span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </th>
-                                            <th scope="col" class="w-25"
+                                            </td>
+                                            <td scope="col" class="w-25"
                                                 style="padding-top:0;padding-bottom: 0;padding-left: 0; padding-right: 0%;">
                                                 <table
                                                     class="border border-dark"
@@ -234,19 +347,19 @@
                                                         <tr
                                                             class="border border-dark">
                                                             <th id="enres"
-                                                                scope="col">FECHA
-                                                                DE RECEPCIÓN</th>
+                                                                scope="col"><strong>FECHA
+                                                                    DE RECEPCIÓN</strong></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>26/04/2023</td>
+                                                            <td><span name="fechaRec">26/04/2023</span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </th>
+                                            </td>
                                         </tr>
-                                    </thead>
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -266,8 +379,8 @@
                                                         <tr
                                                             class="border border-dark">
                                                             <th id="enres"
-                                                                scope="col">DATOS
-                                                                DEL EQUIPO</th>
+                                                                scope="col"><strong>DATOS
+                                                                    DEL EQUIPO</strong></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -279,44 +392,40 @@
                                                                     <input
                                                                         class="form-check-input"
                                                                         type="checkbox"
-                                                                        value
                                                                         id="checkCPU">
                                                                     <label
                                                                         class="form-check-label"
-                                                                        for="flexCheckDefault">
+                                                                        for="checkCPU">
                                                                         CPU</label>
                                                                 </div>
                                                                 <div>
                                                                     <input
                                                                         class="form-check-input"
                                                                         type="checkbox"
-                                                                        value
                                                                         id="checkImpr">
                                                                     <label
                                                                         class="form-check-label"
-                                                                        for="flexCheckDefault">
+                                                                        for="checkImpr">
                                                                         Impresora</label>
                                                                 </div>
                                                                 <div>
                                                                     <input
                                                                         class="form-check-input"
                                                                         type="checkbox"
-                                                                        value
                                                                         id="checkLaptop">
                                                                     <label
                                                                         class="form-check-label"
-                                                                        for="flexCheckDefault">
+                                                                        for="checkLaptop">
                                                                         Laptop</label>
                                                                 </div>
                                                                 <div>
                                                                     <input
                                                                         class="form-check-input"
                                                                         type="checkbox"
-                                                                        value
                                                                         id="checkOtros">
                                                                     <label
                                                                         class="form-check-label"
-                                                                        for="flexCheckDefault">
+                                                                        for="checkOtros">
                                                                         Otros</label>
                                                                 </div>
                                                             </td>
@@ -335,12 +444,12 @@
                                                         <tr
                                                             class="border border-dark">
                                                             <th id="enres"
-                                                                scope="col">OFICINA/SERVICIO</th>
+                                                                scope="col"><strong>OFICINA/SERVICIO</strong></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Logística</td>
+                                                            <td><span name="oficServ" id="oficServ">Logística</span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -353,27 +462,27 @@
                             <div
                                 class="table table-border border-dark tbcontainer">
                                 <table
-                                    class="table table-bordered border-dark align-middle text-center tbcontainer">
+                                    class="table table-bordered border-dark align-middle tbcontainer">
                                     <tr>
-                                        <th class="cellcort" id="enres">MARCA</th>
-                                        <td class="cellcort">Marca1</td>
+                                        <th class="cellcort" id="enres"><strong>MARCA</strong></th>
+                                        <td class="cellcort"><span name="marca" id="marca">Marca 1</span></td>
                                     </tr>
                                     <tr>
-                                        <th class="cellcort" id="enres">MODELO</th>
-                                        <td class="cellcort">Modelo 1</td>
+                                        <th class="cellcort" id="enres"><strong>MODELO</strong></th>
+                                        <td class="cellcort"><span name="modelo" id="modelo">Modelo 1</span></td>
                                     </tr>
                                     <tr>
-                                        <th class="cellcort" id="enres">N° DE
-                                            SERIE</th>
-                                        <td class="cellcort">165465651515</td>
+                                        <th class="cellcort" id="enres"><strong>N° DE
+                                            SERIE</strong></th>
+                                        <td class="cellcort"><span name="nroserie" id="nroserie">16546489498</span></td>
                                     </tr>
                                     <tr>
-                                        <th class="cellcort" id="enres">MARQUESI</th>
-                                        <td class="cellcort">984919191919195</td>
+                                        <th class="cellcort" id="enres"><strong>MARQUESI</strong></th>
+                                        <td class="cellcort"><span name="marquesi" id="marquesi">31546684184813</span></td>
                                     </tr>
                                     <tr>
-                                        <th class="cellcort" id="enres">PROCEDIMIENTO</th>
-                                        <td class="cellcort">Varios</td>
+                                        <th class="cellcort" id="enres"><strong>PROCEDIMIENTO</strong></th>
+                                        <td class="cellcort"><span name="proced" id="proced">Varios</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -383,13 +492,47 @@
                                     class="table table-bordered border-dark align-middle tbcontainer">
                                     <thead>
                                         <tr>
-                                            <th class="cellcort lista text-center" id="enres">FALLAS EN EQUIPO
-                                                INFORMATICO</th>
+                                            <th
+                                                class="cellcort lista text-center"
+                                                id="enres"><strong>FALLAS EN EQUIPO
+                                                    INFORMATICO</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="cellcort lista">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id congue nunc. Integer eu lobortis turpis. In mollis sem luctus turpis sodales, sed faucibus odio egestas. Quisque id faucibus ligula. Sed vestibulum faucibus libero, in consequat nulla eleifend nec. Nullam ultrices fringilla laoreet. Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia. </td>
+                                            <td class="cellcort lista"><span name="fallas" id="fallas">Lorem
+                                                ipsum dolor sit amet,
+                                                consectetur adipiscing elit.
+                                                Praesent id congue nunc. Integer
+                                                eu lobortis turpis. In mollis
+                                                sem luctus turpis sodales, sed
+                                                faucibus odio egestas. Quisque
+                                                id faucibus ligula. Sed
+                                                vestibulum faucibus libero, in
+                                                consequat nulla eleifend nec.
+                                                Nullam ultrices fringilla
+                                                laoreet. Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae
+                                                lacinia.Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae
+                                                lacinia.Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae lacinia.</span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -400,12 +543,45 @@
                                     class="table table-bordered border-dark align-middle tbcontainer">
                                     <thead>
                                         <tr>
-                                            <th class="cellcort text-center" id="enres">SOLUCIÓN O REPARACIÓN</th>
+                                            <th class="cellcort text-center"
+                                                id="enres"><strong>SOLUCIÓN O REPARACIÓN</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="cellcort lista">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id congue nunc. Integer eu lobortis turpis. In mollis sem luctus turpis sodales, sed faucibus odio egestas. Quisque id faucibus ligula. Sed vestibulum faucibus libero, in consequat nulla eleifend nec. Nullam ultrices fringilla laoreet. Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia. </td>
+                                            <td class="cellcort lista"><span name="solrep" id="solrep">Lorem
+                                                ipsum dolor sit amet,
+                                                consectetur adipiscing elit.
+                                                Praesent id congue nunc. Integer
+                                                eu lobortis turpis. In mollis
+                                                sem luctus turpis sodales, sed
+                                                faucibus odio egestas. Quisque
+                                                id faucibus ligula. Sed
+                                                vestibulum faucibus libero, in
+                                                consequat nulla eleifend nec.
+                                                Nullam ultrices fringilla
+                                                laoreet. Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae
+                                                lacinia.Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae
+                                                lacinia.Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae lacinia.</span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -416,12 +592,45 @@
                                     class="table table-bordered border-dark align-middle">
                                     <thead>
                                         <tr>
-                                            <th class="cellcort text-center" id="enres">RECOMENDACIONES</th>
+                                            <th class="cellcort text-center"
+                                                id="enres"><strong>RECOMENDACIONES</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="cellcort lista">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id congue nunc. Integer eu lobortis turpis. In mollis sem luctus turpis sodales, sed faucibus odio egestas. Quisque id faucibus ligula. Sed vestibulum faucibus libero, in consequat nulla eleifend nec. Nullam ultrices fringilla laoreet. Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed risus quis lorem dictum luctus ut eu metus. Etiam interdum tincidunt lacinia. Curabitur finibus ornare enim nec mattis. Donec sit amet ultricies enim. Nunc iaculis vel ipsum vitae lacinia. </td>
+                                            <td class="cellcort lista"><span name="recom" id="recom">Lorem
+                                                ipsum dolor sit amet,
+                                                consectetur adipiscing elit.
+                                                Praesent id congue nunc. Integer
+                                                eu lobortis turpis. In mollis
+                                                sem luctus turpis sodales, sed
+                                                faucibus odio egestas. Quisque
+                                                id faucibus ligula. Sed
+                                                vestibulum faucibus libero, in
+                                                consequat nulla eleifend nec.
+                                                Nullam ultrices fringilla
+                                                laoreet. Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae
+                                                lacinia.Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae
+                                                lacinia.Mauris sed risus quis
+                                                lorem dictum luctus ut eu metus.
+                                                Etiam interdum tincidunt
+                                                lacinia. Curabitur finibus
+                                                ornare enim nec mattis. Donec
+                                                sit amet ultricies enim. Nunc
+                                                iaculis vel ipsum vitae lacinia.</span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
