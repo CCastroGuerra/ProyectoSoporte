@@ -4,18 +4,56 @@ listarSelectMarca();
 buscarMarca();
 //listarMarca();
 let frmMarca = document.getElementById("formMarca");
+///
+const modalp = frmMarca.parentNode.parentNode.parentNode.id;
+const alerta = frmMarca.querySelector("#alerta1");
+const alerta2 = frmMarca.querySelector("#alerta2");
+const calert = frmMarca.querySelectorAll(".alerta");
+const nombre_marca = frmMarca.querySelector("#nombreMarca");
+const categ = frmMarca.querySelector("#selMarca");
+const regla = new RegExp("[a-zA-Z]+$");
+
+var ofr = document.querySelectorAll("#formMarca .alerta");
+
+ofr.forEach((element) => {
+  element.style.color = "red";
+});
+nombre_marca.onkeypress = function (evento) {
+  alerta.innerText = "";
+  alerta2.innerText = "";
+};
+////
 
 frmMarca.onsubmit = function (e) {
   e.preventDefault();
+  var band = 0;
   if (frmMarca.querySelector("#codigoMarca").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarMarca();
-    //listarMarca();
-    console.log("guardo");
+    if (nombre_marca.value.trim() == 0) {
+      band++;
+      alerta.innerText = "el elemento esta vacío";
+    } else {
+      if (regla.test(nombre_marca.value) == false) {
+        band++;
+        alerta.innerText = "el elemento no debe contener numeros";
+      }
+    }
+    if (categ.value == 0) {
+      band++;
+      console.log("no se ha seleccionado una categoria");
+      alerta2.innerText = "no se ha seleccionado una categoria";
+    }
+
+    if (band == 0) {
+      guardarMarca();
+      buscarMarca();
+      console.log("guardo");
+      frmMarca.reset();
+      $("#" + modalp).modal("toggle");
+    }
   }
-  frmMarca.reset();
 };
 
 function listarSelectMarca() {
@@ -52,6 +90,7 @@ function listarSelectMarca() {
 var elemento = document.getElementById("selMarca");
 elemento.onchange = function () {
   var valorSeleccionado = elemento.value;
+  alerta2.innerText = "";
   console.log("Valor seleccionado:", valorSeleccionado);
 };
 
@@ -75,8 +114,6 @@ function guardarMarca() {
   };
   ajax.send(data);
 }
-
-
 
 function actualizar(id) {
   const nombreInput = document.getElementById("nombreMarca");
@@ -211,7 +248,6 @@ function buscarMarca() {
       let mostrarRegistro = `
       <p><span id="totalRegistros">Mostrando ${marca.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
-
     } else {
       var elemento = document.getElementById("tbMarca");
       elemento.innerHTML = `

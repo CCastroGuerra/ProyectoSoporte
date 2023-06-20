@@ -5,17 +5,38 @@ console.log(numPagina);
 buscarServicio();
 //listarServicio();
 
+///
+const modalp = frmServicio.parentNode.parentNode.parentNode.id;
+const alerta = frmServicio.querySelector("#alerta");
+const nombre_servicio = frmServicio.querySelector("#nombreServicio");
+const regla = new RegExp("[a-zA-Z]+$");
+
+alerta.style.color = "red";
+nombre_servicio.onkeypress = function (evento) {
+  alerta.innerText = "";
+};
+////
+
 frmServicio.onsubmit = function (e) {
   e.preventDefault();
   if (frmServicio.querySelector("#inputCodigo").value !== "") {
     actualizar(id);
     console.log("actualizo");
   } else {
-    guardarServicio();
-    //listarServicio();
-    console.log("guardo");
+    if (nombre_servicio.value.trim().length > 0) {
+      if (regla.test(nombre_servicio.value)) {
+        guardarServicio();
+        buscarServicio();
+        console.log("guardo");
+        frmServicio.reset();
+        $("#" + modalp).modal("toggle");
+      } else {
+        alerta.innerText = "el campo solo acepta letras";
+      }
+    } else {
+      alerta.innerText = " el elemento no puede estar vacio";
+    }
   }
-  frmServicio.reset();
 };
 
 /*limit para el select*/
