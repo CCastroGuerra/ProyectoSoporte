@@ -23,6 +23,7 @@ include('../templates/cabecera.php');
 
                 <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
                 <input type="text" class="form-control mb-2" id="nombreModelo" name="nombreModelo" placeholder="Ingrese modelo">
+                <div class="alerta" id="alerta1"></div>
                 <label for="exampleInputEmail1" class="mb-2">Marca:</label>
                 <select class="form-select form-select-sm" aria-label="Default select example" id="selMarca" name="selMarca">
                   <option selected>Selecciona la marca</option>
@@ -30,7 +31,7 @@ include('../templates/cabecera.php');
                   <option value="2">ADATA</option>
                   <option value="3">Sasmsung</option>
                 </select>
-                <div id="alerta"></div>
+                <div class="alerta" id="alerta2"></div>
               </div>
             </div>
           </div>
@@ -38,7 +39,7 @@ include('../templates/cabecera.php');
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
 
         </div>
       </form>
