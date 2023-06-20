@@ -288,6 +288,7 @@ function buscarTrabajos() {
                       <td>${trabajos.nombreArea}</td>
                       <td>${trabajos.nombreTecnico}</td>
                       <td>${trabajos.fecha}</td>
+                      <td>
                       <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
                       

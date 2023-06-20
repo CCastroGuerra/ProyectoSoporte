@@ -1,18 +1,35 @@
 <?php
-include('../config/conexion.php');
-$conect= new conexion();
-$conect = $conect->conexion();
+require_once("../config/conexion.php");
+require_once("../model/inventarioModel.php");
 
-class inventario{
-    private $idInventario;
-    private $productoId;
-    private $cantidad;
+$inventario = new Inventario();
+$accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
-    public function __construct($idInventario, $productoId, $cantidad)
-    {
-        $this->idInventario = $idInventario;
-        $this->productoId = $productoId;
-        $this->cantidad = $cantidad;
-    }
+switch ($accion) {
+    case "salidaProducto":
+        //var_dump($_POST);
+        $inventario->salidaProductos($_POST['codProducto'], $_POST['cantidad']);
+        break;
+    case "entradaProducto":
+        $inventario->entradaProductos($_POST['codProducto'], $_POST['cantidad']);
+        break;
+    case "traerNombreProducto":
+        $inventario->nombreProducto($_POST['codProducto']);
+        break;
+    case "guardarEntrada":
+        var_dump($_POST);
+        $inventario->guardarEntrada($_POST['cantidad'], $_POST['selAccion'], $_POST['codProducto']);
+        break;
+    case "guardarSalida":
+        $inventario->guardarSalida($_POST['cantidad'], $_POST['selAccion'], $_POST['codProducto']);
+        break;
+    case "buscarEntradas":
+        $inventario->buscarEntradas(intval($_POST['pag']));
+        break;
+    case "buscarSalidas":
+        $inventario->buscarSalidas(intval($_POST['pag']));
+        break;
+    case "buscarResumen":
+        $inventario->buscarResumen(intval($_POST['pag']));
+        break;
 }
-?>

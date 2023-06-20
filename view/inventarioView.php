@@ -14,19 +14,27 @@ include('../templates/cabecera.php');
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="mb-2">Acción:</label>
                         <select class="form-select" aria-label="Default select example" id="selAccion" name="selAccion">
-                            <option value="1" selected>Entrada</option>
+                            <option value="0" selected>Seleccione una accion</option>
+                            <option value="1">Entrada</option>
                             <option value="2">Salida</option>
                         </select>
+                        <div id="errorAccion"></div>
+
                         <label for="exampleInputEmail1" class="mb-2">Producto:</label>
-                        <input type="text" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
+                        <!-- <input type="text" class="form-control is-invalid" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto"> -->
+                        <input type="text" class="form-control is-invalid" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
+
+                        <div class="invalid-feedback">Por favor, ingrese el nombre del producto.</div>
                         <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                         <input type="number" class="form-control mb-2" id="cantidad" name="cantidad" placeholder="0.00">
-                        <div id="alerta"></div>
+                        <div id="errorCantidad" class="error-message"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+
+
 
                 </div>
             </form>
@@ -68,7 +76,7 @@ include('../templates/cabecera.php');
                                 <div class="col-lg-8 col-sm-8">
                                     <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
-                                            <select name="tbInventario-length" aria-controls="tbInventario" id="numRegistros">
+                                            <select name="tbInventario-length" aria-controls="tbInventario" id="numRegistrosResumen">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -88,7 +96,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>
@@ -124,7 +132,7 @@ include('../templates/cabecera.php');
                                 <div class="col-lg-8 col-sm-8">
                                     <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
-                                            <select name="tbEntradas-length" aria-controls="tbEntradas" id="numRegistros">
+                                            <select name="tbEntradas-length" aria-controls="tbEntradas" id="numRegistrosEntradas">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -145,7 +153,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>
@@ -181,7 +189,7 @@ include('../templates/cabecera.php');
                                 <div class="col-lg-8 col-sm-8">
                                     <div class="table-length mb-auto my-1 text-start">
                                         <label>Mostrar
-                                            <select name="tbSalidas-length" aria-controls="tbSalidas" id="numRegistros">
+                                            <select name="tbSalidas-length" aria-controls="tbSalidas" id="numRegistrosSalidas">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -201,7 +209,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>

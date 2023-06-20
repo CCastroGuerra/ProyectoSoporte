@@ -16,34 +16,25 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                <div id="divcodigo" name="divcodigo">
                                     <label class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
                                 <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
-                                <div id="Equipo"></div>
                                 <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="Ingrese #serie">
-                                <label for="exampleInputEmail1" class="mb-2">Área:</label>
-                                <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
-                                    <option selected>Seleccione el Área</option>
-                                    <option value="1">Área 1</option>
-                                    <option value="2">Área 2</option>
-                                    <option value="3">Área 3</option>
-                                </select>
+                                <p id="Equipo" style="color:red"></p>
                                 <label for="exampleInputEmail1" class="mb-2">Tipo:</label>
                                 <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
-                                    <option selected>Seleccione el Tipo</option>
+                                    <option selected value="0">Seleccione el Tipo</option>
                                     <option value="1">Temporal</option>
                                     <option value="2">Permanente</option>
                                 </select>
+                                <p id="combo" style="color:red"></p>
                                 <label for="exampleInputEmail1" class="mb-2">Motivo:</label>
-                                <select class="form-select" aria-label="Motivo" id="selMotivo" name="selMotivo">
-                                    <option selected>Seleccione el Motivo</option>
-                                    <option value="1">Motivo 1</option>
-                                    <option value="2">Motivo 2</option>
-                                    <option value="3">Motivo 3</option>
-                                    <option value="4">Otros</option>
-                                </select>
+                                <textarea class="form-control" id="motivo" name="motivo" rows="3"></textarea>
+                                <p id="txtMotivo" style="color:red"></p>
+
+
 
                                 <div id="alerta"></div>
                             </div>
@@ -52,7 +43,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button id="btnGuardar" type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
 
                 </div>
             </form>
@@ -108,7 +99,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Equipo</strong></th>
                                     <th scope="col"><strong>Area</strong></th>
                                     <th scope="col"><strong>Motivo</strong></th>
