@@ -3,6 +3,16 @@ var numPagina = 1;
 var frmRol = document.getElementById("formRoles");
 console.log(numPagina);
 buscarRol();
+///
+const modalp = frmRol.parentNode.parentNode.parentNode.id;
+const alerta = frmRol.querySelector("#alerta");
+const nombre_rol = frmRol.querySelector("#inputRol");
+
+alerta.style.color = "red";
+nombre_rol.onkeypress = function (evento) {
+  alerta.innerText = "";
+};
+////
 //listarRoles();
 frmRol.onsubmit = function (e) {
   e.preventDefault();
@@ -10,11 +20,20 @@ frmRol.onsubmit = function (e) {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarRol();
-
-    console.log("guardo");
+    if (nombre_rol.value.trim().length > 0) {
+      regla = new RegExp("[a-zA-Z]+$");
+      if (regla.test(nombre_rol.value)) {
+        guardarRol();
+        console.log("guardo");
+        frmRol.reset();        
+        $("#"+modalp).modal('toggle');
+      } else {
+        alerta.innerText = "el elemento no debe contener numeros";
+      }
+    } else {
+      alerta.innerText = "el elemento no debe estar vacio";
+    }
   }
-  frmRol.reset();
 };
 
 /*limit para el select*/

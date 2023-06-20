@@ -4,17 +4,43 @@ var frmArea = document.getElementById("formArea");
 console.log(numPagina);
 buscarArea();
 //listarArea();
+///
+const modalp = frmArea.parentNode.parentNode.parentNode.id;
+const alerta = frmArea.querySelector("#alerta");
+const nombre_area = frmArea.querySelector("#nombre_area");
+
+alerta.style.color = "red";
+nombre_area.onkeypress = function (evento) {
+  alerta.innerText = "";
+};
+////
 frmArea.onsubmit = function (e) {
   e.preventDefault();
   if (frmArea.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarArea();
+    if (frmArea.querySelector("#nombre_area").value.trim().length > 0) {
+      regla = new RegExp("[a-zA-Z]+$");
+      if (regla.test(frmArea.querySelector("#nombre_area").value)) {
+        guardarArea();
+        console.log("guardo");
+        frmArea.reset();
+        $("#" + modalp).modal("toggle");
+      } else {
+        console.log("no cumple, reabriendo el modal: " + modalp);
+        //$("#" + modalp).modal("show");
+        alerta.innerText = "el texto no debe contener numeros";
+      }
+    } else {
+      console.log("elemento vacío, reabriendo el modal: " + modalp);
+      $("#" + modalp).modal("show");
+      alerta.innerText = "el elemento no debe estar vacio";
+    }
+    /* guardarArea();
     //listarArea();
-    console.log("guardo");
+    console.log("guardo"); */
   }
-  frmArea.reset();
 };
 
 /*limit para el select*/
