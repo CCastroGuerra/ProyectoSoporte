@@ -1,19 +1,20 @@
 <?php
 
 
-class Conectar {
+class Conectar
+{
     protected $host;
 
-    protected function Conexion(){
+    public function Conexion()
+    {
         try {
-         $conectar = $this->host = new PDO("mysql:local=localhost;dbname=bd_fechasyrel","root","");
-         return $conectar;
+            $conectar = $this->host = new PDO("mysql:local=localhost;dbname=bd_fechasyrel", "root", "");
+            return $conectar;
         } catch (Exception $e) {
             print "¡Error BD!: " . $e->getMessage() . "<br/>";
             die();
         }
     }
-    
 }
 
 
@@ -40,7 +41,3 @@ class Conectar {
 
    
 // }
-
-
-
-?>

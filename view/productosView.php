@@ -108,7 +108,7 @@ include('../templates/cabecera.php');
                                     <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
                                     <input type="text" class="form-control mb-2" id="selUnidad" name="selUnidad" placeholder="Ingrese Presentacion" data-coreui-toggle="modal" data-coreui-target="#presentacionModal" readonly>
                                     <input type="text" id="presValue" name="presValue" class="visually-hidden">
-                                    
+
                                     <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                                     <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
                                     <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
@@ -145,6 +145,7 @@ include('../templates/cabecera.php');
                 <div class="card-body">
                     <h3 class="card-title mb-auto">
                         <div class="row">
+                            <a href="reportes.php">Reporte PDF</a>
                             <div class="col-lg-10 col-sm-6">Lista Productos </div>
                             <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#productosModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
                         </div>
