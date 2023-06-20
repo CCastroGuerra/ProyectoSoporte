@@ -4,35 +4,66 @@ var frmArea = document.getElementById("formArea");
 console.log(numPagina);
 buscarArea();
 //listarArea();
+///
+const modalp=frmArea.parentNode.parentNode.parentNode.id;
+const alerta = frmArea.querySelector("#alerta");
+const nombre_area = frmArea.querySelector("#nombre_area");
+
+alerta.style.color = 'red';
+nombre_area.onkeypress= function(evento){
+  alerta.innerText="";
+}
+////
 frmArea.onsubmit = function (e) {
   e.preventDefault();
   if (frmArea.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarArea();
+    /////
+    
+    if (frmArea.querySelector("#nombre_area").value.trim().length > 0) {
+      regla = new RegExp("[a-zA-Z]+$");
+      if (regla.test(frmArea.querySelector("#nombre_area").value)) {
+        guardarArea();
+        console.log("guardo");
+        $('#'+modalp).modal('hide');
+      }
+      else{
+        console.log('no cumple, reabriendo el modal: '+modalp);
+        $('#'+modalp).modal('show');
+        alerta.innerText = "el texto no debe contener numeros";
+      }
+    }
+    else{
+      console.log('elemento vacío, reabriendo el modal: '+modalp);
+        $('#'+modalp).modal('show');
+        alerta.innerText = "el elemento no debe estar vacio";
+    }
+    ////
+    /* guardarArea();
     //listarArea();
-    console.log("guardo");
+    console.log("guardo"); */
   }
-  frmArea.reset();
+  //frmArea.reset();
 };
 
 /*limit para el select*/
-var numRegistors = document.getElementById('numRegistros');
-numRegistors.addEventListener("change", ()=>{
+var numRegistors = document.getElementById("numRegistros");
+numRegistors.addEventListener("change", () => {
   numPagina = 1;
   buscarArea();
 });
 
 function listarArea() {
-  let num_registros = document.getElementById('numRegistros').value;
+  let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/areaController.php", true);
   var data = new FormData();
   data.append("accion", "listar");
   data.append("valor", "");
   data.append("cantidad", "4");
-  data.append('registros',num_registros);
+  data.append("registros", num_registros);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
@@ -60,7 +91,6 @@ function listarArea() {
       });
       var elemento = document.getElementById("tbArea");
       elemento.innerHTML = template;
-     
     }
   };
   ajax.send(data);
@@ -69,26 +99,26 @@ function listarArea() {
 function buscarArea() {
   var cajaBuscar = document.getElementById("inputbuscarArea");
   const textoBusqueda = cajaBuscar.value;
-  let num_registros = document.getElementById('numRegistros').value;
+  let num_registros = document.getElementById("numRegistros").value;
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/areaController.php", true);
   var data = new FormData();
   data.append("accion", "buscar");
   data.append("cantidad", "4");
-  data.append('registros',num_registros);
-  data.append('pag',numPagina);
+  data.append("registros", num_registros);
+  data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);
-    ajax.onload = function () {
-      let respuesta = ajax.responseText;
-      console.log(respuesta);
-      const datos = JSON.parse(respuesta);
-      console.log(datos);
-      let area = datos.listado;
-      console.log(area);
-      let template = ""; // Estructura de la tabla html
-      if (area != 'vacio') {
-        area.forEach(function (area) {
-          template += `
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const datos = JSON.parse(respuesta);
+    console.log(datos);
+    let area = datos.listado;
+    console.log(area);
+    let template = ""; // Estructura de la tabla html
+    if (area != "vacio") {
+      area.forEach(function (area) {
+        template += `
             <tr>
               
               <td>${area.nombre}</td>
@@ -102,28 +132,27 @@ function buscarArea() {
               </td>
             </tr>
           `;
-        });
-        var elemento = document.getElementById("tbArea");
-        elemento.innerHTML = template;
-        document.getElementById('txtPagVista').value = numPagina;
-        document.getElementById('txtPagTotal').value = datos.paginas;
+      });
+      var elemento = document.getElementById("tbArea");
+      elemento.innerHTML = template;
+      document.getElementById("txtPagVista").value = numPagina;
+      document.getElementById("txtPagTotal").value = datos.paginas;
 
-        /* Mostrando mensaje de los registros*/
+      /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
       let mostrarRegistro = `
       <p><span id="totalRegistros">Mostrando ${area.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
-
-      } else {
-        var elemento = document.getElementById("tbArea");
-        elemento.innerHTML = `
+    } else {
+      var elemento = document.getElementById("tbArea");
+      elemento.innerHTML = `
           <tr>
             <td colspan="3" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      }
-    };
-    ajax.send(data);
+    }
+  };
+  ajax.send(data);
 }
 
 function guardarArea() {
@@ -197,7 +226,7 @@ function actualizar(id) {
             "success"
           );
         };
-        cajaBuscar.value = '';
+        cajaBuscar.value = "";
         ajax.send(data);
       }
     });
@@ -258,44 +287,43 @@ cajaBuscar.addEventListener("keyup", function (e) {
 
 /**************************/
 /* BOTONES DE PAGINACIÓN */
-let pagInicio = document.querySelector('#btnPrimero');
-pagInicio.addEventListener('click', function (e) {
-    numPagina = 1;
-    document.getElementById('txtPagVista').value = numPagina;
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarArea();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarArea();
-    pagInicio.blur();
+    pagAnterior.blur();
+  }
 });
-let pagAnterior = document.querySelector('#btnAnterior');
-pagAnterior.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagDestino = 0;
-    if ((pagVisitada - 1) >= 1) {
-        pagDestino = pagVisitada - 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarArea();
-        pagAnterior.blur();
-    }
-});
-let pagSiguiente = document.querySelector('#btnSiguiente');
-pagSiguiente.addEventListener('click', function (e) {
-    var pagVisitada = parseInt(document.getElementById('txtPagVista').value);
-    var pagFinal = parseInt(document.getElementById('txtPagTotal').value);
-    var pagDestino = 0;
-    if ((pagVisitada + 1) <= pagFinal) {
-        pagDestino = pagVisitada + 1;
-        numPagina = pagDestino;
-        document.getElementById('txtPagVista').value = numPagina;
-        buscarArea();
-        pagSiguiente.blur();
-    }
-});
-let pagFinal = document.querySelector('#btnUltimo');
-pagFinal.addEventListener('click', function (e) {
-    numPagina = document.getElementById('txtPagTotal').value;
-    document.getElementById('txtPagVista').value = numPagina;
-    console.log(numPagina);
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
     buscarArea();
-    pagFinal.blur();
+    pagSiguiente.blur();
+  }
 });
-
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarArea();
+  pagFinal.blur();
+});

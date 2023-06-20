@@ -35,7 +35,7 @@ include('../templates/cabecera.php');
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+          <button type="submit" class="btn btn-primary" /*data-coreui-dismiss="modal"*/>Guardar</button>
 
         </div>
       </form>

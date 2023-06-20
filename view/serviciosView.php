@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                   <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Ingrese el Código">
                 </div>
                 <label for="nombreServicio" class="mb-2">Nombre:</label>
-                <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
+                <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio" required>
                 <div id="alerta"></div>
               </div>
             </div>
@@ -29,7 +29,7 @@ include('../templates/cabecera.php');
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+          <button type="submit" class="btn btn-primary" /*data-coreui-dismiss="modal"*/>Guardar</button>
 
         </div>
       </form>
@@ -64,7 +64,7 @@ include('../templates/cabecera.php');
             <div class="row mb-auto">
               <div class="col-lg-8 col-sm-8">
                 <div class="table-length mb-auto my-1 text-start">
-                  <label>Mostrar
+                  <label for="numRegistros">Mostrar
                     <select name="tbServicio-length" aria-controls="tbServicio" id="numRegistros">
                       <option value="5">5</option>
                       <option value="10">10</option>

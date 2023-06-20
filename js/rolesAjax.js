@@ -4,17 +4,43 @@ var frmRol = document.getElementById("formRoles");
 console.log(numPagina);
 buscarRol();
 //listarRoles();
-frmRol.onsubmit = function (e) {
+///
+const modalp= frmRol.parentNode.parentNode.parentNode.id;
+const alerta = frmRol.querySelector("#alerta");
+const nombre_rol = frmRol.querySelector("#inputRol");
+
+alerta.style.color = "red";
+nombre_rol.onkeypress = function (evento) {
+  alerta.innerText = "";
+};
+////
+frmRol.btnguardar.onclick = function (e) {
   e.preventDefault();
+  console.log('click boton guardar');
   if (frmRol.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarRol();
+    console.log("guardar?");
+    if (nombre_rol.value.trim().length > 0) {
+      regla = new RegExp("[a-zA-Z]+$");
+      if (regla.test(nombre_rol.value)) {
+        guardarRol();
+        console.log("guardo");
+        $("#"+modalp).modal('hide');
+      } else {
+        alerta.innerHTML = "el elemento no puede contener numeros";        
+        $("#"+modalp).modal('show');
+      }
+    } else {
+      alerta.innerHTML = "el elemento no puede estar vacío";              
+      $("#"+modalp).modal('show');
+    }
+    /* guardarRol();
 
-    console.log("guardo");
+    console.log("guardo"); */
   }
-  frmRol.reset();
+  //frmRol.reset();
 };
 
 /*limit para el select*/
@@ -219,7 +245,7 @@ function eliminarRol(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          listarRoles();
+          buscarRol();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
