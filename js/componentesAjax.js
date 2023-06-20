@@ -9,17 +9,96 @@ let selecModelo = document.getElementById("selModelo");
 let selecMarca = document.getElementById("selMarca");
 let frmComponentes = document.getElementById("formAcomponente");
 
+///
+const tipo_compo = document.querySelector("#selTipo");
+const clase_compo = document.querySelector("#selClase");
+const serie_compo = document.querySelector("#serie");
+const capc_compo = document.querySelector("#capacidad");
+const estado_compo = document.querySelector("#selEstado");
+
+const modalp = frmComponentes.parentNode.parentNode.parentNode.id;
+
+var regla = new RegExp("[a-zA-Z]+$");
+var alerta1 = document.querySelector("#alerta1");
+var alerta2 = document.querySelector("#alerta2");
+var alerta3 = document.querySelector("#alerta3");
+var alerta4 = document.querySelector("#alerta4");
+var alerta5 = document.querySelector("#alerta5");
+var alerta6 = document.querySelector("#alerta6");
+var alerta7 = document.querySelector("#alerta7");
+
+var ofr = document.querySelectorAll("#formAcomponente .alerta");
+ofr.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+tipo_compo.onchange = function () {
+  alerta1.innerText = "";
+};
+clase_compo.onchange = function () {
+  alerta2.innerText = "";
+};
+selecMarca.onchange = function () {
+  alerta3.innerText = "";
+};
+selecModelo.onchange = function () {
+  alerta4.innerText = "";
+};
+serie_compo.oninput = function () {
+  alerta5.innerText = "";
+};
+capc_compo.oninput = function () {
+  alerta6.innerText = "";
+};
+estado_compo.onchange = function () {
+  alerta7.innerText = "";
+};
+
+///
+
 frmComponentes.onsubmit = function (e) {
   e.preventDefault();
+  var band = 0;
   if (frmComponentes.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarComponente();
-    //buscarModelo();
-    console.log("guardo");
+    if (tipo_compo.value == 0) {
+      band++;
+      alerta1.innerText = "seleccione";
+    }
+    if (clase_compo.value == 0) {
+      band++;
+      alerta2.innerText = "seleccione";
+    }
+    if (selecMarca.value == 0) {
+      band++;
+      alerta3.innerText = "seleccione";
+    }
+    if (selecModelo.value == 0) {
+      band++;
+      alerta4.innerText = "seleccione";
+    }
+    if (serie_compo.value == 0 || serie_compo.value == "") {
+      band++;
+      alerta5.innerText = "seleccione";
+    }
+    if (capc_compo.value == 0 || capc_compo.value == "") {
+      band++;
+      alerta6.innerText = "seleccione";
+    }
+    if (estado_compo.value == 0) {
+      band++;
+      alerta7.innerText = "seleccione";
+    }
+    console.log("errores: " + band);
+    if (band == 0) {
+      guardarComponente();
+      buscarComponente();      
+      $("#" + modalp).modal("toggle");
+      console.log("guardo");
+      frmComponentes.reset(); 
+    }
   }
-  frmComponentes.reset();
 };
 
 selecModelo.disabled = true;
