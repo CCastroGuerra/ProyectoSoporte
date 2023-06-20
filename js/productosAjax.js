@@ -7,17 +7,93 @@ buscarProducto();
 listarSelecPresentacion();
 buscarPresentacion();
 
+////
+const nombre_producto = document.querySelector("#nombreProducto");
+const tipo_producto = document.querySelector("#selTipoProducto");
+const tipo_presentacion = document.querySelector("#selUnidad");
+const ctd_producto = document.querySelector("#ctdProducto");
+const almacen = document.querySelector("#selAlmacen");
+const detalle_producto = document.querySelector("#detalleProducto");
+
+const modalp = frmProductos.parentNode.parentNode.parentNode.id;
+
+var regla = new RegExp("[a-zA-Z]+$");
+var alerta1 = document.querySelector("#alerta1");
+var alerta2 = document.querySelector("#alerta2");
+var alerta3 = document.querySelector("#alerta3");
+var alerta4 = document.querySelector("#alerta4");
+var alerta5 = document.querySelector("#alerta5");
+var alerta6 = document.querySelector("#alerta6");
+
+var ofr = document.querySelectorAll("#formProducto .alerta");
+ofr.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+
+nombre_producto.oninput = function () {
+  alerta1.innerText = "";
+};
+tipo_producto.oninput = function () {
+  alerta2.innerText = "";
+};
+ctd_producto.oninput = function () {
+  alerta4.innerText = "";
+};
+detalle_producto.oninput = function () {
+  alerta6.innerText = "";
+};
+
+////
+
 frmProductos.onsubmit = function (e) {
   e.preventDefault();
+  var band = 0;
   if (frmProductos.querySelector("#inputID").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarProdcutos();
-    console.log("guardo");
-    cajaBuscar.disabled = false;
+    if (nombre_producto.value.trim().length == 0) {
+      band++;
+      alerta1.innerText = "El nombre no puede estar vacío";
+    } else {
+      if (regla.test(nombre_producto.value) == false) {
+        band++;
+        alerta1.innerText = "El nombre no puede contener numeros";
+      }
+    }
+
+    if (tipo_producto.value == "0") {
+      band++;
+      alerta2.innerText = "No ha selecionado el tipo";
+    }
+    if (tipo_presentacion.value == 0) {
+      band++;
+      alerta3.innerText = "No ha seleccionado la presentacion";
+    }
+
+    if (ctd_producto.value == 0 || ctd_producto.value == "") {
+      band++;
+      alerta4.innerText = "la cantidad no puede ser 0";
+    }
+
+    if (almacen.value == 0) {
+      band++;
+      alerta5.innerText = "Seleccione el almacen";
+    }
+
+    if (detalle_producto.value == "") {
+      band++;
+      alerta6.innerText = "el detalle no puede ser vacío";
+    }
+    console.log("errores: " + band);
+    if (band == 0) {
+      guardarProdcutos();
+      $("#" + modalp).modal("toggle");      
+      console.log("guardo");
+      cajaBuscar.disabled = false;
+      frmProductos.reset();
+    }
   }
-  frmProductos.reset();
 };
 
 frmPresentacion.onsubmit = (e) => {
@@ -134,18 +210,29 @@ function mostrarEnModal(productoId) {
 let elemento = document.getElementById("selAlmacen");
 elemento.onchange = function () {
   var valorSeleccionado = elemento.value;
+  if (valorSeleccionado != 0) {
+    alerta5.innerText = "";
+  } else {
+    alerta5.innerText = "No ha selecionado el almacén";
+  }
   console.log("Valor seleccionado:", valorSeleccionado);
 };
 
 let elemento2 = document.getElementById("selTipoProducto");
 elemento2.onchange = function () {
   var valorSeleccionado = elemento2.value;
+  if (valorSeleccionado == 0) {
+    alerta2.innerText = "No ha selecionado el tipo";
+  } else {
+    alerta2.innerText = "";
+  }
   console.log("Valor seleccionado:", valorSeleccionado);
 };
 
 let elemento3 = document.getElementById("selUnidad");
-elemento3.onchange = function () {
+elemento3.oninput = function () {
   var valorSeleccionado = elemento3.value;
+  alerta3.innerText = "";
   console.log("Valor seleccionado:", valorSeleccionado);
 };
 
@@ -386,7 +473,7 @@ function buscarPresentacion() {
 
       //Obteniendo referencia del input
       const inputUnidad = document.getElementById("selUnidad");
-      const inputId = document.getElementById('presValue');
+      const inputId = document.getElementById("presValue");
       // Itera sobre las filas y agrega un evento de clic a cada una
       for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
@@ -404,6 +491,7 @@ function buscarPresentacion() {
           // Mostrar valor en input
           inputUnidad.value = nombre;
           inputId.value = id;
+          alerta3.innerText = "";
           //data.append('id',inputId);
 
           frmPresentacion.reset();
