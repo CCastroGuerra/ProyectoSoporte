@@ -8,7 +8,7 @@
 -->
 <!-- Breadcrumb-->
 <html lang="es">
-<?php include('../templates/sesion.php'); ?>
+<?php include('../templates/sesion.php');?>
 
 <head>
 
@@ -204,6 +204,13 @@
           </svg> Equipos</a>
       </li>
       <!--/item Equipos-->
+      <!--item movimientos-->
+      <li class="nav-item"><a class="nav-link" href="../view/movimientosView.php">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-devices"></use>
+          </svg> Equipos</a>
+      </li>
+      <!--/item movimientos-->
       <!--item Trabajos-->
       <li class="nav-item"><a class="nav-link" href="../view/trabajosView.php">
           <svg class="nav-icon">

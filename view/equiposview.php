@@ -99,10 +99,12 @@ include('../templates/cabecera.php');
                                             <option value="2">Laptop</option>
                                             <option value="3">Todo en uno</option>
                                         </select>
+                                        <small class="alerta" id="alertaTipo"></small>
                                         <label for="serie" class="mb-2">Serie:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
                                         <label for="margesi" class="mb-2">Margesi:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
+                                        <small class="alerta" id="alertaMargesi"></small>
 
                                         <label for="selMarcaEquipo" class="mb-2">Marca:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selMarcaEquipo" name="selMarcaEquipo">
@@ -111,6 +113,7 @@ include('../templates/cabecera.php');
                                             <option value="2">Marca 2</option>
                                             <option value="3">Marca 3</option>
                                         </select>
+                                        <small class="alerta" id="alertaMarca"></small>
 
                                         <label for="selModeloEquipo" class="mb-2">Modelo:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selModeloEquipo" name="selModeloEquipo">
@@ -119,6 +122,7 @@ include('../templates/cabecera.php');
                                             <option value="2">Modelo 2</option>
                                             <option value="3">Modelo 3</option>
                                         </select>
+                                        <small class="alerta" id="alertaModelo"></small>
 
                                         <label for="responsable" class="mb-2">Responsable:</label>
                                         <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
@@ -133,6 +137,7 @@ include('../templates/cabecera.php');
                                             <option value="2">Soporte</option>
                                             <option value="3">Administracion</option>
                                         </select>
+                                        <small class="alerta" id="alertaArea"></small>
                                         <label for="selEstado" class="mb-2">Estado:</label>
                                         <select class="form-select form-select-sm" aria-label="Default select example" id="selEstado" name="selEstado">
                                             <option selected>Seleccione el estado</option>
@@ -142,6 +147,7 @@ include('../templates/cabecera.php');
                                             <option value="4">Malo</option>
                                             <option value="5">En Reparación</option>
                                         </select>
+                                        <small class="alerta" id="alertaEstado"></small>
                                         <label for="mac" class="mb-2">MAC:</label>
                                         <input type="text" class="form-control  form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
                                         <label for="ip" class="mb-2">IP:</label>

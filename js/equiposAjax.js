@@ -12,11 +12,35 @@ let frmResponsable = document.getElementById("formResponsable");
 let selecModelo = document.getElementById("selModeloEquipo");
 let selecMarca = document.getElementById("selMarcaEquipo");
 let selectTipo = document.getElementById("selTipoEquipo");
+let selectArea = document.getElementById("selArea");
 let selectEstado = document.getElementById("selEstado");
 let btnComponente = document.getElementById("btnComponente");
 let btnCerrar = document.getElementById("cerrarBot");
 let btnX = document.getElementById("cerrarSup");
 let id = 0;
+
+//Mensajes de error
+let alertTipo = document.getElementById("alertaTipo");
+let alertMarca = document.getElementById("alertaMarca");
+let alertModelo = document.getElementById("alertaModelo");
+let alertArea = document.getElementById("alertaArea");
+let alertEstado = document.getElementById("alertaEstado");
+let alertMargesi = document.getElementById("alertaMargesi");
+
+//variables de control
+var btipo = 0;
+var bmarca = 0;
+var bmodelo = 0;
+var barea = 0;
+var bestado = 0;
+var bmargesi = 0;
+var bnadir = 0;
+
+//estilo css de los mensajes de error
+var ofr = document.querySelectorAll("#formAEquipo .alerta");
+ofr.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
 
 btnComponente.addEventListener("click", function (e) {
   e.preventDefault();
@@ -45,16 +69,84 @@ btnX.addEventListener("click", function (e) {
 
 /*Habilitar o deshabilitar boton de añador*/
 let margesi = document.getElementById("margesi");
+var contbtañadir = 0;
 btnComponente.disabled = true;
+selectTipo.addEventListener("change", function () {
+  //verifica si se ha sellecionado una opcion valida de tipo
+  if (selectTipo.value == 0) {
+    alertTipo.innerText = "Seleccione una opcion válida";
+    btipo = 0;
+  } else {
+    alertTipo.innerText = "";
+    btipo = 1;
+  }
+});
+selecMarca.addEventListener("change", function () {
+  //verifica si se ha sellecionado una opcion valida de marca
+  if (selecMarca.value == 0) {
+    alertMarca.innerText = "Seleccione una opcion válida";
+    bmarca = 0;
+    bmodelo=0;
+  } else {
+    alertMarca.innerText = "";
+    bmarca = 1;
+  }
+});
+selecModelo.addEventListener("change", function () {
+  //verifica si se ha sellecionado una opcion valida de modelo
+  if (selecModelo.value == 0) {
+    alertModelo.innerText = "Seleccione una opcion válida";
+    bmodelo = 0;
+  } else {
+    alertModelo.innerText = "";
+    bmodelo = 1;
+  }
+});
+
+selectArea.addEventListener("change", function () {
+  //Verifica si se ha seleccionado una opcion valida de area
+  if (selectArea.value == 0) {
+    alertArea.innerText = "Seleccione una opcion válida";
+    barea = 0;
+  } else {
+    alertArea.innerText = "";
+    barea = 1;
+  }
+});
+
+selectEstado.addEventListener("change", function () {
+  //Verifica si se ha seleccionado una opcion valida de estado
+  if (selectEstado.value == 0) {
+    alertEstado.innerText = "Seleccione una opcion válida";
+    bestado = 0;
+  } else {
+    alertEstado.innerText = "";
+    bestado = 1;
+  }
+});
+
 margesi.addEventListener("input", function () {
   // Verifica si el valor del input no está vacío
-  if (margesi.value.length > 0) {
-    // Habilita el botón
-    btnComponente.disabled = false;
+  if (margesi.value.trim().length > 0) {
+    // Habilita el botón    
+    alertMargesi.innerText = "";
+    bmargesi=1;
   } else {
     // Deshabilita el botón
     btnComponente.disabled = true;
+    alertMargesi.innerText = "es un valor obligatorio";
+    bmargesi=0;
   }
+});
+
+frmEquipos.addEventListener("change", function () {
+  console.log("cambio detectado en el formulario");
+  bnadir = btipo + bmarca + bmodelo + barea + bestado + bmargesi;
+  console.log("completos: " + bnadir);
+  if (bñadir == 6) {
+    btnComponente.disabled = false;
+  }else{
+    btnComponente.disabled = true;}
 });
 /***************************************/
 
