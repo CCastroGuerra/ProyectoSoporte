@@ -64,31 +64,31 @@ frmComponentes.onsubmit = function (e) {
   } else {
     if (tipo_compo.value == 0) {
       band++;
-      alerta1.innerText = "seleccione";
+      alerta1.innerText = "seleccione el tipo de componente";
     }
     if (clase_compo.value == 0) {
       band++;
-      alerta2.innerText = "seleccione";
+      alerta2.innerText = "seleccione la clase de componente";
     }
     if (selecMarca.value == 0) {
       band++;
-      alerta3.innerText = "seleccione";
+      alerta3.innerText = "seleccione la marca";
     }
     if (selecModelo.value == 0) {
       band++;
-      alerta4.innerText = "seleccione";
+      alerta4.innerText = "seleccione el modelo";
     }
     if (serie_compo.value == 0 || serie_compo.value == "") {
       band++;
-      alerta5.innerText = "seleccione";
+      alerta5.innerText = "Ingrese el # de serie";
     }
     if (capc_compo.value == 0 || capc_compo.value == "") {
       band++;
-      alerta6.innerText = "seleccione";
+      alerta6.innerText = "ingrese la capacidad del componente";
     }
     if (estado_compo.value == 0) {
       band++;
-      alerta7.innerText = "seleccione";
+      alerta7.innerText = "Especifique el estado del componente";
     }
     console.log("errores: " + band);
     if (band == 0) {

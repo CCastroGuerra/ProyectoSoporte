@@ -1,13 +1,27 @@
 buscarBajas();
 let id = 0;
 var numPagina = 1;
-
+var cont = 0;
 let frmBajas = document.getElementById("formBajas");
+const modalp = frmBajas.parentNode.parentNode.parentNode.id;
+
 //let alertEquipo = document.getElementById("Equipo");
 let btnGuardar = document.getElementById("btnGuardar");
 let aletCombo = document.getElementById("combo");
 //let alertMotivo = document.getElementById("txtMotivo");
 //let equipo = document.getElementById("codigoEquipo").value;
+
+/*********************************/
+// Obtener referencias a los elementos del formulario
+let equipoInput = document.getElementById("codigoEquipo");
+let tipoSelect = document.getElementById("selArea");
+let motivoInput = document.getElementById("motivo");
+// Reemplaza "tuFormulario" con el ID de tu formulario
+
+// Mensajes de error
+let alertEquipo = document.getElementById("Equipo");
+let alertTipo = document.getElementById("combo");
+let alertMotivo = document.getElementById("txtMotivo");
 
 frmBajas.onsubmit = function (e) {
   e.preventDefault();
@@ -15,11 +29,13 @@ frmBajas.onsubmit = function (e) {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarBajas();
-    //listarArea();
-    console.log("guardo");
+    if (cont == 3) {
+      guardarBajas();
+      //listarArea();
+      console.log("guardo");
+      frmBajas.reset();
+    }
   }
-  frmBajas.reset();
 };
 
 let mouse = document.querySelector(".modal-footer");
@@ -53,29 +69,50 @@ btnGuardar.disabled = true;
 });
 */
 
-/*********************************/
-// Obtener referencias a los elementos del formulario
-let equipoInput = document.getElementById("codigoEquipo");
-let tipoSelect = document.getElementById("selArea");
-let motivoInput = document.getElementById("motivo");
-// Reemplaza "tuFormulario" con el ID de tu formulario
-
-// Mensajes de error
-let alertEquipo = document.getElementById("Equipo");
-let alertTipo = document.getElementById("combo");
-let alertMotivo = document.getElementById("txtMotivo");
-
 // Función para realizar las validaciones
-function validarFormulario() {
+function validarSerieMar() {
   let equipo = equipoInput.value;
-  let tipo = tipoSelect.value;
-  let motivo = motivoInput.value;
-
   // Validar campo de equipo
   if (equipo === "" || equipo.trim().length == 0 || equipo.trim().length < 6) {
     alertEquipo.innerText = "Por favor, ingresa una serie válida.";
   } else {
     alertEquipo.innerText = "";
+    cont++;
+  }
+}
+
+function validarTipo() {
+  let tipo = tipoSelect.value;
+  // Validar campo de tipo
+  if (tipo === "" || tipo === "0") {
+    alertTipo.innerText = "Por favor, selecciona un tipo de baja.";
+  } else {
+    alertTipo.innerText = "";
+    cont++;
+  }
+}
+
+function validarMotivo() {
+  let motivo = motivoInput.value;
+  // Validar campo de motivo
+  if (motivo === "") {
+    alertMotivo.innerText = "Por favor, ingrese el motivo de la baja.";
+  } else {
+    alertMotivo.innerText = "";
+    cont++;
+  }
+}
+function validarFormulario() {
+  let equipo = equipoInput.value;
+  let tipo = tipoSelect.value;
+  let motivo = motivoInput.value;
+  var cont = 0;
+  // Validar campo de equipo
+  if (equipo === "" || equipo.trim().length == 0 || equipo.trim().length < 6) {
+    alertEquipo.innerText = "Por favor, ingresa una serie válida.";
+  } else {
+    alertEquipo.innerText = "";
+    cont++;
   }
 
   // Validar campo de tipo
@@ -83,6 +120,7 @@ function validarFormulario() {
     alertTipo.innerText = "Por favor, selecciona un tipo de baja.";
   } else {
     alertTipo.innerText = "";
+    cont++;
   }
 
   // Validar campo de motivo
@@ -90,14 +128,22 @@ function validarFormulario() {
     alertMotivo.innerText = "Por favor, ingrese el motivo de la baja.";
   } else {
     alertMotivo.innerText = "";
+    cont++;
+  }
+
+  if (cont == 3) {
     btnGuardar.disabled = false;
   }
 }
 
 // Asignar la función de validación a los eventos input de los campos
-equipoInput.addEventListener("input", validarFormulario);
-tipoSelect.addEventListener("input", validarFormulario);
-motivoInput.addEventListener("input", validarFormulario);
+equipoInput.addEventListener("input", validarSerieMar);
+tipoSelect.addEventListener("input", validarTipo);
+motivoInput.addEventListener("input", validarMotivo);
+console.log("llenos: "+cont);
+if (cont == 3) {
+  btnGuardar.disabled = false;
+}
 
 // Asignar la función de validación al evento mouseover del formulario
 mouse.addEventListener("mouseover", validarFormulario);
