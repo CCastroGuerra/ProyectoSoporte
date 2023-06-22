@@ -43,6 +43,24 @@ include('../templates/cabecera.php');
 </div>
 <!-- /modal inventario -->
 
+<!-- Estilos css boton -->
+<style>
+    .pdf-button {
+        display: inline-block;
+        /* align-items: center;
+        justify-content: center; */
+        padding: 10px 20px;
+        background-color: #d72121;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+</style>
+<!-- fin de estilos -->
+
+
 <!-- contenido -->
 <div class="col-lg-12 ">
     <div class="col-xs-1-12">
@@ -51,6 +69,13 @@ include('../templates/cabecera.php');
                 <h3 class="card-title mb-auto">
                     <div class="row">
                         <div class="col-lg-10 col-sm-6">Inventario </div>
+                        <!-- Boton para generar pdf -->
+                        <div class="text-center col-lg-6 col-sm-6">
+                            <a href="reporteInventario.php" class="pdf-button" target="_blank">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <!--  -->
                         <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#inventarioModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
                     </div>
                 </h3>
