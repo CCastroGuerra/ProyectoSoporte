@@ -88,70 +88,88 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <div class="" id="divcodigo" name="divcodigo">
-                                            <label for="inputCodigo" class="control-label">Código</label>
-                                            <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                        <div class="form-group" id="divcodigo" name="divcodigo">
+                                            <label for="inputCodigo" class="mb-2 control-label">Código</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
-                                        <label for="selTipoEquipo" class="mb-2">Tipo de equipo:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
-                                            <option selected>Seleccione el tipo</option>
-                                            <option value="1">Impresora</option>
-                                            <option value="2">Laptop</option>
-                                            <option value="3">Todo en uno</option>
-                                        </select>
-                                        <small class="alerta" id="alertaTipo"></small>
-                                        <label for="serie" class="mb-2">Serie:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
-                                        <label for="margesi" class="mb-2">Margesi:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
-                                        <small class="alerta" id="alertaMargesi"></small>
 
-                                        <label for="selMarcaEquipo" class="mb-2">Marca:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selMarcaEquipo" name="selMarcaEquipo">
-                                            <option selected>Seleccione la marca</option>
-                                            <option value="1">Marca 1</option>
-                                            <option value="2">Marca 2</option>
-                                            <option value="3">Marca 3</option>
-                                        </select>
-                                        <small class="alerta" id="alertaMarca"></small>
+                                        <div class="form-group">
+                                            <label for="selTipoEquipo" class="mb-2">Tipo de equipo:</label>
+                                            <select class="form-select form-select-sm mb-2" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
+                                                <option selected>Seleccione el tipo</option>
+                                                <option value="1">Impresora</option>
+                                                <option value="2">Laptop</option>
+                                                <option value="3">Todo en uno</option>
+                                            </select>
+                                            <small class="alerta" id="alertaTipo"></small>
+                                        </div>
 
-                                        <label for="selModeloEquipo" class="mb-2">Modelo:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selModeloEquipo" name="selModeloEquipo">
-                                            <option selected>Seleccione el modelo</option>
-                                            <option value="1">Modelo 1</option>
-                                            <option value="2">Modelo 2</option>
-                                            <option value="3">Modelo 3</option>
-                                        </select>
-                                        <small class="alerta" id="alertaModelo"></small>
+                                        <div class="form-group">
+                                            <label for="serie" class="mb-2">Serie:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+                                        </div>
 
-                                        <label for="responsable" class="mb-2">Responsable:</label>
-                                        <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Seleccione responsable" data-coreui-toggle="modal" data-coreui-target="#responsableModal" readonly>
-                                        <input type="text" id="respValue" name="respValue" class="">
-
+                                        <div class="form-group">
+                                            <label for="margesi" class="mb-2">Margesi:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
+                                            <small class="alerta" id="alertaMargesi"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="selMarcaEquipo" class="mb-2">Marca:</label>
+                                            <select class="form-select form-select-sm mb-2" aria-label="Default select example" id="selMarcaEquipo" name="selMarcaEquipo">
+                                                <option selected>Seleccione la marca</option>
+                                                <option value="1">Marca 1</option>
+                                                <option value="2">Marca 2</option>
+                                                <option value="3">Marca 3</option>
+                                            </select>
+                                            <small class="alerta" id="alertaMarca"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="selModeloEquipo" class="mb-2">Modelo:</label>
+                                            <select class="form-select form-select-sm mb-2" aria-label="Default select example" id="selModeloEquipo" name="selModeloEquipo">
+                                                <option selected>Seleccione el modelo</option>
+                                                <option value="1">Modelo 1</option>
+                                                <option value="2">Modelo 2</option>
+                                                <option value="3">Modelo 3</option>
+                                            </select>
+                                            <small class="alerta" id="alertaModelo"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="responsable" class="mb-2">Responsable:</label>
+                                            <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
+                                            <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Seleccione responsable" data-coreui-toggle="modal" data-coreui-target="#responsableModal" readonly>
+                                            <input type="text" id="respValue" name="respValue" class="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="selArea" class="mb-2">Area:</label>
+                                            <select class="form-select form-select-sm mb-2" aria-label="Default select example" id="selArea" name="selArea">
+                                                <option selected>Seleccione el Área</option>
+                                                <option value="1">Estadistica</option>
+                                                <option value="2">Soporte</option>
+                                                <option value="3">Administracion</option>
+                                            </select>
+                                            <small class="alerta" id="alertaArea"></small>
+                                        </div>
+                                        <div class="form-group"><label for="selEstado" class="mb-2">Estado:</label>
+                                            <select class="form-select form-select-sm mb-2" aria-label="Default select example" id="selEstado" name="selEstado">
+                                                <option selected>Seleccione el estado</option>
+                                                <option value="1">Nuevo</option>
+                                                <option value="2">Bueno</option>
+                                                <option value="3">Regular</option>
+                                                <option value="4">Malo</option>
+                                                <option value="5">En Reparación</option>
+                                            </select>
+                                            <small class="alerta" id="alertaEstado"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mac" class="mb-2">MAC:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ip" class="mb-2">IP:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP">
+                                        </div>
                                         <!-- <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Ingrese Responsable"> -->
-                                        <label for="selArea" class="mb-2">Area:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selArea" name="selArea">
-                                            <option selected>Seleccione el Área</option>
-                                            <option value="1">Estadistica</option>
-                                            <option value="2">Soporte</option>
-                                            <option value="3">Administracion</option>
-                                        </select>
-                                        <small class="alerta" id="alertaArea"></small>
-                                        <label for="selEstado" class="mb-2">Estado:</label>
-                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selEstado" name="selEstado">
-                                            <option selected>Seleccione el estado</option>
-                                            <option value="1">Nuevo</option>
-                                            <option value="2">Bueno</option>
-                                            <option value="3">Regular</option>
-                                            <option value="4">Malo</option>
-                                            <option value="5">En Reparación</option>
-                                        </select>
-                                        <small class="alerta" id="alertaEstado"></small>
-                                        <label for="mac" class="mb-2">MAC:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
-                                        <label for="ip" class="mb-2">IP:</label>
-                                        <input type="text" class="form-control  form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP">
                                     </div>
                                 </div>
                             </div>
@@ -193,18 +211,7 @@ include('../templates/cabecera.php');
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbComponentes">
-                                                    <tr>
-                                                        <td>01</td>
-                                                        <td>##########</td>
-                                                        <td>tipo 1</td>
-                                                        <td>clase 1</td>
-                                                        <td>marca 1</td>
-                                                        <td>modelo 1</td>
-                                                        <td>16 tb</td>
-                                                        <td>nuevo</td>
-                                                        <td>[ ] [ ] [ ]</td>
-                                                    </tr>
-
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -219,7 +226,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="cerrarBot" name="cerrarBot" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary" id="btmGuardar">Guardar</button>
                 </div>
             </form>
         </div>
@@ -242,6 +249,7 @@ include('../templates/cabecera.php');
                             <div class="form-group">
                                 <label for="codigo" class="mb-2"># de Serie:</label>
                                 <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese el #">
+                                <small class="alerta" id="alertaMComp"></small>
 
                             </div>
                         </div>
@@ -249,7 +257,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btmcomp">Guardar</button>
                 </div>
             </form>
         </div>
@@ -266,7 +274,7 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-4">Lista de Equipos </div>
-                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo" onclick=""><strong>Añadir</strong></button></div>
+                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo" id="btmodal"><strong>Añadir</strong></button></div>
                         </div>
                     </h3>
                 </div>

@@ -94,11 +94,12 @@ frmComponentes.onsubmit = function (e) {
     if (band == 0) {
       guardarComponente();
       buscarComponente();      
-      $("#" + modalp).modal("toggle");
+      $("#" + modalp).modal("hide");
       console.log("guardo");
       frmComponentes.reset(); 
     }
   }
+  return false;
 };
 
 selecModelo.disabled = true;

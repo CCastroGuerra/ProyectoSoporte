@@ -40,7 +40,7 @@ include('../templates/cabecera.php');
 
 <!-- Modal Trabajo-->
 <div class="modal fade" id="TrabajoModal" tabindex="-1" aria-labelledby="TrabajoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registrar Trabajos</h5>
@@ -50,7 +50,7 @@ include('../templates/cabecera.php');
                 <div class="modal-body">
                     <div class="row">
                         <!--formulario cabecera-->
-                        <div class="col-md-4 col-lg-3 ">
+                        <div class="col-md-4 col-lg-5">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -104,14 +104,14 @@ include('../templates/cabecera.php');
                         <!-- /formulario cabecera-->
 
                         <!--tabla temporal-->
-                        <div class="col-md-8 col-lg-9">
+                        <div class="col-md-8 col-lg-7">
                             <div class="col-xs-1-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title mb-auto">
                                             <div class="row">
-                                                <div class="col-lg-10 col-sm-6">Servicios Aplicados </div>
-                                                <div class="col-lg-2 col-sm-4 text-end">
+                                                <div class="col-lg-8 col-sm-6">Servicios Aplicados </div>
+                                                <div class="col-lg-4 col-sm-4 text-end">
                                                     <button type="submit" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" href="#serviciosModal"><strong>Añadir</strong></button>
                                                 </div>
                                             </div>

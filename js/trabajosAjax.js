@@ -9,6 +9,10 @@ let btnCerrar = document.getElementById("btncerrar");
 let btnServicios = document.getElementById("btnServicio");
 /***************************************/
 
+/**** recorrer elememntos a validar*/
+
+/**** */
+
 frmServicios.onsubmit = function (e) {
   e.preventDefault();
   guardarServiciosTempo();
