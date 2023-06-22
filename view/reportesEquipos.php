@@ -145,7 +145,7 @@ ob_start();
 
     $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
     $conectar = $conectarObj->Conexion();
-    $sql = $conectar->prepare("SELECT e.id_equipos, tp.nombre_tipo_equipo,mar.nombre_marca, mo.nombre_modelo, e.serie, e.margesi,a.nombre_area,est.nombre_estado, DATE_FORMAT(fecha_alta, '%d/%m/%y') as Fecha from equipos e INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo INNER JOIN marca mar ON mar.id_marca = e.marca_id INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id INNER JOIN area a ON a.id_area = e.area_id INNER JOIN estado est ON est.id_estado = e.estado_id WHERE e.es_activo = 1; ");
+    $sql = $conectar->prepare("SELECT e.id_equipos, tp.nombre_tipo_equipo, p.nombre_personal, mar.nombre_marca, mo.nombre_modelo, e.serie, e.margesi, a.nombre_area, est.nombre_estado, DATE_FORMAT(fecha_alta, '%d/%m/%y') as Fecha from equipos e INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo INNER JOIN marca mar ON mar.id_marca = e.marca_id INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id INNER JOIN area a ON a.id_area = e.area_id INNER JOIN estado est ON est.id_estado = e.estado_id INNER JOIN personal p ON e.clientes_id = p.id_personal WHERE e.es_activo = 1;  ");
     $sql->execute();
     $listaEquipos = $sql->fetchAll(PDO::FETCH_ASSOC);
     $totalEquipos = count($listaEquipos);
@@ -174,6 +174,7 @@ ob_start();
                 <tr>
                     <th scope="col"><strong>Codigo</strong></th>
                     <th scope="col"><strong>Equipo</strong></th>
+                    <th scope="col"><strong>Usuario</strong></th>
                     <th scope="col"><strong>Marca</strong></th>
                     <th scope="col"><strong>Modelo</strong></th>
                     <th scope="col"><strong>Serie</strong></th>
@@ -191,6 +192,7 @@ ob_start();
                     <tr>
                         <td><?php echo $equipos['id_equipos'] ?></td>
                         <td><?php echo $equipos['nombre_tipo_equipo'] ?></td>
+                        <td><?php echo $equipos['nombre_personal'] ?></td>
                         <td><?php echo $equipos['nombre_marca'] ?></td>
                         <td><?php echo $equipos['nombre_modelo'] ?></td>
                         <td><?php echo $equipos['serie'] ?></td>
@@ -204,7 +206,7 @@ ob_start();
                 <?php } ?>
 
                 <tr>
-                    <td colspan="9" style="text-align: right;"><strong>Total de equipos: <?php echo $totalEquipos; ?></strong></td>
+                    <td colspan="10" style="text-align: right;"><strong>Total de equipos: <?php echo $totalEquipos; ?></strong></td>
                 </tr>
             </tbody>
         </table>
