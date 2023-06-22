@@ -70,6 +70,23 @@ include('../templates/cabecera.php');
     </div>
 </div>
 <!-- /modal responsable -->
+<!-- estilos css -->
+<style>
+    .pdf-button {
+        display: inline-block;
+        /* align-items: center;
+        justify-content: center; */
+        padding: 10px 20px;
+        background-color: #d72121;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+</style>
+
+<!-- fin de estilos -->
 
 <!-- Modal  añadir equipo-->
 <div class="modal fade" id="añadirEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -259,7 +276,14 @@ include('../templates/cabecera.php');
                 <div class="card-body">
                     <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-4">Lista de Equipos </div>
+                            <div class="col-lg-9 col-sm-4">Lista de Equipos </div>
+                            <!-- Boton para generar pdf -->
+                            <div class="text-center col-lg-1 col-sm-4 ">
+                                <a href="reportesEquipos.php" class="pdf-button" target="_blank">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <!--  -->
                             <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo" onclick=""><strong>Añadir</strong></button></div>
                         </div>
                     </h3>
