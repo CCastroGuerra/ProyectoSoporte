@@ -220,7 +220,8 @@ function eliminarRol(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           console.log(respuesta);
-          listarRoles();
+          //listarRoles();
+          buscarRol();
           swal.fire(
             "Eliminado!",
             "El registro se elimino correctamente.",
