@@ -2,7 +2,7 @@
 include('../templates/cabecera.php');
 ?>
 <!--Modal añadirEmpleado-->
-<div class="modal fade" id="añadirEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="añadirEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,25 +19,43 @@ include('../templates/cabecera.php');
                                     <label for="inputCodigo" class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
-                                <label for="apellidos" class="mb-2">Apellidos:</label>
-                                <input type="text" class="form-control form-control-sm mb-2" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos">
-                                <label for="nombre" class="mb-2">Nombre:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el nombre">
-                                <label for="dniusuario" class="mb-2">DNI:</label>
-                                <input type="number" class="form-control  form-control-sm mb-2" id="dniusuario" name="dniusuario" placeholder="Ingrese el DNI">
-                                <label for="telefono" class="mb-2">Telefono:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="telefono" name="telefono" placeholder="Ingrese la telefono">
-                                <label for="correo" class="mb-2">Correo:</label>
-                                <input type="text" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Direccion invalida" class="form-control  form-control-sm mb-2" id="correo" name="correo" placeholder="nickname@example.com">
-                                <label for="selCargo" class="mb-2">Cargo:</label>
-                                <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
-                                    <option selected>Seleccione el cargo </option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Practicante</option>
-                                    <option value="3">Secretaria</option>
-                                    <option value="4">Técnico</option>
-                                </select>
-                                
+
+                                <div class="form-group">
+                                    <label for="apellidos" class="mb-2">Apellidos:</label>
+                                    <input type="text" class="form-control form-control-sm mb-2" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos">
+                                    <small class="alerta" id="alerta1"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre" class="mb-2">Nombre:</label>
+                                    <input type="text" class="form-control  form-control-sm mb-2" id="nombre" name="nombre" placeholder="Ingrese el nombre">
+                                    <small class="alerta" id="alerta2"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dniusuario" class="mb-2">DNI:</label>
+                                    <input type="number" class="form-control  form-control-sm mb-2" id="dniusuario" name="dniusuario" placeholder="Ingrese el DNI">
+                                    <small class="alerta" id="alerta3"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" class="mb-2">Telefono:</label>
+                                    <input type="text" class="form-control  form-control-sm mb-2" id="telefono" name="telefono" placeholder="Ingrese la telefono">
+                                    <small class="alerta" id="alerta4"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo" class="mb-2">Correo:</label>
+                                    <input type="text" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Direccion invalida" class="form-control  form-control-sm mb-2" id="correo" name="correo" placeholder="nickname@example.com">
+                                    <small class="alerta" id="alerta5"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selCargo" class="mb-2">Cargo:</label>
+                                    <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
+                                        <option value="0" selected>Seleccione el cargo </option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Practicante</option>
+                                        <option value="3">Secretaria</option>
+                                        <option value="4">Técnico</option>
+                                    </select>
+                                    <small class="alerta" id="alerta6"></small>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +63,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary" >Guardar</button>
                 </div>
             </form>
         </div>
@@ -103,9 +121,9 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Apellidos</strong></th>
-                                    <th scope="col"><strong>Nombre</strong></th>                                    
+                                    <th scope="col"><strong>Nombre</strong></th>
                                     <th scope="col"><strong>DNI</strong></th>
                                     <th scope="col"><strong>Telefono</strong></th>
                                     <th scope="col"><strong>Correo</strong></th>

@@ -555,3 +555,11 @@ input.Operacion {
   height: auto;
   min-height: 50vh;
 }
+
+/* oculatar flechas de input[type=number]*/
+input#inputDni::-webkit-inner-spin-button,input#inputDni::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: none;
+  appearance: none;
+}

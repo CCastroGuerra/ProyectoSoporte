@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!--Modal añadir componente-->
-<div class="modal fade" id="añadirComponente" tabindex="-1" aria-labelledby="añadirComponenteLabel" aria-hidden="true">
+<div class="modal fade" id="añadirComponente" tabindex="-1" aria-labelledby="añadirComponenteLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
     <div class="modal-dialog" modal-sm>
         <div class="modal-content">
             <div class="modal-header">

@@ -1,6 +1,38 @@
 let frmAsignarRol = document.getElementById("formARoles");
+let indni = document.getElementById("inputDni");
+let srol = document.getElementById("selAroles");
+let adni = document.getElementById("alerta1");
+let arol = document.getElementById("alerta2");
+let msgal = document.querySelectorAll(".alerta");
 let dni = "";
 var numPagina = 1;
+
+msgal.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+
+indni.addEventListener("input", function () {
+  regla = new RegExp("[0-9]$");
+  if (this.value.trim().length > 0 && this.value.trim().length <= 8) {
+    if (regla.test(this.value)==false) {
+      console.log("solo numeros");
+      adni.innerText = "El dni solo tiene números";
+    } else {
+      if(this.value.trim().length < 8){adni.innerText = "El dni tiene 8 dígitos";}
+    }
+  }
+  if (regla.test(this.value)==true && this.value.trim().length == 8) {
+    adni.innerText = "";
+  }
+});
+
+srol.addEventListener("change", function () {
+  if (this.value > 0) {
+    arol.innerText = "";
+  } else {
+    arol.innerText = "seleccione un rol";
+  }
+});
 
 document.body.onload = () => {
   listarSelectRol();
@@ -10,14 +42,39 @@ buscar();
 
 frmAsignarRol.onsubmit = function (e) {
   e.preventDefault();
+  console.log("presiono guardar");
+  let bdni = 0;
+  let brol = 0;
   if (frmAsignarRol.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarDatos();
+    if (indni.value.trim().length == 0) {
+      bdni = 0;
+      adni.innerText = "El campo es obligatorio";
+    } else {
+      bdni = 1;
+    }
+    if (srol.value == 0) {
+      brol = 0;
+      arol.innerText = "seleccione un rol";
+    } else {
+      brol = 1;
+    }
+    let contro = bdni + brol;
+    console.log("campos: " + contro);
+    if (contro == 2) {
+      console.log("ambos campos estan llenos");
+      guardarDatos();
+      frmAsignarRol.reset();
+      $("#rolesModal").modal("hide");
+    } else {
+      $("#rolesModal").modal("show");
+    }
+
     //listarAsignarRol();
   }
-  frmAsignarRol.reset();
+  return false;
 };
 
 function listarSelectRol() {
@@ -324,7 +381,7 @@ var cajaBuscar = document.getElementById("inputbuscarARoles");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
- buscar();
+  buscar();
 });
 
 /**************************/

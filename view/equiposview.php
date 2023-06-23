@@ -72,7 +72,8 @@ include('../templates/cabecera.php');
 <!-- /modal responsable -->
 
 <!-- Modal  añadir equipo-->
-<div class="modal fade" id="añadirEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="añadirEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
+    <!-- div class="modal fade" id="staticBackdrop" data-coreui-backdrop="static" data-coreui-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" -->
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">

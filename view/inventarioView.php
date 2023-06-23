@@ -2,7 +2,7 @@
 include('../templates/cabecera.php');
 ?>
 <!-- modal inventario -->
-<div class="modal fade" id="inventarioModal" tabindex="-1" aria-labelledby="inventarioModalLabel" aria-hidden="true">
+<div class="modal fade" id="inventarioModal" tabindex="-1" aria-labelledby="inventarioModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,7 +24,7 @@ include('../templates/cabecera.php');
                         <!-- <input type="text" class="form-control is-invalid" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto"> -->
                         <input type="text" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
                         <div class="error-message" id="errorProducto"></div>
-                                                
+
                         <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                         <input type="number" class="form-control mb-2" id="cantidad" name="cantidad" placeholder="0.00">
                         <div id="errorCantidad" class="error-message"></div>

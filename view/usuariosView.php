@@ -2,7 +2,7 @@
 include('../templates/cabecera.php');
 ?>
 <!--Modal añadirEmpleado-->
-<div class="modal fade" id="añadirUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="añadirUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

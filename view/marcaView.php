@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal Marca-->
-<div class="modal fade" id="marcaModal" tabindex="-1" aria-labelledby="marcaModalLabel" aria-hidden="true">
+<div class="modal fade" id="marcaModal" tabindex="-1" aria-labelledby="marcaModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
