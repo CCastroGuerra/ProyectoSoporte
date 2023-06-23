@@ -2,8 +2,37 @@ buscarEntrada();
 buscarSalida();
 buscarResumen();
 let cbxAccion = document.getElementById("selAccion");
+let inproducto = document.getElementById("nombreproducto");
+let inctd = document.getElementById("cantidad");
+let msgs= document.querySelectorAll(".error-message");
 
-cbxAccion.addEventListener("change", function (e) {});
+msgs.forEach((element)=>{
+  element.setAttribute("style","color:red !important");
+});
+
+cbxAccion.addEventListener("change", function (e) {
+  console.log("cambio en select tipo");
+  if(cbxAccion.value==0){
+    document.getElementById("errorAccion").innerText="Selecione una opción valida";
+  }else{document.getElementById("errorAccion").innerText="";}
+});
+
+inproducto.addEventListener("input", function (){
+  if (this.value.trim().length==0) {
+    document.getElementById("errorProducto").innerText="El Codigo de Producto es obligatorio";
+  }else{
+    document.getElementById("errorProducto").innerText="";
+  }
+});
+
+inctd.addEventListener("input", function (){
+  if (this.value.trim().length==0) {
+    document.getElementById("errorProducto").innerText="La cantidad es obligatoria";
+  }else{
+    
+  }
+});
+
 /***************************/
 // let frmInventario = document.getElementById("formInventario");
 
@@ -21,9 +50,7 @@ cbxAccion.addEventListener("change", function (e) {});
 //   //traerNombreProducto();
 // };
 
-document
-  .getElementById("formInventario")
-  .addEventListener("submit", function (event) {
+document.getElementById("formInventario").addEventListener("submit", function (event) {
     if (!this.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();

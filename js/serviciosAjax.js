@@ -12,7 +12,7 @@ const nombre_servicio = frmServicio.querySelector("#nombreServicio");
 const regla = new RegExp("[a-zA-Z]+$");
 
 alerta.style.color = "red";
-nombre_servicio.onkeypress = function (evento) {
+nombre_servicio.oninput = function (evento) {
   alerta.innerText = "";
 };
 ////

@@ -10,7 +10,7 @@ const alerta = frmArea.querySelector("#alerta");
 const nombre_area = frmArea.querySelector("#nombre_area");
 
 alerta.style.color = "red";
-nombre_area.onkeypress = function (evento) {
+nombre_area.oninput = function (evento) {
   alerta.innerText = "";
 };
 ////
@@ -21,15 +21,15 @@ frmArea.onsubmit = function (e) {
     actualizar(id);
   } else {
     if (frmArea.querySelector("#nombre_area").value.trim().length > 0) {
-      regla = new RegExp("[a-zA-Z]+$");
+      regla = new RegExp("[a-zA-Z0-9]+$");
       if (regla.test(frmArea.querySelector("#nombre_area").value)) {
         guardarArea();
         console.log("guardo");
         frmArea.reset();
-        $("#" + modalp).modal("toggle");
+        $("#" + modalp).modal("hide");
       } else {
         console.log("no cumple, reabriendo el modal: " + modalp);
-        //$("#" + modalp).modal("show");
+        $("#" + modalp).modal("show");
         alerta.innerText = "el texto no debe contener numeros";
       }
     } else {

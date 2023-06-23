@@ -9,7 +9,7 @@ const alerta = frmRol.querySelector("#alerta");
 const nombre_rol = frmRol.querySelector("#inputRol");
 
 alerta.style.color = "red";
-nombre_rol.onkeypress = function (evento) {
+nombre_rol.oninput = function (evento) {
   alerta.innerText = "";
 };
 ////

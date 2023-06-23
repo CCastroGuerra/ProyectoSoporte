@@ -18,13 +18,13 @@ include('../templates/cabecera.php');
                             <option value="1">Entrada</option>
                             <option value="2">Salida</option>
                         </select>
-                        <div id="errorAccion"></div>
+                        <div class="error-message" id="errorAccion"></div>
 
-                        <label for="exampleInputEmail1" class="mb-2">Producto:</label>
+                        <label for="nombreproducto" class="mb-2">Producto:</label>
                         <!-- <input type="text" class="form-control is-invalid" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto"> -->
-                        <input type="text" class="form-control is-invalid" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
-
-                        <div class="invalid-feedback">Por favor, ingrese el nombre del producto.</div>
+                        <input type="text" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
+                        <div class="error-message" id="errorProducto"></div>
+                                                
                         <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                         <input type="number" class="form-control mb-2" id="cantidad" name="cantidad" placeholder="0.00">
                         <div id="errorCantidad" class="error-message"></div>
