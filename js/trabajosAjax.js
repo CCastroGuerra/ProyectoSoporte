@@ -291,7 +291,8 @@ function buscarTrabajos() {
                       <td>
                       <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      
+                      <button style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-print" aria-hidden="true"></i>
+                      </button>
                       </td>
 
                   </tr>

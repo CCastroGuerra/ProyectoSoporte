@@ -42,7 +42,7 @@ class Equipos extends Conectar
     public function guardarEquipo($idEquipo, $serie, $margesi, $marcaId, $modeloId, $idTipo, $areaId, $responsable, $estadoId, $ip, $mac)
     {
         if ($idEquipo == '') {
-            $idEquipo = null;
+            $idEquipo = '0';
         }
         $conectar = parent::conexion();
         $sql = "INSERT INTO equipos (id_equipos,serie, margesi, marca_id, modelo_id, tipo_equipo_id, area_id, clientes_id, estado_id, ip, mac)

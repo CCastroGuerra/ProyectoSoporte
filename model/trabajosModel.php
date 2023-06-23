@@ -350,4 +350,32 @@ class Trabajos extends Conectar
             echo "0";
         }
     }
+
+    public function imprimirTrabajo()
+    {
+        $conectar = parent::conexion();
+        $consulta = "SELECT t.id_trabajos,
+        CONCAT('N°', LPAD(id_trabajos, 6, '0')) AS codigo_correlativo,
+        t.equipo_id,
+        eq.serie,
+        eq.margesi,
+        t.responsable_id,
+        CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
+        t.area_id,
+        a.nombre_area,
+        t.tecnico_id,
+        ts.servicio_id,
+        s.nombre_servicios,
+        CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
+        DATE_FORMAT(t.fecha_alta, '%d/%m/%y') as Fecha
+        FROM trabajos t
+        INNER JOIN personal per ON t.tecnico_id = per.id_personal
+        INNER JOIN personal p ON p.id_personal = t.responsable_id
+        INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+        INNER JOIN area a ON a.id_area = t.area_id
+        INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
+        INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
+        WHERE t.es_activo = 1
+        AND ts.`esActivo` = 1;";
+    }
 }
