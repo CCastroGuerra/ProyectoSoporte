@@ -2,7 +2,7 @@
 include('../templates/cabecera.php');
 ?>
 <!--Modal añadirEmpleado-->
-<div class="modal fade" id="añadirUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
+<div class="modal fade" id="añadirUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,18 +15,33 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                            <div class="visually-hidden" id="divcodigo" name="divcodigo">
+                                <div class="visually-hidden" id="divcodigo" name="divcodigo">
                                     <label for="inputCodigo" class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
-                                </div>                                
-                                <label for="codPersonal" class="mb-2">Codigo de Personal:</label>
-                                <input type="text" class="form-control form-control-sm mb-2" id="codPersonal" name="codPersonal" placeholder="PER########">
-                                <label for="username" class="mb-2">Usuario:</label>
-                                <input type="text" class="form-control  form-control-sm mb-2" id="username" name="username" placeholder="Ejmplo: user3087k" autocomplete="new-username" required>
-                                <label for="userpass" class="mb-2">Contraseña:</label>
-                                <input type="password" autocomplete="new-password" class="form-control  form-control-sm mb-2" id="userpass" name="userpass" placeholder="" autocomplete="off" required>
-                                
-                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="codPersonal" class="mb-2">Codigo de Personal:</label>
+                                    <input type="text" class="form-control form-control-sm mb-2" id="codPersonal" name="codPersonal" placeholder="PER########">
+                                    <small class="alerta" id="alcod"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username" class="mb-2">Usuario:</label>
+                                    <input type="text" class="form-control  form-control-sm mb-2" id="username" name="username" placeholder="Ejmplo: user3087k" autocomplete="new-username">
+                                    <small class="alerta" id="aluser"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userpass" class="mb-2">Contraseña:</label>
+                                    <div class="input-group mb-2">
+                                        <input type="password" autocomplete="new-password" class="form-control  form-control-sm mt-0 w-full block password" id="userpass" name="userpass" placeholder="" autocomplete="off" value="secret!" required />
+                                        <span class="input-group-text">
+                                            <i class="fa fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>
+                                        </span>
+                                    </div>
+                                    <small class="alerta" id="alpass"></small>
+
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -34,7 +49,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
@@ -94,7 +109,7 @@ include('../templates/cabecera.php');
                                 <tr>
                                     <th scope="col"><strong>Código</strong></th>
                                     <th scope="col"><strong>Apellidos</strong></th>
-                                    <th scope="col"><strong>Nombre</strong></th>                                    
+                                    <th scope="col"><strong>Nombre</strong></th>
                                     <th scope="col"><strong>Cargo</strong></th>
                                     <th scope="col"><strong>Usuario</strong></th>
                                     <th scope='col'><strong>Acciones</strong></th>

@@ -1,19 +1,72 @@
 var numPagina = 1;
-let dni = '';
-var frmUsuario = document.getElementById('formEmpleados');
+let dni = "";
+var frmUsuario = document.getElementById("formEmpleados");
 buscarUsuario();
-frmUsuario.onsubmit = function (e) {
-    e.preventDefault();
-    if (frmUsuario.querySelector("#inputCodigo").value !== "") {
-      console.log("actualizo");
-      //actualizar(id);
-    } else {
-      guardarDatos();
-      console.log('registro');
-    }
-    frmUsuario.reset();
-};
+let codpersonal = document.getElementById("codPersonal");
+let usernam = document.getElementById("username");
+let userpass = document.getElementById("userpass");
 
+let alertacod = document.getElementById("alcod");
+let alertauser = document.getElementById("aluser");
+let alertapass = document.getElementById("alpass");
+
+//variables de control
+var vcod = 0;
+var vuser = 0;
+var vpass = 0;
+var vcon = 0;
+
+let msgal = document.querySelectorAll(".alerta");
+/* estableciendo estilo de mensajes de error */
+msgal.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+
+//validacion al llenar los input
+codpersonal.addEventListener("input",function(){
+  if (this.value.trim().length >0) {
+    alertacod.innerText="";
+  }
+});
+
+usernam.addEventListener("input",function(){
+  if (this.value.trim().length >0) {
+    alertauser.innerText="";
+  }
+});
+
+userpass.addEventListener("input",function(){
+  if (this.value.trim().length >0) {
+    alertapass.innerText="";
+  }
+});
+
+frmUsuario.onsubmit = function (e) {
+  e.preventDefault();
+  vcon = vcod + vuser + vpass;
+  if (frmUsuario.querySelector("#inputCodigo").value !== "") {
+    console.log("actualizo");
+    //actualizar(id);
+  } else {
+    if (codpersonal.value.trim().length == 0) {
+      vcod=0;
+      alertacod.innerText="El código no puede estar vacío";
+    }else{vcod=1;}
+    if (usernam.value.trim().length == 0) {
+      vuser=0;
+      alertauser.innerText="El usuario no puede estar vacío";
+    }else{vuser=1;}
+    if (userpass.value.trim().length == 0) {
+      vpass=0;
+      alertapass.innerText="El usuario no puede estar vacío";
+    }else{vpass=1;}
+    if (vcon == 3) {
+      guardarDatos();
+      console.log("registro");
+    }
+  }
+  frmUsuario.reset();
+};
 
 /*limit para el select*/
 var numRegistors = document.getElementById("numRegistros");
@@ -27,11 +80,10 @@ var cajaBuscar = document.getElementById("inputbuscarUsuario");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
- buscarUsuario();
+  buscarUsuario();
 });
 
 function guardarDatos() {
-
   var dni = document.getElementById("codPersonal").value;
   let usuario = document.getElementById("username").value;
   let pass = document.getElementById("userpass").value;
@@ -54,11 +106,7 @@ function guardarDatos() {
       // let nombre = datos[0].nombre;
 
       const ajaxGuardar = new XMLHttpRequest();
-      ajaxGuardar.open(
-        "POST",
-        "../controller/usuariosController.php",
-        true
-      );
+      ajaxGuardar.open("POST", "../controller/usuariosController.php", true);
       let dataGuardar = new FormData();
       dataGuardar.append("accion", "guardar");
       dataGuardar.append("id", id);
@@ -66,7 +114,6 @@ function guardarDatos() {
       dataGuardar.append("username", usuario);
       dataGuardar.append("userpass", pass);
 
-      
       /*data.append("username", usuario);
       data.append("userpass", pass);*/
       ajaxGuardar.onload = function () {
@@ -82,7 +129,6 @@ function guardarDatos() {
         }
       };
       ajaxGuardar.send(dataGuardar);
-
     } else {
       console.log("NO SE ENCONTRO EL DNI");
       swal.fire("ERROR!", "No se encontro el DNI.", "error");
@@ -93,28 +139,28 @@ function guardarDatos() {
 }
 
 function buscarUsuario() {
-    let numPagina = 1;
-    var cajaBuscar = document.getElementById("inputbuscarUsuario");
-    const textoBusqueda = cajaBuscar.value;
-    let num_registros = document.getElementById("numRegistros").value;
-    const ajax = new XMLHttpRequest();
-    ajax.open("POST", "../controller/usuariosController.php", true);
-    var data = new FormData();
-    data.append("accion", "buscar");
-    data.append("cantidad", "4");
-    data.append("registros", num_registros);
-    data.append("pag", numPagina);
-    data.append("textoBusqueda", textoBusqueda);
-    ajax.onload = function () {
-      let respuesta = ajax.responseText;
-      console.log(respuesta);
-      const datos = JSON.parse(respuesta);
-      console.log(datos);
-      let usuario = datos.listado;
-      let template = ""; // Estructura de la tabla html
-      if (usuario != "vacio") {
-        usuario.forEach(function (usuario) {
-          template += `
+  let numPagina = 1;
+  var cajaBuscar = document.getElementById("inputbuscarUsuario");
+  const textoBusqueda = cajaBuscar.value;
+  let num_registros = document.getElementById("numRegistros").value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/usuariosController.php", true);
+  var data = new FormData();
+  data.append("accion", "buscar");
+  data.append("cantidad", "4");
+  data.append("registros", num_registros);
+  data.append("pag", numPagina);
+  data.append("textoBusqueda", textoBusqueda);
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const datos = JSON.parse(respuesta);
+    console.log(datos);
+    let usuario = datos.listado;
+    let template = ""; // Estructura de la tabla html
+    if (usuario != "vacio") {
+      usuario.forEach(function (usuario) {
+        template += `
             <tr>
                 
                 <td>${usuario.dni}</td>
@@ -131,29 +177,29 @@ function buscarUsuario() {
                 </td>
             </tr>
             `;
-        });
-        var elemento = document.getElementById("tbUsuarios");
-        elemento.innerHTML = template;
-        document.getElementById("txtPagVista").value = numPagina;
-        document.getElementById("txtPagTotal").value = datos.paginas;
-  
-        /* Mostrando mensaje de los registros*/
-        let registros = document.getElementById("txtcontador");
-        let mostrarRegistro = `
+      });
+      var elemento = document.getElementById("tbUsuarios");
+      elemento.innerHTML = template;
+      document.getElementById("txtPagVista").value = numPagina;
+      document.getElementById("txtPagTotal").value = datos.paginas;
+
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
         <p><span id="totalRegistros">Mostrando ${usuario.length} de ${datos.total} registros</span></p>`;
-        registros.innerHTML = mostrarRegistro;
-      } else {
-        var elemento = document.getElementById("tbUsuarios");
-        elemento.innerHTML = `
+      registros.innerHTML = mostrarRegistro;
+    } else {
+      var elemento = document.getElementById("tbUsuarios");
+      elemento.innerHTML = `
             <tr>
               <td colspan="6" class="text-center">No se encontraron resultados</td>
             </tr>
           `;
-        // document.getElementById("txtPagVista").value = 0;
-        // document.getElementById("txtPagTotal").value = 0;
-      }
-    };
-    ajax.send(data);
+      // document.getElementById("txtPagVista").value = 0;
+      // document.getElementById("txtPagTotal").value = 0;
+    }
+  };
+  ajax.send(data);
 }
 
 function eliminar(id) {
