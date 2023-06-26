@@ -43,7 +43,6 @@ userpass.addEventListener("input", function () {
 //visbilidad de  contraseña
 $("#togglePassword").on("click", function () {
   var typ = $(this).parent().parent().find(".password").attr("type");
-  console.log(typ);
   if (typ == "password") {
     $(this).removeClass("fa-eye-slash");
     $(this).addClass("fa-eye");
@@ -76,7 +75,7 @@ frmUsuario.onsubmit = function (e) {
     }
     if (userpass.value.trim().length == 0) {
       vpass = 0;
-      alertapass.innerText = "El usuario no puede estar vacío";
+      alertapass.innerText = "La contraseña no puede estar vacía";
     } else {
       vpass = 1;
     }

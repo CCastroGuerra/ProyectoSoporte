@@ -32,7 +32,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="dniusuario" class="mb-2">DNI:</label>
-                                    <input type="number" class="form-control  form-control-sm mb-2" id="dniusuario" name="dniusuario" placeholder="Ingrese el DNI">
+                                    <input type="number" class="form-control  form-control-sm mb-2" id="dniusuario" name="dniusuario" placeholder="Ingrese el DNI" maxlength="8">
                                     <small class="alerta" id="alerta3"></small>
                                 </div>
                                 <div class="form-group">

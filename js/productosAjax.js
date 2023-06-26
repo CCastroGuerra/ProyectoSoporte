@@ -39,6 +39,12 @@ tipo_producto.oninput = function () {
 ctd_producto.oninput = function () {
   alerta4.innerText = "";
 };
+ctd_producto.addEventListener("keypress", function(evt){
+  console.log("keypress");
+  if ((evt.keyCode != 8 && evt.keyCode != 0 && evt.keyCode < 48) || evt.keyCode > 57) {
+    evt.preventDefault();
+  }
+});
 detalle_producto.oninput = function () {
   alerta6.innerText = "";
 };

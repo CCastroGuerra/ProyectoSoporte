@@ -31,7 +31,30 @@ nombrs.addEventListener("input", function () {
 });
 
 inpdni.addEventListener("input", function () {
-  adni.innerText = "";
+  regla = new RegExp("[0-9]$");
+  
+  if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+  if (this.value.trim().length > 0 && this.value.trim().length <= 8) {
+    if (regla.test(this.value) == false) {
+      console.log("solo numeros");
+      adni.innerText = "El dni solo tiene números";
+    } else {
+      if (this.value.trim().length < 8) {
+        adni.innerText = "El dni tiene 8 dígitos";
+      }
+    }
+  }
+  if (regla.test(this.value) == true && this.value.trim().length == 8) {
+    adni.innerText = "";
+  }
+  if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+});
+
+inpdni.addEventListener("keypress", function (evt) {
+  //console.log(evt.keyCode);
+  if ((evt.keyCode != 8 && evt.keyCode != 0 && evt.keyCode < 48) || evt.keyCode > 57) {
+    evt.preventDefault();
+  }
 });
 
 frmPersonal.onsubmit = function (e) {

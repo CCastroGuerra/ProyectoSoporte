@@ -4,32 +4,45 @@ buscarResumen();
 let cbxAccion = document.getElementById("selAccion");
 let inproducto = document.getElementById("nombreproducto");
 let inctd = document.getElementById("cantidad");
-let msgs= document.querySelectorAll(".error-message");
+let msgs = document.querySelectorAll(".error-message");
 
-msgs.forEach((element)=>{
-  element.setAttribute("style","color:red !important");
+//mensajes de error
+let alac = document.getElementById("errorAccion");
+let alprod = document.getElementById("errorCantidad");
+let alctd = document.getElementById("errorProducto");
+
+//variables de control
+var vac = 0;
+var vprod = 0;
+var vctd = 0;
+var vcon = 0;
+
+msgs.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
 });
 
 cbxAccion.addEventListener("change", function (e) {
   console.log("cambio en select tipo");
-  if(cbxAccion.value==0){
-    document.getElementById("errorAccion").innerText="Selecione una opción valida";
-  }else{document.getElementById("errorAccion").innerText="";}
-});
-
-inproducto.addEventListener("input", function (){
-  if (this.value.trim().length==0) {
-    document.getElementById("errorProducto").innerText="El Codigo de Producto es obligatorio";
-  }else{
-    document.getElementById("errorProducto").innerText="";
+  if (this.value == 0) {
+    alac.innerText = "Selecione una opción valida";
+  } else {
+    alac.innerText = "";
   }
 });
 
-inctd.addEventListener("input", function (){
-  if (this.value.trim().length==0) {
-    document.getElementById("errorProducto").innerText="La cantidad es obligatoria";
-  }else{
-    
+inproducto.addEventListener("input", function () {
+  if (this.value.trim().length == 0) {
+    alprod.innerText = "El Codigo de Producto es obligatorio";
+  } else {
+    alprod.innerText = "";
+  }
+});
+
+inctd.addEventListener("input", function () {
+  if (this.value.trim().length == 0) {
+    alctd.innerText = "La cantidad es obligatoria";
+  } else {
+    alctd.innerText = "";
   }
 });
 
@@ -50,18 +63,49 @@ inctd.addEventListener("input", function (){
 //   //traerNombreProducto();
 // };
 
-document.getElementById("formInventario").addEventListener("submit", function (event) {
-    if (!this.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.classList.add("was-validated");
-    } else {
-      // Resto del código para guardar los datos
+document
+  .getElementById("formInventario")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-      // Cerrar el modal manualmente
-      var modal = document.getElementById("inventarioModal");
-      var coreuiModal = new bootstrap.Modal(modal);
-      coreuiModal.hide();
+    console.log("validando accion");
+    if (cbxAccion.value == 0) {
+      vac = 0;
+      alac.innerText = "Selecione una opción valida";
+    } else {
+      vac = 1;
+      alac.innerText = "";
+    }
+
+    console.log("validando producto");
+    if (inproducto.value.trim().length == 0) {
+      vprod = 0;
+      alprod.innerText = "El Codigo de Producto es obligatorio";
+    } else {
+      vprod = 1;
+      alprod.innerText = "";
+    }
+
+    console.log("validando ctd");
+    if (inctd.value.trim().length == 0) {
+      vctd = 0;
+      alctd.innerText = "La cantidad es obligatoria";
+    } else {
+      vctd = 1;
+      alctd.innerText = "";
+    }
+
+    vcon = vac + vprod + vctd;
+    if (vcon == 3) {
+      console.log("todo ok");
+      //aqui pondrí my funcion guardar si tuviera una, pero son 2
+      if (cbxAccion.value == 1) {
+        console.log("entrada");
+      } else {
+        console.log("salida");
+      }
+      $("#inventarioModal").modal("hide");
+      document.getElementById("formInventario").reset();
     }
   });
 
