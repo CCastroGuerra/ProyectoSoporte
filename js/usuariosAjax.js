@@ -23,21 +23,35 @@ msgal.forEach((element) => {
 });
 
 //validacion al llenar los input
-codpersonal.addEventListener("input",function(){
-  if (this.value.trim().length >0) {
-    alertacod.innerText="";
+codpersonal.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    alertacod.innerText = "";
   }
 });
 
-usernam.addEventListener("input",function(){
-  if (this.value.trim().length >0) {
-    alertauser.innerText="";
+usernam.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    alertauser.innerText = "";
   }
 });
 
-userpass.addEventListener("input",function(){
-  if (this.value.trim().length >0) {
-    alertapass.innerText="";
+userpass.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    alertapass.innerText = "";
+  }
+});
+//visbilidad de  contraseña
+$("#togglePassword").on("click", function () {
+  var typ = $(this).parent().parent().find(".password").attr("type");
+  console.log(typ);
+  if (typ == "password") {
+    $(this).removeClass("fa-eye-slash");
+    $(this).addClass("fa-eye");
+    $(this).parent().parent().find(".password").attr("type", "text");
+  } else {
+    $(this).removeClass("fa-eye");
+    $(this).addClass("fa-eye-slash");
+    $(this).parent().parent().find(".password").attr("type", "password");
   }
 });
 
@@ -49,17 +63,23 @@ frmUsuario.onsubmit = function (e) {
     //actualizar(id);
   } else {
     if (codpersonal.value.trim().length == 0) {
-      vcod=0;
-      alertacod.innerText="El código no puede estar vacío";
-    }else{vcod=1;}
+      vcod = 0;
+      alertacod.innerText = "El código no puede estar vacío";
+    } else {
+      vcod = 1;
+    }
     if (usernam.value.trim().length == 0) {
-      vuser=0;
-      alertauser.innerText="El usuario no puede estar vacío";
-    }else{vuser=1;}
+      vuser = 0;
+      alertauser.innerText = "El usuario no puede estar vacío";
+    } else {
+      vuser = 1;
+    }
     if (userpass.value.trim().length == 0) {
-      vpass=0;
-      alertapass.innerText="El usuario no puede estar vacío";
-    }else{vpass=1;}
+      vpass = 0;
+      alertapass.innerText = "El usuario no puede estar vacío";
+    } else {
+      vpass = 1;
+    }
     if (vcon == 3) {
       guardarDatos();
       console.log("registro");

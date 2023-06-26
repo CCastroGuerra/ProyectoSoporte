@@ -32,7 +32,7 @@ include('../templates/cabecera.php');
                                 <div class="form-group">
                                     <label for="userpass" class="mb-2">Contraseña:</label>
                                     <div class="input-group mb-2">
-                                        <input type="password" autocomplete="new-password" class="form-control  form-control-sm mt-0 w-full block password" id="userpass" name="userpass" placeholder="" autocomplete="off" value="secret!" required />
+                                        <input type="password" autocomplete="new-password" class="form-control  form-control-sm mt-0 w-full block password" id="userpass" name="userpass" placeholder="" autocomplete="off" />
                                         <span class="input-group-text">
                                             <i class="fa fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>
                                         </span>
