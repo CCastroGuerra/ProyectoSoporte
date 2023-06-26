@@ -1,9 +1,11 @@
 <?php
+
 /**
  * @package dompdf
  * @link    https://github.com/dompdf/dompdf
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\Dompdf;
@@ -124,7 +126,8 @@ abstract class AbstractFrameReflower
         $frame = $this->_frame;
 
         // Margins of float/absolutely positioned/inline-level elements do not collapse
-        if (!$frame->is_in_flow() || $frame->is_inline_level()
+        if (
+            !$frame->is_in_flow() || $frame->is_inline_level()
             || $frame->get_root() === $frame || $frame->get_parent() === $frame->get_root()
         ) {
             return;
@@ -149,7 +152,7 @@ abstract class AbstractFrameReflower
 
         // Collapse vertical margins:
         $n = $frame->get_next_sibling();
-        if ( $n && !($n->is_block_level() && $n->is_in_flow()) ) {
+        if ($n && !($n->is_block_level() && $n->is_in_flow())) {
             while ($n = $n->get_next_sibling()) {
                 if ($n->is_block_level() && $n->is_in_flow()) {
                     break;
@@ -174,7 +177,7 @@ abstract class AbstractFrameReflower
         // Collapse our first child's margin, if there is no border or padding
         if ($style->border_top_width == 0 && $style->length_in_pt($style->padding_top) == 0) {
             $f = $this->_frame->get_first_child();
-            if ( $f && !($f->is_block_level() && $f->is_in_flow()) ) {
+            if ($f && !($f->is_block_level() && $f->is_in_flow())) {
                 while ($f = $f->get_next_sibling()) {
                     if ($f->is_block_level() && $f->is_in_flow()) {
                         break;
@@ -201,7 +204,7 @@ abstract class AbstractFrameReflower
         // Collapse our last child's margin, if there is no border or padding
         if ($style->border_bottom_width == 0 && $style->length_in_pt($style->padding_bottom) == 0) {
             $l = $this->_frame->get_last_child();
-            if ( $l && !($l->is_block_level() && $l->is_in_flow()) ) {
+            if ($l && !($l->is_block_level() && $l->is_in_flow())) {
                 while ($l = $l->get_prev_sibling()) {
                     if ($l->is_block_level() && $l->is_in_flow()) {
                         break;
@@ -241,11 +244,11 @@ abstract class AbstractFrameReflower
         if ($l1 < 0 && $l2 < 0) {
             return min($l1, $l2); // min(x, y) = - max(abs(x), abs(y)), if x < 0 && y < 0
         }
-        
+
         if ($l1 < 0 || $l2 < 0) {
             return $l1 + $l2; // x + y = x - abs(y), if y < 0
         }
-        
+
         return max($l1, $l2);
     }
 
@@ -491,13 +494,20 @@ abstract class AbstractFrameReflower
             $string = trim($string, "'\"");
         }
 
-        $string = str_replace(["\\\n", '\\"', "\\'"],
-            ["", '"', "'"], $string);
+        $string = str_replace(
+            ["\\\n", '\\"', "\\'"],
+            ["", '"', "'"],
+            $string
+        );
 
         // Convert escaped hex characters into ascii characters (e.g. \A => newline)
-        $string = preg_replace_callback("/\\\\([0-9a-fA-F]{0,6})/",
-            function ($matches) { return \Dompdf\Helpers::unichr(hexdec($matches[1])); },
-            $string);
+        $string = preg_replace_callback(
+            "/\\\\([0-9a-fA-F]{0,6})/",
+            function ($matches) {
+                return \Dompdf\Helpers::unichr(hexdec($matches[1]));
+            },
+            $string
+        );
         return $string;
     }
 

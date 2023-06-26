@@ -144,25 +144,44 @@ ob_start();
 
     $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
     $conectar = $conectarObj->Conexion();
-    $sql = $conectar->prepare("SELECT id_trabajo_servicio,
+    //     $sql = $conectar->prepare("SELECT id_trabajo_servicio,
+    //     te.nombre_tipo_equipo,
+    //     a.nombre_area,
+    //     CONCAT(
+    //         per2.nombre_personal,
+    //         ' ',
+    //         per2.apellidos_personal
+    //     ) NombreTecnico,
+    //     ser.nombre_servicios,
+    //     DATE_FORMAT(ts.create_time, '%d/%m/%y') as Fecha
+    // from trabajo_servicio ts
+    //     INNER JOIN equipos eq ON ts.equipo_id = ts.equipo_id
+    //     INNER JOIN area a ON eq.area_id = a.id_area
+    //     INNER JOIN trabajos t ON t.id_trabajos = ts.trabajo_id
+    //     INNER JOIN personal per on eq.clientes_id = per.id_personal
+    //     INNER JOIN personal per2 on t.tecnico_id = per2.id_personal
+    //     INNER JOIN servicios ser on ts.servicio_id = ser.id_servicios
+    //     INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
+    //     WHERE ser.`esActivo` = 1;");
+    $sql = $conectar->prepare("SELECT t.id_trabajos,
+    id_trabajos,
     te.nombre_tipo_equipo,
     a.nombre_area,
-    CONCAT(
-        per2.nombre_personal,
-        ' ',
-        per2.apellidos_personal
-    ) NombreTecnico,
-    ser.nombre_servicios,
+    CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
+    GROUP_CONCAT(s.nombre_servicios SEPARATOR ', ') AS servicios,
     DATE_FORMAT(ts.create_time, '%d/%m/%y') as Fecha
-from trabajo_servicio ts
-    INNER JOIN equipos eq ON ts.equipo_id = ts.equipo_id
-    INNER JOIN area a ON eq.area_id = a.id_area
-    INNER JOIN trabajos t ON t.id_trabajos = ts.trabajo_id
-    INNER JOIN personal per on eq.clientes_id = per.id_personal
-    INNER JOIN personal per2 on t.tecnico_id = per2.id_personal
-    INNER JOIN servicios ser on ts.servicio_id = ser.id_servicios
+FROM trabajos t
+    INNER JOIN personal per ON t.tecnico_id = per.id_personal
+    INNER JOIN personal p ON p.id_personal = t.responsable_id
+    INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+    INNER JOIN area a ON a.id_area = t.area_id
+    INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
+    INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
     INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
-    WHERE ser.`esActivo` = 1;");
+    INNER JOIN marca mar ON eq.marca_id = mar.id_marca
+    INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
+WHERE t.es_activo = 1
+    AND ts.`esActivo` = 1;");
     $sql->execute();
     $listaTrabajos = $sql->fetchAll(PDO::FETCH_ASSOC);
     $totalTrabajos = count($listaTrabajos);
@@ -202,11 +221,11 @@ from trabajo_servicio ts
             <tbody>
                 <?php foreach ($listaTrabajos as $trabajo) { ?>
                     <tr>
-                        <td><?php echo $trabajo['id_trabajo_servicio'] ?></td>
+                        <td><?php echo $trabajo['id_trabajos'] ?></td>
                         <td><?php echo $trabajo['nombre_tipo_equipo'] ?></td>
                         <td><?php echo $trabajo['nombre_area'] ?></td>
                         <td><?php echo $trabajo['NombreTecnico'] ?></td>
-                        <td><?php echo $trabajo['nombre_servicios'] ?></td>
+                        <td><?php echo $trabajo['servicios'] ?></td>
                         <td><?php echo $trabajo['Fecha'] ?></td>
 
                     </tr>

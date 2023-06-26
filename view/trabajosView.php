@@ -282,6 +282,7 @@ include('../templates/cabecera.php');
 
 <!--/contenido ventana -->
 <script src="../js/trabajosAjax.js"></script>
+
 <?php
 include '../templates/footer.php';
 ?>

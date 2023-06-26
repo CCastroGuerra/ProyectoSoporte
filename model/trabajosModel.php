@@ -351,13 +351,17 @@ class Trabajos extends Conectar
         }
     }
 
-    public function imprimirTrabajo()
+    public function imprimirTrabajo($idTrabajos)
     {
         $conectar = parent::conexion();
         $consulta = "SELECT t.id_trabajos,
         CONCAT('N°', LPAD(id_trabajos, 6, '0')) AS codigo_correlativo,
         t.equipo_id,
+        te.id_tipo_equipo,
+        te.nombre_tipo_equipo,
         eq.serie,
+        mar.nombre_marca,
+        mo.nombre_modelo,
         eq.margesi,
         t.responsable_id,
         CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
@@ -366,6 +370,9 @@ class Trabajos extends Conectar
         t.tecnico_id,
         ts.servicio_id,
         s.nombre_servicios,
+        t.falla,
+        t.solucion,
+        t.recomendacion,
         CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
         DATE_FORMAT(t.fecha_alta, '%d/%m/%y') as Fecha
         FROM trabajos t
@@ -375,7 +382,17 @@ class Trabajos extends Conectar
         INNER JOIN area a ON a.id_area = t.area_id
         INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
         INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
+        INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
+        INNER JOIN marca mar ON eq.marca_id = mar.id_marca
+        INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
         WHERE t.es_activo = 1
-        AND ts.`esActivo` = 1;";
+        AND ts.`esActivo` = 1
+        AND id_trabajos = ?";
+
+        $consulta = $conectar->prepare($consulta);
+        $consulta->bindValue(1, $idTrabajos);
+        $consulta->execute();
+
+        return $resultado = $consulta->fetchAll();
     }
 }

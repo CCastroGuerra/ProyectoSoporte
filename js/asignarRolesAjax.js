@@ -67,7 +67,7 @@ function guardarDatos() {
 
       // let apellidos = datos.apellidos;
       // let nombre  = datos.nombre;
-      let id = datos[0].id;
+      let id = datos[0].idUsuario;
       // let apellidos = datos[0].apellidos;
       // let nombre = datos[0].nombre;
 
@@ -324,7 +324,7 @@ var cajaBuscar = document.getElementById("inputbuscarARoles");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
- buscar();
+  buscar();
 });
 
 /**************************/

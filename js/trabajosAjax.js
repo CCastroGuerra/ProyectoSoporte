@@ -291,7 +291,7 @@ function buscarTrabajos() {
                       <td>
                       <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-print" aria-hidden="true"></i>
+                      <button class="btn" style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnEditar"<i class="fa fa-print" aria-hidden="true"></i>
                       </button>
                       </td>
 
@@ -453,6 +453,27 @@ function cerrarEditar() {
   frmTrabajos.reset();
   var elemento = document.getElementById("tbEquipos");
   elemento.innerHTML = ``;
+  ajax.send(data);
+}
+
+function imprimir(idTrabajo) {
+  //let link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
+  let link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
+  window.open(link, "_blank");
+  //id = idTrabajo;
+  console.log(id);
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/trabajosController.php", true);
+  const data = new FormData();
+  data.append("id", id);
+  data.append("accion", "mostrarEnTabla");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    let datos = JSON.parse(respuesta);
+    console.log(datos);
+    document.getElementById("nombre").value = datos.nombrePersonal;
+  };
   ajax.send(data);
 }
 

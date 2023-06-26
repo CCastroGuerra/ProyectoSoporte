@@ -5,8 +5,8 @@ class asignarRoles extends Conectar
     public function guardarRoles($idPersonal, $idRolSeleccionado)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO rol_usuario (usuario_id,rol_id)
-        VALUES ( $idPersonal, $idRolSeleccionado)";
+        $sql = "INSERT INTO rol_usuario (rol_id,usuario_id)
+        VALUES ( $idRolSeleccionado,$idPersonal)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -19,9 +19,14 @@ class asignarRoles extends Conectar
     {
         $conectar = parent::conexion();
 
-        $sql = "SELECT id_personal, apellidos_personal, nombre_personal
-                FROM personal
-                WHERE dni_personal = ?";
+        // $sql = "SELECT id_personal, apellidos_personal, nombre_personal
+        //         FROM personal
+        //         WHERE dni_personal = ?";
+
+        $sql = "SELECT id_personal, apellidos_personal, nombre_personal, u.id_usuario
+        FROM personal p 
+        INNER JOIN usuario u ON u.personal_id = p.id_personal
+        WHERE dni_personal = ?";
 
         $fila = $conectar->prepare($sql);
         $fila->bindValue(1, $dni);
@@ -38,6 +43,7 @@ class asignarRoles extends Conectar
                     'id' => $row['id_personal'],
                     'apellidos' => $row['apellidos_personal'],
                     'nombre' => $row['nombre_personal'],
+                    'idUsuario' => $row['id_usuario']
                 );
             }
 
