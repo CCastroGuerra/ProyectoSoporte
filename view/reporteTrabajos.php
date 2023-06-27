@@ -24,8 +24,8 @@ ob_start();
             margin-right: 0; */
             margin-bottom: 1cm;
             margin-top: 5cm;
-            margin-left: 2.5cm;
-            margin-right: 0.5cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
         }
 
         .encabezado {
@@ -193,7 +193,7 @@ WHERE t.es_activo = 1
 
     <div class="encabezado">
         <div id="logo">
-            <img src="http://localhost/ProyectoSoporte/banner.png" alt="">
+            <img src="http://localhost/ProyectoSoporte/img/banner.png" alt="">
         </div>
         <div id="fecha-hora">
             <span>Fecha: <?php echo $fechaActual; ?></span>
