@@ -9,17 +9,109 @@ let selecModelo = document.getElementById("selModelo");
 let selecMarca = document.getElementById("selMarca");
 let frmComponentes = document.getElementById("formAcomponente");
 
+///
+const tipo_compo = document.querySelector("#selTipo");
+const clase_compo = document.querySelector("#selClase");
+const serie_compo = document.querySelector("#serie");
+const capc_compo = document.querySelector("#capacidad");
+const estado_compo = document.querySelector("#selEstado");
+
+const modalp = frmComponentes.parentNode.parentNode.parentNode.id;
+
+var regla = new RegExp("[a-zA-Z]+$");
+var alerta1 = document.querySelector("#alerta1");
+var alerta2 = document.querySelector("#alerta2");
+var alerta3 = document.querySelector("#alerta3");
+var alerta4 = document.querySelector("#alerta4");
+var alerta5 = document.querySelector("#alerta5");
+var alerta6 = document.querySelector("#alerta6");
+var alerta7 = document.querySelector("#alerta7");
+
+var ofr = document.querySelectorAll("#formAcomponente .alerta");
+ofr.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+tipo_compo.onchange = function () {
+  if (this.value==0) {
+    alerta1.innerText = "Seleccione el tipo válido";
+  } else {
+    alerta1.innerText = "";
+  }
+};
+clase_compo.onchange = function () {
+  if (this.value==0) {
+    alerta2.innerText = "Seleccione la clase válida";
+  } else {
+    alerta2.innerText = "";
+  }
+};
+selecMarca.onchange = function () {
+  if (this.value==0) {
+    alerta3.innerText = "Seleccione una marca válida";
+  } else {
+    alerta3.innerText = "";
+  }
+};
+selecModelo.onchange = function () {
+  alerta4.innerText = "";
+};
+serie_compo.oninput = function () {
+  alerta5.innerText = "";
+};
+capc_compo.oninput = function () {
+  alerta6.innerText = "";
+};
+estado_compo.onchange = function () {
+  alerta7.innerText = "";
+};
+
+///
+
 frmComponentes.onsubmit = function (e) {
   e.preventDefault();
+  var band=0;
   if (frmComponentes.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarComponente();
-    //buscarModelo();
-    console.log("guardo");
+    if (tipo_compo.value == 0) {
+      band++;
+      alerta1.innerText = "seleccione el tipo de componente";
+    }
+    if (clase_compo.value == 0) {
+      band++;
+      alerta2.innerText = "seleccione la clase de componente";
+    }
+    if (selecMarca.value == 0) {
+      band++;
+      alerta3.innerText = "seleccione la marca";
+    }
+    if (selecModelo.value == 0) {
+      band++;
+      alerta4.innerText = "seleccione el modelo";
+    }
+    if (serie_compo.value.trim().length == 0 || serie_compo.value == "") {
+      band++;
+      alerta5.innerText = "Ingrese el # de serie";
+    }
+    if (capc_compo.value.trim().length == 0 || capc_compo.value == "") {
+      band++;
+      alerta6.innerText = "ingrese la capacidad del componente";
+    }
+    if (estado_compo.value == 0) {
+      band++;
+      alerta7.innerText = "Especifique el estado del componente";
+    }
+    console.log("errores: " + band);
+    if (band == 0) {
+      guardarComponente();
+      buscarComponente();
+      $("#" + modalp).modal("hide");
+      console.log("guardo");
+      frmComponentes.reset();
+    }
   }
-  frmComponentes.reset();
+  return false;
 };
 
 selecModelo.disabled = true;

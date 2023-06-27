@@ -12,11 +12,59 @@ let frmResponsable = document.getElementById("formResponsable");
 let selecModelo = document.getElementById("selModeloEquipo");
 let selecMarca = document.getElementById("selMarcaEquipo");
 let selectTipo = document.getElementById("selTipoEquipo");
+let selectArea = document.getElementById("selArea");
 let selectEstado = document.getElementById("selEstado");
 let btnComponente = document.getElementById("btnComponente");
 let btnCerrar = document.getElementById("cerrarBot");
 let btnX = document.getElementById("cerrarSup");
+let btnmodal = document.getElementById("btmodal");
 let id = 0;
+
+//Mensajes de error
+let alertTipo = document.getElementById("alertaTipo");
+let alertMarca = document.getElementById("alertaMarca");
+let alertModelo = document.getElementById("alertaModelo");
+let alertArea = document.getElementById("alertaArea");
+let alertEstado = document.getElementById("alertaEstado");
+let alertMargesi = document.getElementById("alertaMargesi");
+
+//variables de control
+var btipo = 0;
+var bmarca = 0;
+var bmodelo = 0;
+var barea = 0;
+var bestado = 0;
+var bmargesi = 0;
+var bnadir = 0;
+
+//tabla de componentes
+//boton guardar ->desactivado por defecto a menos que la tabla tbComponentes tenga elementos
+let btmguardar = document.getElementById("btmGuardar");
+btmguardar.disabled = true;
+
+
+$("#tbComponentes").bind("DOMSubtreeModified", function () {
+  var tablacomponentes = document.querySelectorAll("#tbComponentes tr");
+  console.log("la tabla cambió, componentes: " + tablacomponentes.length);
+  if (tablacomponentes.length > 0) {
+    console.log("es mayor a 0");
+    console.log(tablacomponentes[0].innerText.trim());
+    if (tablacomponentes[0].innerText.trim() === "No se encontraron datos".trim()) {
+      console.log(tablacomponentes[0].innerText + "-> igual a cadena");
+      btmguardar.disabled = true;
+    } 
+    else {
+      console.log("no es un igual a la cadena");
+      btmguardar.disabled = false;}
+  } else {console.log("no es 0");}
+});
+
+
+//estilo css de los mensajes de error
+var ofr = document.querySelectorAll("#formAEquipo .alerta");
+ofr.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
 
 btnComponente.addEventListener("click", function (e) {
   e.preventDefault();
@@ -45,17 +93,113 @@ btnX.addEventListener("click", function (e) {
 
 /*Habilitar o deshabilitar boton de añador*/
 let margesi = document.getElementById("margesi");
+var contbtañadir = 0;
 btnComponente.disabled = true;
+selectTipo.addEventListener("change", function () {
+  //verifica si se ha sellecionado una opcion valida de tipo
+  if (selectTipo.value == 0) {
+    alertTipo.innerText = "Seleccione una opcion válida";
+    btipo = 0;
+  } else {
+    alertTipo.innerText = "";
+    btipo = 1;
+  }
+});
+selecMarca.addEventListener("change", function () {
+  //verifica si se ha sellecionado una opcion valida de marca
+  if (selecMarca.value == 0) {
+    alertMarca.innerText = "Seleccione una opcion válida";
+    bmarca = 0;
+    bmodelo = 0;
+  } else {
+    alertMarca.innerText = "";
+    bmarca = 1;
+  }
+});
+selecModelo.addEventListener("change", function () {
+  //verifica si se ha sellecionado una opcion valida de modelo
+  if (selecModelo.value == 0) {
+    alertModelo.innerText = "Seleccione una opcion válida";
+    bmodelo = 0;
+  } else {
+    alertModelo.innerText = "";
+    bmodelo = 1;
+  }
+});
+
+selectArea.addEventListener("change", function () {
+  //Verifica si se ha seleccionado una opcion valida de area
+  if (selectArea.value == 0) {
+    alertArea.innerText = "Seleccione una opcion válida";
+    barea = 0;
+  } else {
+    alertArea.innerText = "";
+    barea = 1;
+  }
+});
+
+selectEstado.addEventListener("change", function () {
+  //Verifica si se ha seleccionado una opcion valida de estado
+  if (selectEstado.value == 0) {
+    alertEstado.innerText = "Seleccione una opcion válida";
+    bestado = 0;
+  } else {
+    alertEstado.innerText = "";
+    bestado = 1;
+  }
+});
+
 margesi.addEventListener("input", function () {
   // Verifica si el valor del input no está vacío
-  if (margesi.value.length > 0) {
+  if (margesi.value.trim().length > 0) {
     // Habilita el botón
-    btnComponente.disabled = false;
+    alertMargesi.innerText = "";
+    bmargesi = 1;
   } else {
     // Deshabilita el botón
     btnComponente.disabled = true;
+    alertMargesi.innerText = "es un valor obligatorio";
+    bmargesi = 0;
   }
 });
+
+frmEquipos.addEventListener("change", function () {
+  console.log("cambio detectado en el formulario");
+  validarFormulario();
+});
+
+
+function validarFormulario() {
+  bnadir = btipo + bmarca + bmodelo + barea + bestado + bmargesi;
+  console.log("completos: " + bnadir);
+  if (bnadir == 6) {
+    btnComponente.disabled = false;
+  } else {
+    btnComponente.disabled = true;
+  }
+}
+
+btnmodal.addEventListener("click", function () {
+  //condiciones iniciales del modal equipos
+  console.log("modal abierto");
+  btnComponente.disabled = true;
+  btmguardar.disabled = true;
+});
+/***************************************/
+//----validar modal componentes//
+var serieinp = document.getElementById("codigo");
+var btmcomp = document.getElementById("btmcomp");
+let alertaMComp = document.getElementById("alertaMComp");
+btmcomp.disabled = true;
+serieinp.addEventListener("input", function () {
+  if (serieinp.value.trim().length > 0) {
+    alertaMComp.innerText = "";
+    btmcomp.disabled = false;
+  } else {
+    alertaMComp.innerText = "el elemento no puede estar vacío";
+  }
+});
+
 /***************************************/
 
 frmComponentes.onsubmit = function (e) {
@@ -95,6 +239,12 @@ frmResponsable.onsubmit = function (e) {
 
 selecModelo.disabled = true;
 selecMarca.addEventListener("change", () => {
+  console.log("cambio marca");
+  listarSelectModelo();
+});
+
+function listarSelectModelo() {
+  console.log("selctMarca cambio");
   let marcaId = selecMarca.value;
   console.log(marcaId);
   const ajax = new XMLHttpRequest();
@@ -109,7 +259,7 @@ selecMarca.addEventListener("change", () => {
     console.log(respuesta);
     let marcas = JSON.parse(respuesta);
     console.log(marcas);
-    let options = "<option value=''>Seleccione una Modelo</option>";
+    let options = "<option value=''>Seleccione un Modelo</option>";
     if (marcas.length > 0) {
       marcas.forEach(function (marcas) {
         options += `
@@ -123,7 +273,7 @@ selecMarca.addEventListener("change", () => {
     document.getElementById("selModeloEquipo").innerHTML = options;
   };
   ajax.send(data);
-});
+}
 
 function listarSelectMarca() {
   //let num_registros = document.getElementById('numeroRegistros').value;

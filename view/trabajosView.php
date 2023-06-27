@@ -183,17 +183,19 @@ include('../templates/cabecera.php');
                 <div class="card-body">
                     <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-6">Lista Trabajos
+                            <div class="col-lg-10 col-sm-8">Lista Trabajos
                             </div>
-                            <!-- Boton para generar pdf -->
-                            <div class="text-center col-lg-6 col-sm-6">
-                                <a href="reporteTrabajos.php" class="pdf-button" target="_blank">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <!--  -->
-                            <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal">Añadir</button>
+                            <div class="col-lg-2 col-sm-4 text-end row">
+                                <!-- Boton para generar pdf -->
+                                <div class="text-center col-lg-6 col-sm-6">
+                                    <a href="reporteTrabajos.php" class="pdf-button" target="_blank">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <!--  -->
+                                <div class="text-center col-lg-6 col-sm-6">
+                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal">Añadir</button>
+                                </div>
                             </div>
                         </div>
                     </h3>

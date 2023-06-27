@@ -1,22 +1,102 @@
 var numPagina = 1;
 let id = "";
 var frmPersonal = document.getElementById("formEmpleados");
+let apelli = document.getElementById("apellidos");
+let nombrs = document.getElementById("nombre");
+let inpdni = document.getElementById("dniusuario");
+let intelf = document.getElementById("telefono");
+let incorr = document.getElementById("correo");
+let selcarg = document.getElementById("selCargo");
+let msgal = document.querySelectorAll(".alerta");
+//small de alerta
+let aapelli = msgal[0];
+let anombrs = msgal[1];
+let adni = msgal[2];
+let atelf = msgal[3];
+let acorr = msgal[4];
+let acarg = msgal[5];
 buscarPersonal();
 //listarPersonal();
 
+msgal.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+
+apelli.addEventListener("input", function () {
+  aapelli.innerText = "";
+});
+
+nombrs.addEventListener("input", function () {
+  anombrs.innerText = "";
+});
+
+inpdni.addEventListener("input", function () {
+  regla = new RegExp("[0-9]$");
+
+  if (this.value.length > this.maxLength)
+    this.value = this.value.slice(0, this.maxLength);
+  if (this.value.trim().length > 0 && this.value.trim().length <= 8) {
+    if (regla.test(this.value) == false) {
+      console.log("solo numeros");
+      adni.innerText = "El dni solo tiene números";
+    } else {
+      if (this.value.trim().length < 8) {
+        adni.innerText = "El dni tiene 8 dígitos";
+      }
+    }
+  }
+  if (regla.test(this.value) == true && this.value.trim().length == 8) {
+    adni.innerText = "";
+  }
+  if (this.value.length > this.maxLength)
+    this.value = this.value.slice(0, this.maxLength);
+});
+
+inpdni.addEventListener("keypress", function (evt) {
+  //console.log(evt.keyCode);
+  if (
+    (evt.keyCode != 8 && evt.keyCode != 0 && evt.keyCode < 48) ||
+    evt.keyCode > 57
+  ) {
+    evt.preventDefault();
+  }
+});
+
 frmPersonal.onsubmit = function (e) {
   e.preventDefault();
+  bcontrol=0;
   if (frmPersonal.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     //actualizar(id);
     actualizar(id);
   } else {
     // guardarArea();
+    if (apelli.value.trim().length == 0) {
+      aapelli.innerText = " no valido";
+    }
+    if (nombrs.value.trim().length == 0) {
+      anombrs.innerText = " no valido";
+    }
+    if (inpdni.value.trim().length == 0) {
+      adni.innerText = " no valido";
+    }
+    if (intelf.value.trim().length == 0) {
+      atelf.innerText = " no valido";
+    }
+    if (incorr.value.trim().length == 0) {
+      acorr.innerText = " no valido";
+    }
+    if (selcarg.value == 0) {
+      acarg.innerText = " no valido";
+    }
     // listarArea();
-    guardarPersonal();
-    console.log("guardo");
+    if (bcontrol == 6) {
+      guardarPersonal();
+      console.log("guardo");
+      frmPersonal.reset();
+    }
   }
-  frmPersonal.reset();
+  return false;
 };
 
 function listarPersonal() {
@@ -217,7 +297,7 @@ data.append("accion", "buscar");
 cajaBuscar.addEventListener("keyup", function (e) {
   const textoBusqueda = cajaBuscar.value;
   console.log(textoBusqueda);
-  numPagina=1;
+  numPagina = 1;
   buscarPersonal();
 });
 

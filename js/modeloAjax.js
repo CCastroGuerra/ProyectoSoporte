@@ -5,17 +5,55 @@ buscarModelo();
 //listarMarca();
 let frmModelo = document.getElementById("formModelo");
 
+////
+const modalp = frmModelo.parentNode.parentNode.parentNode.id;
+const alerta = frmModelo.querySelector("#alerta1");
+const alerta2 = frmModelo.querySelector("#alerta2");
+const calert = frmModelo.querySelectorAll(".alerta");
+const nombre_modelo = frmModelo.querySelector("#nombreModelo");
+const categ = frmModelo.querySelector("#selMarca");
+const regla = new RegExp("[a-zA-Z]+$");
+
+var ofr = document.querySelectorAll("#formModelo .alerta");
+
+ofr.forEach((element) => {
+  element.style.color = "red";
+});
+nombre_modelo.onkeypress = function (evento) {
+  alerta.innerText = "";
+  alerta2.innerText = "";
+};
+////
+
 frmModelo.onsubmit = function (e) {
   e.preventDefault();
+  var band=0;
   if (frmModelo.querySelector("#codigoModelo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarModelo();
-    //buscarModelo();
-    console.log("guardo");
+    if (nombre_modelo.value.trim().length == 0) {
+      band++;
+      alerta.innerText = "el elemento esta vacío";
+    } else {
+      if (regla.test(nombre_modelo.value) == false) {
+        band++;
+        alerta.innerText = "el elemento no debe contener numeros";
+      }
+    }
+    if (categ.value == 0) {
+      band++;
+      alerta2.innerText = "no se ha selecionado una categoria";
+    }
+    if (band == 0) {
+      guardarModelo();
+      buscarModelo();
+      console.log("guardo");
+      $("#" + modalp).modal("toggle");
+      frmModelo.reset();
+    }
   }
-  frmModelo.reset();
+  return false;
 };
 
 function listarSelectMarca() {
@@ -53,6 +91,11 @@ var elemento = document.getElementById("selMarca");
 elemento.onchange = function () {
   var valorSeleccionado = elemento.value;
   console.log("Valor seleccionado:", valorSeleccionado);
+  if (this.value==0) {
+    alerta2.innerText="Seleccione una marca válida";
+  } else {
+    alerta2.innerText="";
+  }
 };
 
 function guardarModelo() {
@@ -254,7 +297,6 @@ function buscarModelo() {
       let mostrarRegistro = `
       <p><span id="totalRegistros">Mostrando ${modelo.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
-
     } else {
       var elemento = document.getElementById("tbModelo");
       elemento.innerHTML = `
