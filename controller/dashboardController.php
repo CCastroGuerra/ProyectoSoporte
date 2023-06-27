@@ -7,10 +7,13 @@ $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 switch ($accion) {
     case "mostrarDatos":
         $datos = $dashboard->traerTrabajosXMes();
-        if (is_array($datos) == true && count($datos) > 0) {
+        if (is_array($datos) && count($datos) > 0) {
+            $output = array(); // Crear un array para almacenar los datos
             foreach ($datos as $row) {
-                $output['mes'] = $row['mes'];
-                $output['cantidad'] = $row['cantidad_trabajos'];
+                $output[] = array(
+                    'mes' => $row['mes_nombre'],
+                    'cantidad' => $row['cantidad_trabajos']
+                );
             }
             echo json_encode($output);
         }

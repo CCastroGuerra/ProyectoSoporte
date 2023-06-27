@@ -1,8 +1,9 @@
 console.log("Starting");
 traerTrabajos();
+
 function traerTrabajos() {
   const ajax = new XMLHttpRequest();
-  //Se establace la direccion del archivo php que procesara la peticion
+  // Se establece la dirección del archivo php que procesará la petición
   ajax.open("POST", "../controller/dashboardController.php", true);
   var data = new FormData();
   data.append("accion", "mostrarDatos");
@@ -13,8 +14,8 @@ function traerTrabajos() {
     let respuesta = JSON.parse(realizado);
     console.log(respuesta);
     for (let i = 0; i < respuesta.length; i++) {
-      mes.push(respuesta[i][0]);
-      cantidad.push(respuesta[i][1]);
+      mes.push(respuesta[i].mes);
+      cantidad.push(respuesta[i].cantidad);
     }
     const ctx = document.getElementById("miCanvas");
 
@@ -24,35 +25,31 @@ function traerTrabajos() {
         labels: mes,
         datasets: [
           {
-            label: "Datos",
+            label: "Trabajos",
             data: cantidad,
-            backgroundColor: ["rgba(255,99,132,0.2)"],
-            borderColor: ["rgba(255,99,132,1)"],
-            borderWith: 1.5,
+            backgroundColor: ["rgba(17,60,255)"],
+            borderColor: ["rgba(1,5,22,1)"],
+            borderWidth: 2,
           },
         ],
+      },
+      options: {
+        responsive: true, // Hace que el gráfico sea responsive
+        maintainAspectRatio: false,
+        // Permite ajustar el tamaño del gráfico
+        //indexAxis: "y", //cambiar de posicion el grafico
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          tooltip: {
+            enable: true,
+          },
+        },
       },
     });
   };
   ajax.send(data);
 }
-
-// const ctx = document.getElementById("miCanvas");
-// const nombres = ["Carlos", "Maria"];
-// const edades = ["10", "20"];
-
-// const myChart = new Chart(ctx, {
-//   type: "bar",
-//   data: {
-//     labels: nombres,
-//     datasets: [
-//       {
-//         label: "Edad",
-//         data: cantidad,
-//         backgroundColor: ["rgba(255,99,132,0.2)"],
-//         borderColor: ["rgba(255,99,132,1)"],
-//         borderWith: 1.5,
-//       },
-//     ],
-//   },
-// });
