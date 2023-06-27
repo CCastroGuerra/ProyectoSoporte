@@ -157,7 +157,7 @@ ob_start();
 
     <div class="encabezado">
         <div id="logo">
-            <img src="http://localhost/ProyectoSoporte/banner.png" alt="">
+            <img src="http://localhost/ProyectoSoporte/img/banner.png" alt="">
         </div>
         <div id="fecha-hora">
             <span>Fecha: <?php echo $fechaActual; ?></span>
