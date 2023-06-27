@@ -2,8 +2,55 @@ buscarEntrada();
 buscarSalida();
 buscarResumen();
 let cbxAccion = document.getElementById("selAccion");
+let inproducto = document.getElementById("nombreproducto");
+let inctd = document.getElementById("cantidad");
+let msgs = document.querySelectorAll(".error-message");
+let frmInventario = document.getElementById("formInventario");
 
-cbxAccion.addEventListener("change", function (e) {});
+//mensajes de error
+let alac = document.getElementById("errorAccion");
+let alprod = document.getElementById("errorProducto");
+let alctd = document.getElementById("errorCantidad");
+
+//variables de control
+var vac = 0;
+var vprod = 0;
+var vctd = 0;
+var vcon = 0;
+
+msgs.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+
+cbxAccion.addEventListener("change", function (e) {
+  console.log("cambio en select tipo");
+  if (this.value == 0) {
+    alac.innerText = "Selecione una opción valida";
+  } else {
+    alac.innerText = "";
+  }
+});
+
+inproducto.addEventListener("input", function () {
+  if (this.value.trim().length == 0) {
+    alprod.innerText = "El Codigo de Producto es obligatorio";
+  } else {
+    alprod.innerText = "";
+  }
+});
+
+inctd.addEventListener("input", function () {
+  if (this.value.trim().length == 0) {
+    alctd.innerText = "La cantidad es obligatoria";
+  } else {
+    if (this.value == 0) {
+      alctd.innerText = "La cantidad no debe ser 0";
+    } else {
+      alctd.innerText = "";
+    }
+  }
+});
+
 /***************************/
 // let frmInventario = document.getElementById("formInventario");
 
@@ -24,17 +71,52 @@ cbxAccion.addEventListener("change", function (e) {});
 document
   .getElementById("formInventario")
   .addEventListener("submit", function (event) {
-    if (!this.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.classList.add("was-validated");
+    event.preventDefault();
+    console.log("validando accion");
+    if (cbxAccion.value == 0) {
+      vac = 0;
+      alac.innerText = "Selecione una opción valida";
     } else {
-      // Resto del código para guardar los datos
+      vac = 1;
+      alac.innerText = "";
+    }
 
-      // Cerrar el modal manualmente
-      var modal = document.getElementById("inventarioModal");
-      var coreuiModal = new bootstrap.Modal(modal);
-      coreuiModal.hide();
+    console.log("validando producto");
+    if (inproducto.value.trim().length == 0) {
+      vprod = 0;
+      alprod.innerText = "El Codigo de Producto es obligatorio";
+    } else {
+      vprod = 1;
+      alprod.innerText = "";
+    }
+
+    console.log("validando ctd");
+    if (inctd.value.trim().length == 0) {
+      vctd = 0;
+      alctd.innerText = "La cantidad es obligatoria";
+    } else {
+      if (inctd.value == 0) {
+        vctd = 0;
+        alctd.innerText = "La cantidad no debe ser 0";
+      } else {
+        vctd = 1;
+        alctd.innerText = "";
+      }
+    }
+
+    vcon = vac + vprod + vctd;
+    if (vcon == 3) {
+      console.log("todo ok");
+      //aqui pondrí my funcion guardar si tuviera una, pero son 2
+      if (cbxAccion.value == 1) {
+        console.log("entrada");
+        entradaProductos();
+      } else {
+        console.log("salida");
+        salidaProductos();
+        
+      }
+      $("#inventarioModal").modal("hide");
     }
   });
 
@@ -73,6 +155,7 @@ function salidaProductos() {
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/inventarioController.php", true);
   var data = new FormData(frmInventario);
+  console.log(codigoProducto, ": ", cantidad);
   data.append("codProducto", codigoProducto);
   data.append("cantidad", cantidad);
   data.append("accion", "salidaProducto");
@@ -82,7 +165,7 @@ function salidaProductos() {
 
     if (respuesta === "1") {
       console.log("Cantidad actualizada");
-      guardaSalida();
+      guardaSalida(codigoProducto,cantidad);
     } else {
       swal.fire("AVISO DEL SISTEMA", "Error, cantidad no disponible", "error");
       console.log("Erro al actualizar");
@@ -122,7 +205,8 @@ function guardarEntrada() {
   ajax.open("POST", "../controller/inventarioController.php", true);
   var data = new FormData(frmInventario);
   data.append("codProducto", codigoProducto);
-  data.append("cantidad", cantidad);
+  data.append("cantidad", cantidad);  
+  data.append("selAccion","2");
   data.append("accion", "guardarEntrada");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
@@ -136,16 +220,20 @@ function guardarEntrada() {
     );
   };
   ajax.send(data);
+  document.getElementById("formInventario").reset();
 }
 
-function guardaSalida() {
-  let codigoProducto = document.getElementById("nombreproducto").value;
+function guardaSalida(codigoProducto,cantidad) {
+  /* let codigoProducto = document.getElementById("nombreproducto").value;
   let cantidad = document.getElementById("cantidad").value;
+   */
+  console.log("registrando movimiento "+codigoProducto+": "+cantidad);
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/inventarioController.php", true);
   var data = new FormData(frmInventario);
   data.append("codProducto", codigoProducto);
   data.append("cantidad", cantidad);
+  data.append("selAccion","2");
   data.append("accion", "guardarSalida");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
@@ -159,6 +247,7 @@ function guardaSalida() {
     );
   };
   ajax.send(data);
+  document.getElementById("formInventario").reset();
 }
 /*limit para el select*/
 var numRegistors = document.getElementById("numRegistrosResumen");

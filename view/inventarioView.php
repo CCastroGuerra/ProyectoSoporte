@@ -18,13 +18,13 @@ include('../templates/cabecera.php');
                             <option value="1">Entrada</option>
                             <option value="2">Salida</option>
                         </select>
-                        <div id="errorAccion"></div>
+                        <div class="error-message" id="errorAccion"></div>
 
                         <label for="exampleInputEmail1" class="mb-2">Producto:</label>
                         <!-- <input type="text" class="form-control is-invalid" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto"> -->
-                        <input type="text" class="form-control is-invalid" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
+                        <input type="text" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
+                        <div class="error-message" id="errorProducto"></div>
 
-                        <div class="invalid-feedback">Por favor, ingrese el nombre del producto.</div>
                         <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
                         <input type="number" class="form-control mb-2" id="cantidad" name="cantidad" placeholder="0.00">
                         <div id="errorCantidad" class="error-message"></div>
@@ -32,7 +32,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
 
 
 
@@ -68,15 +68,19 @@ include('../templates/cabecera.php');
             <div class="card-body">
                 <h3 class="card-title mb-auto">
                     <div class="row">
-                        <div class="col-lg-10 col-sm-6">Inventario </div>
-                        <!-- Boton para generar pdf -->
-                        <div class="text-center col-lg-6 col-sm-6">
-                            <a href="reporteInventario.php" class="pdf-button" target="_blank">
-                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                            </a>
+                        <div class="col-lg-10 col-sm-8">Inventario</div>
+                        <div class="col-lg-2 col-sm-4 text-end row">
+                            <!-- Boton para generar pdf -->
+                            <div class="text-center col-lg-6 col-sm-6">
+                                <a href="reporteInventario.php" class="pdf-button" target="_blank">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <!--  -->
+                            <div class="text-center col-lg-6 col-sm-6">
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#inventarioModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
+                            </div>
                         </div>
-                        <!--  -->
-                        <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#inventarioModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
                     </div>
                 </h3>
             </div>

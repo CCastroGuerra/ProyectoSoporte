@@ -21,58 +21,80 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
 
-                                <label for="exampleInputEmail1" class="mb-2">Tipo de Componente:</label>
-                                <select class="form-select" aria-label="Default select example" id="selTipo" name="selTipo">
-                                    <option selected>Seleccione el tipo</option>
-                                    <option value="1">CPU</option>
-                                    <option value="2">Disco Duro</option>
-                                    <option value="3">Memoria RAM</option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2">Tipo de Componente:</label>
+                                    <select class="form-select" aria-label="Default select example" id="selTipo" name="selTipo">
+                                        <option selected>Seleccione el tipo</option>
+                                        <option value="1">CPU</option>
+                                        <option value="2">Disco Duro</option>
+                                        <option value="3">Memoria RAM</option>
+                                    </select>
+                                    <small class="alerta" id="alerta1"></small>
+                                </div>
 
-                                <label for="exampleInputEmail1" class="mb-2">Clase de Componente </label>
-                                <select class="form-select" aria-label="Default select example" id="selClase" name="selClase">
-                                    <option selected>Seleccione la clase</option>
-                                    <option value="1">Clase 1</option>
-                                    <option value="2">Clase 2</option>
-                                    <option value="3">Clase 3</option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2">Clase de Componente </label>
+                                    <select class="form-select" aria-label="Default select example" id="selClase" name="selClase">
+                                        <option selected>Seleccione la clase</option>
+                                        <option value="1">Clase 1</option>
+                                        <option value="2">Clase 2</option>
+                                        <option value="3">Clase 3</option>
+                                    </select>
+                                    <small class="alerta" id="alerta2"></small>
+                                </div>
 
-                                <label for="exampleInputEmail1" class="mb-2">Marca </label>
-                                <select class="form-select" aria-label="Default select example" id="selMarca" name="selMarca">
-                                    <option selected>Seleccione la marca</option>
-                                    <option value="1">Marca 1</option>
-                                    <option value="2">Marca 2</option>
-                                    <option value="3">Marca 3</option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2">Marca </label>
+                                    <select class="form-select" aria-label="Default select example" id="selMarca" name="selMarca">
+                                        <option selected>Seleccione la marca</option>
+                                        <option value="1">Marca 1</option>
+                                        <option value="2">Marca 2</option>
+                                        <option value="3">Marca 3</option>
+                                    </select>
+                                    <small class="alerta" id="alerta3"></small>
+                                </div>
 
-                                <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
-                                <select class="form-select" aria-label="Default select example" id="selModelo" name="selModelo">
-                                    <option selected>Seleccione el modelo</option>
-                                    <option value="1">Modelo 1</option>
-                                    <option value="2">Modelo 2</option>
-                                    <option value="3">Modelo 3</option>
-                                </select>
-                                <label for="exampleInputEmail1" class="mb-2"># Serie:</label>
-                                <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2">Modelo:</label>
+                                    <select class="form-select" aria-label="Default select example" id="selModelo" name="selModelo">
+                                        <option selected>Seleccione el modelo</option>
+                                        <option value="1">Modelo 1</option>
+                                        <option value="2">Modelo 2</option>
+                                        <option value="3">Modelo 3</option>
+                                    </select>
+                                    <small class="alerta" id="alerta4"></small>
+                                </div>
 
-                                <label for="exampleInputEmail1" class="mb-2">Capacidad:</label>
-                                <input type="text" class="form-control mb-2" id="capacidad" name="capacidad" placeholder="Ingrese capacidad">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2"># Serie:</label>
+                                    <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie">
+                                    <small class="alerta" id="alerta5"></small>
+                                </div>
 
-                                <label for="exampleInputEmail1" class="mb-2">Estado: </label>
-                                <select class="form-select" aria-label="Default select example" id="selEstado" name="selEstado">
-                                    <option selected>Seleccione estado</option>
-                                    <option value="1">Bueno</option>
-                                    <option value="2">Regular</option>
-                                    <option value="3">Malo</option>
-                                </select>
-                                
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2">Capacidad:</label>
+                                    <input type="text" class="form-control mb-2" id="capacidad" name="capacidad" placeholder="Ingrese capacidad">
+                                    <small class="alerta" id="alerta6"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="mb-2">Estado: </label>
+                                    <select class="form-select" aria-label="Default select example" id="selEstado" name="selEstado">
+                                        <option selected>Seleccione estado</option>
+                                        <option value="1">Bueno</option>
+                                        <option value="2">Regular</option>
+                                        <option value="3">Malo</option>
+                                    </select>
+                                    <small class="alerta" id="alerta7"></small>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-toggle="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
@@ -126,7 +148,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle" id="tableModal">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col"><strong>Tipo</strong></th>
                                     <th scope="col"><strong>Clase</strong></th>
                                     <th scope="col"><strong>Marca</strong></th>

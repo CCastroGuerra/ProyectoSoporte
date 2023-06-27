@@ -108,32 +108,49 @@ include('../templates/cabecera.php');
                                         <label class="control-label">ID</label>
                                         <input type="text" class="form-control" id="inputID" name="inputID" placeholder="ID" readonly>
                                     </div>
-                                    <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                                    <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
-                                    <label for="exampleInputEmail1" class="mb-2">Tipo de Producto:</label>
-                                    <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoProducto" name="selTipoProducto">
-                                        <option selected>Seleccione el tipo</option>
-                                        <option value="1">Equipo</option>
-                                        <option value="2">Componente</option>
-                                        <option value="3">Herramienta</option>
-                                        <option value="4">Insumo</option>
-                                    </select>
-                                    <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
-                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
-                                    <input type="text" class="form-control mb-2" id="selUnidad" name="selUnidad" placeholder="Ingrese Presentacion" data-coreui-toggle="modal" data-coreui-target="#presentacionModal" readonly>
-                                    <input type="text" id="presValue" name="presValue" class="visually-hidden">
-
-                                    <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
-                                    <input type="text" class="form-control mb-2" id="ctdProducto" name="ctdProducto" placeholder="Ingrese cantidad">
-                                    <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
-                                    <select class="form-select" aria-label="Default select example" id="selAlmacen" name="selAlmacen">
-                                        <option selected>Seleccione el Almacén</option>
-                                        <option value="1">Almacén 1</option>
-                                        <option value="2">Almacén 2</option>
-                                        <option value="3">Almacén 3</option>
-                                    </select>
-                                    <label for="exampleInputEmail1" class="mb-2">Detalles:</label>
-                                    <textarea class="form-control" rows="9" name='detalleProducto' id='detalleProducto'></textarea>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
+                                        <input type="text" class="form-control mb-2" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre">
+                                        <small class="form-text text-muted alerta" id="alerta1"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="mb-2">Tipo de Producto:</label>
+                                        <select class="form-select form-select-sm" aria-label="Default select example" id="selTipoProducto" name="selTipoProducto">
+                                            <option value="0" selected>Seleccione el tipo</option>
+                                            <option value="1">Equipo</option>
+                                            <option value="2">Componente</option>
+                                            <option value="3">Herramienta</option>
+                                            <option value="4">Insumo</option>
+                                        </select>
+                                        <small class="form-text text-muted alerta" id="alerta2"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
+                                        <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
+                                        <input type="text" class="form-control mb-2" id="selUnidad" name="selUnidad" placeholder="Ingrese Presentacion" data-coreui-toggle="modal" data-coreui-target="#presentacionModal" readonly>
+                                        <small class="form-text text-muted alerta" id="alerta3"></small>
+                                        <input type="text" class="form-control mb-2 visually-hidden" id="presValue" name="presValue">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
+                                        <input type="number" class="form-control mb-2" id="ctdProducto" name="ctdProducto" value="0">
+                                        <small class="form-text text-muted alerta" id="alerta4"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="mb-2">Almacen:</label>
+                                        <select class="form-select" aria-label="Default select example" id="selAlmacen" name="selAlmacen">
+                                            <option value="0" selected>Seleccione el Almacén</option>
+                                            <option value="1">Almacén 1</option>
+                                            <option value="2">Almacén 2</option>
+                                            <option value="3">Almacén 3</option>
+                                        </select>
+                                        <small class="form-text text-muted alerta" id="alerta5"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="mb-2">Detalles:</label>
+                                        <textarea class="form-control" rows="9" name='detalleProducto' id='detalleProducto'></textarea>
+                                        <small class="form-text text-muted alerta" id="alerta6"></small>
+                                    </div>
 
                                     <div id="alerta"></div>
                                 </div>
@@ -143,7 +160,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" id="btnGuardar">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
 
                 </div>
             </form>
@@ -160,7 +177,7 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
 
-                            <div class="col-lg-10 col-sm-6">Lista Productos </div>
+                            <div class="col-lg-10 col-sm-8">Lista Productos </div>
                             <div class="row col-lg-2 col-sm-4 text-end">
                                 <!-- Boton para generar pdf -->
                                 <div class="text-center col-lg-6 col-sm-6">

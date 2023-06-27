@@ -43,7 +43,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button id="btnGuardar" type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button id="btnGuardar" type="submit" class="btn btn-primary">Guardar</button>
 
                 </div>
             </form>
@@ -80,14 +80,20 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Lista Bajas </div>
-                            <!-- Boton para generar pdf -->
-                            <div class="text-center col-lg-6 col-sm-6">
-                                <a href="reportesBajas.php" class="pdf-button" target="_blank">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                </a>
-                            </div>
+
                             <!--  -->
-                            <div class="col-lg-2 col-sm-4 text-end"><button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button></div>
+                            <div class="col-lg-2 col-sm-4 text-end row">
+                                <!-- Boton para generar pdf -->
+                                <div class="text-center col-lg-6 col-sm-6">
+                                    <a href="reportesBajas.php" class="pdf-button" target="_blank">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <!-- Boton Añadir -->
+                                <div class="text-center col-lg-6 clo-sm-6">
+                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
+                                </div>
+                            </div>
                         </div>
                     </h3>
 

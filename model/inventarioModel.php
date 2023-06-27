@@ -5,12 +5,12 @@ class Inventario extends Conectar
     public function salidaProductos($codProducto, $cantidad)
     {
         $conectar = parent::conexion();
-        $query = "SELECT CAST(cantidad_productos as int) cant FROM productos  WHERE codigo_productos = '$codProducto' ";
+        $query = "SELECT CAST(cantidad_productos AS DECIMAL) cant FROM productos  WHERE codigo_productos = '$codProducto' ";
         $stmt = $conectar->prepare($query);
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_LAZY);
         $cantidadActual = $resultado['cant'];
-        // echo $cantidadActual;
+        //echo $cantidadActual;
         // //$stmt->closeCursor();
         // echo $cantidad;
         // echo "<br/>";
@@ -34,7 +34,7 @@ class Inventario extends Conectar
     public function entradaProductos($codProducto, $cantidad)
     {
         $conectar = parent::conexion();
-        $query = "SELECT CAST(cantidad_productos as int) cant FROM productos  WHERE codigo_productos = '$codProducto' ";
+        $query = "SELECT CAST(cantidad_productos as DECIMAL)  cant FROM productos  WHERE codigo_productos = '$codProducto' ";
         $stmt = $conectar->prepare($query);
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_LAZY);
