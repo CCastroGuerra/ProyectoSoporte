@@ -3,18 +3,43 @@ var numPagina = 1;
 var frmArea = document.getElementById("formArea");
 console.log(numPagina);
 buscarArea();
-//listarArea();
+
+/// variables para validacion
+const modalp = frmArea.parentNode.parentNode.parentNode.id;
+const alerta = frmArea.querySelector("#alerta");
+const nombre_area = frmArea.querySelector("#nombre_area");
+/** estilo dinamico de mensaje de error */
+alerta.style.color = "red";
+/* cuando se escribe se limpia el mensaje de error */
+nombre_area.oninput = function (evento) {
+  alerta.innerText = "";
+};
+////
+
 frmArea.onsubmit = function (e) {
   e.preventDefault();
   if (frmArea.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
   } else {
-    guardarArea();
-    //listarArea();
-    console.log("guardo");
+    if (frmArea.querySelector("#nombre_area").value.trim().length > 0) {
+      regla = new RegExp("[a-zA-Z0-9]+$");
+      if (regla.test(frmArea.querySelector("#nombre_area").value)) {
+        guardarArea();
+        console.log("guardo");
+        frmArea.reset();
+        $("#" + modalp).modal("hide");
+      } else {
+        console.log("no cumple, reabriendo el modal: " + modalp);
+        $("#" + modalp).modal("show");
+        alerta.innerText = "El nombre no es válido";
+      }
+    } else {
+      console.log("elemento vacío, reabriendo el modal: " + modalp);
+      $("#" + modalp).modal("show");
+      alerta.innerText = "Este campo es necesario";
+    }
   }
-  frmArea.reset();
 };
 
 /*limit para el select*/

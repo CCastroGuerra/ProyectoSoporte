@@ -21,24 +21,30 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" placeholder="Código" readonly>
 
                                 </div>
-                                <label for="inputDni" class="mb-2">DNI:</label>
-                                <div id="nombreEmpleado"></div>
-                                <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI">
-                                <label for="selAroles" class="mb-2">Rol:</label>
-                                <select class="form-select" aria-label="ARoles" id="selAroles" name="selAroles">
-                                    <option selected>Seleccione el rol</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Técnico</option>
-                                    <option value="3">Secretaria</option>
-                                </select>
-                                <div id="alerta"></div>
+                                <div class="form-group">
+                                    <label for="inputDni" class="mb-2">DNI:</label>
+                                    <div id="nombreEmpleado"></div>
+                                    <input type="text" class="form-control mb-2" id="inputDni" name="inputDni" placeholder="Ingrese DNI" maxlength="8">
+                                    <small class="alerta" id="alerta1"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selAroles" class="mb-2">Rol:</label>
+                                    <select class="form-select" aria-label="ARoles" id="selAroles" name="selAroles">
+                                        <option selected>Seleccione el rol</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Técnico</option>
+                                        <option value="3">Secretaria</option>
+                                    </select>
+                                    <small class="alerta" id="alerta2"></small>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
 
                 </div>
             </form>
