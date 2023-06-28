@@ -6,12 +6,129 @@ buscarTrabajos();
 let frmServicios = document.getElementById("formServicios");
 let frmTrabajos = document.getElementById("frmTrabajoa");
 let btnCerrar = document.getElementById("btncerrar");
-let btnServicios = document.getElementById("btnServicio");
+let btnServicios = document.getElementById("btnServicio"); //btn que levanta modal servicio
+btnServicios.disabled = true;
 /***************************************/
 
-/**** recorrer elememntos a validar*/
+/***********recorrer elememntos a validar****************/
+let inpserie = document.getElementById("nroSerie");
+let inpmargesi = document.getElementById("marquesi");
+let inpusuario = document.getElementById("nombreUsuario");
+let inparea = document.getElementById("selArea");
+let inpequipo = document.getElementById("selEquipo");
+let inpmarca = document.getElementById("selMarca");
+let inpmodelo = document.getElementById("selModelo");
+let inpfalla = document.getElementById("fallaObservada");
+let snptecnico = document.getElementById("selTecnico");
+let inpsol = document.getElementById("textSolucion");
+let inprecom = document.getElementById("textrecom");
 
-/**** */
+//Mensajes de error
+let alserie = document.getElementById("alserie");
+let almargesi = document.getElementById("almargesi");
+let alusuario = document.getElementById("alusuario");
+let alarea = document.getElementById("alarea");
+let alequipo = document.getElementById("alequipo");
+let almarca = document.getElementById("almarca");
+let almodelo = document.getElementById("almodelo");
+let alfalla = document.getElementById("alfalla");
+let altecnico = document.getElementById("altecnico");
+let alsolucion = document.getElementById("alsolucion");
+let alrecom = document.getElementById("alrecom");
+
+//variables de control
+var bserie = 0;
+var bfalla = 0;
+var btecnico = 0;
+var bsol = 0;
+var brecom = 0;
+var contro = 0;
+/*******************************************************/
+
+/*****************estilo de las alertas****************/
+let msgal = document.querySelectorAll(".alerta");
+msgal.forEach((element) => {
+  element.setAttribute("style", "color:red !important;");
+});
+
+var botonesEd = "";
+/******************************************************/
+
+/* Activar boton añadir con validaciones*/
+inpserie.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    bserie = 1;
+    alserie.innerText = "";
+    mostrarDatosEquipoXSerie();
+  } else {
+    bserie = 0;
+    alserie.innerText = "nro de serie no válido";
+  }
+});
+
+inpfalla.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    bfalla = 1;
+    alfalla.innerText = "";
+  } else {
+    bfalla = 0;
+    alfalla.innerText = "Debe registrar una falla observada";
+  }
+});
+
+snptecnico.addEventListener("input", function () {
+  console.log("valor cambiado");
+  if (this.value > 0) {
+    btecnico = 1;
+    altecnico.innerText = "";
+  } else {
+    btecnico = 0;
+    altecnico.innerText = "Seleccione una opción válida";
+  }
+});
+
+inpsol.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    bsol = 1;
+    alsolucion.innerText = "";
+  } else {
+    bsol = 0;
+  }
+});
+
+inprecom.addEventListener("input", function () {
+  if (this.value.trim().length > 0) {
+    brecom = 1;
+    alrecom.innerText = "";
+  } else {
+    brecom = 0;
+  }
+});
+
+frmTrabajos.addEventListener("change", function () {
+  var contro = 0;
+  contro = bserie + bfalla + btecnico;
+  console.log("se esta escribiendo, elementos: " + contro);
+  if (contro == 3) {
+    btnServicios.disabled = false;
+    console.log("boton habilitado");
+  } else {
+    btnServicios.disabled = true;
+  }
+});
+/************************/
+
+/**********validaciones para la vista de edicion*******/
+/* btnEditar.addEventListener("click", function () {
+  inpserie.disabled = true;
+  inpmargesi.disabled = true;
+  inpusuario.disabled = true;
+  inparea.disabled = true;
+  inpequipo.disabled = true;
+  inpmarca.disabled = true;
+  inpmodelo.disabled = true;
+}); */
+/******************************************************/
 
 frmServicios.onsubmit = function (e) {
   e.preventDefault();
@@ -20,7 +137,11 @@ frmServicios.onsubmit = function (e) {
 
 frmTrabajos.onsubmit = function (e) {
   e.preventDefault();
+  //contro = bserie + bfalla + btecnico;
+  console.log("campos: " + contro);
   guardarTrabajo();
+  $("#TrabajoModal").modal("hide");
+  setTimeout(cerrarEditar(),5000);
 };
 
 let btnBuscarEquipo = document.getElementById("testBusca");
@@ -31,11 +152,16 @@ btnBuscarEquipo.addEventListener("click", function (e) {
 
 btnServicios.addEventListener("click", function (e) {
   e.preventDefault();
+  console.log("click en añadir servicios");
+  var contro = 0;
+  contro = bserie + bfalla + btecnico;
   if (frmTrabajos.querySelector("#inputCodigo").value !== "") {
     console.log("No deberia de hacer nada");
   } else {
-    guardarTrabajo();
-    console.log("Trabjo guardado");
+    if (contro == 3) {
+      guardarTrabajo();
+      console.log("Trabajo guardado");
+    }
   }
 });
 
@@ -73,17 +199,21 @@ function mostrarDatosEquipoXSerie() {
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
-    let datos = JSON.parse(respuesta);
-    console.log(datos);
-    document.getElementById("idEquipo").value = datos.id;
-    document.getElementById("marquesi").value = datos.margesi;
-    document.getElementById("nombreUsuario").value = datos.nombrePersonal;
-    document.getElementById("nombreUsuarioID").value = datos.nombrePersonalId;
-    document.getElementById("selArea").value = datos.nombreArea;
-    document.getElementById("selAreaID").value = datos.areaID;
-    document.getElementById("selEquipo").value = datos.nombreTipo;
-    document.getElementById("selMarca").value = datos.nombreMarca;
-    document.getElementById("selModelo").value = datos.nombreModelo;
+    if (respuesta == "") {
+      alserie.innerText = "el # de Serie no existe";
+    } else {
+      let datos = JSON.parse(respuesta);
+      console.log(datos);
+      document.getElementById("idEquipo").value = datos.id;
+      document.getElementById("marquesi").value = datos.margesi;
+      document.getElementById("nombreUsuario").value = datos.nombrePersonal;
+      document.getElementById("nombreUsuarioID").value = datos.nombrePersonalId;
+      document.getElementById("selArea").value = datos.nombreArea;
+      document.getElementById("selAreaID").value = datos.areaID;
+      document.getElementById("selEquipo").value = datos.nombreTipo;
+      document.getElementById("selMarca").value = datos.nombreMarca;
+      document.getElementById("selModelo").value = datos.nombreModelo;
+    }
   };
 
   ajax.send(data);
@@ -295,7 +425,7 @@ function buscarTrabajos() {
                       <td>
                       <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button class="btn" style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnEditar"<i class="fa fa-print" aria-hidden="true"></i>
+                      <button class="btn" style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnImprimir"<i class="fa fa-print" aria-hidden="true"></i>
                       </button>
                       </td>
 
@@ -306,6 +436,19 @@ function buscarTrabajos() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
+      botonesEd = document.querySelectorAll("#btnEditar");
+      botonesEd.forEach((el) => {
+        el.addEventListener("click", function () {
+          inpserie.disabled = true;
+          inpmargesi.disabled = true;
+          inpusuario.disabled = true;
+          inparea.disabled = true;
+          inpequipo.disabled = true;
+          inpmarca.disabled = true;
+          inpmodelo.disabled = true;
+          btnServicios.disabled=false;
+        });
+      });
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
@@ -454,7 +597,7 @@ function cerrarEditar() {
       //listarTablaTemp();
     }
   };
-  frmTrabajos.reset();
+  //frmTrabajos.reset();
   var elemento = document.getElementById("tbEquipos");
   elemento.innerHTML = ``;
   ajax.send(data);

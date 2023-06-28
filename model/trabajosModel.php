@@ -172,7 +172,7 @@ class Trabajos extends Conectar
     public function guardarTrabajos($idTrabajos, $tecnicoID, $equipoId, $usuarioId, $areaId, $falla, $solucion, $recomendaciones)
     {
         if ($idTrabajos == '') {
-            $idTrabajos = null;
+            $idTrabajos = "0";
         }
         $conectar = parent::conexion();
         $sql = "INSERT INTO trabajos  (id_trabajos,tecnico_id, equipo_id, responsable_id, area_id, falla, solucion, recomendacion)
