@@ -142,7 +142,7 @@ if ($consulta4->execute()) {
     </div>
     <!-- /.row-->
     <div class="card mb-4">
-      <div class="card-body">
+      <div class="card-body" style="height:430px;">
         <div class="d-flex justify-content-between">
           <div>
             <h3 class="card-title mb-0" style="color: black;">Estadísticas de trabajos </h3>
@@ -150,8 +150,24 @@ if ($consulta4->execute()) {
           </div>
 
         </div>
-        <div class="c-chart-wrapper" style="height:400px;">
+        <div class="c-chart-wrapper" style="height:300px;">
           <canvas id="miCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEGUNDO GRAFICOS -->
+    <div class="card mb-4">
+      <div class="card-body" style="height:430px;">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h3 class="card-title mb-0" style="color: black;"> </h3>
+            <div class="small text-medium-emphasis">Trabajos por area</div>
+          </div>
+
+        </div>
+        <div class="c-chart-wrapper" style="height:300px;">
+          <canvas id="miCanvas2"></canvas>
         </div>
       </div>
     </div>
