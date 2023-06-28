@@ -18,4 +18,17 @@ switch ($accion) {
             echo json_encode($output);
         }
         break;
+    case "mostrarTrabajosArea":
+        $datos = $dashboard->traerTrabajosxArea();
+        if (is_array($datos) && count($datos) > 0) {
+            $output = array(); // Crear un array para almacenar los datos
+            foreach ($datos as $row) {
+                $output[] = array(
+                    'area' => $row['nombre_area'],
+                    'cantidad' => $row['cantidad_trabajos']
+                );
+            }
+            echo json_encode($output);
+        }
+        break;
 }
