@@ -53,59 +53,59 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <div class="porocultar" id="divcodigo" name="divcodigo">
+                                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
                                             <label class="control-label" for="inputCodigo">Código</label>
-                                            <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
+                                            <input type="text" class="form-control form-control-sm" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                             <label class="control-label" for="idEquipo">ID Equipo</label>
-                                            <input type="text" class="form-control" id="idEquipo" name="idEquipo" placeholder="id del equipo" readonly>
+                                            <input type="text" class="form-control form-control-sm" id="idEquipo" name="idEquipo" placeholder="id del equipo" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label for="nroSerie" class="mb-2"># de Serie:
                                                 <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary"></button>
                                             </label>
-                                            <input type="search" class="form-control mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
+                                            <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
                                             <small class="alerta" id="alserie"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="marquesi" class="mb-2">Marquesi:</label>
-                                            <input type="text" class="form-control mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
                                             <small class="alerta" id="almargesi"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="nombreUsuario" class="mb-2">Responsable del Equipo:</label>
-                                            <input type="text" class="form-control mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese el Area">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese el Area">
                                             <small class="alerta" id="alusuario"></small>
-                                            <input type="text" class="form-control mb-2" id="nombreUsuarioID" name="nombreUsuarioID" placeholder="Ingrese el AreaId">
+                                            <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="nombreUsuarioID" name="nombreUsuarioID" placeholder="Ingrese el AreaId">
                                         </div>
                                         <div class="form-group">
                                             <label for="selArea" class="mb-2">Area:</label>
-                                            <input type="text" class="form-control mb-2" id="selArea" name="selArea" placeholder="Ingrese el Area">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="selArea" name="selArea" placeholder="Ingrese el Area">
                                             <small class="alerta" id="alarea"></small>
-                                            <input type="text" class="form-control mb-2" id="selAreaID" name="selAreaID" placeholder="Ingrese el AreaId">
+                                            <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="selAreaID" name="selAreaID" placeholder="Ingrese el AreaId">
                                         </div>
                                         <div class="form-group">
                                             <label for="selEquipo" class="mb-2">Equipo:</label>
-                                            <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
+                                            <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
                                             <small class="alerta" id="alequipo"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="selMarca" class="mb-2">Marca:</label>
-                                            <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selMarca" name="selMarca">
+                                            <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selMarca" name="selMarca">
                                             <small class="alerta" id="almarca"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="selModelo" class="mb-2">Modelo:</label>
-                                            <input class="form-control  form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
+                                            <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
                                             <small class="alerta" id="almodelo"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="fallaObservada" class="mb-2">Falla observada:</label>
-                                            <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3"></textarea>
+                                            <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3" maxlength="550"></textarea>
                                             <small class="alerta" id="alfalla"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="selTecnico" class="mb-2">Técnico:</label>
-                                            <select class="form-select" aria-label="Default select example" id="selTecnico" name="selTecnico">
+                                            <select class="form-select form-select-sm" aria-label="Default select example" id="selTecnico" name="selTecnico">
                                                 <option value="0" selected>Seleccione el Técnico</option>
                                                 <option value="1">Técnico 1</option>
                                                 <option value="2">Técnico 2</option>
@@ -116,12 +116,12 @@ include('../templates/cabecera.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="textSolucion" class="form-label">Solucion:</label>
-                                            <textarea class="form-control" id="textSolucion" name="textSolucion" rows="3" id="solucion" name="solucion"></textarea>
+                                            <textarea class="form-control" id="textSolucion" name="textSolucion" rows="3" id="solucion" name="solucion" maxlength="550"></textarea>
                                             <small class="alerta" id="alsolucion"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="textrecom" class="form-label">Recomendación:</label>
-                                            <textarea class="form-control" id="textrecom" name="textrecom" rows="3"></textarea>
+                                            <textarea class="form-control" id="textrecom" name="textrecom" rows="3" maxlength="550"></textarea>
                                             <small class="alerta" id="alrecom"></small>
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <!--  -->
                                 <div class="text-center col-lg-6 col-sm-6">
-                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal">Añadir</button>
+                                    <button type="button" class="btn btn-outline-primary" id="anTrabajo" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal">Añadir</button>
                                 </div>
                             </div>
                         </div>

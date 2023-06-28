@@ -50,9 +50,21 @@ let msgal = document.querySelectorAll(".alerta");
 msgal.forEach((element) => {
   element.setAttribute("style", "color:red !important;");
 });
-
-var botonesEd = "";
 /******************************************************/
+/**************al presionar bton añadir en vista principal*/
+let fabtn = document.getElementById("anTrabajo");
+fabtn.addEventListener("click", function () {
+  inpserie.disabled = false;
+  inpmargesi.disabled = false;
+  inpusuario.disabled = false;
+  inparea.disabled = false;
+  inpequipo.disabled = false;
+  inpmarca.disabled = false;
+  inpmodelo.disabled = false;
+  btnServicios.disabled = true;
+  frmTrabajos.reset();
+});
+/******************************************************* */
 
 /* Activar boton añadir con validaciones*/
 inpserie.addEventListener("input", function () {
@@ -141,7 +153,6 @@ frmTrabajos.onsubmit = function (e) {
   console.log("campos: " + contro);
   guardarTrabajo();
   $("#TrabajoModal").modal("hide");
-  setTimeout(cerrarEditar(),5000);
 };
 
 let btnBuscarEquipo = document.getElementById("testBusca");
@@ -384,6 +395,7 @@ function guardarTrabajosServicios() {
       console.log("Trabajos-Servicios registrado correctamente");
     }
     buscarTrabajos();
+    cerrarEditar();
     //buscarArea();
     //buscarComponente();
     //frmEquipos.reset();
@@ -415,21 +427,26 @@ function buscarTrabajos() {
     if (trabajos != "vacio") {
       trabajos.forEach(function (trabajos) {
         template += `
-                  <tr>
-                      <td>${trabajos.serie}</td>
-                      <td>${trabajos.margesi}</td>
-                      <td>${trabajos.nombreResponsable}</td>
-                      <td>${trabajos.nombreArea}</td>
-                      <td>${trabajos.nombreTecnico}</td>
-                      <td>${trabajos.fecha}</td>
-                      <td>
-                      <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button class="btn" style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnImprimir"<i class="fa fa-print" aria-hidden="true"></i>
-                      </button>
-                      </td>
-
-                  </tr>
+        <tr>
+        <td>${trabajos.serie}</td>
+        <td>${trabajos.margesi}</td>
+        <td>${trabajos.nombreResponsable}</td>
+        <td>${trabajos.nombreArea}</td>
+        <td>${trabajos.nombreTecnico}</td>
+        <td>${trabajos.fecha}</td>
+        <td>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 px-5">
+                    <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <button class="btn" style="background-color: green" type="button" onClick='imprimir("${trabajos.idTrabajo}")' id="btnImprimir"> <i class="fa fa-print text-white" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </td>
+    </tr>
                   `;
       });
       var elemento = document.getElementById("tbTrabajos");
@@ -446,7 +463,7 @@ function buscarTrabajos() {
           inpequipo.disabled = true;
           inpmarca.disabled = true;
           inpmodelo.disabled = true;
-          btnServicios.disabled=false;
+          btnServicios.disabled = false;
         });
       });
 

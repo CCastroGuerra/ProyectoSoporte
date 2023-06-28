@@ -15,6 +15,7 @@ if (is_array($datos) == true && count($datos) > 0) {
         $output['idper'] = $row['personal_id'];
 
         if ($row['usuario_password'] == trim($_POST['passwd'])) {
+            //busca el nombre del usuario
             $usuario = $login->buscarPersonal($row['personal_id']);
             $apellidos = $usuario[0]['apellidos_personal'];
             $apm=explode(" ",$apellidos);
@@ -23,12 +24,15 @@ if (is_array($datos) == true && count($datos) > 0) {
             } else {
                 $aps=substr($apm[0],0,1).".". substr($apm[1],0,1).".";
                 //echo session_regenerate_id();
-            }
-                
+            }                
             $ar = $usuario[0]['nombre_personal'] . " " .$aps;
             
             //$output['nombre_usuario'] = session_id()."-".$ar;
             //echo $ar;
+            //busca el rol del usuario
+            $brol = $login->buscarRol($row['id_usuario']);
+            $rol =$brol[0]['nombre_roles'];
+            
 
             session_start(); 
             
@@ -36,6 +40,7 @@ if (is_array($datos) == true && count($datos) > 0) {
             $output['nombre_usuario'] = $_SESSION['id']."-".$ar;
             $_SESSION['personal_id'] = $row['personal_id'];
             $_SESSION['nombre'] = $ar;
+            $_SESSION['rol'] = $rol;
 
             //header("Location: ../index.php");
         } else {
