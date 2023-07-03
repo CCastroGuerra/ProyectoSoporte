@@ -287,14 +287,14 @@ $servicios = $resultado2['servicios'];
             }
 
             td.lista {
-                height: 160px;
-                height: 160px;
+                height: 140px !important;
+                width: 100%;
                 display: flex;
                 justify-content: space-around;
                 flex-direction: row;
                 flex-wrap: wrap;
-                align-content: center;
-                align-items: flex-start;
+                align-content: flex-start;
+                align-items: baseline;
             }
 
             #imprimir {
