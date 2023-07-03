@@ -88,21 +88,26 @@ include('../templates/cabecera.php');
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
                                             <small class="alerta" id="alequipo"></small>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group visually-hidden">
                                             <label for="selMarca" class="mb-2">Marca:</label>
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selMarca" name="selMarca">
                                             <small class="alerta" id="almarca"></small>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group visually-hidden">
                                             <label for="selModelo" class="mb-2">Modelo:</label>
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
                                             <small class="alerta" id="almodelo"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="consumible" class="mb-2">Consumible</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible">
                                         </div>
                                         <div class="form-group">
                                             <label for="fallaObservada" class="mb-2">Falla observada:</label>
                                             <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3" maxlength="550"></textarea>
                                             <small class="alerta" id="alfalla"></small>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label for="selTecnico" class="mb-2">Técnico:</label>
                                             <select class="form-select form-select-sm" aria-label="Default select example" id="selTecnico" name="selTecnico">
