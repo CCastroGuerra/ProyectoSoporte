@@ -369,7 +369,7 @@ class Trabajos extends Conectar
         a.nombre_area,
         t.tecnico_id,
         ts.servicio_id,
-        s.nombre_servicios,
+        s.tipoTrabajo,
         t.falla,
         t.solucion,
         t.recomendacion,

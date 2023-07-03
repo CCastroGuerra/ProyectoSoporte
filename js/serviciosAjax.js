@@ -4,7 +4,41 @@ var frmServicio = document.getElementById("formServicio");
 console.log(numPagina);
 buscarServicio();
 //listarServicio();
+//Evento para el checkBox
+const checkboxTinta = document.getElementById("checkboxTinta");
+const checkboxToner = document.getElementById("checkboxToner");
+const checkboxCinta = document.getElementById("checkboxCinta");
+const labelText = document.getElementById("nombreServicio");
 
+checkboxTinta.addEventListener("change", function () {
+  if (this.checked) {
+    labelText.value = document.querySelector(
+      'label[for="cambioDeTinta"]'
+    ).textContent;
+  } else {
+    labelText.value = "";
+  }
+});
+
+checkboxToner.addEventListener("change", function () {
+  if (this.checked) {
+    labelText.value = document.querySelector(
+      'label[for="cambioDeToner"]'
+    ).textContent;
+  } else {
+    labelText.value = "";
+  }
+});
+
+checkboxCinta.addEventListener("change", function () {
+  if (this.checked) {
+    labelText.value = document.querySelector(
+      'label[for="cambioDeCinta"]'
+    ).textContent;
+  } else {
+    labelText.value = "";
+  }
+});
 ///
 const modalp = frmServicio.parentNode.parentNode.parentNode.id;
 const alerta = frmServicio.querySelector("#alerta");
@@ -36,6 +70,7 @@ frmServicio.onsubmit = function (e) {
     } else {
       alerta.innerText = " el elemento no puede estar vacio";
     }
+    //guardarServicio();
   }
 };
 

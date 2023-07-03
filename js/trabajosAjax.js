@@ -141,7 +141,7 @@ frmTrabajos.onsubmit = function (e) {
   console.log("campos: " + contro);
   guardarTrabajo();
   $("#TrabajoModal").modal("hide");
-  setTimeout(cerrarEditar(),5000);
+  setTimeout(cerrarEditar(), 5000);
 };
 
 let btnBuscarEquipo = document.getElementById("testBusca");
@@ -446,7 +446,7 @@ function buscarTrabajos() {
           inpequipo.disabled = true;
           inpmarca.disabled = true;
           inpmodelo.disabled = true;
-          btnServicios.disabled=false;
+          btnServicios.disabled = false;
         });
       });
 
@@ -605,9 +605,9 @@ function cerrarEditar() {
 
 function imprimir(idTrabajo) {
   //let link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
-  let link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
-  window.open(link, "_blank");
-  //id = idTrabajo;
+  // let link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
+  // window.open(link, "_blank");
+  id = idTrabajo;
   console.log(id);
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/trabajosController.php", true);
@@ -618,8 +618,15 @@ function imprimir(idTrabajo) {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
-    console.log(datos);
-    document.getElementById("nombre").value = datos.nombrePersonal;
+    console.log(datos.idTipoTrabajo);
+    let link;
+    if (datos.idTipoTrabajo == 0) {
+      link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
+    } else {
+      link = "../view/reporteImpresora.php?id=" + idTrabajo;
+    }
+    window.open(link, "_blank");
+    //document.getElementById("nombre").value = datos.nombrePersonal;
   };
   ajax.send(data);
 }

@@ -1,6 +1,7 @@
 <?php
 
-class Servicio extends Conectar{
+class Servicio extends Conectar
+{
 
     public function listarServicio()
     {
@@ -8,8 +9,8 @@ class Servicio extends Conectar{
         $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
         //Para comprobar si se a mandado el parametro de registros
         if (isset($_POST['registros'])) {
-        $limit = $_POST['registros'];
-        $sLimit = "LIMIT $limit";
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
         }
         $sql = "SELECT * FROM `servicios` WHERE esActivo = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
@@ -34,10 +35,11 @@ class Servicio extends Conectar{
         }
     }
 
-    public function agregarServicio($nombreServicio)
+    public function agregarServicio($nombreServicio, $tipoTrabajo)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `servicios`(`nombre_servicios`,`esActivo`) VALUES ('$nombreServicio',1)";
+        // $tipoTrabajo = ($nombreServicio === "Cambio de tinta") ? 1 : 2; // Determina el valor de tipoTrabajo según el nombre del servicio
+        $sql = "INSERT INTO `servicios`(`nombre_servicios`,`tipoTrabajo`,`esActivo`) VALUES ('$nombreServicio','$tipoTrabajo', 1)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -46,35 +48,38 @@ class Servicio extends Conectar{
         }
     }
 
-    public function actualizarServicio($idServicio,$nombreServicio){
-        $conectar= parent::conexion();
-        $sql="UPDATE servicios
+    public function actualizarServicio($idServicio, $nombreServicio)
+    {
+        $conectar = parent::conexion();
+        $sql = "UPDATE servicios
             SET
                nombre_servicios=? 
             WHERE
                 id_servicios = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$nombreServicio);
-        $sql->bindValue(2,$idServicio);
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $nombreServicio);
+        $sql->bindValue(2, $idServicio);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
-    public function traerServicioXId($idServicio){
-        $conectar= parent::conexion();
-        $sql="SELECT * FROM servicios WHERE id_servicios = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$idServicio);
+    public function traerServicioXId($idServicio)
+    {
+        $conectar = parent::conexion();
+        $sql = "SELECT * FROM servicios WHERE id_servicios = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $idServicio);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
-    public function eliminarServicio($id){
+    public function eliminarServicio($id)
+    {
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
             $sql = "UPDATE servicios SET esActivo = 0 WHERE id_servicios = ?";
-            $sql = $conectar ->prepare($sql);
-            $sql -> bindValue(1, $id);
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado = $sql->fetchAll();
         } else {
@@ -82,8 +87,9 @@ class Servicio extends Conectar{
         }
     }
 
-    
-    public function buscarServicio($pagina = 1) {
+
+    public function buscarServicio($pagina = 1)
+    {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
@@ -91,10 +97,10 @@ class Servicio extends Conectar{
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
-            $limit = $_POST['registros'];
-            $sLimit = "LIMIT $limit";
+                $limit = $_POST['registros'];
+                $sLimit = "LIMIT $limit";
             }
-            $inicio = ($pagina-1)*$limit;
+            $inicio = ($pagina - 1) * $limit;
             //echo $inicio;
             $sql = "SELECT * FROM `servicios` WHERE esActivo = 1 AND nombre_servicios LIKE '$textoBusqueda%'  ORDER BY nombre_servicios LIMIT $inicio,$limit";
             $stmt = $conectar->prepare($sql);
@@ -106,9 +112,9 @@ class Servicio extends Conectar{
             $json = [];
             $areas =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if(!empty($areas)){
+            if (!empty($areas)) {
                 $listado = array();
-                foreach($areas as $area){
+                foreach ($areas as $area) {
                     $listado[] = array(
                         "id" => $area["id_servicios"],
                         "nombre" => $area["nombre_servicios"]
@@ -118,14 +124,13 @@ class Servicio extends Conectar{
                 $sqlNroFilas = "SELECT count(id_servicios) as cantidad FROM servicios WHERE esActivo = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
-    
+
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$limit);
-                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
+                $paginas = ceil($array['cantidad'] / $limit);
+                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
-
-            }else{
+            } else {
                 $resultado = array("listado" => "vacio");
                 $jsonString = json_encode($resultado);
                 echo $jsonString;
@@ -133,6 +138,5 @@ class Servicio extends Conectar{
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    }  
+    }
 }
-?>

@@ -181,7 +181,7 @@ include('../templates/cabecera.php');
                             <div class="row col-lg-2 col-sm-4 text-end">
                                 <!-- Boton para generar pdf -->
                                 <div class="text-center col-lg-6 col-sm-6">
-                                    <a href="reportes.php" class="pdf-button" target="_blank">
+                                    <a href="reportesProductos.php" class="pdf-button" target="_blank">
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </a>
                                 </div>

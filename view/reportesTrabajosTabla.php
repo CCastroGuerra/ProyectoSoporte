@@ -317,7 +317,7 @@ $servicios = $resultado2['servicios'];
                                 <tr>
                                     <td scope="col" style="padding: 0">
                                         <div>
-                                            <img src="../banner.png" style="height: 40px" />
+                                            <img src="../img/banner.png" style="height: 40px" />
                                         </div>
                                     </td>
                                 </tr>

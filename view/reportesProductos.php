@@ -24,8 +24,8 @@ ob_start();
             margin-right: 0; */
             margin-bottom: 1cm;
             margin-top: 5cm;
-            margin-left: 2.5cm;
-            margin-right: 0.5cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
         }
 
         .encabezado {
@@ -226,7 +226,7 @@ $dompdf->setPaper('A4', 'portrait'); //Vertical
 
 $dompdf->render();
 
-$dompdf->stream("archivo.pdf", array("Attachment" => false)); //false para que no se descarge
+$dompdf->stream("lista-productos.pdf", array("Attachment" => false)); //false para que no se descarge
 
 
 ?>

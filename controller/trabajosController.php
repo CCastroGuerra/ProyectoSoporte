@@ -79,6 +79,7 @@ switch ($accion) {
                 $output['tipoEquipoId'] = $row["id_tipo_equipo"];
                 $output['nombreTipoEquipo'] = $row["nombre_tipo_equipo"];
                 $output['id'] = $row["id_trabajos"];
+                $output['idTipoTrabajo'] = $row["tipoTrabajo"];
                 $output['serie'] = $row["serie"];
                 $output['margesi'] = $row["margesi"];
                 $output['nombrePersonalId'] = $row["responsable_id"];

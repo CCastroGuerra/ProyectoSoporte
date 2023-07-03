@@ -139,13 +139,30 @@
 
   <!-- <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet"> -->
 </head>
+<style>
+  .cssFont_1 {
+    font-family: Arial;
+    font-size: 22px;
+    letter-spacing: 4px;
+    word-spacing: 0px;
+    color: #ebebeb;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: capitalize;
+
+  }
+</style>
 
 <body>
   <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
-      <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+      <!-- <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
         <use xlink:href="../assets/brand/coreui.svg#signet"></use>
-      </svg>
+      </svg> -->
+      <h2 class="cssFont_1">Soporte Técnico</h2>
+      <!-- <img src="../img/apoyo-tecnico.png" alt="" style="width: 46px; height: 46px;"> -->
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
       <li class="nav-item"><a class="nav-link" href="../view/dashboardView-edit.php">
