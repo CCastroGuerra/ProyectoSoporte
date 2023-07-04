@@ -142,10 +142,15 @@ class asignarRoles extends Conectar
     public function traerAsigRolXId($idAsigRol)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT rp.id_rol_usuario, p.dni_personal, r.nombre_roles, rp.rol_id 
-        FROM personal p
-        INNER JOIN rol_usuario rp ON rp.usuario_id = p.id_personal
-        INNER JOIN roles AS r ON rp.rol_id = r.id_roles WHERE rp.id_rol_usuario = ?";
+        $sql = "SELECT ru.id_rol_usuario,
+        p.dni_personal,
+        r.nombre_roles,
+        ru.rol_id
+    FROM rol_usuario ru
+    INNER JOIN usuario u ON ru.usuario_id = u.id_usuario
+    INNER JOIN personal p ON p.id_personal = u.personal_id
+    INNER JOIN roles r on r.id_roles = ru.rol_id
+    WHERE ru.id_rol_usuario = ?;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idAsigRol);
         $sql->execute();

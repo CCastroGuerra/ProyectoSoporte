@@ -14,8 +14,9 @@ msgal.forEach((element) => {
 indni.addEventListener("input", function (evt) {
   regla = new RegExp("[0-9]$");
   console.log("escribiendo...");
-  if (this.value.length > this.maxLength)
-    {this.value = this.value.slice(0, this.maxLength);}
+  if (this.value.length > this.maxLength) {
+    this.value = this.value.slice(0, this.maxLength);
+  }
   if (this.value.trim().length > 0 && this.value.trim().length <= 8) {
     if (regla.test(this.value) == false) {
       console.log("solo numeros");
@@ -40,8 +41,6 @@ indni.addEventListener("keypress", function (evt) {
     evt.preventDefault();
   }
 });
-
-
 
 srol.addEventListener("change", function () {
   if (this.value > 0) {
