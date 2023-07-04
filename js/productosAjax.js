@@ -221,10 +221,10 @@ let elemento = document.getElementById("selAlmacen");
 elemento.onchange = function () {
   var valorSeleccionado = elemento.value;
   console.log("Valor seleccionado:", valorSeleccionado);
-  if (this.value==0) {
-    alerta5.innerText="Seleccione un almacén válido";
+  if (this.value == 0) {
+    alerta5.innerText = "Seleccione un almacén válido";
   } else {
-    alerta5.innerText="";
+    alerta5.innerText = "";
   }
 };
 
@@ -232,10 +232,10 @@ let elemento2 = document.getElementById("selTipoProducto");
 elemento2.onchange = function () {
   var valorSeleccionado = elemento2.value;
   console.log("Valor seleccionado:", valorSeleccionado);
-  if (this.value==0) {
-    alerta2.innerText="Seleccione un tipo válido";
+  if (this.value == 0) {
+    alerta2.innerText = "Seleccione un tipo válido";
   } else {
-    alerta2.innerText="";
+    alerta2.innerText = "";
   }
 };
 
@@ -356,7 +356,7 @@ cajaBuscar.addEventListener("keyup", function (e) {
 });
 
 function buscarProducto() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarProducto");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;
@@ -564,6 +564,7 @@ let pagInicio = document.querySelector("#btnPrimero");
 pagInicio.addEventListener("click", function (e) {
   numPagina = 1;
   document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
   buscarProducto();
   pagInicio.blur();
 });
@@ -588,7 +589,9 @@ pagSiguiente.addEventListener("click", function (e) {
     pagDestino = pagVisitada + 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
+    console.log(numPagina);
     buscarProducto();
+    console.log("despues de buscar" + numPagina);
     pagSiguiente.blur();
   }
 });

@@ -25,8 +25,8 @@ frmRol.onsubmit = function (e) {
       if (regla.test(nombre_rol.value)) {
         guardarRol();
         console.log("guardo");
-        frmRol.reset();        
-        $("#"+modalp).modal('toggle');
+        frmRol.reset();
+        $("#" + modalp).modal("toggle");
       } else {
         alerta.innerText = "el elemento no debe contener numeros";
       }
@@ -75,7 +75,7 @@ function listarRoles() {
 }
 
 function buscarRol() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarRoles");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

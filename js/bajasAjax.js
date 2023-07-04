@@ -140,7 +140,7 @@ function validarFormulario() {
 equipoInput.addEventListener("input", validarSerieMar);
 tipoSelect.addEventListener("change", validarTipo);
 motivoInput.addEventListener("input", validarMotivo);
-console.log("llenos: "+cont);
+console.log("llenos: " + cont);
 if (cont == 3) {
   btnGuardar.disabled = false;
 }
@@ -248,7 +248,7 @@ function editarEstadoEquipo() {
 // }
 
 function buscarBajas() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarBajas");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

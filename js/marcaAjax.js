@@ -93,10 +93,10 @@ var elemento = document.getElementById("selMarca");
 elemento.onchange = function () {
   var valorSeleccionado = elemento.value;
   if (this.value == 0) {
-    alerta2.innerText="Marca no válida";
+    alerta2.innerText = "Marca no válida";
   } else {
     console.log("Valor seleccionado:", valorSeleccionado);
-    alerta2.innerText="";
+    alerta2.innerText = "";
   }
 };
 
@@ -207,7 +207,7 @@ numRegistors.addEventListener("change", function () {
 });
 
 function buscarMarca() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarMarca");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

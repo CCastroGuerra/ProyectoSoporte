@@ -42,23 +42,25 @@ var bnadir = 0;
 let btmguardar = document.getElementById("btmGuardar");
 btmguardar.disabled = true;
 
-
 $("#tbComponentes").bind("DOMSubtreeModified", function () {
   var tablacomponentes = document.querySelectorAll("#tbComponentes tr");
   console.log("la tabla cambió, componentes: " + tablacomponentes.length);
   if (tablacomponentes.length > 0) {
     console.log("es mayor a 0");
     console.log(tablacomponentes[0].innerText.trim());
-    if (tablacomponentes[0].innerText.trim() === "No se encontraron datos".trim()) {
+    if (
+      tablacomponentes[0].innerText.trim() === "No se encontraron datos".trim()
+    ) {
       console.log(tablacomponentes[0].innerText + "-> igual a cadena");
       btmguardar.disabled = true;
-    } 
-    else {
+    } else {
       console.log("no es un igual a la cadena");
-      btmguardar.disabled = false;}
-  } else {console.log("no es 0");}
+      btmguardar.disabled = false;
+    }
+  } else {
+    console.log("no es 0");
+  }
 });
-
 
 //estilo css de los mensajes de error
 var ofr = document.querySelectorAll("#formAEquipo .alerta");
@@ -167,7 +169,6 @@ frmEquipos.addEventListener("change", function () {
   console.log("cambio detectado en el formulario");
   validarFormulario();
 });
-
 
 function validarFormulario() {
   bnadir = btipo + bmarca + bmodelo + barea + bestado + bmargesi;
@@ -675,7 +676,7 @@ function guardarEquipoComponente() {
 }
 
 function buscarEquipo() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarEquipos");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

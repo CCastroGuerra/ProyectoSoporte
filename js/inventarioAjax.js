@@ -114,7 +114,6 @@ document
       } else {
         console.log("salida");
         salidaProductos();
-        
       }
       $("#inventarioModal").modal("hide");
     }
@@ -165,7 +164,7 @@ function salidaProductos() {
 
     if (respuesta === "1") {
       console.log("Cantidad actualizada");
-      guardaSalida(codigoProducto,cantidad);
+      guardaSalida(codigoProducto, cantidad);
     } else {
       swal.fire("AVISO DEL SISTEMA", "Error, cantidad no disponible", "error");
       console.log("Erro al actualizar");
@@ -205,8 +204,8 @@ function guardarEntrada() {
   ajax.open("POST", "../controller/inventarioController.php", true);
   var data = new FormData(frmInventario);
   data.append("codProducto", codigoProducto);
-  data.append("cantidad", cantidad);  
-  data.append("selAccion","2");
+  data.append("cantidad", cantidad);
+  data.append("selAccion", "2");
   data.append("accion", "guardarEntrada");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
@@ -223,17 +222,17 @@ function guardarEntrada() {
   document.getElementById("formInventario").reset();
 }
 
-function guardaSalida(codigoProducto,cantidad) {
+function guardaSalida(codigoProducto, cantidad) {
   /* let codigoProducto = document.getElementById("nombreproducto").value;
   let cantidad = document.getElementById("cantidad").value;
    */
-  console.log("registrando movimiento "+codigoProducto+": "+cantidad);
+  console.log("registrando movimiento " + codigoProducto + ": " + cantidad);
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/inventarioController.php", true);
   var data = new FormData(frmInventario);
   data.append("codProducto", codigoProducto);
   data.append("cantidad", cantidad);
-  data.append("selAccion","2");
+  data.append("selAccion", "2");
   data.append("accion", "guardarSalida");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
@@ -343,7 +342,7 @@ cajaBuscarSalida.addEventListener("keyup", function (e) {
 });
 
 function buscarSalida() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarSalidas");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistrosSalidas").value;

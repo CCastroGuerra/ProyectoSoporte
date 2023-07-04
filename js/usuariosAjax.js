@@ -158,7 +158,7 @@ function guardarDatos() {
 }
 
 function buscarUsuario() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarUsuario");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

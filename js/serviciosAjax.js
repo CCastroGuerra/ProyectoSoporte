@@ -113,7 +113,7 @@ function listarServicio() {
 }
 
 function buscarServicio() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarServicios");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

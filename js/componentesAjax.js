@@ -32,21 +32,21 @@ ofr.forEach((element) => {
   element.setAttribute("style", "color:red !important");
 });
 tipo_compo.onchange = function () {
-  if (this.value==0) {
+  if (this.value == 0) {
     alerta1.innerText = "Seleccione el tipo válido";
   } else {
     alerta1.innerText = "";
   }
 };
 clase_compo.onchange = function () {
-  if (this.value==0) {
+  if (this.value == 0) {
     alerta2.innerText = "Seleccione la clase válida";
   } else {
     alerta2.innerText = "";
   }
 };
 selecMarca.onchange = function () {
-  if (this.value==0) {
+  if (this.value == 0) {
     alerta3.innerText = "Seleccione una marca válida";
   } else {
     alerta3.innerText = "";
@@ -69,7 +69,7 @@ estado_compo.onchange = function () {
 
 frmComponentes.onsubmit = function (e) {
   e.preventDefault();
-  var band=0;
+  var band = 0;
   if (frmComponentes.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
@@ -278,7 +278,7 @@ numRegistors.addEventListener("change", function () {
 });
 
 function buscarComponente() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarComponentes");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

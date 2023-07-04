@@ -64,7 +64,7 @@ inpdni.addEventListener("keypress", function (evt) {
 
 frmPersonal.onsubmit = function (e) {
   e.preventDefault();
-  bcontrol=0;
+  bcontrol = 0;
   if (frmPersonal.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     //actualizar(id);
@@ -302,7 +302,7 @@ cajaBuscar.addEventListener("keyup", function (e) {
 });
 
 function buscarPersonal() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarPersonal");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

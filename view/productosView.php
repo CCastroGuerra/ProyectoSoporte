@@ -46,14 +46,14 @@ include('../templates/cabecera.php');
                         <!-- Paginador Inicio -->
                         <div class="row paginador">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
-                                <button id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
+                                <button type="button" id="btnPrimeroPre" class="btn btn-outline-info"><i class="fa fa-backward"></i></button>
+                                <button type="button" id="btnAnteriorPre" class="btn btn-outline-info"><i class="fa fa-caret-left"></i></button>
                                 <input type="text" id="txtPagVistaPre" class="cuadrosPaginas" readonly>
                                 <label>&nbsp;de&nbsp;</label>
                                 <input type="text" id="txtPagTotalPre" class="cuadrosPaginas" readonly>
                                 <label>&nbsp;paginas.&nbsp;</label>
-                                <button id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
-                                <button id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
+                                <button type="button" id="btnSiguientePre" class="btn btn-outline-info"><i class="fa fa-caret-right"></i></button>
+                                <button type="button" id="btnUltimoPre" class="btn btn-outline-info"><i class="fa fa-forward"></i></button>
                             </div>
                         </div>
                         <!-- Paginador Final -->
