@@ -276,7 +276,7 @@ cajaBuscarEntrada.addEventListener("keyup", function (e) {
 });
 
 function buscarEntrada() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarEntradas");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistrosEntradas").value;
@@ -408,7 +408,7 @@ cajaBuscarResumen.addEventListener("keyup", function (e) {
 });
 
 function buscarResumen() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarInventario");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistrosResumen").value;

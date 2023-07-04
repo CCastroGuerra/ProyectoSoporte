@@ -27,10 +27,13 @@ nombre_modelo.onkeypress = function (evento) {
 
 frmModelo.onsubmit = function (e) {
   e.preventDefault();
-  var band=0;
+  var band = 0;
   if (frmModelo.querySelector("#codigoModelo").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (nombre_modelo.value.trim().length == 0) {
       band++;
@@ -91,10 +94,10 @@ var elemento = document.getElementById("selMarca");
 elemento.onchange = function () {
   var valorSeleccionado = elemento.value;
   console.log("Valor seleccionado:", valorSeleccionado);
-  if (this.value==0) {
-    alerta2.innerText="Seleccione una marca válida";
+  if (this.value == 0) {
+    alerta2.innerText = "Seleccione una marca válida";
   } else {
-    alerta2.innerText="";
+    alerta2.innerText = "";
   }
 };
 

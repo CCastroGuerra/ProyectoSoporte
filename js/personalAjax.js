@@ -69,6 +69,9 @@ frmPersonal.onsubmit = function (e) {
     console.log("actualizo");
     //actualizar(id);
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     // guardarArea();
     if (apelli.value.trim().length == 0) {

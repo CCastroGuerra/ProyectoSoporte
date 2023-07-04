@@ -19,6 +19,9 @@ frmRol.onsubmit = function (e) {
   if (frmRol.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (nombre_rol.value.trim().length > 0) {
       regla = new RegExp("[a-zA-Z]+$");

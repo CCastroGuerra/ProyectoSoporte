@@ -21,6 +21,9 @@ frmArea.onsubmit = function (e) {
   if (frmArea.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (frmArea.querySelector("#nombre_area").value.trim().length > 0) {
       regla = new RegExp("[a-zA-Z0-9]+$");

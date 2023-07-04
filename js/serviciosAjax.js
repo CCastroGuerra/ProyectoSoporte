@@ -55,6 +55,9 @@ frmServicio.onsubmit = function (e) {
   e.preventDefault();
   if (frmServicio.querySelector("#inputCodigo").value !== "") {
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
     console.log("actualizo");
   } else {
     if (nombre_servicio.value.trim().length > 0) {
@@ -217,6 +220,7 @@ function actualizar(id) {
   const nombreInput = document.getElementById("nombreServicio");
   // Obtener los valores actualizados desde los elementos del modal
   const nombre = nombreInput.value;
+
   swal
     .fire({
       title: "AVISO DEL SISTEMA",

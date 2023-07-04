@@ -63,6 +63,9 @@ frmAsignarRol.onsubmit = function (e) {
   if (frmAsignarRol.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (indni.value.trim().length == 0) {
       bdni = 0;

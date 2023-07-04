@@ -28,6 +28,9 @@ frmBajas.onsubmit = function (e) {
   if (frmBajas.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     guardarBajas();
     //listarArea();

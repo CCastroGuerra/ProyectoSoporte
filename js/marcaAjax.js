@@ -31,6 +31,9 @@ frmMarca.onsubmit = function (e) {
   if (frmMarca.querySelector("#codigoMarca").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (nombre_marca.value.trim() == 0) {
       band++;

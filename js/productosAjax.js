@@ -60,6 +60,9 @@ frmProductos.onsubmit = function (e) {
   if (frmProductos.querySelector("#inputID").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (nombre_producto.value.trim().length == 0) {
       band++;

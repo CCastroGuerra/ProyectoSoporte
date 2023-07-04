@@ -65,12 +65,13 @@ class Servicio extends Conectar
     public function traerServicioXId($idServicio)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM servicios WHERE id_servicios = ?";
+        $sql = "SELECT * FROM servicios WHERE id_servicios = ? AND `esActivo` = 1;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idServicio);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
+
     public function eliminarServicio($id)
     {
         if (isset($_POST["id"])) {

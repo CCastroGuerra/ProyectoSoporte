@@ -73,6 +73,9 @@ frmComponentes.onsubmit = function (e) {
   if (frmComponentes.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
     actualizar(id);
+    setTimeout(function () {
+      $("#" + modalp).modal("toggle");
+    }, 3000);
   } else {
     if (tipo_compo.value == 0) {
       band++;
