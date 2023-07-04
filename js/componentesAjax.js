@@ -317,7 +317,7 @@ function buscarComponente() {
 
                       <button type="button" onClick='mostrarEnModal("${componentes.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button type="button" onClick='eliminarComponentes("${componentes.id}")' class="btn btn-danger" data-fila="${componentes.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <button type="button" onClick='eliminarComponentes("${componentes.id}")' class="btn btn-danger pelim" data-fila="${componentes.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                   </tr>
                   `;

@@ -190,7 +190,7 @@ function buscarUsuario() {
                 <td>
   
                 
-                <button type="button" onClick='eliminar("${usuario.id}")' class="btn btn-danger" data-fila="${usuario.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                <button type="button" onClick='eliminar("${usuario.id}")' class="btn btn-danger pelim" data-fila="${usuario.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
   
                 </td>

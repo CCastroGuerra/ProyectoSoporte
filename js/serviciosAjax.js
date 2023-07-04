@@ -13,7 +13,7 @@ const labelText = document.getElementById("nombreServicio");
 checkboxTinta.addEventListener("change", function () {
   if (this.checked) {
     labelText.value = document.querySelector(
-      'label[for="cambioDeTinta"]'
+      'label[for="checkboxTinta"]'
     ).textContent;
   } else {
     labelText.value = "";
@@ -23,7 +23,7 @@ checkboxTinta.addEventListener("change", function () {
 checkboxToner.addEventListener("change", function () {
   if (this.checked) {
     labelText.value = document.querySelector(
-      'label[for="cambioDeToner"]'
+      'label[for="checkboxToner"]'
     ).textContent;
   } else {
     labelText.value = "";
@@ -33,7 +33,7 @@ checkboxToner.addEventListener("change", function () {
 checkboxCinta.addEventListener("change", function () {
   if (this.checked) {
     labelText.value = document.querySelector(
-      'label[for="cambioDeCinta"]'
+      'label[for="checkboxCinta"]'
     ).textContent;
   } else {
     labelText.value = "";
@@ -104,7 +104,7 @@ function listarServicio() {
                       <td>${servicio.id}</td>
                       <td>${servicio.nombre}</td>
                       <td><button type="button" onClick='mostrarEnModal("${servicio.id}") 'id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal">Editar</button>
-                      <button type="button" onClick = eliminarServicio("${servicio.id}") class="btn btn-danger" data-fila = "${servicio.id}">Borrar</button></td>
+                      <button type="button" onClick = eliminarServicio("${servicio.id}") class="btn btn-danger pelim" data-fila = "${servicio.id}">Borrar</button></td>
                   </tr>
                   `;
       });
@@ -148,7 +148,7 @@ function buscarServicio() {
                 <button type="button" onClick='mostrarEnModal("${servicio.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#servicioModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
               
-              <button type="button" onClick='eliminarServicio("${servicio.id}")' class="btn btn-danger" data-fila="${servicio.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+              <button type="button" onClick='eliminarServicio("${servicio.id}")' class="btn btn-danger pelim" data-fila="${servicio.id}"><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
 
 

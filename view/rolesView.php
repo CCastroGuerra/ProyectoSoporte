@@ -122,6 +122,7 @@ include('../templates/cabecera.php');
 <!--/Contenido-->
 
 <script src="../js/rolesAjax.js"></script>
+<script src="../js/sesionAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

@@ -32,6 +32,7 @@ if (is_array($datos) == true && count($datos) > 0) {
             //busca el rol del usuario
             $brol = $login->buscarRol($row['id_usuario']);
             $rol =$brol[0]['nombre_roles'];
+            $rolID = $brol[0]['rol_id'];
             
 
             session_start(); 
@@ -41,6 +42,7 @@ if (is_array($datos) == true && count($datos) > 0) {
             $_SESSION['personal_id'] = $row['personal_id'];
             $_SESSION['nombre'] = $ar;
             $_SESSION['rol'] = $rol;
+            $_SESSION['rol_ID'] = $rolID;
 
             //header("Location: ../index.php");
         } else {

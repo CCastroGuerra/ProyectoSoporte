@@ -391,6 +391,7 @@ include('../templates/cabecera.php');
 </div>
 
 <script src='../js/equiposAjax.js'></script>
+<script src="../js/sesionAjax.js"></script>
 
 
 <?php

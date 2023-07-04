@@ -314,6 +314,7 @@ include('../templates/cabecera.php');
 
 <!--/contenido ventana -->
 <script src="../js/trabajosAjax.js"></script>
+<script src="../js/sesionAjax.js"></script>
 
 <?php
 include '../templates/footer.php';

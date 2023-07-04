@@ -129,6 +129,7 @@ include('../templates/cabecera.php');
 </div>
 <!--/contenido-->
 <script src="../js/marcaAjax.js"></script>
+<script src="../js/sesionAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>
