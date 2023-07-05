@@ -207,10 +207,12 @@ modal.addEventListener("show.coreui.modal", (event) => {
     case "btmodal":
       modalTitle.textContent = "Guardar";
       selecModelo.disabled = true;
+      btnComponente.disabled=true;
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
       selecModelo.disabled = false;
+      btnComponente.disabled=false;
       break;
   }
 });
@@ -220,13 +222,13 @@ btnmodal.addEventListener("click", function () {
   //condiciones iniciales del modal equipos
   console.log("modal abierto");
   btnComponente.disabled = true;
-  btmguardar.disabled = true;
+  btmguardar.disabled = false;
 });
 /***************************************/
 //----validar modal componentes//
 var serieinp = document.getElementById("codigo");
 var btmcomp = document.getElementById("btmcomp");
-let alertaMComp = document.getElementById("alertaMComp");
+let alertaMComp = document.getElementById("alertaMcomp");
 btmcomp.disabled = true;
 serieinp.addEventListener("input", function () {
   if (serieinp.value.trim().length > 0) {

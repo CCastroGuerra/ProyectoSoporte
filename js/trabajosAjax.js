@@ -124,7 +124,7 @@ inprecom.addEventListener("input", function () {
   }
 });
 
-frmTrabajos.addEventListener("change", function () {
+frmTrabajos.addEventListener("input", function () {
   var contro = 0;
   contro = bserie + bfalla + btecnico;
   console.log("se esta escribiendo, elementos: " + contro);
@@ -160,10 +160,12 @@ modal.addEventListener("show.coreui.modal", (event) => {
   switch (button.id) {
     case "anTrabajo":
       modalTitle.textContent = "Guardar";
+      btnServicios.disabled = true;
       frmTrabajos.reset();
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
+      btnServicios.disabled = false;
       break;
   }
   //limpiar mensajes
@@ -179,7 +181,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
   alsolucion.innerText = "";
   alrecom.innerText = "";
   //boton principal deshabilitado
-  btnmodal.disabled = true;
+  btnmodal.disabled = false;
   inpmargesi.disabled = true;
   inpusuario.disabled = true;
   inparea.disabled = true;
