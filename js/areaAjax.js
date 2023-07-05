@@ -88,6 +88,25 @@ function listarArea() {
   ajax.send(data);
 }
 
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener('show.coreui.modal', event =>{
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: "+button.id);
+  var modalTitle= modal.querySelector('.modal-title');
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+});
+/**** */
+
 function buscarArea() {
   //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarArea");

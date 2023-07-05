@@ -2,6 +2,8 @@ let numPagina = 1;
 buscarEntrada();
 buscarSalida();
 buscarResumen();
+let formulario=document.getElementById("formInventario")
+let modalp = formulario.parentNode.parentNode.parentNode.id;
 let cbxAccion = document.getElementById("selAccion");
 let inproducto = document.getElementById("nombreproducto");
 let inctd = document.getElementById("cantidad");
@@ -69,9 +71,26 @@ inctd.addEventListener("input", function () {
 //   //traerNombreProducto();
 // };
 
-document
-  .getElementById("formInventario")
-  .addEventListener("submit", function (event) {
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener('show.coreui.modal', event =>{
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: "+button.id);
+  var modalTitle= modal.querySelector('.modal-title');
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+});
+/**** */
+
+formulario.addEventListener("submit", function (event) {
     event.preventDefault();
     console.log("validando accion");
     if (cbxAccion.value == 0) {

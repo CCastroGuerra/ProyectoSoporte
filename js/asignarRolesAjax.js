@@ -1,4 +1,5 @@
 let frmAsignarRol = document.getElementById("formARoles");
+const modalp = frmAsignarRol.parentNode.parentNode.parentNode.id;
 let indni = document.getElementById("inputDni");
 let srol = document.getElementById("selAroles");
 let adni = document.getElementById("alerta1");
@@ -49,6 +50,25 @@ srol.addEventListener("change", function () {
     arol.innerText = "seleccione un rol";
   }
 });
+
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener('show.coreui.modal', event =>{
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: "+button.id);
+  var modalTitle= modal.querySelector('.modal-title');
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+});
+/**** */
 
 document.body.onload = () => {
   listarSelectRol();
