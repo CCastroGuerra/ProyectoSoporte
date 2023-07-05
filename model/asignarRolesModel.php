@@ -63,7 +63,7 @@ class asignarRoles extends Conectar
             $limit = $_POST['registros'];
             $sLimit = "LIMIT $limit";
         }
-        $sql = "SELECT * FROM `roles` WHERE esActivo = 1 ORDER BY nombre_roles";
+        $sql = "SELECT * FROM `roles` WHERE esActivo = 1 ORDER BY nombre_roles,id_roles";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 

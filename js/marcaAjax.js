@@ -240,7 +240,7 @@ function buscarMarca() {
                       <td>
                       <button type="button" onClick='mostrarEnModal("${marca.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#marcaModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button type="button" onClick='eliminarMarcas("${marca.id}")' class="btn btn-danger" data-fila="${marca.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <button type="button" onClick='eliminarMarcas("${marca.id}")' class="btn btn-danger pelim" data-fila="${marca.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                       </td>
 

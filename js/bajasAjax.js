@@ -277,7 +277,7 @@ function buscarBajas() {
           bajas.tipoBajas === "TEMPORAL" ? "color: #bbaf1b;" : "color: red;";
         let botonEliminar =
           bajas.tipoBajas === "TEMPORAL"
-            ? `<button type="button" onClick='eliminarBajas("${bajas.id}")' class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>`
+            ? `<button type="button" onClick='eliminarBajas("${bajas.id}")' class="btn btn-danger pelim"><i class="fa fa-trash" aria-hidden="true"></i></button>`
             : "";
 
         template += `

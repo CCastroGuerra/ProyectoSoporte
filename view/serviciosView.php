@@ -22,12 +22,13 @@ include('../templates/cabecera.php');
                 </div>
                 <label for="nombreServicio" class="mb-2">Nombre:</label>
                 <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
-                <input type="checkbox" name="checkboxTinta" id="checkboxTinta" value="1">
-                <label for="cambioDeTinta">Cambio de Tinta</label>
-                <input type="checkbox" name="checkboxTinta" id="checkboxToner" value="2">
-                <label for="cambioDeToner">Cambio de Toner</label>
-                <input type="checkbox" name="checkboxTinta" id="checkboxCinta" value="3">
-                <label for="cambioDeCinta">Cambio de Cinta</label>
+                <input class="form-check-input" type="radio" name="checkboxTinta" id="checkboxTinta" value="1">
+                <label class="form-check-label" for="checkboxTinta">Cambio de Tinta</label>
+                <input class="form-check-input" type="radio" name="checkboxTinta" id="checkboxToner" value="2">
+                <label class="form-check-label" for="checkboxToner">Cambio de Toner</label>
+                <input class="form-check-input" type="radio" name="checkboxTinta" id="checkboxCinta" value="3">
+                <label class="form-check-label" for="checkboxCinta">Cambio de Cinta</label>
+                
                 <div id="alerta"></div>
 
               </div>
@@ -123,6 +124,7 @@ include('../templates/cabecera.php');
 <!--/Contenido-->
 
 <script src="../js/serviciosAjax.js"></script>
+<script src="../js/sesionAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

@@ -146,7 +146,7 @@ function buscarModelo() {
                       
                       <button type="button" onClick='mostrarEnModal("${modelo.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button type="button" onClick='eliminarModelo("${modelo.id}")' class="btn btn-danger" data-fila="${modelo.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <button type="button" onClick='eliminarModelo("${modelo.id}")' class="btn btn-danger pelim" data-fila="${modelo.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                       
                       
@@ -285,7 +285,7 @@ function buscarModelo() {
 
                       <button type="button" onClick='mostrarEnModal("${modelo.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
-                      <button type="button" onClick='eliminarModelo("${modelo.id}")' class="btn btn-danger" data-fila="${modelo.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <button type="button" onClick='eliminarModelo("${modelo.id}")' class="btn btn-danger pelim" data-fila="${modelo.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                   </tr>
                   `;

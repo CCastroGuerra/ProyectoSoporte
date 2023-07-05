@@ -262,6 +262,7 @@ include('../templates/cabecera.php');
     </div>
 </div>
 <script src="../js/productosAjax.js"></script>
+<script src="../js/sesionAjax.js"></script>
 <?php
 include '../templates/footer.php';
 

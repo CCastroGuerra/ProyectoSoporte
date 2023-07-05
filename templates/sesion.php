@@ -3,7 +3,8 @@
     session_start();
 
     if (!isset($_SESSION['id'])) {
-        header("Location: ../index.php");  
+        header("Location: ../index.php");
+        die();
     }
     session_regenerate_id();
 
@@ -19,9 +20,18 @@
        if($sessionTTL > $inactividad){
            session_destroy();
            header("Location: ../logout.php");
+           die();
        }
    }
    // El siguiente key se crea cuando se inicia sesión
    $_SESSION["timeout"] = time();
+
+   function soloadmin(){
+    $rolespermitidos = ['1'];
+    if(!in_array($_SESSION['rol_ID'],$rolespermitidos)){
+        header("Location: ../index.php");
+        die();
+    }
+   }
 
 ?>

@@ -66,7 +66,7 @@ function listarRoles() {
                       <td>${rol.id}</td>
                       <td>${rol.nombre}</td>
                       <td><button type="button" onClick='mostrarEnModal("${rol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal">Editar</button>
-                      <button type="button" onClick = eliminarRol("${rol.id}") class="btn btn-danger" data-fila = "${rol.id}">Borrar</button></td>
+                      <button type="button" onClick = eliminarRol("${rol.id}") class="btn btn-danger pelim" data-fila = "${rol.id}">Borrar</button></td>
                   </tr>
                   `;
       });
@@ -109,7 +109,7 @@ function buscarRol() {
               </button>
 
             
-              <button type="button" onClick='eliminarRol("${rol.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+              <button type="button" onClick='eliminarRol("${rol.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
 
 

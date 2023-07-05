@@ -1,6 +1,15 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+<script type="text/javascript">
+    var rolespermitidos=['1'];
+    var ro= document.getElementById("sessRol");
+    
+
+if(!rolespermitidos.includes(ro.dataset.sess)){
+    window.location.replace("../index.php");
+}
+</script>
 <!--Modal añadirEmpleado-->
 <div class="modal fade" id="añadirUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

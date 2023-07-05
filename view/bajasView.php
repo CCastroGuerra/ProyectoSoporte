@@ -175,6 +175,7 @@ include('../templates/cabecera.php');
 <!--/Contenido-->
 
 <script src="../js/bajasAjax.js"></script>
+<script src="../js/sesionAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

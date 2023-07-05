@@ -75,7 +75,7 @@ function listarArea() {
                       <td>
                       <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
                       
-                      <button type="button" onClick='eliminarPresentacion("${area.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+                      <button type="button" onClick='eliminarPresentacion("${area.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
             </td>
                   </tr>
@@ -116,9 +116,11 @@ function buscarArea() {
               
               <td>${area.nombre}</td>
               <td>
-              <button type="button" onClick='mostrarEnModal("${area.id}");  ' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-     
-              <button type="button" onClick='eliminarArea("${area.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
+              <button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+
+                      
+              <button type="button" onClick='eliminarArea("${area.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               </td>
             </tr>

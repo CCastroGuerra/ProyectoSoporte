@@ -395,7 +395,7 @@ function buscarProducto() {
               <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
               
-              <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger" data-fila="${producto.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+              <button type="button" onClick='eliminarProducto("${producto.id}")' class="btn btn-danger pelim" data-fila="${producto.id}"><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               
             </td>
