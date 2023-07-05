@@ -311,8 +311,8 @@ function buscarEntrada() {
       });
       var elemento = document.getElementById("tbEntradas");
       elemento.innerHTML = template;
-      document.getElementById("txtPagVista").value = numPagina;
-      document.getElementById("txtPagTotal").value = datos.paginas;
+      document.getElementById("txtPagVistaEn").value = numPagina;
+      document.getElementById("txtPagTotalEn").value = datos.paginas;
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
@@ -377,8 +377,8 @@ function buscarSalida() {
       });
       var elemento = document.getElementById("tbSalidas");
       elemento.innerHTML = template;
-      document.getElementById("txtPagVista").value = numPagina;
-      document.getElementById("txtPagTotal").value = datos.paginas;
+      document.getElementById("txtPagVistaSa").value = numPagina;
+      document.getElementById("txtPagTotalSa").value = datos.paginas;
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
@@ -468,3 +468,129 @@ function buscarResumen() {
 
   ajax.send(data);
 }
+
+/****PAGINACIÓN RESUMEN****/
+let pagInicio = document.querySelector("#btnPrimeroRe");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarArea();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnteriorRe");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarArea();
+    pagAnterior.blur();
+  }
+});
+let pagSiguiente = document.querySelector("#btnSiguienteRe");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarArea();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimoRe");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarArea();
+  pagFinal.blur();
+});
+
+/****PAGINACIÓN ENTRADA****/
+let pagInicioEn = document.querySelector("#btnPrimeroEn");
+pagInicioEn.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarArea();
+  pagInicioEn.blur();
+});
+let pagAnteriorEn = document.querySelector("#btnAnteriorEn");
+pagAnteriorEn.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarArea();
+    pagAnteriorEn.blur();
+  }
+});
+let pagSiguienteEn = document.querySelector("#btnSiguienteEn");
+pagSiguienteEn.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarArea();
+    pagSiguienteEn.blur();
+  }
+});
+let pagFinalEn = document.querySelector("#btnUltimoEn");
+pagFinalEn.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarArea();
+  pagFinalEn.blur();
+});
+
+/****PAGINACIÓN SALIDA****/
+let pagInicioSa = document.querySelector("#btnPrimeroSa");
+pagInicioSa.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarArea();
+  pagInicioSa.blur();
+});
+let pagAnteriorSa = document.querySelector("#btnAnteriorSa");
+pagAnteriorSa.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarArea();
+    pagAnteriorSa.blur();
+  }
+});
+let pagSiguienteSa = document.querySelector("#btnSiguienteSa");
+pagSiguienteSa.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarArea();
+    pagSiguienteSa.blur();
+  }
+});
+let pagFinalSa = document.querySelector("#btnUltimoSa");
+pagFinalSa.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarArea();
+  pagFinalSa.blur();
+});

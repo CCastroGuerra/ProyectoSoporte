@@ -136,6 +136,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Area</strong></th>
                                     <th scope="col"><strong>Motivo</strong></th>
                                     <th scope="col"><strong>Fecha</strong></th>
+                                    <th scope="col"><strong>Descripción</strong></th>
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>
                             </thead>
