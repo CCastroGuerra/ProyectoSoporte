@@ -1,6 +1,8 @@
 var numPagina = 1;
 let dni = "";
 var frmUsuario = document.getElementById("formEmpleados");
+
+const modalp = frmUsuario.parentNode.parentNode.parentNode.id;
 buscarUsuario();
 let codpersonal = document.getElementById("codPersonal");
 let usernam = document.getElementById("username");
@@ -54,7 +56,32 @@ $("#togglePassword").on("click", function () {
   }
 });
 
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener('show.coreui.modal', event =>{
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: "+button.id);
+  var modalTitle= modal.querySelector('.modal-title');
+  var msgal = document.querySelectorAll("#formEmpleados .alerta");
+  msgal.forEach((element) => {
+    element.innerText="";
+  });
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      frmUsuario.reset();
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+});
+/**** */
+
 frmUsuario.onsubmit = function (e) {
+  console.log("click submit");
   e.preventDefault();
   if (frmUsuario.querySelector("#inputCodigo").value !== "") {
     //console.log("actualizo");
@@ -78,7 +105,9 @@ frmUsuario.onsubmit = function (e) {
     } else {
       vpass = 1;
     }
+    vcon = vcod + vuser + vpass;
     if (vcon == 3) {
+      console.log("todo lleno");
       guardarDatos();
       console.log("registro");
       frmUsuario.reset();
@@ -103,6 +132,7 @@ cajaBuscar.addEventListener("keyup", function (e) {
 });
 
 function guardarDatos() {
+  console.log("guardar datos");
   var dni = document.getElementById("codPersonal").value;
   let usuario = document.getElementById("username").value;
   let pass = document.getElementById("userpass").value;
