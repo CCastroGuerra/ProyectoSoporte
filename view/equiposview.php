@@ -243,7 +243,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="cerrarBot" name="cerrarBot" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" id="btmGuardar">Guardar</button>
+                    <button type="submit" class="btn btn-primary" id="btmGuardar">Guardar</button>
                 </div>
             </form>
         </div>

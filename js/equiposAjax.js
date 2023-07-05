@@ -10,6 +10,7 @@ listarSelectEstado();
 let frmComponentes = document.getElementById("formEquipos");
 let frmEquipos = document.getElementById("formAEquipo");
 let modalp = frmEquipos.parentNode.parentNode.parentNode.id;
+let modalc = document.getElementById("añadirComponente");
 let frmResponsable = document.getElementById("formResponsable");
 let selecModelo = document.getElementById("selModeloEquipo");
 let selecMarca = document.getElementById("selMarcaEquipo");
@@ -38,6 +39,26 @@ var barea = 0;
 var bestado = 0;
 var bmargesi = 0;
 var bnadir = 0;
+
+// cuando se recargue la pagina se limpiará la tabla temporal
+document.onkeydown = fkey;
+document.onkeypress = fkey
+document.onkeyup = fkey;
+
+var wasPressed = false;
+
+function fkey(e){
+        e = e || window.event;
+       if( wasPressed ) return; 
+       
+        if (e.keyCode == 116) {
+          cerrarEditar();
+             //alert("f5 pressed");
+            wasPressed = true;
+        }else {
+            //alert("Window closed");
+        }
+ }
 
 //tabla de componentes
 //boton guardar ->desactivado por defecto a menos que la tabla tbComponentes tenga elementos
@@ -117,11 +138,11 @@ selecMarca.addEventListener("change", function () {
     console.log("el valor es 0");
     bmarca = 0;
     bmodelo = 0;
-    selecModelo.disabled=true;
+    selecModelo.disabled = true;
   } else {
     alertMarca.innerText = "";
     bmarca = 1;
-    selecModelo.disabled=false;
+    selecModelo.disabled = false;
     listarSelectModelo();
   }
 });
@@ -172,6 +193,11 @@ margesi.addEventListener("input", function () {
   }
 });
 
+frmEquipos.addEventListener("input", function () {
+  console.log("cambio detectado en el formulario");
+  validarFormulario();
+});
+
 frmEquipos.addEventListener("change", function () {
   console.log("cambio detectado en el formulario");
   validarFormulario();
@@ -207,14 +233,18 @@ modal.addEventListener("show.coreui.modal", (event) => {
     case "btmodal":
       modalTitle.textContent = "Guardar";
       selecModelo.disabled = true;
-      btnComponente.disabled=true;
+      btnComponente.disabled = true;
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
       selecModelo.disabled = false;
-      btnComponente.disabled=false;
+      btnComponente.disabled = false;
       break;
   }
+});
+
+modalc.addEventListener("show.coreui.modal", (event)=>{
+  document.getElementById("formEquipos").reset();
 });
 /**** */
 
@@ -266,8 +296,66 @@ frmComponentes.onsubmit = function (e) {
 
 frmEquipos.onsubmit = function (e) {
   e.preventDefault();
+  //validar elementos
+  if (selectTipo.value == 0) {
+    alertTipo.innerText = "Seleccione una opcion válida";
+    btipo = 0;
+  } else {
+    alertTipo.innerText = "";
+    btipo = 1;
+  }
+  if (selecMarca.value == 0) {
+    alertMarca.innerText = "Seleccione una opcion válida";
+    console.log("el valor es 0");
+    bmarca = 0;
+    bmodelo = 0;
+    selecModelo.disabled = true;
+  } else {
+    alertMarca.innerText = "";
+    bmarca = 1;
+    selecModelo.disabled = false;
+    listarSelectModelo();
+  }
+  if (selecModelo.value == 0) {
+    alertModelo.innerText = "Seleccione una opcion válida";
+    bmodelo = 0;
+  } else {
+    alertModelo.innerText = "";
+    bmodelo = 1;
+  }
+  if (selectArea.value == 0) {
+    alertArea.innerText = "Seleccione una opcion válida";
+    barea = 0;
+  } else {
+    alertArea.innerText = "";
+    barea = 1;
+  }
+  if (selectEstado.value == 0) {
+    alertEstado.innerText = "Seleccione una opcion válida";
+    bestado = 0;
+  } else {
+    alertEstado.innerText = "";
+    bestado = 1;
+  }
+  if (margesi.value.trim().length > 0) {
+    // Habilita el botón
+    alertMargesi.innerText = "";
+    bmargesi = 1;
+  } else {
+    // Deshabilita el botón
+    btnComponente.disabled = true;
+    alertMargesi.innerText = "es un valor obligatorio";
+    bmargesi = 0;
+  }
 
-  guardarEquipo();
+  bnadir = btipo + bmarca + bmodelo + barea + bestado + bmargesi;
+  console.log("completos: " + bnadir);
+  if (bnadir == 6) {
+    guardarEquipo();
+    $("#"+modalp).modal('hide');
+  }
+
+  
   // guardarEquipoComponente();
 };
 /*

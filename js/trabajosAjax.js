@@ -8,12 +8,12 @@ let frmServicios = document.getElementById("formServicios");
 let frmTrabajos = document.getElementById("frmTrabajoa");
 
 let modalp = frmTrabajos.parentNode.parentNode.parentNode.id;
+let modalc = document.getElementById("serviciosModal");
 let btnCerrar = document.getElementById("btncerrar");
 let btnX = document.getElementById("btncerrarX");
 let btnServicios = document.getElementById("btnServicio"); //btn que levanta modal servicio
 btnServicios.disabled = true;
 let btnmodal = document.getElementById("btmguardar");
-
 
 /***************************************/
 
@@ -29,6 +29,7 @@ let inpfalla = document.getElementById("fallaObservada");
 let snptecnico = document.getElementById("selTecnico");
 let inpsol = document.getElementById("textSolucion");
 let inprecom = document.getElementById("textrecom");
+let selServicio = document.getElementById("selServicio");
 
 //Mensajes de error
 let alserie = document.getElementById("alserie");
@@ -42,6 +43,7 @@ let alfalla = document.getElementById("alfalla");
 let altecnico = document.getElementById("altecnico");
 let alsolucion = document.getElementById("alsolucion");
 let alrecom = document.getElementById("alrecom");
+let alservicio = document.getElementById("alertaservicio");
 
 //variables de control
 var bserie = 0;
@@ -148,6 +150,26 @@ frmTrabajos.addEventListener("input", function () {
   inpmodelo.disabled = true;
 }); */
 /******************************************************/
+// cuando se recargue la pagina se limpiará la tabla temporal
+document.onkeydown = fkey;
+document.onkeypress = fkey
+document.onkeyup = fkey;
+
+var wasPressed = false;
+
+function fkey(e){
+        e = e || window.event;
+       if( wasPressed ) return; 
+       
+        if (e.keyCode == 116) {
+          cerrarEditar();
+             //alert("f5 pressed");
+            wasPressed = true;
+        }else {
+            //alert("Window closed");
+        }
+ }
+
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
@@ -189,18 +211,53 @@ modal.addEventListener("show.coreui.modal", (event) => {
   inpmarca.disabled = true;
   inpmodelo.disabled = true;
 });
+modalc.addEventListener("show.coreui.modal", (event) => {
+  alservicio.innerText = "";
+  document.getElementById("formServicios").reset();
+});
 
 frmServicios.onsubmit = function (e) {
   e.preventDefault();
-  guardarServiciosTempo();
+  if (selServicio.value == 0){
+    alservicio.innerText="Debe seleccionar un servicio";
+  }else{
+    alservicio.innerText="";
+    guardarServiciosTempo();
+  }
+  
 };
 
 frmTrabajos.onsubmit = function (e) {
   e.preventDefault();
-  //contro = bserie + bfalla + btecnico;
-  console.log("campos: " + contro);
-  guardarTrabajo();
-  $("#TrabajoModal").modal("hide");
+  if (inpserie.value.trim().length > 0) {
+    bserie = 1;
+    alserie.innerText = "";
+    mostrarDatosEquipoXSerie();
+  } else {
+    bserie = 0;
+    alserie.innerText = "nro de serie no válido";
+  }
+  if (inpfalla.value.trim().length > 0) {
+    bfalla = 1;
+    alfalla.innerText = "";
+  } else {
+    bfalla = 0;
+    alfalla.innerText = "Debe registrar una falla observada";
+  }
+  if (snptecnico.value > 0) {
+    btecnico = 1;
+    altecnico.innerText = "";
+  } else {
+    btecnico = 0;
+    altecnico.innerText = "Seleccione una opción válida";
+  }
+
+  var verif = bserie + bfalla + btecnico;
+  if (verif == 3) {
+    console.log("campos: " + contro);
+    guardarTrabajo();
+    $("#TrabajoModal").modal("hide");
+  }
 };
 
 let btnBuscarEquipo = document.getElementById("testBusca");
@@ -224,7 +281,7 @@ btnServicios.addEventListener("click", function (e) {
   }
 });
 
-btnX.addEventListener("click",function(e){
+btnX.addEventListener("click", function (e) {
   e.preventDefault();
   cerrarEditar();
 });
@@ -506,7 +563,6 @@ function buscarTrabajos() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
-      
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");

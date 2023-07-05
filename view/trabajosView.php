@@ -22,6 +22,7 @@ include('../templates/cabecera.php');
                                     <option value="3">Servicio 3</option>
                                     <option value="4">Servicio 4</option>
                                 </select>
+                                <small class="alerta" id="alertaservicio"></small>
                             </div>
                         </div>
                     </div>
