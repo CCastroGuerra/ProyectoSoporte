@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal Servicio -->
-<div class="modal fade" id="servicioModal" tabindex="-1" aria-labelledby="servicioModalLabel" aria-hidden="true">
+<div class="modal fade" id="servicioModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="servicioModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

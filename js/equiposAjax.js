@@ -9,6 +9,7 @@ listarSelectEstado();
 
 let frmComponentes = document.getElementById("formEquipos");
 let frmEquipos = document.getElementById("formAEquipo");
+let modalp = frmEquipos.parentNode.parentNode.parentNode.id;
 let frmResponsable = document.getElementById("formResponsable");
 let selecModelo = document.getElementById("selModeloEquipo");
 let selecMarca = document.getElementById("selMarcaEquipo");
@@ -110,13 +111,18 @@ selectTipo.addEventListener("change", function () {
 });
 selecMarca.addEventListener("change", function () {
   //verifica si se ha sellecionado una opcion valida de marca
+  console.log("cambio marca");
   if (selecMarca.value == 0) {
     alertMarca.innerText = "Seleccione una opcion válida";
+    console.log("el valor es 0");
     bmarca = 0;
     bmodelo = 0;
+    selecModelo.disabled=true;
   } else {
     alertMarca.innerText = "";
     bmarca = 1;
+    selecModelo.disabled=false;
+    listarSelectModelo();
   }
 });
 selecModelo.addEventListener("change", function () {
@@ -181,6 +187,35 @@ function validarFormulario() {
   }
 }
 
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener("show.coreui.modal", (event) => {
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
+  //limpiar mensajes de error
+  alertTipo.innerText = "";
+  alertMarca.innerText = "";
+  alertModelo.innerText = "";
+  alertArea.innerText = "";
+  alertEstado.innerText = "";
+  alertMargesi.innerText = "";
+  //modelo debe estar bloqueado
+  switch (button.id) {
+    case "btmodal":
+      modalTitle.textContent = "Guardar";
+      selecModelo.disabled = true;
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      selecModelo.disabled = false;
+      break;
+  }
+});
+/**** */
+
 btnmodal.addEventListener("click", function () {
   //condiciones iniciales del modal equipos
   console.log("modal abierto");
@@ -239,11 +274,11 @@ frmResponsable.onsubmit = function (e) {
  
 };*/
 
-selecModelo.disabled = true;
+/* selecModelo.disabled = true;
 selecMarca.addEventListener("change", () => {
   console.log("cambio marca");
   listarSelectModelo();
-});
+}); */
 
 function listarSelectModelo() {
   console.log("selctMarca cambio");

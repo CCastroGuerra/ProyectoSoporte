@@ -6,9 +6,15 @@ buscarTrabajos();
 /****************************************/
 let frmServicios = document.getElementById("formServicios");
 let frmTrabajos = document.getElementById("frmTrabajoa");
+
+let modalp = frmTrabajos.parentNode.parentNode.parentNode.id;
 let btnCerrar = document.getElementById("btncerrar");
+let btnX = document.getElementById("btncerrarX");
 let btnServicios = document.getElementById("btnServicio"); //btn que levanta modal servicio
 btnServicios.disabled = true;
+let btnmodal = document.getElementById("btmguardar");
+
+
 /***************************************/
 
 /***********recorrer elememntos a validar****************/
@@ -53,18 +59,18 @@ msgal.forEach((element) => {
 });
 /******************************************************/
 /**************al presionar bton añadir en vista principal*/
-let fabtn = document.getElementById("anTrabajo");
+/* let fabtn = document.getElementById("anTrabajo");
 fabtn.addEventListener("click", function () {
   inpserie.disabled = false;
-  inpmargesi.disabled = false;
-  inpusuario.disabled = false;
-  inparea.disabled = false;
-  inpequipo.disabled = false;
+  inpmargesi.disabled = true;
+  inpusuario.disabled = true;
+  inparea.disabled = true;
+  inpequipo.disabled = true;
   inpmarca.disabled = false;
   inpmodelo.disabled = false;
   btnServicios.disabled = true;
   frmTrabajos.reset();
-});
+}); */
 /******************************************************* */
 
 /* Activar boton añadir con validaciones*/
@@ -143,6 +149,45 @@ frmTrabajos.addEventListener("change", function () {
 }); */
 /******************************************************/
 
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener("show.coreui.modal", (event) => {
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
+  switch (button.id) {
+    case "anTrabajo":
+      modalTitle.textContent = "Guardar";
+      frmTrabajos.reset();
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+  //limpiar mensajes
+  alserie.innerText = "";
+  almargesi.innerText = "";
+  alusuario.innerText = "";
+  alarea.innerText = "";
+  alequipo.innerText = "";
+  almarca.innerText = "";
+  almodelo.innerText = "";
+  alfalla.innerText = "";
+  altecnico.innerText = "";
+  alsolucion.innerText = "";
+  alrecom.innerText = "";
+  //boton principal deshabilitado
+  btnmodal.disabled = true;
+  inpmargesi.disabled = true;
+  inpusuario.disabled = true;
+  inparea.disabled = true;
+  inpequipo.disabled = true;
+  inpmarca.disabled = true;
+  inpmodelo.disabled = true;
+});
+
 frmServicios.onsubmit = function (e) {
   e.preventDefault();
   guardarServiciosTempo();
@@ -175,6 +220,11 @@ btnServicios.addEventListener("click", function (e) {
       console.log("Trabajo guardado");
     }
   }
+});
+
+btnX.addEventListener("click",function(e){
+  e.preventDefault();
+  cerrarEditar();
 });
 
 /**************BUSCAR TRABAJOS*************/
@@ -454,19 +504,7 @@ function buscarTrabajos() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
-      botonesEd = document.querySelectorAll("#btnEditar");
-      botonesEd.forEach((el) => {
-        el.addEventListener("click", function () {
-          inpserie.disabled = true;
-          inpmargesi.disabled = true;
-          inpusuario.disabled = true;
-          inparea.disabled = true;
-          inpequipo.disabled = true;
-          inpmarca.disabled = true;
-          inpmodelo.disabled = true;
-          btnServicios.disabled = false;
-        });
-      });
+      
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");

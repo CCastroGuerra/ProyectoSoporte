@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal bajas -->
-<div class="modal fade" id="bajasModal" tabindex="-1" aria-labelledby="rolesModalLabel" aria-hidden="true">
+<div class="modal fade" id="bajasModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="rolesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,18 +79,18 @@ include('../templates/cabecera.php');
                 <div class="card-body">
                     <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-6">Lista Bajas </div>
+                            <div class="col-lg-9 col-sm-8">Lista Bajas </div>
 
                             <!--  -->
-                            <div class="col-lg-2 col-sm-4 text-end row">
+                            <div class="text-end col-lg-3 col-sm-4 row">
                                 <!-- Boton para generar pdf -->
-                                <div class="text-center col-lg-6 col-sm-6">
+                                <div class="text-center col-lg-6 col-sm-5">
                                     <a href="reportesBajas.php" class="pdf-button" target="_blank">
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <!-- Boton Añadir -->
-                                <div class="text-center col-lg-6 clo-sm-6">
+                                <div class="text-end col-lg-6 col-sm-7">
                                     <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
                                 </div>
                             </div>

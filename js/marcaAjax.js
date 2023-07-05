@@ -25,6 +25,27 @@ nombre_marca.onkeypress = function (evento) {
 
 ////
 
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener('show.coreui.modal', event =>{
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: "+button.id);
+  var modalTitle= modal.querySelector('.modal-title');
+  alerta.innerText = "";
+  alerta2.innerText = "";
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+});
+/**** */
+
 frmMarca.onsubmit = function (e) {
   e.preventDefault();
   var band = 0;
@@ -42,11 +63,13 @@ frmMarca.onsubmit = function (e) {
       if (regla.test(nombre_marca.value) == false) {
         band++;
         alerta.innerText = "el elemento no debe contener numeros";
+      }else{
+        alerta.innerText="";
       }
     }
     if (categ.value == 0) {
       band++;
-      console.log("no se ha seleccionado una categoria");
+      //console.log("no se ha seleccionado una categoria");
       alerta2.innerText = "no se ha seleccionado una categoria";
     }
 

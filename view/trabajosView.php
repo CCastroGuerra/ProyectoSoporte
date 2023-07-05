@@ -38,12 +38,12 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal Trabajo-->
-<div class="modal fade" id="TrabajoModal" tabindex="-1" aria-labelledby="TrabajoModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false">
+<div class="modal fade" id="TrabajoModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="TrabajoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registrar Trabajos</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close" id="btncerrarX"></button>
             </div>
             <form id="frmTrabajoa">
                 <div class="modal-body">
@@ -69,17 +69,17 @@ include('../templates/cabecera.php');
                                         <div class="form-group">
                                             <label for="marquesi" class="mb-2">Marquesi:</label>
                                             <input type="text" class="form-control form-control-sm mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
-                                            <small class="alerta" id="almargesi"></small>
+                                            <small class="alerta" id="almargesi" disabled></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="nombreUsuario" class="mb-2">Responsable del Equipo:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese el Area">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese el Area" disabled>
                                             <small class="alerta" id="alusuario"></small>
                                             <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="nombreUsuarioID" name="nombreUsuarioID" placeholder="Ingrese el AreaId">
                                         </div>
                                         <div class="form-group">
                                             <label for="selArea" class="mb-2">Area:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="selArea" name="selArea" placeholder="Ingrese el Area">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="selArea" name="selArea" placeholder="Ingrese el Area" disabled>
                                             <small class="alerta" id="alarea"></small>
                                             <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="selAreaID" name="selAreaID" placeholder="Ingrese el AreaId">
                                         </div>
@@ -179,7 +179,7 @@ include('../templates/cabecera.php');
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal" id="btncerrar" name="btncerrar">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary" id="btmguardar">Guardar</button>
 
                 </div>
             </form>

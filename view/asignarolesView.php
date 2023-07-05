@@ -11,7 +11,7 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
 }
 </script>
 <!-- Modal Roles -->
-<div class="modal fade" id="rolesModal" tabindex="-1" aria-labelledby="rolesModalLabel" aria-hidden="true">
+<div class="modal fade" id="rolesModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="rolesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

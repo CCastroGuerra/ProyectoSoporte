@@ -2,7 +2,6 @@ var numPagina = 1;
 buscarBajas();
 let id = 0;
 
-var cont = 0;
 let frmBajas = document.getElementById("formBajas");
 const modalp = frmBajas.parentNode.parentNode.parentNode.id;
 
@@ -24,6 +23,36 @@ let alertEquipo = document.getElementById("Equipo");
 let alertTipo = document.getElementById("combo");
 let alertMotivo = document.getElementById("txtMotivo");
 
+// Variables de control
+let bequi = 0;
+let btipo = 0;
+let bmoti = 0;
+
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener("show.coreui.modal", (event) => {
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
+  alertEquipo.innerText = "";
+  alertTipo.innerText = "";
+  alertMotivo.innerText = "";
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      btnGuardar.disabled = true;
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      btnGuardar.disabled = false;
+      break;
+  }
+  // validarFormulario();
+});
+/**** */
+
 frmBajas.onsubmit = function (e) {
   e.preventDefault();
   if (frmBajas.querySelector("#inputCodigo").value !== "") {
@@ -40,7 +69,7 @@ frmBajas.onsubmit = function (e) {
   frmBajas.reset();
 };
 
-let mouse = document.querySelector(".modal-footer");
+//let mouse = document.querySelector(".modal-footer");
 
 btnGuardar.disabled = true;
 /*mouse.addEventListener("mouseover", function (e) {
@@ -74,38 +103,6 @@ btnGuardar.disabled = true;
 /*********************************/
 
 // Función para realizar las validaciones
-function validarSerieMar() {
-  let equipo = equipoInput.value;
-  // Validar campo de equipo
-  if (equipo === "" || equipo.trim().length == 0 || equipo.trim().length < 6) {
-    alertEquipo.innerText = "Por favor, ingresa una serie válida.";
-  } else {
-    alertEquipo.innerText = "";
-    cont++;
-  }
-}
-
-function validarTipo() {
-  let tipo = tipoSelect.value;
-  // Validar campo de tipo
-  if (tipo === "" || tipo === "0") {
-    alertTipo.innerText = "Por favor, selecciona un tipo de baja.";
-  } else {
-    alertTipo.innerText = "";
-    cont++;
-  }
-}
-
-function validarMotivo() {
-  let motivo = motivoInput.value;
-  // Validar campo de motivo
-  if (motivo === "") {
-    alertMotivo.innerText = "Por favor, ingrese el motivo de la baja.";
-  } else {
-    alertMotivo.innerText = "";
-    cont++;
-  }
-}
 function validarFormulario() {
   let equipo = equipoInput.value;
   let tipo = tipoSelect.value;
@@ -114,43 +111,82 @@ function validarFormulario() {
   // Validar campo de equipo
   if (equipo === "" || equipo.trim().length == 0 || equipo.trim().length < 6) {
     alertEquipo.innerText = "Por favor, ingresa una serie válida.";
+    bequi = 0;
   } else {
     alertEquipo.innerText = "";
-    cont++;
+    bequi = 1;
   }
 
   // Validar campo de tipo
   if (tipo === "" || tipo === "0") {
     alertTipo.innerText = "Por favor, selecciona un tipo de baja.";
+    btipo = 0;
   } else {
     alertTipo.innerText = "";
-    cont++;
+    btipo = 1;
   }
 
   // Validar campo de motivo
   if (motivo === "") {
     alertMotivo.innerText = "Por favor, ingrese el motivo de la baja.";
+    bmoti = 0;
   } else {
     alertMotivo.innerText = "";
-    cont++;
+    bmoti = 1;
   }
-
+  cont = bequi + btipo + bmoti;
   if (cont == 3) {
     btnGuardar.disabled = false;
   }
 }
 
 // Asignar la función de validación a los eventos input de los campos
-equipoInput.addEventListener("input", validarSerieMar);
-tipoSelect.addEventListener("change", validarTipo);
-motivoInput.addEventListener("input", validarMotivo);
-console.log("llenos: " + cont);
-if (cont == 3) {
-  btnGuardar.disabled = false;
-}
+equipoInput.addEventListener("input", () => {
+  let equipo = equipoInput.value;
+  if (equipo === "" || equipo.trim().length == 0 || equipo.trim().length < 6) {
+    alertEquipo.innerText = "Por favor, ingresa una serie válida.";
+    bequi = 0;
+  } else {
+    alertEquipo.innerText = "";
+    bequi = 1;
+  }
+});
+
+tipoSelect.addEventListener("change", () => {
+  let tipo = tipoSelect.value;
+  if (tipo === "" || tipo === "0") {
+    alertTipo.innerText = "Por favor, selecciona un tipo de baja.";
+    btipo = 0;
+  } else {
+    alertTipo.innerText = "";
+    btipo = 1;
+  }
+});
+
+motivoInput.addEventListener("input", () => {
+  let motivo = motivoInput.value;
+  // Validar campo de motivo
+  if (motivo === "") {
+    alertMotivo.innerText = "Por favor, ingrese el motivo de la baja.";
+    bmoti = 0;
+  } else {
+    alertMotivo.innerText = "";
+    bmoti = 1;
+  }
+});
+
+frmBajas.addEventListener("input", () => {
+  console.log("se detectó un cambio");
+  ball = bequi + btipo + bmoti;
+  if (ball == 3) {
+    btnGuardar.disabled = false;
+  } else {
+    btnGuardar.disabled = true;
+  }
+});
 
 // Asignar la función de validación al evento mouseover del formulario
-mouse.addEventListener("mouseover", validarFormulario);
+//mouse.addEventListener("mouseover", validarFormulario);
 
 /********************************/
 
@@ -335,6 +371,7 @@ function mostrarEnModal(bajasId) {
     document.getElementById("selArea").value = datos.nombreTipoId;
     document.getElementById("motivo").value = datos.motivo;
     document.getElementById("inputCodigo").value = datos.id;
+    validarFormulario();
   };
   ajax.send(data);
 }

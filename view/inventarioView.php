@@ -2,7 +2,7 @@
 include('../templates/cabecera.php');
 ?>
 <!-- modal inventario -->
-<div class="modal fade" id="inventarioModal" tabindex="-1" aria-labelledby="inventarioModalLabel" aria-hidden="true">
+<div class="modal fade" id="inventarioModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="inventarioModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
