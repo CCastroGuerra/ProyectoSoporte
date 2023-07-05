@@ -1,6 +1,8 @@
 var numPagina = 1;
 let id = "";
 var frmPersonal = document.getElementById("formEmpleados");
+
+const modalp = frmPersonal.parentNode.parentNode.parentNode.id;
 let apelli = document.getElementById("apellidos");
 let nombrs = document.getElementById("nombre");
 let inpdni = document.getElementById("dniusuario");
@@ -61,6 +63,29 @@ inpdni.addEventListener("keypress", function (evt) {
     evt.preventDefault();
   }
 });
+
+//cambiar titulo de modal
+const modal = document.getElementById(modalp);
+modal.addEventListener('show.coreui.modal', event =>{
+  console.log("el modal se ha levantado");
+  //reconocer que boton ha sido el que efectuo el evento
+  var button = event.relatedTarget;
+  console.log("el modal fue levantado por: "+button.id);
+  var modalTitle= modal.querySelector('.modal-title');
+  msgal.forEach((element) => {
+    element.innerText="";
+  });
+  switch (button.id) {
+    case "":
+      modalTitle.textContent = "Guardar";
+      frmPersonal.reset();
+      break;
+    case "btnEditar":
+      modalTitle.textContent = "Editar";
+      break;
+  }
+});
+/**** */
 
 frmPersonal.onsubmit = function (e) {
   e.preventDefault();

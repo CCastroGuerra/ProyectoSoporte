@@ -59,9 +59,13 @@ modal.addEventListener('show.coreui.modal', event =>{
   var button = event.relatedTarget;
   console.log("el modal fue levantado por: "+button.id);
   var modalTitle= modal.querySelector('.modal-title');
+  msgal.forEach((element) => {
+    element.innerText="";
+  });
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
+      frmAsignarRol.reset();
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";

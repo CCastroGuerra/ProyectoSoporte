@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
                                 <label for="inputRol" class="mb-2">Rol:</label>
-                                <input type="text" class="form-control mb-2" id="inputRol" name="inputRol" placeholder="Ingrese el Rol" required>
+                                <input type="text" class="form-control mb-2" id="inputRol" name="inputRol" placeholder="Ingrese el Rol">
                                 <div id="alerta"></div>
                             </div>
                         </div>

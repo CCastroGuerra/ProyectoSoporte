@@ -35,9 +35,11 @@ modal.addEventListener('show.coreui.modal', event =>{
   var modalTitle= modal.querySelector('.modal-title');
   alerta.innerText = "";
   alerta2.innerText = "";
+  
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
+      frmMarca.reset()
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";

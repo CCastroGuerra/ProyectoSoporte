@@ -69,15 +69,20 @@ estado_compo.onchange = function () {
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
-modal.addEventListener('show.coreui.modal', event =>{
+modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
-  console.log("el modal fue levantado por: "+button.id);
-  var modalTitle= modal.querySelector('.modal-title');
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
+  var ofr = document.querySelectorAll("#formAcomponente .alerta");
+  ofr.forEach((element) => {
+    element.innerText="";
+  });
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
+      frmComponentes.reset()
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
