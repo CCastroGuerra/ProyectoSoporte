@@ -57,7 +57,7 @@ $("#togglePassword").on("click", function () {
 frmUsuario.onsubmit = function (e) {
   e.preventDefault();
   if (frmUsuario.querySelector("#inputCodigo").value !== "") {
-    console.log("actualizo");
+    //console.log("actualizo");
     //actualizar(id);
   } else {
     if (codpersonal.value.trim().length == 0) {

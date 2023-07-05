@@ -116,10 +116,8 @@ function buscarArea() {
               
               <td>${area.nombre}</td>
               <td>
-              <button type="button" onClick='mostrarEnModal("${area.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-
-                      
+              <button type="button" onClick='mostrarEnModal("${area.id}");  ' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#areaModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+     
               <button type="button" onClick='eliminarArea("${area.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
               </td>
@@ -152,6 +150,7 @@ function guardarArea() {
   var realizado = "";
   var mensaje = "";
   const ajax = new XMLHttpRequest();
+
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/areaController.php", true);
   var data = new FormData(frmArea);
@@ -162,6 +161,7 @@ function guardarArea() {
     if (realizado * 1 > 0) {
       swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
+
     buscarArea();
     //listarArea();
     frmArea.reset();
@@ -172,7 +172,6 @@ function guardarArea() {
 function mostrarEnModal(areaid) {
   id = areaid;
   console.log(id);
-
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/areaController.php", true);
   const data = new FormData();
