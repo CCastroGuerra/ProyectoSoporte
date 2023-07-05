@@ -1,3 +1,4 @@
+let numPagina = 1;
 buscarEquipo();
 buscarResponsable();
 //listarTablaTemp();
@@ -676,7 +677,6 @@ function guardarEquipoComponente() {
 }
 
 function buscarEquipo() {
-  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarEquipos");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

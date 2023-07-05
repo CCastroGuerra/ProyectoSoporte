@@ -1,3 +1,4 @@
+let numPagina = 1;
 buscarEntrada();
 buscarSalida();
 buscarResumen();

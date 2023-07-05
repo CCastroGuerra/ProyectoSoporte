@@ -1,6 +1,7 @@
+var numPagina = 1;
 buscarBajas();
 let id = 0;
-var numPagina = 1;
+
 var cont = 0;
 let frmBajas = document.getElementById("formBajas");
 const modalp = frmBajas.parentNode.parentNode.parentNode.id;
@@ -251,7 +252,6 @@ function editarEstadoEquipo() {
 // }
 
 function buscarBajas() {
-  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarBajas");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;
