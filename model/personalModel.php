@@ -1,5 +1,6 @@
-<?php 
-class Personal extends Conectar{
+<?php
+class Personal extends Conectar
+{
 
     public function listarPersonal()
     {
@@ -7,8 +8,8 @@ class Personal extends Conectar{
         $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
         //Para comprobar si se a mandado el parametro de registros
         if (isset($_POST['registros'])) {
-        $limit = $_POST['registros'];
-        $sLimit = "LIMIT $limit";
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
         }
         $sql = "SELECT id_personal, nombre_personal,apellidos_personal, dni_personal,correo_personal,telefono_personal,cargo_personal cargoId, 
         CASE
@@ -40,15 +41,15 @@ class Personal extends Conectar{
                     'dni' => $row['dni_personal'],
                     'correo' => $row['correo_personal'],
                     'telefono' => $row['telefono_personal'],
-                    'cargoPersonal'=>$row['cargoPersonal']
-                    
+                    'cargoPersonal' => $row['cargoPersonal']
+
                 );
             }
             $jsonString = json_encode($listado);
             echo $jsonString;
         }
     }
-    public function agregarPersonal($apellidoPersonal,$nombrePersonal,$dni,$correo,$telefono,$valorSeleccionado)
+    public function agregarPersonal($apellidoPersonal, $nombrePersonal, $dni, $correo, $telefono, $valorSeleccionado)
     {
         $conectar = parent::conexion();
         $sql = "INSERT INTO `personal` (`apellidos_personal`, `nombre_personal`, `dni_personal`, `correo_personal`, `telefono_personal`, `cargo_personal`) VALUES ('$apellidoPersonal', '$nombrePersonal', '$dni', '$correo','$telefono', '$valorSeleccionado');";
@@ -60,9 +61,10 @@ class Personal extends Conectar{
         }
     }
 
-    public function actulizarPersonal($idPersonal,$apellidoPersonal,$nombrePersonal,$dni,$correo,$telefono,$valorSeleccionado){
-        $conectar= parent::conexion();
-        $sql="UPDATE personal
+    public function actulizarPersonal($idPersonal, $apellidoPersonal, $nombrePersonal, $dni, $correo, $telefono, $valorSeleccionado)
+    {
+        $conectar = parent::conexion();
+        $sql = "UPDATE personal
             SET
                apellidos_personal=? ,
                nombre_personal =?,
@@ -72,22 +74,23 @@ class Personal extends Conectar{
                cargo_personal = ?
             WHERE
                 id_personal = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$apellidoPersonal);
-        $sql->bindValue(2,$nombrePersonal);
-        $sql->bindValue(3,$dni);
-        $sql->bindValue(4,$correo);
-        $sql->bindValue(5,$telefono);
-        $sql->bindValue(6,$valorSeleccionado);
-        $sql->bindValue(7,$idPersonal);
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $apellidoPersonal);
+        $sql->bindValue(2, $nombrePersonal);
+        $sql->bindValue(3, $dni);
+        $sql->bindValue(4, $correo);
+        $sql->bindValue(5, $telefono);
+        $sql->bindValue(6, $valorSeleccionado);
+        $sql->bindValue(7, $idPersonal);
         $sql->execute();
-       return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
 
-    public function traePersonalXId($idPersonal){
-        $conectar= parent::conexion();
+    public function traePersonalXId($idPersonal)
+    {
+        $conectar = parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql ="SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
+        $sql = "SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
         CASE
             WHEN cargo_personal = 0 THEN 'Vacio'
             WHEN cargo_personal = 1 THEN 'Administrador'
@@ -98,20 +101,21 @@ class Personal extends Conectar{
             WHEN cargo_personal = 4 THEN 'Técnico'
         END as cargoPersonal
         FROM `personal` WHERE id_personal = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$idPersonal);
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $idPersonal);
         $sql->execute();
-        return $sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
 
-    public function eliminarPersonal($id){
+    public function eliminarPersonal($id)
+    {
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
             $sql = "UPDATE personal SET esActivo_personal = 0 WHERE id_personal = ?";
-            $sql = $conectar ->prepare($sql);
-            $sql -> bindValue(1, $id);
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado = $sql->fetchAll();
         } else {
@@ -119,7 +123,8 @@ class Personal extends Conectar{
         }
     }
 
-    public function buscarPersonal($pagina = 1) {
+    public function buscarPersonal($pagina = 1)
+    {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
@@ -127,10 +132,10 @@ class Personal extends Conectar{
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
-            $limit = $_POST['registros'];
-            $sLimit = "LIMIT $limit";
+                $limit = $_POST['registros'];
+                $sLimit = "LIMIT $limit";
             }
-            $inicio = ($pagina-1)*$limit;
+            $inicio = ($pagina - 1) * $limit;
             //echo $inicio;
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
             $sql = "SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
@@ -156,32 +161,31 @@ class Personal extends Conectar{
             $json = [];
             $pesonals =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if(!empty($pesonals)){
+            if (!empty($pesonals)) {
                 $listado = array();
-                foreach($pesonals as $personal){
+                foreach ($pesonals as $personal) {
                     $listado[] = array(
-                    'id' => $personal['id_personal'],
-                    'apellidos' => $personal['apellidos_personal'],
-                    'nombre' => $personal['nombre_personal'],
-                    'dni' => $personal['dni_personal'],
-                    'telefono' => $personal['telefono_personal'],
-                    'correo' => $personal['correo_personal'],
-                    'cargoPersonal'=>$personal['cargoPersonal']
-                    
+                        'id' => $personal['id_personal'],
+                        'apellidos' => $personal['apellidos_personal'],
+                        'nombre' => $personal['nombre_personal'],
+                        'dni' => $personal['dni_personal'],
+                        'telefono' => $personal['telefono_personal'],
+                        'correo' => $personal['correo_personal'],
+                        'cargoPersonal' => $personal['cargoPersonal']
+
                     );
                 }
 
                 $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal WHERE esActivo_personal = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
-    
+
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$limit);
-                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
+                $paginas = ceil($array['cantidad'] / $limit);
+                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
-
-            }else{
+            } else {
                 $resultado = array("listado" => "vacio");
                 $jsonString = json_encode($resultado);
                 echo $jsonString;
@@ -189,6 +193,5 @@ class Personal extends Conectar{
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    } 
-
+    }
 }

@@ -66,14 +66,14 @@ inpdni.addEventListener("keypress", function (evt) {
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
-modal.addEventListener('show.coreui.modal', event =>{
+modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
-  console.log("el modal fue levantado por: "+button.id);
-  var modalTitle= modal.querySelector('.modal-title');
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
   msgal.forEach((element) => {
-    element.innerText="";
+    element.innerText = "";
   });
   switch (button.id) {
     case "":
@@ -196,9 +196,10 @@ function mostrarEnModal(personalId) {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
+    console.log(datos);
     document.getElementById("apellidos").value = datos.apellidos;
     document.getElementById("nombre").value = datos.nombre;
-    document.getElementById("dniusuario").value = datos.dni;
+    document.getElementById("dniusuario").value = datos.dniusuario;
     document.getElementById("telefono").value = datos.telefono;
     document.getElementById("correo").value = datos.correo;
     document.getElementById("selCargo").value = datos.cargoId;
