@@ -2,7 +2,7 @@
 include('../templates/cabecera.php');
 ?>
 <!-- modal presentacion -->
-<div class="modal" tabindex="-1" id="presentacionModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true">
+<div class="modal" tabindex="-1" id="presentacionModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,7 +91,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal -->
-<div class="modal fade" id="productosModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="productosModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -129,7 +129,7 @@ include('../templates/cabecera.php');
                                         <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
                                         <input type="text" class="form-control mb-2" id="selUnidad" name="selUnidad" placeholder="Ingrese Presentacion" data-coreui-toggle="modal" data-coreui-target="#presentacionModal" readonly>
                                         <small class="form-text text-muted alerta" id="alerta3"></small>
-                                        <input type="text" class="form-control mb-2 visually-hidden" id="presValue" name="presValue">
+                                        <input type="text" class="form-control mb-2" id="presValue" name="presValue">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>

@@ -64,7 +64,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
   var modalTitle = modal.querySelector(".modal-title");
   var ofr = document.querySelectorAll("#formProducto .alerta");
   ofr.forEach((element) => {
-    element.innerText="";
+    element.innerText = "";
   });
   switch (button.id) {
     case "":
@@ -79,51 +79,19 @@ modal.addEventListener("show.coreui.modal", (event) => {
 
 frmProductos.onsubmit = function (e) {
   e.preventDefault();
-  var band = 0;
+  var completo = validarFormulario();
   if (frmProductos.querySelector("#inputID").value !== "") {
-    console.log("actualizo");
-    actualizar(id);
-    setTimeout(function () {
-      $("#" + modalp).modal("toggle");
-    }, 3000);
+    if (completo == 6) {
+      console.log("actualizo");
+      actualizar(id);
+      setTimeout(function () {
+        $("#" + modalp).modal("hide");
+      }, 3000);
+    }
   } else {
-    if (nombre_producto.value.trim().length == 0) {
-      band++;
-      alerta1.innerText = "El nombre no puede estar vacío";
-    } else {
-      if (regla.test(nombre_producto.value) == false) {
-        band++;
-        alerta1.innerText = "El nombre no puede contener numeros";
-      }
-    }
-
-    if (tipo_producto.value == "0") {
-      band++;
-      alerta2.innerText = "No ha selecionado el tipo";
-    }
-    if (tipo_presentacion.value == 0) {
-      band++;
-      alerta3.innerText = "No ha seleccionado la presentacion";
-    }
-
-    if (ctd_producto.value == 0 || ctd_producto.value == "") {
-      band++;
-      alerta4.innerText = "la cantidad no puede ser 0";
-    }
-
-    if (almacen.value == 0) {
-      band++;
-      alerta5.innerText = "Seleccione el almacen";
-    }
-
-    if (detalle_producto.value == "") {
-      band++;
-      alerta6.innerText = "el detalle no puede ser vacío";
-    }
-    console.log("errores: " + band);
-    if (band == 0) {
+    if (completo == 6) {
       guardarProdcutos();
-      $("#" + modalp).modal("toggle");
+      $("#" + modalp).modal("hide");
       console.log("guardo");
       cajaBuscar.disabled = false;
       frmProductos.reset();
@@ -131,6 +99,63 @@ frmProductos.onsubmit = function (e) {
   }
   return false;
 };
+
+function validarFormulario() {
+  if (nombre_producto.value.trim().length == 0) {
+    bnombre = 0;
+    alerta1.innerText = "El nombre no puede estar vacío";
+  } else {
+    if (regla.test(nombre_producto.value) == false) {
+      bnombre = 0;
+      alerta1.innerText = "El nombre no puede contener numeros";
+    } else {
+      bnombre = 1;
+      alerta1.innerText = "";
+    }
+  }
+
+  if (tipo_producto.value == "0") {
+    btipo = 0;
+    alerta2.innerText = "No ha selecionado el tipo";
+  } else {
+    btipo = 1;
+    alerta2.innerText = "";
+  }
+  if (tipo_presentacion.value == 0) {
+    bpres = 0;
+    alerta3.innerText = "No ha seleccionado la presentacion";
+  } else {
+    bpres = 1;
+    alerta3.innerText = "";
+  }
+
+  if (ctd_producto.value < 0 || ctd_producto.value == "") {
+    bctd = 0;
+    alerta4.innerText = "la cantidad no puede ser 0";
+  } else {
+    bctd = 1;
+    alerta4.innerText = "";
+  }
+
+  if (almacen.value == 0) {
+    balm = 0;
+    alerta5.innerText = "Seleccione el almacen";
+  } else {
+    balm = 1;
+    alerta5.innerText = "";
+  }
+
+  if (detalle_producto.value == "") {
+    bdeta = 0;
+    alerta6.innerText = "el detalle no puede ser vacío";
+  } else {
+    bdeta = 1;
+    alerta6.innerText = "";
+  }
+  var cont = bnombre + btipo + bpres + bctd + balm + bdeta;
+  console.log("completos: " + cont);
+  return cont;
+}
 
 frmPresentacion.onsubmit = (e) => {
   e.preventDefault();
@@ -237,6 +262,7 @@ function mostrarEnModal(productoId) {
     document.getElementById("selUnidad").value = datos.nombrePresentacion;
     document.getElementById("ctdProducto").value = datos.cantidad;
     document.getElementById("selAlmacen").value = datos.almacenId;
+    document.getElementById("presValue").value = datos.presentacionId
     document.getElementById("detalleProducto").value = datos.descripcion;
     document.getElementById("inputID").value = datos.id;
   };
@@ -271,6 +297,8 @@ elemento3.onchange = function () {
   console.log("Valor seleccionado:", valorSeleccionado);
 };
 
+let elemento4 = document.getElementById("presValue");
+
 function actualizar(id) {
   const nombreInput = document.getElementById("nombreProducto");
   const cantInput = document.getElementById("ctdProducto");
@@ -280,7 +308,7 @@ function actualizar(id) {
   const cantidad = cantInput.value;
   const comboAlmacen = elemento.value;
   const comboProducto = elemento2.value;
-  const comboUnidad = elemento3.value;
+  const comboUnidad = elemento4.value;
   const descripcion = descripcionInput.value;
 
   swal

@@ -1,6 +1,13 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+
+
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module" src="../vendors/chart.js/js/chart.min.js"></script>
+<script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+
+
 <?php
 //Consultas para total de productos
 require_once("../config/conexion.php");
@@ -151,7 +158,7 @@ if ($consulta4->execute()) {
 
         </div>
         <div class="c-chart-wrapper" style="height:300px;">
-          <canvas id="miCanvas"></canvas>
+          <canvas class="chart" id="miCanvas"></canvas>
         </div>
       </div>
     </div>
@@ -167,7 +174,7 @@ if ($consulta4->execute()) {
 
         </div>
         <div class="c-chart-wrapper" style="height:300px;">
-          <canvas id="miCanvas2"></canvas>
+          <canvas class="chart" id="miCanvas2"></canvas>
         </div>
       </div>
     </div>
@@ -318,10 +325,8 @@ include '../templates/footer.php';
 ?>
 
 <!-- Plugins and scripts required by this view-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="../vendors/chart.js/js/chart.min.js"></script>
-<script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+
 <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
 
-<script src="../js/main.js"></script>
+<!-- <script src="../js/main.js"></script> -->
 <script src="../js/dashboard.js"></script>

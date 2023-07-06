@@ -3,7 +3,7 @@ include('../templates/cabecera.php');
 ?>
 
 <!-- modal responsable -->
-<div class="modal" tabindex="-1" id="responsableModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true">
+<div class="modal" tabindex="-1" id="responsableModal" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,7 +63,7 @@ include('../templates/cabecera.php');
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
+                <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrarResp">Cerrar</button>
             </div>
 
         </div>
@@ -89,7 +89,7 @@ include('../templates/cabecera.php');
 <!-- fin de estilos -->
 
 <!-- Modal  añadir equipo-->
-<div class="modal fade" id="añadirEquipo" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="añadirEquipo" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true"  aria-modal="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -252,11 +252,11 @@ include('../templates/cabecera.php');
 <!-- Fin del modal  -->
 
 <!--Modal añadir componente-->
-<div class="modal fade" id="añadirComponente" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="añadirComponente" aria-hidden="true">
+<div class="modal fade" id="añadirComponente" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="añadirComponente" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog" modal-sm>
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="añadirComponente">Añadir Componente</h5>
+                <h5 class="modal-title" id="añadirComponentetitle">Añadir Componente</h5>
                 <button type="button" class="btn-close" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formEquipos">
@@ -273,7 +273,7 @@ include('../templates/cabecera.php');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrar">Cerrar</button>
+                    <button type="button" class="btn btn-secondary btncerrar" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btncerrarcomp">Cerrar</button>
                     <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" id="btmcomp">Guardar</button>
                 </div>
             </form>

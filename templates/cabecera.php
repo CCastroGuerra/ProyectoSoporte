@@ -18,6 +18,7 @@
   <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
   <meta name="author" content="Łukasz Holeczek">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+  <meta http-equiv="Cache-control" content="must-revalidate">
   <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicon/apple-icon-60x60.png">
   <title>Soporte Técnico</title>
 
@@ -37,7 +38,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
- <!--  <link rel="manifest" href="../assets/favicon/manifest.json"> -->
+  <!--  <link rel="manifest" href="../assets/favicon/manifest.json"> -->
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="../assets/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
@@ -162,7 +163,7 @@
         <use xlink:href="../assets/brand/coreui.svg#signet"></use>
       </svg> -->
       <h2 class="cssFont_1">Soporte Técnico</h2>
-      <!-- <img src="../img/apoyo-tecnico.png" alt="" style="width: 46px; height: 46px;"> -->
+      <img src="C:\Users\FRIKORTREAT\Downloads\data.png" alt="" style="width: 46px; height: 46px;">
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
       <li class="nav-item"><a class="nav-link" href="../view/dashboardView-edit.php">
@@ -258,31 +259,44 @@
       </li>
       <!--fin almacen-->
       <!-- gestion de personal -->
-      <?php
-      $rolesvista = ['1'];
-      if (in_array($_SESSION["rol_ID"], $rolesvista)) {
-        echo '
-        <li class="nav-divider"></li>
-      <li class="nav-title">Gestión del Personal</li>
-      <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
-          <svg class="nav-icon">
-            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
-          </svg> Asignar Roles</a>
+      <li id="gesper">
+        <script>
+          window.onload = function() {
+            let seccion = "";
+            seccion += `
+            <li class="nav-divider"></li>
+            <li class="nav-title">Gestión del Personal</li>
+            <li class="nav-item"><a class="nav-link" href="../view/asignarolesView.php">
+                <svg class="nav-icon">
+                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
+                </svg> Asignar Roles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../view/personalView.php">
+                <svg class="nav-icon">
+                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+                </svg> Personal</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="../view/usuariosView.php">
+                <svg class="nav-icon">
+                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
+                </svg> Usuario</a>
+            </li>
+          `;
+            console.log("evaluando");
+            let rl = document.querySelector("#sessRol").dataset.sess;
+            let gper = document.getElementById("gesper");
+            if (rl == 1) {
+              var range = document.createRange();
+              range.selectNodeContents(gper);
+              var frag = range.createContextualFragment(seccion);
+              gper.appendChild(frag);
+            }
+          }
+        </script>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../view/personalView.php">
-          <svg class="nav-icon">
-            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-          </svg> Personal</a>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="../view/usuariosView.php">
-          <svg class="nav-icon">
-            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user-plus"></use>
-          </svg> Usuario</a>
-      </li>
-        ';
-      }
-      ?>
+
+      
       <!-- /gestion de personal -->
 
 

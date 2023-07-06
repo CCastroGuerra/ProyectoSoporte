@@ -91,7 +91,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <!-- Boton Añadir -->
                                 <div class="text-end col-lg-6 col-sm-7">
-                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
+                                    <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#bajasModal"><strong>Añadir</strong></button>
                                 </div>
                             </div>
                         </div>

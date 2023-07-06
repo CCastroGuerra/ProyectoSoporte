@@ -59,7 +59,7 @@ include('../templates/cabecera.php');
             <div class="row">
               <div class="col-lg-10 col-sm-6">Lista de Modelos </div>
               <div class="col-lg-2 col-sm-4 text-end">
-                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
+                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#añadirModal"><strong>Añadir</strong></button>
               </div>
             </div>
           </h3>

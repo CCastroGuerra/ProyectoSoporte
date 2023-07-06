@@ -45,13 +45,7 @@ clase_compo.onchange = function () {
     alerta2.innerText = "";
   }
 };
-selecMarca.onchange = function () {
-  if (this.value == 0) {
-    alerta3.innerText = "Seleccione una marca válida";
-  } else {
-    alerta3.innerText = "";
-  }
-};
+
 selecModelo.onchange = function () {
   alerta4.innerText = "";
 };
@@ -73,16 +67,17 @@ modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
-  console.log("el modal fue levantado por: " + button.id);
+  //console.log("el modal fue levantado por: " + button.id);
   var modalTitle = modal.querySelector(".modal-title");
   var ofr = document.querySelectorAll("#formAcomponente .alerta");
   ofr.forEach((element) => {
-    element.innerText="";
+    element.innerText = "";
   });
+  selecModelo.disabled = true;
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
-      frmComponentes.reset()
+      frmComponentes.reset();
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
@@ -98,7 +93,7 @@ frmComponentes.onsubmit = function (e) {
     console.log("actualizo");
     actualizar(id);
     setTimeout(function () {
-      $("#" + modalp).modal("toggle");
+      $("#" + modalp).modal("hide");
     }, 3000);
   } else {
     if (tipo_compo.value == 0) {
@@ -141,36 +136,43 @@ frmComponentes.onsubmit = function (e) {
   return false;
 };
 
-selecModelo.disabled = true;
 selecMarca.addEventListener("change", () => {
-  let marcaId = selecMarca.value;
-  console.log(marcaId);
-  const ajax = new XMLHttpRequest();
-  //Se establace la direccion del archivo php que procesara la peticion
-  ajax.open("POST", "../controller/componentesController.php", true);
-  var data = new FormData();
-  data.append("accion", "listarModel");
-  data.append("id", marcaId);
-  selecModelo.disabled = false;
-  ajax.onload = () => {
-    let respuesta = ajax.responseText;
-    console.log(respuesta);
-    let marcas = JSON.parse(respuesta);
-    console.log(marcas);
-    let options = "<option value=''>Seleccione una Modelo</option>";
-    if (marcas.length > 0) {
-      marcas.forEach(function (marcas) {
-        options += `
+  console.log("cargo marca");
+  if (this.value == 0) {
+    alerta3.innerText = "Seleccione una marca válida";
+  } else {
+    alerta3.innerText = "";
+    let marcaId = selecMarca.value;
+    console.log(marcaId);
+    const ajax = new XMLHttpRequest();
+    //Se establace la direccion del archivo php que procesara la peticion
+    ajax.open("POST", "../controller/componentesController.php", true);
+    var data = new FormData();
+    data.append("accion", "listarModel");
+    data.append("id", marcaId);
+    selecModelo.disabled = false;
+    ajax.onload = () => {
+      let respuesta = ajax.responseText;
+      console.log(respuesta);
+      let marcas = JSON.parse(respuesta);
+      console.log(marcas);
+      let options = "<option value=''>Seleccione un Modelo</option>";
+      if (marcas.length > 0) {
+        marcas.forEach(function (marcas) {
+          options += `
             <option value='${marcas.id}'>${marcas.nombre}</option>
                       `;
-      });
-    } else {
-      selecModelo.disabled = true;
-    }
-    //Actualizar combo
-    document.getElementById("selModelo").innerHTML = options;
-  };
-  ajax.send(data);
+        });
+      } else {
+        selecModelo.disabled = true;
+      }
+      //Actualizar combo
+      document.getElementById("selModelo").innerHTML = options;
+    };
+    ajax.send(data);
+  }
+
+  
 });
 
 function listarSelectMarca() {
@@ -448,7 +450,10 @@ function mostrarEnModal(componenteId) {
     document.getElementById("selTipo").value = datos.nombreTipo;
     document.getElementById("selClase").value = datos.nombreClase;
     document.getElementById("selMarca").value = datos.nombreMarca;
-    document.getElementById("selModelo").value = datos.nombreModelo;
+    document.getElementById("selMarca").dispatchEvent(new Event("change"));
+    setTimeout(() => {
+      document.getElementById("selModelo").value = datos.nombreModelo;
+    }, 300);
     document.getElementById("serie").value = datos.serie;
     document.getElementById("capacidad").value = datos.capacidad;
     document.getElementById("selEstado").value = datos.estado;

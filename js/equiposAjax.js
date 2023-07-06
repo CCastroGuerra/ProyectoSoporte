@@ -21,6 +21,8 @@ let btnComponente = document.getElementById("btnComponente");
 let btnCerrar = document.getElementById("cerrarBot");
 let btnX = document.getElementById("cerrarSup");
 let btnmodal = document.getElementById("btmodal");
+var serieinp = document.getElementById("codigo");
+var btmcomp = document.getElementById("btmcomp");
 let id = 0;
 
 //Mensajes de error
@@ -30,6 +32,7 @@ let alertModelo = document.getElementById("alertaModelo");
 let alertArea = document.getElementById("alertaArea");
 let alertEstado = document.getElementById("alertaEstado");
 let alertMargesi = document.getElementById("alertaMargesi");
+let alertaMComp = document.getElementById("alertaMcomp");
 
 //variables de control
 var btipo = 0;
@@ -87,6 +90,10 @@ $("#tbComponentes").bind("DOMSubtreeModified", function () {
 
 //estilo css de los mensajes de error
 var ofr = document.querySelectorAll("#formAEquipo .alerta");
+ofr.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+var ofr = document.querySelectorAll("#frmComponentes .alerta");
 ofr.forEach((element) => {
   element.setAttribute("style", "color:red !important");
 });
@@ -245,6 +252,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
 
 modalc.addEventListener("show.coreui.modal", (event)=>{
   document.getElementById("formEquipos").reset();
+  btmcomp.disabled=false;
 });
 /**** */
 
@@ -256,9 +264,7 @@ btnmodal.addEventListener("click", function () {
 });
 /***************************************/
 //----validar modal componentes//
-var serieinp = document.getElementById("codigo");
-var btmcomp = document.getElementById("btmcomp");
-let alertaMComp = document.getElementById("alertaMcomp");
+
 btmcomp.disabled = true;
 serieinp.addEventListener("input", function () {
   if (serieinp.value.trim().length > 0) {

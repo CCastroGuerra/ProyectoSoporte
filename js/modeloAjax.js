@@ -276,7 +276,7 @@ numRegistors.addEventListener("change", function () {
 });
 
 function buscarModelo() {
-  let numPagina = 1;
+  //let numPagina = 1;
   var cajaBuscar = document.getElementById("inputbuscarModelo");
   const textoBusqueda = cajaBuscar.value;
   let num_registros = document.getElementById("numRegistros").value;

@@ -22,7 +22,7 @@ frmArea.onsubmit = function (e) {
     console.log("actualizo");
     actualizar(id);
     setTimeout(function () {
-      $("#" + modalp).modal("toggle");
+      $("#" + modalp).modal("hide");
     }, 3000);
   } else {
     if (frmArea.querySelector("#nombre_area").value.trim().length > 0) {

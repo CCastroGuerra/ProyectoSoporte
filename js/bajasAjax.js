@@ -39,10 +39,12 @@ modal.addEventListener("show.coreui.modal", (event) => {
   alertEquipo.innerText = "";
   alertTipo.innerText = "";
   alertMotivo.innerText = "";
+  btnGuardar.disabled = false;
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
-      btnGuardar.disabled = true;
+      frmBajas.reset();
+      btnGuardar.disabled = false;
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
@@ -57,21 +59,27 @@ frmBajas.onsubmit = function (e) {
   e.preventDefault();
   if (frmBajas.querySelector("#inputCodigo").value !== "") {
     console.log("actualizo");
-    actualizar(id);
-    setTimeout(function () {
-      $("#" + modalp).modal("toggle");
-    }, 3000);
+    var completo = validarFormulario();
+    if (completo == 3) {
+      actualizar(id);
+      setTimeout(function () {
+        $("#" + modalp).modal("hide");
+      }, 3000);
+    }
   } else {
-    guardarBajas();
-    //listarArea();
-    console.log("guardo");
+    var completo = validarFormulario();
+    if (completo == 3) {
+      guardarBajas();
+      //listarArea();
+      console.log("guardo");
+      frmBajas.reset();
+    }
   }
-  frmBajas.reset();
 };
 
 //let mouse = document.querySelector(".modal-footer");
 
-btnGuardar.disabled = true;
+
 /*mouse.addEventListener("mouseover", function (e) {
   console.log("mouseenter");
   let tipoSelect = document.getElementById("selArea").value;
@@ -135,9 +143,7 @@ function validarFormulario() {
     bmoti = 1;
   }
   cont = bequi + btipo + bmoti;
-  if (cont == 3) {
-    btnGuardar.disabled = false;
-  }
+  return cont;
 }
 
 // Asignar la función de validación a los eventos input de los campos
@@ -175,15 +181,7 @@ motivoInput.addEventListener("input", () => {
   }
 });
 
-frmBajas.addEventListener("input", () => {
-  console.log("se detectó un cambio");
-  ball = bequi + btipo + bmoti;
-  if (ball == 3) {
-    btnGuardar.disabled = false;
-  } else {
-    btnGuardar.disabled = true;
-  }
-});
+
 
 // Asignar la función de validación al evento mouseover del formulario
 //mouse.addEventListener("mouseover", validarFormulario);
@@ -371,7 +369,7 @@ function mostrarEnModal(bajasId) {
     document.getElementById("selArea").value = datos.nombreTipoId;
     document.getElementById("motivo").value = datos.motivo;
     document.getElementById("inputCodigo").value = datos.id;
-    validarFormulario();
+    //validarFormulario();
   };
   ajax.send(data);
 }
