@@ -159,11 +159,12 @@
 <body>
   <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
-      <!-- <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-        <use xlink:href="../assets/brand/coreui.svg#signet"></use>
+      <!-- <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+        <use xlink:href="../assets/brand/coreui.svg#full"></use>
       </svg> -->
-      <h2 class="cssFont_1">Soporte Técnico</h2>
-      <img src="C:\Users\FRIKORTREAT\Downloads\data.png" alt="" style="width: 46px; height: 46px;">
+      <!-- <h2 class="cssFont_1">Soporte Técnico</h2> -->
+      <img src="../img/data2.png" class="sidebar-brand-full" alt="Soporte Técnico" style="width: 46px; height: 46px;">
+
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
       <li class="nav-item"><a class="nav-link" href="../view/dashboardView-edit.php">
@@ -296,7 +297,7 @@
         </script>
       </li>
 
-      
+
       <!-- /gestion de personal -->
 
 

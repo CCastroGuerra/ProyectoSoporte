@@ -11,10 +11,29 @@ frmLogin.onsubmit = function (e) {
   } else {
     console.log("los campos no pueden estar vacíos");
     var elemento = document.getElementById("login-mensaje"); ///no hay usuario
-    elemento.innerHTML = `<p>El usuario o la contraseña son erroneos</p>`;
+    elemento.innerHTML = `El usuario o la contraseña son erroneos`;
+    elemento.classList.remove("d-none");
   }
   frmLogin.reset();
 }; 
+
+frmLogin.querySelector("#usuario").addEventListener("input", ()=>{
+  //escribiendo usuario
+  if (document.getElementById("login-mensaje").value!="") {
+    document.getElementById("login-mensaje").innerText="";
+    var elemento = document.getElementById("login-mensaje");
+    elemento.classList.add("d-none");
+  }
+});
+
+frmLogin.querySelector("#passwd").addEventListener("input", ()=>{
+  //escribiendo contraseña
+  if (document.getElementById("login-mensaje").value!="") {
+    document.getElementById("login-mensaje").innerText="";
+    var elemento = document.getElementById("login-mensaje");
+    elemento.classList.add("d-none");
+  }
+});
 
 function buscarUsuario() {
   const ajax = new XMLHttpRequest();

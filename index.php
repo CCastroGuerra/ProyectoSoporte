@@ -64,14 +64,14 @@
 </head>
 <?php
 
-    session_start();
+session_start();
 
-    if (isset($_SESSION['id'])) {
-        header("Location: view/dashboardView.php");  
-    }
+if (isset($_SESSION['id'])) {
+  header("Location: view/dashboardView.php");
+}
 
-   // $nombre = $_SESSION['nombre'];
-   // $tipo_usuario = $_SESSION['tipo_usuario'];
+// $nombre = $_SESSION['nombre'];
+// $tipo_usuario = $_SESSION['tipo_usuario'];
 
 ?>
 
@@ -84,14 +84,14 @@
             <div class="card-group d-block d-md-flex row">
               <div class="card col-md-7 p-4 mb-0">
                 <div class="card-body">
-                  <h1>Login</h1>
-                  <p class="text-medium-emphasis">Inicia Sesión en tu cuenta</p>
-                  
+                  <h1>Bienvenido al sistema</h1>
+                  <h5 class="text-medium-emphasis">Inicia Sesión en tu cuenta</h5>
+
                   <div class="input-group mb-3"><span class="input-group-text">
                       <svg class="icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                       </svg></span>
-                    <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id="usuario" name="usuario" autocomplete="new-username">
+                    <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id="usuario" name="usuario" autocomplete="username">
                   </div>
                   <div class="input-group mb-4"><span class="input-group-text">
                       <svg class="icon">
@@ -99,7 +99,7 @@
                       </svg></span>
                     <input class="form-control .form-control-sm" type="password" placeholder="Contraseña" id="passwd" name="passwd" autocomplete="new-password">
                   </div>
-                  <div class="row">
+                  <div class="row mb-2">
                     <div class="col-6">
                       <button class="btn btn-primary px-4" type="submit">Login</button>
                     </div>
@@ -107,7 +107,7 @@
                       <button class="btn btn-link px-0" type="button">¿Olvidaste tu contraseña?</button>
                     </div>
                   </div>
-                  <div id="login-mensaje"></div>
+                  <div id="login-mensaje" style="color:red !important;" class="alert alert-danger px-4 py-3 mb-0 d-none" role="alert" data-mdb-color="warning"></div>
                 </div>
               </div>
 
@@ -122,7 +122,7 @@
 
   <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="vendors/simplebar/js/simplebar.min.js"></script>
-  <script src="js/loginAjax.js"></script> 
+  <script src="js/loginAjax.js"></script>
 
 
 </body>
