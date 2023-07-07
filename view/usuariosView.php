@@ -44,7 +44,7 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
                                     <div class="input-group mb-2">
                                         <input type="password" autocomplete="new-password" class="form-control  form-control-sm mt-0 w-full block password" id="userpass" name="userpass" placeholder="" autocomplete="off" />
                                         <span class="input-group-text">
-                                            <i class="fa fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>
+                                            <i class="far fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>
                                         </span>
                                     </div>
                                     <small class="alerta" id="alpass"></small>

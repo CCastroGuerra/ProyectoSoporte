@@ -61,6 +61,15 @@
     // Bootstrap ID
     gtag('config', 'UA-118965717-5');
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <style>
+    input#passwd::-ms-reveal,
+    input#passwd::-ms-clear {
+      display: none;
+    }
+  </style>
 </head>
 <?php
 
@@ -80,34 +89,55 @@ if (isset($_SESSION['id'])) {
     <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="card-group d-block d-md-flex row">
               <div class="card col-md-7 p-4 mb-0">
                 <div class="card-body">
-                  <h1>Bienvenido al sistema</h1>
-                  <h5 class="text-medium-emphasis">Inicia Sesión en tu cuenta</h5>
+                  <h1 class="card-title text-center pb-2">Bienvenido al sistema</h1>
 
-                  <div class="input-group mb-3"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                      </svg></span>
-                    <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id="usuario" name="usuario" autocomplete="username">
-                  </div>
-                  <div class="input-group mb-4"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                      </svg></span>
-                    <input class="form-control .form-control-sm" type="password" placeholder="Contraseña" id="passwd" name="passwd" autocomplete="new-password">
-                  </div>
-                  <div class="row mb-2">
-                    <div class="col-6">
-                      <button class="btn btn-primary px-4" type="submit">Login</button>
-                    </div>
-                    <div class="col-6 text-end">
-                      <button class="btn btn-link px-0" type="button">¿Olvidaste tu contraseña?</button>
+                  <div class="row pt-2 pb-1 m-1">
+                    <div class="col-0 mx-auto my-auto text-center">
+                      <img src="img/user-interface.png" alt="USer" width="50%" height="50%">
                     </div>
                   </div>
-                  <div id="login-mensaje" style="color:red !important;" class="alert alert-danger px-4 py-3 mb-0 d-none" role="alert" data-mdb-color="warning"></div>
+
+                  <div class="row pt-3 pr-3 pl-3">
+                    <h5 class="card-subtitle text-medium-emphasis mb-4">Inicia Sesión en tu cuenta</h5>
+                    <div class="input-group mb-3"><span class="input-group-text">
+                        <svg class="icon">
+                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                        </svg></span>
+                      <input class="form-control .form-control-sm" type="text" placeholder="Usuario" id="usuario" name="usuario" autocomplete="username">
+                    </div>
+                    <div class="input-group mb-4">
+                      <span class="input-group-text">
+                        <svg class="icon">
+                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                        </svg>
+                      </span>
+                      <input class="form-control .form-control-sm" type="password" placeholder="Contraseña" id="passwd" name="passwd" autocomplete="new-password" style="border-right-width: 0px;">
+                      <span class="input-group-text" style="background-color: #FFFFFF;border-left-width: 0px;">
+                      <img src="img/icons8-invisible-16.png" id="togglePassword" style="cursor: pointer">
+                        <!-- <i class="fa fa-eye-slash" id="togglePassword" style="cursor: pointer"></i> -->
+                      </span>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-6">
+                        <button class="btn btn-primary px-4" type="submit">Entrar</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="toast-container position-fixed">
+                    <div id="login-mensaje" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-color="warning" style="color:red !important;background-color:#fadddd">
+                      <div class="d-flex">
+                        <div class="toast-body">
+                          <span id="msg"></span>
+                        </div>
+                        <button type="button" class="btn-close me-2 m-auto" data-coreui-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
