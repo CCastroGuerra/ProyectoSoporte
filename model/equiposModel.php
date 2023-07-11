@@ -129,7 +129,7 @@ class Equipos extends Conectar
     public function listarTipoEquipo()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM tipo_equipo";
+        $sql = "SELECT * FROM tipo_equipo ORDER BY nombre_tipo_equipo";
         $fila = $conectar->prepare($sql);
         $fila->execute();
 

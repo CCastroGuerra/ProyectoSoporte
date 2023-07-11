@@ -79,7 +79,6 @@ frmBajas.onsubmit = function (e) {
 
 //let mouse = document.querySelector(".modal-footer");
 
-
 /*mouse.addEventListener("mouseover", function (e) {
   console.log("mouseenter");
   let tipoSelect = document.getElementById("selArea").value;
@@ -180,8 +179,6 @@ motivoInput.addEventListener("input", () => {
     bmoti = 1;
   }
 });
-
-
 
 // Asignar la función de validación al evento mouseover del formulario
 //mouse.addEventListener("mouseover", validarFormulario);
@@ -344,7 +341,7 @@ function buscarBajas() {
       var elemento = document.getElementById("tbBajas");
       elemento.innerHTML = `
         <tr>
-          <td colspan="3" class="text-center">No se encontraron resultados</td>
+          <td colspan="7" class="text-center">No se encontraron resultados</td>
         </tr>
       `;
     }

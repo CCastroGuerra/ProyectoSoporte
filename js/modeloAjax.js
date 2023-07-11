@@ -12,7 +12,7 @@ const alerta2 = frmModelo.querySelector("#alerta2");
 const calert = frmModelo.querySelectorAll(".alerta");
 const nombre_modelo = frmModelo.querySelector("#nombreModelo");
 const categ = frmModelo.querySelector("#selMarca");
-const regla = new RegExp("[a-zA-Z]+$");
+const regla = new RegExp("[a-zA-Z0-9]+$");
 
 var ofr = document.querySelectorAll("#formModelo .alerta");
 
@@ -27,17 +27,18 @@ nombre_modelo.onkeypress = function (evento) {
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
-modal.addEventListener('show.coreui.modal', event =>{
+modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
-  console.log("el modal fue levantado por: "+button.id);
-  var modalTitle= modal.querySelector('.modal-title');
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
   alerta.innerText = "";
   alerta2.innerText = "";
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
+      frmModelo.reset();
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
