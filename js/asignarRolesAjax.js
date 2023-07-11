@@ -74,10 +74,11 @@ modal.addEventListener('show.coreui.modal', event =>{
 });
 /**** */
 
-document.body.onload = () => {
+/* document.body.onload = () => {
   listarSelectRol();
   //listarAsignarRol();
-};
+}; */
+listarSelectRol();
 buscar();
 
 frmAsignarRol.onsubmit = function (e) {

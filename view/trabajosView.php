@@ -62,7 +62,7 @@ include('../templates/cabecera.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="nroSerie" class="mb-2"># de Serie:
-                                                <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary"></button>
+                                                <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary visually-hidden"></button>
                                             </label>
                                             <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
                                             <small class="alerta" id="alserie"></small>
