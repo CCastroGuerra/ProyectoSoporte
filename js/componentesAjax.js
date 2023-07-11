@@ -171,8 +171,6 @@ selecMarca.addEventListener("change", () => {
     };
     ajax.send(data);
   }
-
-  
 });
 
 function listarSelectMarca() {
@@ -362,7 +360,7 @@ function buscarComponente() {
       var elemento = document.getElementById("tbComponentes");
       elemento.innerHTML = `
           <tr>
-            <td colspan="6" class="text-center">No se encontraron resultados</td>
+            <td colspan="9" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
 
