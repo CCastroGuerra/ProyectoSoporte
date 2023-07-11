@@ -17,7 +17,7 @@ const detalle_producto = document.querySelector("#detalleProducto");
 
 const modalp = frmProductos.parentNode.parentNode.parentNode.id;
 
-var regla = new RegExp("[a-zA-Z]+$");
+var regla = new RegExp("[a-zA-Z0-9]+$");
 var alerta1 = document.querySelector("#alerta1");
 var alerta2 = document.querySelector("#alerta2");
 var alerta3 = document.querySelector("#alerta3");
@@ -262,7 +262,7 @@ function mostrarEnModal(productoId) {
     document.getElementById("selUnidad").value = datos.nombrePresentacion;
     document.getElementById("ctdProducto").value = datos.cantidad;
     document.getElementById("selAlmacen").value = datos.almacenId;
-    document.getElementById("presValue").value = datos.presentacionId
+    document.getElementById("presValue").value = datos.presentacionId;
     document.getElementById("detalleProducto").value = datos.descripcion;
     document.getElementById("inputID").value = datos.id;
   };
