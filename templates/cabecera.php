@@ -292,6 +292,7 @@
               range.selectNodeContents(gper);
               var frag = range.createContextualFragment(seccion);
               gper.appendChild(frag);
+              console.log("es admn, mostrando seccion")
             }
           }
         </script>

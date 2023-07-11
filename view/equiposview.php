@@ -7,14 +7,14 @@ include('../templates/cabecera.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Presentación</h5>
+                <h5 class="modal-title">Responsable</h5>
                 <button type="button" class="btn-close" data-coreui-target="#añadirEquipo" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
                 <form id="formResponsable">
                     <div class="form-group">
-                        <div class="" id="divmargesi" name="divmargesi">
+                        <div class="form-group visually-hidden" id="divmargesi" name="divmargesi">
                             <label for="margesiRef" class="control-label">ID</label>
                             <input type="text" class="form-control" id="margesiRef" name="margesiRef" placeholder="ID" readonly>
                         </div>
@@ -105,7 +105,7 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <div class="" id="divcodigo" name="divcodigo">
+                                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
                                             <label for="inputCodigo" class="control-label">Código</label>
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
@@ -153,9 +153,9 @@ include('../templates/cabecera.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="responsable" class="mb-2">Responsable:</label>
-                                            <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
+                                            <button type="button" class="btn btn-outline-primary visually-hidden" data-coreui-toggle="modal" data-coreui-target="#responsableModal"></button>
                                             <input type="text" class="form-control  form-control-sm mb-2" id="responsable" name="responsable" placeholder="Seleccione responsable" data-coreui-toggle="modal" data-coreui-target="#responsableModal" readonly>
-                                            <input type="text" id="respValue" name="respValue" class="form-control  form-control-sm mb-2">
+                                            <input type="text" id="respValue" name="respValue" class="form-control  form-control-sm mb-2 visually-hidden">
                                         </div>
                                         <div class="form-group">
                                             <label for="selArea" class="mb-2">Area:</label>
