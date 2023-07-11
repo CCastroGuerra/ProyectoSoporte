@@ -303,9 +303,9 @@
 
 
       <!--Reportes-->
-      <li class="nav-divider"></li>
-      <li class="nav-title">Reportes</li>
-      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+      <li class="nav-divider visually-hidden"></li>
+      <li class="nav-title visually-hidden">Reportes</li>
+      <li class="nav-group visually-hidden"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-star"></use>
           </svg> Pages</a>
@@ -328,7 +328,8 @@
               </svg> Error 500</a></li>
         </ul>
       </li>
-      <li class="nav-item"><a class="nav-link" href="../plantillas/procInformaticos.php">
+      <li class="nav-item visually-hidden">
+        <a class="nav-link" href="../plantillas/procInformaticos.php">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
           </svg> Procesos Informáticos</a>

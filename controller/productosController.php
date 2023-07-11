@@ -10,7 +10,7 @@ switch($accion){
         break;
 
     case "guardar":
-        var_dump($_POST);
+        //var_dump($_POST);
         $producto-> agregarProductos($_POST['nombreProducto'],$_POST['selTipoProducto'],$_POST['presValue'],$_POST["ctdProducto"],$_POST['selAlmacen'],$_POST['detalleProducto']);
         break;
     case "guardarPresentacion":
