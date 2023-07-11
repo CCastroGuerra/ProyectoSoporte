@@ -20,7 +20,7 @@ include('../templates/cabecera.php');
                         <div class="card">
                             <div class="card-body">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="10">
+                                    <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="20">
                                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Guardar</button>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal -->
-<div class="modal fade" id="productosModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
+<div class="modal fade" id="productosModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
