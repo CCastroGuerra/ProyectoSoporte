@@ -17,6 +17,13 @@ let adni = msgal[2];
 let atelf = msgal[3];
 let acorr = msgal[4];
 let acarg = msgal[5];
+//variables de control
+let vapp = 0;
+let vnoms = 0;
+let vdni = 0;
+let vtelf = 0;
+let vcorr = 0;
+let vcargo = 0;
 buscarPersonal();
 //listarPersonal();
 
@@ -100,28 +107,48 @@ frmPersonal.onsubmit = function (e) {
   } else {
     // guardarArea();
     if (apelli.value.trim().length == 0) {
-      aapelli.innerText = " no valido";
+      aapelli.innerText = "El apellido no puede estar vacío";
+      vapp = 0;
+    } else {
+      vapp = 1;
     }
     if (nombrs.value.trim().length == 0) {
-      anombrs.innerText = " no valido";
+      anombrs.innerText = "El nombre no puede estar vacío";
+      vnoms = 0;
+    } else {
+      vnoms = 1;
     }
     if (inpdni.value.trim().length == 0) {
-      adni.innerText = " no valido";
+      adni.innerText = "El DNI no es válido";
+      vdni = 0;
+    } else {
+      vdni = 1;
     }
     if (intelf.value.trim().length == 0) {
       atelf.innerText = " no valido";
+      vtelf = 0;
+    } else {
+      vtelf = 1;
     }
     if (incorr.value.trim().length == 0) {
-      acorr.innerText = " no valido";
+      acorr.innerText = "Ingrese un correo válido";
+      vcorr = 0;
+    } else {
+      vcorr = 1;
     }
     if (selcarg.value == 0) {
-      acarg.innerText = " no valido";
+      acarg.innerText = "Seleccione un cargo";
+      vcargo = 0;
+    } else {
+      vcargo = 1;
     }
     // listarArea();
+    bcontrol = vapp + vnoms + vdni + vtelf + vcorr + vcargo;
     if (bcontrol == 6) {
       guardarPersonal();
       console.log("guardo");
       frmPersonal.reset();
+      listarArea();
     }
   }
   return false;
