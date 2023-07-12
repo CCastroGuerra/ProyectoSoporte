@@ -228,6 +228,13 @@
           </svg> Equipos</a>
       </li>
       <!--/item Equipos-->
+      <!--item movimientos-->
+      <li class="nav-item"><a class="nav-link" href="../view/movimientosView.php">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-swap-horizontal"></use>
+          </svg> Movimientos</a>
+      </li>
+      <!--/item movimientos-->
       <!--item Trabajos-->
       <li class="nav-item"><a class="nav-link" href="../view/trabajosView.php">
           <svg class="nav-icon">
