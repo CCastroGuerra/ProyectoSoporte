@@ -45,23 +45,23 @@ var bnadir = 0;
 
 // cuando se recargue la pagina se limpiará la tabla temporal
 document.onkeydown = fkey;
-document.onkeypress = fkey
+document.onkeypress = fkey;
 document.onkeyup = fkey;
 
 var wasPressed = false;
 
-function fkey(e){
-        e = e || window.event;
-       if( wasPressed ) return; 
-       
-        if (e.keyCode == 116) {
-          cerrarEditar();
-             //alert("f5 pressed");
-            wasPressed = true;
-        }else {
-            //alert("Window closed");
-        }
- }
+function fkey(e) {
+  e = e || window.event;
+  if (wasPressed) return;
+
+  if (e.keyCode == 116) {
+    cerrarEditar();
+    //alert("f5 pressed");
+    wasPressed = true;
+  } else {
+    //alert("Window closed");
+  }
+}
 
 //tabla de componentes
 //boton guardar ->desactivado por defecto a menos que la tabla tbComponentes tenga elementos
@@ -250,9 +250,9 @@ modal.addEventListener("show.coreui.modal", (event) => {
   }
 });
 
-modalc.addEventListener("show.coreui.modal", (event)=>{
+modalc.addEventListener("show.coreui.modal", (event) => {
   document.getElementById("formEquipos").reset();
-  btmcomp.disabled=false;
+  btmcomp.disabled = false;
 });
 /**** */
 
@@ -358,10 +358,9 @@ frmEquipos.onsubmit = function (e) {
   console.log("completos: " + bnadir);
   if (bnadir == 6) {
     guardarEquipo();
-    $("#"+modalp).modal('hide');
+    $("#" + modalp).modal("hide");
   }
 
-  
   // guardarEquipoComponente();
 };
 /*
@@ -632,7 +631,7 @@ function listarSelectTipo() {
     const tipo = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (tipo.length > 0) {
-      template = `<option value="0">Seleccione Área</option>
+      template = `<option value="0">Seleccione Tipo Equipo</option>
           `;
       tipo.forEach(function (tipo) {
         template += `

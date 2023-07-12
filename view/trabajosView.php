@@ -99,7 +99,7 @@ include('../templates/cabecera.php');
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
                                             <small class="alerta" id="almodelo"></small>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group visually-hidden">
                                             <label for="consumible" class="mb-2">Consumible</label>
                                             <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible">
                                         </div>
@@ -108,7 +108,7 @@ include('../templates/cabecera.php');
                                             <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3" maxlength="550"></textarea>
                                             <small class="alerta" id="alfalla"></small>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label for="selTecnico" class="mb-2">Técnico:</label>
                                             <select class="form-select form-select-sm" aria-label="Default select example" id="selTecnico" name="selTecnico">
