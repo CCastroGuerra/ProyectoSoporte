@@ -32,11 +32,23 @@ msgal.forEach((element) => {
 });
 
 apelli.addEventListener("input", function () {
-  aapelli.innerText = "";
+  if (apelli.value.trim().length == 0) {
+    aapelli.innerText = "El apellido no puede estar vacío";
+    vapp = 0;
+  } else {
+    aapelli.innerText = "";
+    vapp = 1;
+  }
 });
 
 nombrs.addEventListener("input", function () {
-  anombrs.innerText = "";
+  if (nombrs.value.trim().length == 0) {
+    anombrs.innerText = "El nombre no puede estar vacío";
+    vnoms = 0;
+  } else {
+    anombrs.innerText = "";
+    vnoms = 1;
+  }
 });
 
 inpdni.addEventListener("input", function () {
