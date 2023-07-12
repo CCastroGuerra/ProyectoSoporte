@@ -110,45 +110,50 @@ frmPersonal.onsubmit = function (e) {
       aapelli.innerText = "El apellido no puede estar vacío";
       vapp = 0;
     } else {
+      aapelli.innerText = "";
       vapp = 1;
     }
     if (nombrs.value.trim().length == 0) {
       anombrs.innerText = "El nombre no puede estar vacío";
       vnoms = 0;
     } else {
+      anombrs.innerText = "";
       vnoms = 1;
     }
     if (inpdni.value.trim().length == 0) {
       adni.innerText = "El DNI no es válido";
       vdni = 0;
     } else {
+      adni.innerText = "";
       vdni = 1;
     }
     if (intelf.value.trim().length == 0) {
       atelf.innerText = " no valido";
       vtelf = 0;
     } else {
+      atelf.innerText = "";
       vtelf = 1;
     }
     if (incorr.value.trim().length == 0) {
       acorr.innerText = "Ingrese un correo válido";
       vcorr = 0;
     } else {
+      acorr.innerText = "";
       vcorr = 1;
     }
     if (selcarg.value == 0) {
       acarg.innerText = "Seleccione un cargo";
       vcargo = 0;
     } else {
+      acarg.innerText = "";
       vcargo = 1;
     }
     // listarArea();
     bcontrol = vapp + vnoms + vdni + vtelf + vcorr + vcargo;
     if (bcontrol == 6) {
+      $("#"+modalp).modal("hide");
       guardarPersonal();
       console.log("guardo");
-      frmPersonal.reset();
-      listarArea();
     }
   }
   return false;
