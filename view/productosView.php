@@ -177,8 +177,8 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
 
-                            <div class="col-lg-10 col-sm-8">Lista Productos </div>
-                            <div class="row col-lg-2 col-sm-4 text-end">
+                            <div class="col-lg-9 col-sm-8">Lista Productos </div>
+                            <div class="row col-lg-3 col-sm-4 text-end">
                                 <!-- Boton para generar pdf -->
                                 <div class="text-center col-lg-6 col-sm-6">
                                     <a href="reportesProductos.php" class="pdf-button" target="_blank">

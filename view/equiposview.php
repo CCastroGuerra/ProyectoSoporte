@@ -291,7 +291,7 @@ include('../templates/cabecera.php');
                     <h3 class="card-title mb-auto">
                         <div class="row">
                             <div class="col-lg-9 col-sm-8">Lista de Equipos </div>
-                            <div class="col-lg-2 col-sm-4 text-end row">
+                            <div class="col-lg-3 col-sm-4 text-end row">
                                 <!-- Boton para generar pdf -->
                                 <div class="text-center col-lg-6 col-sm-6 ">
                                     <a href="reportesEquipos.php" class="pdf-button" target="_blank">

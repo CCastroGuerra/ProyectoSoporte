@@ -214,9 +214,9 @@ include('../templates/cabecera.php');
                 <div class="card-body">
                     <h3 class="card-title mb-auto">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-8">Lista Trabajos
+                            <div class="col-lg-9 col-sm-8">Lista Trabajos
                             </div>
-                            <div class="col-lg-2 col-sm-4 text-end row">
+                            <div class="col-lg-3 col-sm-4 text-end row">
                                 <!-- Boton para generar pdf -->
                                 <div class="text-center col-lg-6 col-sm-6">
                                     <a href="reporteTrabajos.php" class="pdf-button" target="_blank">
