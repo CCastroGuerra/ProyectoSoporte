@@ -42,7 +42,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal Trabajo-->
-<div class="modal fade" id="TrabajoModal" tabindex="-1" aria-labelledby="TrabajoModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false" >
+<div class="modal fade" id="TrabajoModal" tabindex="-1" aria-labelledby="TrabajoModalLabel" aria-hidden="true" data-coreui-backdrop="static" data-coreui-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -250,6 +250,7 @@ include('../templates/cabecera.php');
 
 <!--/contenido ventana -->
 <!-- <script src="../js/trabajosAjax.js"></script> -->
+<script src="../js/movimientosAjax.js"></script>
 <?php
 include '../templates/footer.php';
 ?>

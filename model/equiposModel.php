@@ -45,10 +45,24 @@ class Equipos extends Conectar
             $idEquipo = '0';
         }
         $conectar = parent::conexion();
-        $sql = "INSERT INTO equipos (id_equipos,serie, margesi, marca_id, modelo_id, tipo_equipo_id, area_id, clientes_id, estado_id, ip, mac)
-            VALUES ('$idEquipo','$serie', '$margesi', '$marcaId', '$modeloId', '$idTipo', '$areaId', '$responsable', '$estadoId', '$ip', '$mac')
-            ON DUPLICATE KEY UPDATE id_equipos='$idEquipo',serie = '$serie', margesi = '$margesi', marca_id = '$marcaId', modelo_id = '$modeloId', tipo_equipo_id = '$idTipo', area_id = '$areaId', clientes_id = '$responsable', estado_id = '$estadoId', ip = '$ip', mac = '$mac';";
+        // $sql = "INSERT INTO equipos (id_equipos,serie, margesi, marca_id, modelo_id, tipo_equipo_id, area_id, clientes_id, estado_id, ip, mac)
+        //     VALUES ('$idEquipo','$serie', '$margesi', '$marcaId', '$modeloId', '$idTipo', '$areaId', '$responsable', '$estadoId', '$ip', '$mac')
+        //     ON DUPLICATE KEY UPDATE id_equipos='$idEquipo',serie = '$serie', margesi = '$margesi', marca_id = '$marcaId', modelo_id = '$modeloId', tipo_equipo_id = '$idTipo', area_id = '$areaId', clientes_id = '$responsable', estado_id = '$estadoId', ip = '$ip', mac = '$mac';";
+        $sql = "call sp_insertar_equipo(?,?,?,?,?,?,?,?,?,?)";
         $fila = $conectar->prepare($sql);
+        //$fila->bindParam(1, $idEquipo, PDO::PARAM_INT);
+        $fila->bindParam(1, $serie, PDO::PARAM_STR);
+        $fila->bindParam(2, $margesi, PDO::PARAM_STR);
+        $fila->bindParam(3, $marcaId, PDO::PARAM_INT);
+        $fila->bindParam(4, $modeloId, PDO::PARAM_INT);
+        $fila->bindParam(5, $idTipo, PDO::PARAM_INT);
+        $fila->bindParam(6, $areaId, PDO::PARAM_INT);
+        $fila->bindParam(7, $responsable, PDO::PARAM_INT);
+        $fila->bindParam(8, $estadoId, PDO::PARAM_INT);
+        $fila->bindParam(9, $ip, PDO::PARAM_STR);
+        $fila->bindParam(10, $mac, PDO::PARAM_STR);
+
+
 
         if ($fila->execute()) {
             $consulta = "Select id_equipos  from equipos where serie = '$serie';";
@@ -410,7 +424,7 @@ class Equipos extends Conectar
             //     $pagina = 1;
             // }
             $inicio = ($pagina - 1) * $limit;
-            $sql = "SELECT id_equipos,e.area_id,a.nombre_area,e.marca_id, mar.nombre_marca,e.modelo_id,mo.nombre_modelo,serie,margesi, ip,mac,e.estado_id, est.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha from equipos e
+            $sql = "SELECT id_equipos,cod_equipo,e.area_id,a.nombre_area,e.marca_id, mar.nombre_marca,e.modelo_id,mo.nombre_modelo,serie,margesi, ip,mac,e.estado_id, est.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha from equipos e
             INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo
             INNER JOIN marca mar ON mar.id_marca = e.marca_id
             INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
@@ -432,6 +446,7 @@ class Equipos extends Conectar
                 foreach ($marcas as $marca) {
                     $listado[] = array(
                         "id" => $marca["id_equipos"],
+                        "codigo" => $marca["cod_equipo"],
                         "nombreArea" => $marca["nombre_area"],
                         'nombreMarca' => $marca["nombre_marca"],
                         'nombreModelo' => $marca["nombre_modelo"],

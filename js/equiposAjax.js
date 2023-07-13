@@ -759,7 +759,7 @@ function guardarEquipo() {
   data.append("accion", "guardarEquipo");
   ajax.onload = function () {
     realizado = ajax.responseText;
-    //console.log("Contenido de realizado: "+realizado);
+    console.log("Contenido de realizado: " + realizado);
     let respuesta = JSON.parse(realizado);
     //console.log("Contenido de respuesta.listado =" + respuesta.listado);
     if (respuesta.listado * 1 > 0) {
@@ -830,6 +830,8 @@ function buscarEquipo() {
       equipos.forEach(function (equipos) {
         template += `
                   <tr>
+                    
+                      <td>${equipos.codigo}</td>
                       <td>${equipos.nombreArea}</td>
                       <td>${equipos.nombreMarca}</td>
                       <td>${equipos.nombreModelo}</td>
