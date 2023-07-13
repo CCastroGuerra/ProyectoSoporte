@@ -45,26 +45,26 @@ class Equipos extends Conectar
             $idEquipo = '0';
         }
         $conectar = parent::conexion();
-        $sql = "INSERT INTO equipos (id_equipos,serie, margesi, marca_id, modelo_id, tipo_equipo_id, area_id, clientes_id, estado_id, ip, mac)
+        /* $sql = "INSERT INTO equipos (id_equipos,serie, margesi, marca_id, modelo_id, tipo_equipo_id, area_id, clientes_id, estado_id, ip, mac)
             VALUES ('$idEquipo','$serie', '$margesi', '$marcaId', '$modeloId', '$idTipo', '$areaId', '$responsable', '$estadoId', '$ip', '$mac')
-            ON DUPLICATE KEY UPDATE id_equipos='$idEquipo',serie = '$serie', margesi = '$margesi', marca_id = '$marcaId', modelo_id = '$modeloId', tipo_equipo_id = '$idTipo', area_id = '$areaId', clientes_id = '$responsable', estado_id = '$estadoId', ip = '$ip', mac = '$mac';";
+            ON DUPLICATE KEY UPDATE id_equipos='$idEquipo',serie = '$serie', margesi = '$margesi', marca_id = '$marcaId', modelo_id = '$modeloId', tipo_equipo_id = '$idTipo', area_id = '$areaId', clientes_id = '$responsable', estado_id = '$estadoId', ip = '$ip', mac = '$mac';"; */
 
         /***PROCEDIMIENTO ALMACENADO***/
-        // $sql = "call sp_insertar_equipo(?,?,?,?,?,?,?,?,?,?)";
-        // $fila = $conectar->prepare($sql);
-        // //$fila->bindParam(1, $idEquipo, PDO::PARAM_INT);
-        // $fila->bindParam(1, $serie, PDO::PARAM_STR);
-        // $fila->bindParam(2, $margesi, PDO::PARAM_STR);
-        // $fila->bindParam(3, $marcaId, PDO::PARAM_INT);
-        // $fila->bindParam(4, $modeloId, PDO::PARAM_INT);
-        // $fila->bindParam(5, $idTipo, PDO::PARAM_INT);
-        // $fila->bindParam(6, $areaId, PDO::PARAM_INT);
-        // $fila->bindParam(7, $responsable, PDO::PARAM_INT);
-        // $fila->bindParam(8, $estadoId, PDO::PARAM_INT);
-        // $fila->bindParam(9, $ip, PDO::PARAM_STR);
-        // $fila->bindParam(10, $mac, PDO::PARAM_STR);
-        /*******************************/
+        $sql = "call sp_insertar_equipo(?,?,?,?,?,?,?,?,?,?,?);";
         $fila = $conectar->prepare($sql);
+        $fila->bindParam(1, $idEquipo, PDO::PARAM_INT);
+        $fila->bindParam(2, $serie, PDO::PARAM_STR);
+        $fila->bindParam(3, $margesi, PDO::PARAM_STR);
+        $fila->bindParam(4, $marcaId, PDO::PARAM_INT);
+        $fila->bindParam(5, $modeloId, PDO::PARAM_INT);
+        $fila->bindParam(6, $idTipo, PDO::PARAM_INT);
+        $fila->bindParam(7, $areaId, PDO::PARAM_INT);
+        $fila->bindParam(8, $responsable, PDO::PARAM_INT);
+        $fila->bindParam(9, $estadoId, PDO::PARAM_INT);
+        $fila->bindParam(10, $ip, PDO::PARAM_STR);
+        $fila->bindParam(11, $mac, PDO::PARAM_STR);
+        /*******************************/
+        /* $fila = $conectar->prepare($sql); */
 
         if ($fila->execute()) {
             $consulta = "Select id_equipos  from equipos where serie = '$serie';";
