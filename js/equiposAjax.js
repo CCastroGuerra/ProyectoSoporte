@@ -831,7 +831,7 @@ function buscarEquipo() {
         template += `
                   <tr>
                     
-                      <td>${equipos.codigo}</td>
+                      <td>${equipos.id}</td>
                       <td>${equipos.nombreArea}</td>
                       <td>${equipos.nombreMarca}</td>
                       <td>${equipos.nombreModelo}</td>

@@ -152,24 +152,23 @@ frmTrabajos.addEventListener("input", function () {
 /******************************************************/
 // cuando se recargue la pagina se limpiará la tabla temporal
 document.onkeydown = fkey;
-document.onkeypress = fkey
+document.onkeypress = fkey;
 document.onkeyup = fkey;
 
 var wasPressed = false;
 
-function fkey(e){
-        e = e || window.event;
-       if( wasPressed ) return; 
-       
-        if (e.keyCode == 116) {
-          cerrarEditar();
-             //alert("f5 pressed");
-            wasPressed = true;
-        }else {
-            //alert("Window closed");
-        }
- }
+function fkey(e) {
+  e = e || window.event;
+  if (wasPressed) return;
 
+  if (e.keyCode == 116) {
+    cerrarEditar();
+    //alert("f5 pressed");
+    wasPressed = true;
+  } else {
+    //alert("Window closed");
+  }
+}
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
@@ -218,13 +217,12 @@ modalc.addEventListener("show.coreui.modal", (event) => {
 
 frmServicios.onsubmit = function (e) {
   e.preventDefault();
-  if (selServicio.value == 0){
-    alservicio.innerText="Debe seleccionar un servicio";
-  }else{
-    alservicio.innerText="";
+  if (selServicio.value == 0) {
+    alservicio.innerText = "Debe seleccionar un servicio";
+  } else {
+    alservicio.innerText = "";
     guardarServiciosTempo();
   }
-  
 };
 
 frmTrabajos.onsubmit = function (e) {

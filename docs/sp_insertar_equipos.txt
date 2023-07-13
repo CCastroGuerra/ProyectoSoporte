@@ -1,0 +1,59 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_equipo`(
+  IN p_serie VARCHAR(50),
+  IN p_margesi VARCHAR(50),
+  IN p_marca_id INT,
+  IN p_modelo_id INT,
+  IN p_tipo_equipo_id INT,
+  IN p_area_id INT,
+  IN p_clientes_id INT,
+  IN p_estado_id INT,
+  IN p_ip VARCHAR(50),
+  IN p_mac VARCHAR(50)
+)
+BEGIN
+  DECLARE v_codigo VARCHAR(10);
+  
+  SET v_codigo = CONCAT('E', LPAD((SELECT COUNT(*) + 1 FROM equipos), 6, '0'));
+  
+  INSERT INTO equipos (
+    cod_equipo,
+    serie,
+    margesi,
+    marca_id,
+    modelo_id,
+    tipo_equipo_id,
+    area_id,
+    clientes_id,
+    estado_id,
+    ip,
+    mac
+  )
+  VALUES (
+    v_codigo,
+    p_serie,
+    p_margesi,
+    p_marca_id,
+    p_modelo_id,
+    p_tipo_equipo_id,
+    p_area_id,
+    p_clientes_id,
+    p_estado_id,
+    p_ip,
+    p_mac
+  )
+  ON DUPLICATE KEY UPDATE
+    cod_equipo = VALUES(cod_equipo),
+    serie = VALUES(serie),
+    margesi = VALUES(margesi),
+    marca_id = VALUES(marca_id),
+    modelo_id = VALUES(modelo_id),
+    tipo_equipo_id = VALUES(tipo_equipo_id),
+    area_id = VALUES(area_id),
+    clientes_id = VALUES(clientes_id),
+    estado_id = VALUES(estado_id),
+    ip = VALUES(ip),
+    mac = VALUES(mac);
+  
+END$$
+DELIMITER ;

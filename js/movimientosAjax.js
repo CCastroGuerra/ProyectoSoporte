@@ -3,7 +3,8 @@ listarSelecArea();
 
 /***********************************/
 let selecAccion = document.getElementById("selTipo").value;
-console.log(selecAccion);
+let idEquipo = document.getElementById("codEquipo");
+/***********************************/
 
 function listarSelecTecnicos() {
   const ajax = new XMLHttpRequest();
