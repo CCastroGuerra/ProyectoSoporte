@@ -89,7 +89,7 @@ include('../templates/cabecera.php');
 <!-- fin de estilos -->
 
 <!-- Modal  añadir equipo-->
-<div class="modal fade" id="añadirEquipo" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true"  aria-modal="true">
+<div class="modal fade" id="añadirEquipo" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -339,7 +339,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-
+                                    <th scope="col"><strong>Codigo</strong></th>
                                     <th scope="col"><strong>Area</strong></th>
                                     <th scope="col"><strong>Marca</strong></th>
                                     <th scope="col"><strong>Modelo</strong></th>
