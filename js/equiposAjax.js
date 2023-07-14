@@ -85,7 +85,7 @@ $("#tbComponentes").bind("DOMSubtreeModified", function () {
   } else {
     console.log("no es 0");
   }
-});
+}); 
 
 //estilo css de los mensajes de error
 var ofr = document.querySelectorAll("#formAEquipo .alerta");

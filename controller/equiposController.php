@@ -40,7 +40,7 @@ switch ($accion) {
         $equipo -> guardarEquipoComponente($_POST['inputCodigo']);
         break;
     case "guardarEquipo":
-        //var_dump($_POST);
+        //var_dump($_POST); 
         $equipo -> guardarEquipo($_POST['inputCodigo'],$_POST['serie'],$_POST['margesi'],$_POST['selMarcaEquipo'],$_POST['selModeloEquipo'],$_POST['selTipoEquipo'],$_POST['selArea'],$_POST['respValue'],$_POST['selEstado'],$_POST['ip'],$_POST['mac']);
         break;
     case "eliminarComponenteTemp":

@@ -281,7 +281,7 @@ include('../templates/cabecera.php');
     </div>
 </div>
 <!-- Fin del modal  -->
-
+ 
 <!-- Tabla -->
 <div class="col-md-12 col-lg-12 ">
     <div class="row ">

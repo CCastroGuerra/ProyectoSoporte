@@ -64,7 +64,7 @@ class Equipos extends Conectar
         $fila->bindParam(10, $ip, PDO::PARAM_STR);
         $fila->bindParam(11, $mac, PDO::PARAM_STR);
         /*******************************/
-        /* $fila = $conectar->prepare($sql); */
+        /* $fila = $conectar->prepare($sql); */ 
 
         if ($fila->execute()) {
             $consulta = "Select id_equipos  from equipos where serie = '$serie';";
