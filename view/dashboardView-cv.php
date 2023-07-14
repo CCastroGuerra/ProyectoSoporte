@@ -207,6 +207,13 @@ WHERE `esActivo` = 1;";
         <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
 
           <canvas class="chart" id="miCanvas" height="300"></canvas>
+          <div id="no-data" style="display: none;
+  position: absolute;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 3rem;
+  top: 15%;
+  width: 100%;">Nothing to display</div>
         </div>
         <!-- /grafico -->
       </div>
@@ -266,8 +273,8 @@ WHERE `esActivo` = 1;";
         <!-- /encabezado -->
         <!-- grafico -->
         <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
-
           <canvas class="chart" id="miCanvas2" height="300"></canvas>
+          
         </div>
         <!-- /grafico -->
       </div>

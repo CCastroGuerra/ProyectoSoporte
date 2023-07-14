@@ -66,7 +66,6 @@ function fkey(e) {
 //tabla de componentes
 //boton guardar ->desactivado por defecto a menos que la tabla tbComponentes tenga elementos
 let btmguardar = document.getElementById("btmGuardar");
-btmguardar.disabled = true;
 
 $("#tbComponentes").bind("DOMSubtreeModified", function () {
   var tablacomponentes = document.querySelectorAll("#tbComponentes tr");
@@ -78,7 +77,7 @@ $("#tbComponentes").bind("DOMSubtreeModified", function () {
       tablacomponentes[0].innerText.trim() === "No se encontraron datos".trim()
     ) {
       console.log(tablacomponentes[0].innerText + "-> igual a cadena");
-      btmguardar.disabled = true;
+      btmguardar.disabled = false;
     } else {
       console.log("no es un igual a la cadena");
       btmguardar.disabled = false;
@@ -126,7 +125,6 @@ btnX.addEventListener("click", function (e) {
 /*Habilitar o deshabilitar boton de añador*/
 let margesi = document.getElementById("margesi");
 var contbtañadir = 0;
-btnComponente.disabled = true;
 selectTipo.addEventListener("change", function () {
   //verifica si se ha sellecionado una opcion valida de tipo
   if (selectTipo.value == 0) {
@@ -241,11 +239,13 @@ modal.addEventListener("show.coreui.modal", (event) => {
       modalTitle.textContent = "Guardar";
       selecModelo.disabled = true;
       btnComponente.disabled = true;
+      btmguardar.disabled = false;
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
       selecModelo.disabled = false;
       btnComponente.disabled = false;
+      btmguardar.disabled = false;
       break;
   }
 });
@@ -831,7 +831,7 @@ function buscarEquipo() {
         template += `
                   <tr>
                     
-                      <td>${equipos.id}</td>
+                      <td>${equipos.codigo}</td>
                       <td>${equipos.nombreArea}</td>
                       <td>${equipos.nombreMarca}</td>
                       <td>${equipos.nombreModelo}</td>
@@ -930,6 +930,7 @@ function buscarEquipo() {
 
 function mostrarEnModal(equipoID) {
   btnComponente.disabled = false;
+  btmguardar.disabled=false;
   id = equipoID;
   console.log(id);
   const ajax = new XMLHttpRequest();

@@ -23,75 +23,104 @@ function traerTrabajosxMes() {
     let cantidad = [];
     const colores = [];
     realizado = ajax.responseText;
-    let respuesta = JSON.parse(realizado);
-    console.log(respuesta);
-    for (let i = 0; i < respuesta.length; i++) {
-      mes.push(respuesta[i].mes);
-      cantidad.push(respuesta[i].cantidad);
-      colores.push(generarColorAleatorio());
-    }
-    const ctx = document.getElementById("miCanvas");
+    console.log(realizado);
+    if (realizado == "") {
+      //execute
+      console.log("vacio");
+      mes.push(null);
+      cantidad.push(null);
+      document.getElementById("miCanvas").setAttribute("style","display:none");
+      document.getElementById("no-data").style.display = "block";
+    } else {
+      let respuesta = JSON.parse(realizado);
+      console.log(respuesta);
+      for (let i = 0; i < respuesta.length; i++) {
+        mes.push(respuesta[i].mes);
+        cantidad.push(respuesta[i].cantidad);
+        colores.push(generarColorAleatorio());
+        const ctx = document.getElementById("miCanvas");
 
-    const myChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: mes,
-        /* labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], */
-        datasets: [
-          {
-            label: "Trabajos",
-            backgroundColor: colores,
-            /* borderColor: coreui.Utils.getStyle('--cui-info'),
-            borderWidth: 2, */
-            data: cantidad,
-            /* data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)], */
-            fill: false,
+        const myChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: mes,
+            /* labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], */
+            datasets: [
+              {
+                label: "Trabajos",
+                backgroundColor: colores,
+                /* borderColor: coreui.Utils.getStyle('--cui-info'),
+                borderWidth: 2, */
+                data: cantidad,
+                /* data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)], */
+                fill: false,
+              },
+            ],
           },
-        ],
-      },
-      options: {
-        responsive: true, // Hace que el gráfico sea responsive
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            enabled: true,
-            external: null,
-            position: "average",
-          },
-        },
-        // Permite ajustar el tamaño del gráfico
-        //indexAxis: "y", //cambiar de posicion el grafico
-        scales: {
-          x: {
-            grid: {
-              drawOnChartArea: false,
+          options: {
+            responsive: true, // Hace que el gráfico sea responsive
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              tooltip: {
+                enabled: true,
+                external: null,
+                position: "average",
+              },
+            },
+            // Permite ajustar el tamaño del gráfico
+            //indexAxis: "y", //cambiar de posicion el grafico
+            scales: {
+              x: {
+                grid: {
+                  drawOnChartArea: false,
+                },
+              },
+              y: {
+                ticks: {
+                  beginAtZero: true,
+                  maxTicksLimit: 5,
+                  stepSize: Math.ceil(250 / 5),
+                  max: 100,
+                },
+              },
+            },
+            elements: {
+              line: {
+                tension: 0.4,
+              },
+              point: {
+                radius: 0,
+                hitRadius: 10,
+                hoverRadius: 4,
+                hoverBorderWidth: 3,
+              },
+            },
+            animation: {
+              oncomplete: function (animation) {
+                var firstSet = animation.chart.config.data.datasets[0].data,
+                  dataSum = firstSet.reduce(
+                    (accumulator, currentValue) => accumulator + currentValue
+                  );
+                console.log("firstSet: "+firstSet);
+                console.log("datasum: "+dataSum);
+    
+                if (typeof firstSet !== "object" || dataSum === 0) {
+                  console.log("se cumple ocultando");
+                  document.getElementById("no-data").style.display = "block";
+                  document.getElementById("miCanvas").style.display =
+                    "none";
+                }
+              },
             },
           },
-          y: {
-            ticks: {
-              beginAtZero: true,
-              maxTicksLimit: 5,
-              stepSize: Math.ceil(250 / 5),
-              max: 100,
-            },
-          },
-        },
-        elements: {
-          line: {
-            tension: 0.4,
-          },
-          point: {
-            radius: 0,
-            hitRadius: 10,
-            hoverRadius: 4,
-            hoverBorderWidth: 3,
-          },
-        },
-      },
-    });
+        });
+      }
+    }
+
+   
   };
   ajax.send(data);
 }
