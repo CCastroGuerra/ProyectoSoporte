@@ -18,6 +18,8 @@ include('../templates/cabecera.php');
                                 <input type="text" class="form-control" id="codEquipo" name="codEquipo" placeholder="id/margesi/codigo">
                                 <label class="control-label" for="areaOR">Area de origen</label>
                                 <input type="text" class="form-control" id="areaOR" name="areaOR" placeholder="" readonly>
+                                <input type="text" class="form-control" id="areaORId" name="areaORId" placeholder="" readonly>
+                                </select>
                                 <label for="selServicio" class="mb-2">Area Destino:</label>
                                 <select class="form-select" aria-label="Default select example" id="selServicio" name="selServicio">
                                     <option selected>Seleccione el Servicio</option>
@@ -32,7 +34,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal">Guardar</button>
+                    <button type="button" id="guardarEquipo" class="btn btn-primary" data-coreui-dismiss="modal" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal">Guardar</button>
                 </div>
             </form>
         </div>
@@ -46,7 +48,7 @@ include('../templates/cabecera.php');
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Trabajos</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Movimientos</h5>
                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="frmTrabajoa">
@@ -111,16 +113,13 @@ include('../templates/cabecera.php');
                                             <table class="table table-hover align-middle" id="tableModal">
                                                 <thead>
                                                     <tr>
-
-                                                        <th scope="col"><strong>Servicio</strong></th>
+                                                        <th scope="col"><strong> Id Equipo</strong></th>
+                                                        <th scope="col"><strong> Área Origen</strong></th>
+                                                        <th scope="col"><strong>Área Destino</strong> </th>
+                                                        <th scope="col"><strong>Opciones</strong> </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbEquipos">
-                                                    <tr>
-                                                        <th>Id Equipo</th>
-                                                        <th>Area Origen</th>
-                                                        <th>Area Destino</th>
-                                                    </tr>
                                                     <tr>
                                                         <td>01</td>
                                                         <td>Area1</td>
