@@ -64,7 +64,7 @@ class Equipos extends Conectar
         $fila->bindParam(10, $ip, PDO::PARAM_STR);
         $fila->bindParam(11, $mac, PDO::PARAM_STR);
         /*******************************/
-        /* $fila = $conectar->prepare($sql); */ 
+        /* $fila = $conectar->prepare($sql); */
 
         if ($fila->execute()) {
             $consulta = "Select id_equipos  from equipos where serie = '$serie';";
@@ -604,8 +604,9 @@ class Equipos extends Conectar
     {
         $conectar = parent::conexion();
         $sql = "SELECT e.id_equipos,
-        tc.id_tipo_componentes,
-        tc.nombre_tipo_componente,
+        e.cod_equipo,
+        tc.id_tipo_equipo,
+        tc.nombre_tipo_equipo,
         e.serie,
         e.margesi,
         ma.id_marca,
@@ -620,15 +621,14 @@ class Equipos extends Conectar
         est.nombre_estado,
         e.mac,
         e.ip
-         FROM equipos e
-        INNER JOIN tipo_componentes tc ON tc.id_tipo_componentes = e.tipo_equipo_id
+    FROM equipos e
+        INNER JOIN tipo_equipo tc ON tc.id_tipo_equipo = e.tipo_equipo_id
         INNER JOIN marca ma ON e.marca_id = ma.id_marca
         INNER JOIN modelo mo ON e.modelo_id = mo.id_modelo
         INNER JOIN personal per on per.id_personal = e.clientes_id
         INNER JOIN area a ON a.id_area = e.area_id
         INNER JOIN estado est ON est.id_estado = e.estado_id
-         WHERE e.id_equipos = ?
-        ;";
+    WHERE e.id_equipos = ?;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idEquipo);
         $sql->execute();

@@ -1,4 +1,5 @@
 //listarTablaMovimientos();
+let id;
 let numPagina = 1;
 listarSelecTecnicos();
 listarSelecArea();
@@ -15,7 +16,12 @@ let btnGuardarEquipo = document.getElementById("guardarEquipo");
 /***********************************/
 frmMovimientos.onsubmit = function (e) {
   e.preventDefault();
-  actualizar(id);
+  let cajaid = frmMovimientos.querySelector("#idMov").value;
+  if (cajaid.length == 0) {
+    console.log("Guarde datos");
+  } else {
+    actualizar(id);
+  }
 };
 
 idEquipo.addEventListener("input", function () {
@@ -342,37 +348,19 @@ function actualizar(id) {
   let observacion = document.getElementById("fallaObservada").value;
   // Obtener los valores actualizados desde los elementos del modal
 
-  swal
-    .fire({
-      title: "AVISO DEL SISTEMA",
-      text: "¿Desea actualizar el registro?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      reverseButtons: true,
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        const ajax = new XMLHttpRequest();
-        ajax.open("POST", "../controller/movimientosController.php", true);
-        const data = new FormData();
-        data.append("id", id);
-        data.append("selTipo", tipoMovimientoInput);
-        data.append("selTecnico", selectTecnico);
-        data.append("fallaObservada", observacion);
-        data.append("accion", "actualizarMovimientos");
-        ajax.onload = function () {
-          console.log(ajax.responseText);
-          buscarMovimientos();
-          swal.fire(
-            "Actualizado!",
-            "El registro se actualizó correctamente.",
-            "success"
-          );
-        };
-        //cajaBuscar.value = "";
-        ajax.send(data);
-      }
-    });
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/movimientosController.php", true);
+  const data = new FormData();
+  data.append("id", id);
+  data.append("selTipo", tipoMovimientoInput);
+  data.append("selTecnico", selectTecnico);
+  data.append("fallaObservada", observacion);
+  data.append("accion", "actualizarMovimientos");
+  ajax.onload = function () {
+    console.log(ajax.responseText);
+    buscarMovimientos();
+    swal.fire("Registrado!", "Datos registrados correctamente.", "success");
+  };
+  //cajaBuscar.value = "";
+  ajax.send(data);
 }

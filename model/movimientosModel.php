@@ -94,7 +94,7 @@ class Movimiento extends Conectar
         nombre_area
     FROM equipos e
         INNER JOIN area a ON a.id_area = e.area_id
-    WHERE id_equipos = ?;";
+    WHERE cod_equipo = ?;";
         //echo 'consulta sql' . $sql;
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idEquipo);
