@@ -24,7 +24,6 @@ var alerta2 = document.querySelector("#alerta2");
 var alerta3 = document.querySelector("#alerta3");
 var alerta4 = document.querySelector("#alerta4");
 var alerta5 = document.querySelector("#alerta5");
-var alerta6 = document.querySelector("#alerta6");
 var alerta7 = document.querySelector("#alerta7");
 
 var ofr = document.querySelectorAll("#formAcomponente .alerta");
@@ -52,9 +51,7 @@ selecModelo.onchange = function () {
 serie_compo.oninput = function () {
   alerta5.innerText = "";
 };
-capc_compo.oninput = function () {
-  alerta6.innerText = "";
-};
+
 estado_compo.onchange = function () {
   alerta7.innerText = "";
 };
@@ -116,10 +113,7 @@ frmComponentes.onsubmit = function (e) {
       band++;
       alerta5.innerText = "Ingrese el # de serie";
     }
-    if (capc_compo.value.trim().length == 0 || capc_compo.value == "") {
-      band++;
-      alerta6.innerText = "ingrese la capacidad del componente";
-    }
+    
     if (estado_compo.value == 0) {
       band++;
       alerta7.innerText = "Especifique el estado del componente";
@@ -325,8 +319,17 @@ function buscarComponente() {
     let componentes = datos.listado;
     console.log(componentes);
     let template = ""; // Estructura de la tabla html
+    var disponible="";
+    var dispostyle="";
     if (componentes != "vacio") {
       componentes.forEach(function (componentes) {
+        if (componentes.Disponible == 0) {
+          disponible="NO";
+          dispostyle="color: red;";
+        } else {
+          disponible="SI";          
+          dispostyle="color: green;";
+        }
         template += `
                   <tr>
                       <td>${componentes.nombreTipo}</td>
@@ -336,6 +339,7 @@ function buscarComponente() {
                       <td>${componentes.serie}</td>
                       <td>${componentes.capacidad}</td>
                       <td>${componentes.estado}</td>
+                      <td style="${dispostyle} font-weight: bold;">${disponible}</td>
                       <td>${componentes.Fecha}</td>
                       <td>
 

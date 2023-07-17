@@ -2,40 +2,66 @@
 
 class Equipos extends Conectar
 {
-
-    public function obtenerDatosComponentes($serie)
+    public function revisarepetidos(string $dato)
     {
         $conectar = parent::conexion();
-
-        $sql = "SELECT id_componentes, serie,tp.nombre_tipo_componente,cc.nombre_clase,ma.nombre_marca, m.nombre_modelo,componentes_capacidad, e.nombre_estado FROM componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id WHERE serie = ? ";
-
+        $sql = "SELECT id_temp_componentes, id_equipo_componentes, equipo_id, serie_comp,esActivo FROM temp_componentes WHERE serie_comp=? AND esActivo='1'";
         $fila = $conectar->prepare($sql);
-        $fila->bindValue(1, $serie);
+        $fila->bindParam(1, $dato);
         $fila->execute();
 
         $resultado = $fila->fetchAll();
-
         if (empty($resultado)) {
-            $resultado = array('listado' => 'vacio');
+            # code...si no esta repetido, realizar todo normalmente
+            $rep = 0;
         } else {
-            $listado = array();
-            foreach ($resultado as $row) {
-                $listado[] = array(
-                    "id" => $row["id_componentes"],
-                    "nombreTipo" => $row["nombre_tipo_componente"],
-                    'nombreClase' => $row["nombre_clase"],
-                    'nombreMarca' => $row["nombre_marca"],
-                    'nombreModelo' => $row["nombre_modelo"],
-                    'serie' => $row["serie"],
-                    'capacidad' => $row["componentes_capacidad"],
-                    'estado' => $row["nombre_estado"]
-                );
+            # code... si esta repetido, detener
+            $rep = 1;
+        }
+        
+        return $rep;
+    }
+
+    public function obtenerDatosComponentes($serie)
+    {
+        $repetido = $this->revisarepetidos($serie);
+        if ($repetido == 0) {
+            # code...
+            $conectar = parent::conexion();
+
+            $sql = "SELECT id_componentes, serie,tp.nombre_tipo_componente,cc.nombre_clase,ma.nombre_marca, m.nombre_modelo,componentes_capacidad, e.nombre_estado FROM componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id WHERE serie = ? and es_activo=1";
+
+            $fila = $conectar->prepare($sql);
+            $fila->bindValue(1, $serie);
+            $fila->execute();
+
+            $resultado = $fila->fetchAll();
+
+            if (empty($resultado)) {
+                $resultado = array('listado' => 'vacio');
+            } else {
+                $listado = array();
+                foreach ($resultado as $row) {
+                    $listado[] = array(
+                        "id" => $row["id_componentes"],
+                        "nombreTipo" => $row["nombre_tipo_componente"],
+                        'nombreClase' => $row["nombre_clase"],
+                        'nombreMarca' => $row["nombre_marca"],
+                        'nombreModelo' => $row["nombre_modelo"],
+                        'serie' => $row["serie"],
+                        'capacidad' => $row["componentes_capacidad"],
+                        'estado' => $row["nombre_estado"]
+                    );
+                }
+
+
+                // $jsonString = json_encode($resultado);
+                $jsonString = json_encode($listado);
+                echo $jsonString;
             }
-
-
-            // $jsonString = json_encode($resultado);
-            $jsonString = json_encode($listado);
-            echo $jsonString;
+        } else {
+            # code...esta repetido
+            $resultado = array('listado' => 'repetido');
         }
     }
 

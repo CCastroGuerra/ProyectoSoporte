@@ -123,12 +123,12 @@ include('../templates/cabecera.php');
 
                                         <div class="form-group">
                                             <label for="serie" class="mb-2">Serie:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="serie" name="serie" placeholder="Ingrese # de serie" maxlength="16">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="margesi" class="mb-2">Margesi:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="margesi" name="margesi" placeholder="Ingrese Margesi" maxlength="12">
                                             <small class="alerta" id="alertaMargesi"></small>
                                         </div>
                                         <div class="form-group">
@@ -265,7 +265,7 @@ include('../templates/cabecera.php');
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="codigo" class="mb-2"># de Serie:</label>
-                                <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese el #">
+                                <input type="text" class="form-control mb-2" id="codigo" name="codigo" placeholder="Ingrese el #" maxlength="16">
                                 <small class="alerta" id="alertaMcomp"></small>
 
                             </div>

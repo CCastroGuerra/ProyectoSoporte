@@ -430,9 +430,12 @@ function buscarProducto() {
     let producto = datos.listado;
     console.log(producto);
     let template = ""; // Estructura de la tabla html
-
+    var prodstyle="";
     if (producto != "vacio" && producto.length > 0) {
       producto.forEach(function (producto) {
+        if (producto.cantidad<3) {
+          prodstyle="color:red; font-weight:bold;"
+        }else {prodstyle="";}
         template += `
         <tr>
              <td class="visually-hidden" >${producto.nro}</td>
@@ -440,7 +443,7 @@ function buscarProducto() {
             <td>${producto.nombre}</td>
             <td>${producto.tipo}</td>
             <td>${producto.presentacion}</td>
-            <td>${producto.cantidad}</td>
+            <td style="${prodstyle}">${producto.cantidad}</td>
             <td>${producto.almacen}</td>
             <td>
               <button type="button" onClick='mostrarEnModal("${producto.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>

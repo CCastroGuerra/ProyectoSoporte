@@ -1,6 +1,12 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+<!-- Plugins and scripts required by this view-->
+<script src="../vendors/chart.js/js/chart.min.js"></script>
+<script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+<script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
+
+<script src="../js/dashboard.js"></script>
 
 
 <!-- contenido -->
@@ -125,7 +131,7 @@ WHERE `esActivo` = 1;";
       <!-- Productos -->
 
       <!-- Trabajos -->
-      <div class="col-sm-6 col-lg-3" >
+      <div class="col-sm-6 col-lg-3">
         <div class="card mb-4 text-white bg-warning">
           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
             <div class="">
@@ -206,13 +212,16 @@ WHERE `esActivo` = 1;";
         <div class="c-chart-wrapper row justify-content-center align-items-center text-center" style="height:300px;margin-top:40px;">
 
           <canvas class="chart" id="miCanvas" height="300"></canvas>
-          <div id="no-data" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 15%;  width: 100%;">No hay datos</div>
+          <script>
+            traerTrabajosxMes();
+          </script>
+          <div id="no-data" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 30%;  width: 100%;">No hay datos</div>
         </div>
         <!-- /grafico -->
       </div>
       <div class="card-footer" id="Foot1">
-        <div class="row row-cols-1 row-cols-md-5 text-center"id="Foot1-content">
-          
+        <div class="row row-cols-1 row-cols-md-5 text-center" id="Foot1-content">
+
         </div>
       </div>
     </div>
@@ -233,7 +242,7 @@ WHERE `esActivo` = 1;";
         <!-- grafico -->
         <div class="c-chart-wrapper row justify-content-center align-items-center text-center" style="height:300px;margin-top:40px;">
           <canvas class="chart" id="miCanvas2" height="300"></canvas>
-          <div id="no-data2" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 15%;  width: 100%;">No hay datos</div>
+          <div id="no-data2" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 30%;  width: 100%;">No hay datos</div>
         </div>
         <!-- /grafico -->
       </div>
@@ -279,6 +288,70 @@ WHERE `esActivo` = 1;";
     </div>
     <!-- /segundo grafico -->
 
+    <!-- /.row-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">Productos</div>
+          <div class="card-body">
+
+            <!-- /.row-->
+            <div class="table-responsive">
+              <table class="table table-hover border mb-0">
+                <thead class="table-light fw-semibold">
+                  <tr class="align-middle">
+                    <th class="text-center">
+                      <svg class="icon">
+                        <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
+                      </svg>
+                    </th>
+                    <th>Nombre</th>
+                    <th class="text-center">Cantidad</th>
+                    <th>Activity</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="productos_Terminar">
+                  <tr class="align-middle">
+                    <td class="text-center">
+                      <div><span>[E0000001]</span></div>
+                    </td>
+                    <td>
+                      <div>[nombre]</div>
+                      <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                    </td>
+                    <td class="text-center">
+                      <div><span>[10]</span></div>
+                    </td>
+
+                    <td>
+                      <div class="small text-medium-emphasis">Last login</div>
+                      <div class="fw-semibold">10 sec ago</div>
+                    </td>
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg class="icon">
+                            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                          </svg>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                          <a class="dropdown-item" href="#">Info</a>
+                          <a class="dropdown-item" href="#">Edit</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-->
+    </div>
+    <!-- /.row-->
+
 
   </div>
 </div>
@@ -289,12 +362,7 @@ WHERE `esActivo` = 1;";
 include '../templates/footer.php';
 ?>
 
-<!-- Plugins and scripts required by this view-->
-<script src="../vendors/chart.js/js/chart.min.js"></script>
-<script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-<script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
 
-<script src="../js/dashboard.js"></script>
 <!-- <script>
   Chart.defaults.pointHitDetectionRadius = 1;
   Chart.defaults.plugins.tooltip.enabled = false;

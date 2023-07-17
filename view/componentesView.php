@@ -67,7 +67,7 @@ include('../templates/cabecera.php');
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="mb-2"># Serie:</label>
-                                    <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie">
+                                    <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie" maxlength="16">
                                     <small class="alerta" id="alerta5"></small>
                                 </div>
 
@@ -155,7 +155,8 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Modelo</strong></th>
                                     <th scope="col"><strong># Serie</strong></th>
                                     <th scope="col"><strong>Capacidad</strong></th>
-                                    <th scope="col"><strong>Estado</strong></th>
+                                    <th scope="col"><strong>Estado</strong></th>                                    
+                                    <th scope="col"><strong>Disponible</strong></th>
                                     <th scope="col"><strong>Fecha</strong></th>
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>

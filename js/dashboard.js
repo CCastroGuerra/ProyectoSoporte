@@ -1,6 +1,15 @@
 console.log("iniciando");
+
+const generarColorAleatorio = () => {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  return `rgba(${r},${g},${b},0.85)`;
+};
+
 traerTrabajosXArea();
-traerTrabajosxMes();
+productosxterminar();
+
 Chart.defaults.pointHitDetectionRadius = 1;
 Chart.defaults.plugins.tooltip.enabled = false;
 Chart.defaults.plugins.tooltip.mode = "index";
@@ -29,9 +38,8 @@ function traerTrabajosxMes() {
       //console.log("vacio");
       mes.push(null);
       cantidad.push(null);
-      /* document.getElementById("miCanvas").setAttribute("style", "display:none");
-      document.getElementById("no-data").style.display = "block"; */
-      
+      document.getElementById("miCanvas").setAttribute("style", "display:none");
+      document.getElementById("no-data").style.display = "block";
     } else {
       let respuesta = JSON.parse(realizado);
       console.log(respuesta);
@@ -147,13 +155,23 @@ function traerTrabajosxMes() {
           (accumulator, currentValue) => accumulator + currentValue
         );
         var colrs = myChart.config.data.datasets[0].backgroundColor;
-        var template="";
+        var template = "";
         console.log(dataSum);
-        var foot= document.getElementById("Foot1-content");
+        var foot = document.getElementById("Foot1-content");
         for (let index = 0; index < ejex.length; index++) {
-          var perc= ((firstSet[index]/dataSum)*100).toFixed(2);
-          console.log("(" + ejex[index] + "," + firstSet[index] + ")=> "+perc+"% " +"c:"+colrs[index]);
-          
+          var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
+          console.log(
+            "(" +
+              ejex[index] +
+              "," +
+              firstSet[index] +
+              ")=> " +
+              perc +
+              "% " +
+              "c:" +
+              colrs[index]
+          );
+
           template += `<div class="col mb-sm-2 mb-0">
           <div class="text-medium-emphasis">Visits</div>
           <div class="fw-semibold">${firstSet[index]} ${ejex[index]} (${perc}%)</div>
@@ -247,35 +265,90 @@ function traerTrabajosXArea() {
         },
       });
       var firstSet = myChart2.config.data.datasets[0].data;
-        var ejex = myChart2.config.data.labels;
-        var dataSum = firstSet.reduce(
-          (accumulator, currentValue) => accumulator + currentValue
+      var ejex = myChart2.config.data.labels;
+      var dataSum = firstSet.reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      );
+      var colrs = myChart2.config.data.datasets[0].backgroundColor;
+      var template = "";
+      console.log(dataSum);
+      var foot = document.getElementById("Foot2-content");
+      for (let index = 0; index < ejex.length; index++) {
+        var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
+        console.log(
+          "(" +
+            ejex[index] +
+            "," +
+            firstSet[index] +
+            ")=> " +
+            perc +
+            "% " +
+            "c:" +
+            colrs[index]
         );
-        var colrs = myChart2.config.data.datasets[0].backgroundColor;
-        var template="";
-        console.log(dataSum);
-        var foot= document.getElementById("Foot2-content");
-        for (let index = 0; index < ejex.length; index++) {
-          var perc= ((firstSet[index]/dataSum)*100).toFixed(2);
-          console.log("(" + ejex[index] + "," + firstSet[index] + ")=> "+perc+"% " +"c:"+colrs[index]);
-          
-          template += `<div class="col mb-sm-2 mb-0">
+
+        template += `<div class="col mb-sm-2 mb-0">
           <div class="text-medium-emphasis">Visits</div>
           <div class="fw-semibold">${firstSet[index]} ${ejex[index]} (${perc}%)</div>
           <div class="progress progress-thin mt-2">
             <div class="progress-bar" role="progressbar" style="width: ${perc}%; background-color:${colrs[index]}" aria-valuenow="${perc}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>`;
-        }
-        foot.innerHTML = template;
+      }
+      foot.innerHTML = template;
     }
   };
   ajax.send(data);
 }
 
-const generarColorAleatorio = () => {
-  const r = Math.floor(Math.random() * 255);
-  const g = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
-  return `rgba(${r},${g},${b},0.85)`;
-};
+function productosxterminar() {
+  console.log("productosxterminar()");
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/dashboardController.php", true);
+  var data = new FormData();
+  data.append("accion", "productosporterminarse");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    const datos = JSON.parse(respuesta);
+    var template = ""; // Estructura de la tabla html
+    console.log(datos);
+    datos.forEach((element) => {
+      template += `
+      <tr class="align-middle">
+        <td class="text-center">
+          <div><span>${element.codigo}</span></div>
+        </td>
+        <td>
+          <div>${element.nombre}</div>
+          <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+        </td>
+        <td class="text-center">
+          <div><span>${element.cantidad}</span></div>
+        </td>
+
+        <td>
+          <div class="small text-medium-emphasis">Last login</div>
+          <div class="fw-semibold">10 sec ago</div>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg class="icon">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+              </svg>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="#">Info</a>
+              <a class="dropdown-item" href="#">Edit</a>
+            </div>
+          </div>
+        </td>
+      </tr>`;
+    });
+    var elemento = document.getElementById("productos_Terminar");
+      elemento.innerHTML = template;
+  };
+
+  ajax.send(data);
+}
