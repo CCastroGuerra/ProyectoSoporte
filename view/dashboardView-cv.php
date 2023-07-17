@@ -38,8 +38,7 @@ where `esActivo` = 1;";
 
       //Consultas para total de trabajos
       $consulta3 = "SELECT COUNT(*) totalTrabajos
-FROM trabajos
-WHERE es_activo = 1;";
+FROM trabajos";
       $consulta3 = $conectar->prepare($consulta3);
       if ($consulta3->execute()) {
         $resultado3 = $consulta3->fetch(PDO::FETCH_ASSOC);
@@ -126,7 +125,7 @@ WHERE `esActivo` = 1;";
       <!-- Productos -->
 
       <!-- Trabajos -->
-      <div class="col-sm-6 col-lg-3">
+      <div class="col-sm-6 col-lg-3" >
         <div class="card mb-4 text-white bg-warning">
           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
             <div class="">
@@ -204,56 +203,16 @@ WHERE `esActivo` = 1;";
         </div>
         <!-- /encabezado -->
         <!-- grafico -->
-        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
+        <div class="c-chart-wrapper row justify-content-center align-items-center text-center" style="height:300px;margin-top:40px;">
 
           <canvas class="chart" id="miCanvas" height="300"></canvas>
-          <div id="no-data" style="display: none;
-  position: absolute;
-  padding: 50px 0;
-  text-align: center;
-  font-size: 3rem;
-  top: 15%;
-  width: 100%;">Nothing to display</div>
+          <div id="no-data" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 15%;  width: 100%;">No hay datos</div>
         </div>
         <!-- /grafico -->
       </div>
-      <div class="card-footer">
-        <div class="row row-cols-1 row-cols-md-5 text-center">
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Visits</div>
-            <div class="fw-semibold">29.703 Users (40%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Unique</div>
-            <div class="fw-semibold">24.093 Users (20%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Pageviews</div>
-            <div class="fw-semibold">78.706 Views (60%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">New Users</div>
-            <div class="fw-semibold">22.123 Users (80%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Bounce Rate</div>
-            <div class="fw-semibold">40.15%</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
+      <div class="card-footer" id="Foot1">
+        <div class="row row-cols-1 row-cols-md-5 text-center"id="Foot1-content">
+          
         </div>
       </div>
     </div>
@@ -272,14 +231,14 @@ WHERE `esActivo` = 1;";
         </div>
         <!-- /encabezado -->
         <!-- grafico -->
-        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
+        <div class="c-chart-wrapper row justify-content-center align-items-center text-center" style="height:300px;margin-top:40px;">
           <canvas class="chart" id="miCanvas2" height="300"></canvas>
-          
+          <div id="no-data2" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 15%;  width: 100%;">No hay datos</div>
         </div>
         <!-- /grafico -->
       </div>
-      <div class="card-footer">
-        <div class="row row-cols-1 row-cols-md-5 text-center">
+      <div class="card-footer" id="Foot2">
+        <div class="row row-cols-1 row-cols-md-5 text-center" id="Foot2-content">
           <div class="col mb-sm-2 mb-0">
             <div class="text-medium-emphasis">Visits</div>
             <div class="fw-semibold">29.703 Users (40%)</div>

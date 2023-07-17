@@ -7,7 +7,7 @@ class Dashboard extends Conectar
         $sql = "SELECT mes_nombre, COUNT(*) AS cantidad_trabajos
         FROM (
             SELECT DATE_FORMAT(fecha_alta, '%m') AS mes_numero
-            FROM Trabajos where es_activo = '1'
+            FROM Trabajos where es_activo=1
         ) t1
         JOIN (
             SELECT 'enero' AS mes_nombre, '01' AS mes_numero

@@ -80,7 +80,7 @@ function buscarUsuario() {
     if (!datos.hasOwnProperty('negativo')) {
       ///redireccion windows.replace
       //template += `<p>Estas dentro</p>`;
-      window.location.replace("view/dashboardView-edit.php");
+      window.location.replace("view/dashboardView-cv.php");
       //var elemento = document.getElementById("login-mensaje");
       //elemento.innerHTML = template;
     } else {
