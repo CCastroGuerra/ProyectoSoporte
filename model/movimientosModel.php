@@ -286,4 +286,16 @@ class Movimiento extends Conectar
         }
         return $resultado = $sql->fetchAll();
     }
+
+    public function imprimirMovimiento($idMovimiento)
+    {
+        $conectar = parent::conexion();
+        $consulta = "";
+
+        $consulta = $conectar->prepare($consulta);
+        $consulta->bindValue(1, $idMovimiento);
+        $consulta->execute();
+
+        return $resultado = $consulta->fetchAll();
+    }
 }

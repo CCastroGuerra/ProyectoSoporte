@@ -364,3 +364,9 @@ function actualizar(id) {
   //cajaBuscar.value = "";
   ajax.send(data);
 }
+
+function imprimir(idMovimiento) {
+  let link = "../view/reporteEntregaRetiro.php?id=" + idMovimiento;
+
+  window.open(link, "_blank");
+}
