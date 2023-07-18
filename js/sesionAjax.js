@@ -8,49 +8,49 @@ var ro = document.getElementById("sessRol");
 -no puede editar (botones editar anulados/ocultos)
 -vista de reportes
 */
-$("#tbProductos").bind("DOMSubtreeModified", function () {
+$("#tbProductos").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbProductos tr");
-  console.log("la tabla cambió: " + tabla.length);
+  //console.log("la tabla cambió: " + tabla.length);
   Secretaria();
 });
 
-$("#tbComponentes").bind("DOMSubtreeModified", function () {
+$("#tbComponentes").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbComponentes tr");
-  console.log("la tabla cambió, componentes: " + tabla.length);
+  //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
 
-$("#tbBajas").bind("DOMSubtreeModified", function () {
+$("#tbBajas").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbBajas tr");
-  console.log("la tabla cambió, componentes: " + tabla.length);
+  //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
 
-$("#tbMarca").bind("DOMSubtreeModified", function () {
+$("#tbMarca").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbMarca tr");
-  console.log("la tabla cambió, componentes: " + tabla.length);
+  //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
 
-$("#tbModelo").bind("DOMSubtreeModified", function () {
+$("#tbModelo").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbModelo tr");
-  console.log("la tabla cambió, componentes: " + tabla.length);
+  //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
 
-$("#tbArea").bind("DOMSubtreeModified", function () {
+$("#tbArea").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbArea tr");
-  console.log("la tabla cambió, componentes: " + tabla.length);
+  //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
 
-$("#tbRoles").bind("DOMSubtreeModified", function () {
+$("#tbRoles").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbRoles tr");
-  console.log("la tabla cambió, componentes: " + tabla.length);
+  //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
 
-$("#tbServicio").bind("DOMSubtreeModified", function () {
+$("#tbServicio").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbServicio tr");
   //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();

@@ -44,22 +44,57 @@ var bmargesi = 0;
 var bnadir = 0;
 
 // cuando se recargue la pagina se limpiará la tabla temporal
-document.onkeydown = fkey;
-document.onkeypress = fkey;
-document.onkeyup = fkey;
+document.addEventListener("keydown", function (evt) {
+  evt.preventDefault();
+  var tecla = evt.key;
+  console.log(evt.key);
+  if (tecla === "F5") {
+    if(confirm('Si recarga la página perdera todos los datos ingresados,<br> ¿Deseas recargar la página?"')==true){
+      //console.log("preiosnaste si");
+      let promesa = limpiarreiniciar();
+      promesa.then(
+        (e) => {
+          //console.log("valor: "+e);
+          location.reload();
+        }, //cuando terminó el método sin errores, ejecuta esto:
+      );
+    }
+    else{
+      console.log("presionaste no");
+    }
+  }
+});
 
 var wasPressed = false;
-
+function Verificar() {
+  var tecla = window.event.keyCode;
+  if (tecla == 116) {
+    confirm(
+      'Si recarga la página perdera todos los datos ingresados,<br> ¿Deseas recargar la página?"',
+      function (result) {
+        if (result) {
+          location.reload();
+        } else {
+          event.keyCode = 0;
+          event.returnValue = false;
+        }
+      }
+    );
+  }
+}
 function fkey(e) {
   e = e || window.event;
+  e.stopPropagation();
+  e.preventDefault;
   if (wasPressed) return;
 
   if (e.keyCode == 116) {
     cerrarEditar();
-    //alert("f5 pressed");
+    alert("f5 pressed");
     wasPressed = true;
+    //return true;
   } else {
-    //alert("Window closed");
+    alert("Window closed");
   }
 }
 
@@ -67,19 +102,19 @@ function fkey(e) {
 //boton guardar ->desactivado por defecto a menos que la tabla tbComponentes tenga elementos
 let btmguardar = document.getElementById("btmGuardar");
 
-$("#tbComponentes").bind("DOMSubtreeModified", function () {
+$("#tbComponentes").bind("MutationObserver", function () {
   var tablacomponentes = document.querySelectorAll("#tbComponentes tr");
   console.log("la tabla cambió, componentes: " + tablacomponentes.length);
   if (tablacomponentes.length > 0) {
-    console.log("es mayor a 0");
+    //console.log("es mayor a 0");
     console.log(tablacomponentes[0].innerText.trim());
     if (
       tablacomponentes[0].innerText.trim() === "No se encontraron datos".trim()
     ) {
-      console.log(tablacomponentes[0].innerText + "-> igual a cadena");
+      //console.log(tablacomponentes[0].innerText + "-> igual a cadena");
       btmguardar.disabled = false;
     } else {
-      console.log("no es un igual a la cadena");
+      //console.log("no es un igual a la cadena");
       btmguardar.disabled = false;
     }
   } else {
@@ -376,35 +411,38 @@ selecMarca.addEventListener("change", () => {
 }); */
 
 function listarSelectModelo() {
-  console.log("selctMarca cambio");
-  let marcaId = selecMarca.value;
-  console.log(marcaId);
-  const ajax = new XMLHttpRequest();
-  //Se establace la direccion del archivo php que procesara la peticion
-  ajax.open("POST", "../controller/equiposController.php", true);
-  var data = new FormData();
-  data.append("accion", "listarModel");
-  data.append("id", marcaId);
-  selecModelo.disabled = false;
-  ajax.onload = () => {
-    let respuesta = ajax.responseText;
-    console.log(respuesta);
-    let marcas = JSON.parse(respuesta);
-    console.log(marcas);
-    let options = "<option value=''>Seleccione un Modelo</option>";
-    if (marcas.length > 0) {
-      marcas.forEach(function (marcas) {
-        options += `
+  return new Promise(function (resolve, reject) {
+    console.log("selctMarca cambio");
+    let marcaId = selecMarca.value;
+    console.log(marcaId);
+    const ajax = new XMLHttpRequest();
+    //Se establace la direccion del archivo php que procesara la peticion
+    ajax.open("POST", "../controller/equiposController.php", true);
+    var data = new FormData();
+    data.append("accion", "listarModel");
+    data.append("id", marcaId);
+    selecModelo.disabled = false;
+    ajax.onload = () => {
+      let respuesta = ajax.responseText;
+      console.log(respuesta);
+      let marcas = JSON.parse(respuesta);
+      console.log(marcas);
+      let options = "<option value=''>Seleccione un Modelo</option>";
+      if (marcas.length > 0) {
+        marcas.forEach(function (marcas) {
+          options += `
             <option value='${marcas.id}'>${marcas.nombre}</option>
                       `;
-      });
-    } else {
-      selecModelo.disabled = true;
-    }
-    //Actualizar combo
-    document.getElementById("selModeloEquipo").innerHTML = options;
-  };
-  ajax.send(data);
+        });
+      } else {
+        selecModelo.disabled = true;
+      }
+      //Actualizar combo
+      document.getElementById("selModeloEquipo").innerHTML = options;
+      resolve("terminado");
+    };
+    ajax.send(data);
+  });
 }
 
 function listarSelectMarca() {
@@ -693,7 +731,11 @@ function guardarComponentes() {
       ajaxGuardar.send(dataGuardar);
     } else {
       console.log("NO SE ENCONTRO EL COMPONENTE");
-      swal.fire("ERROR!", "No se encontro el componente o ya esta ingresado", "error");
+      swal.fire(
+        "ERROR!",
+        "No se encontro el componente o ya esta ingresado",
+        "error"
+      );
     }
   };
   ajax.send(data);
@@ -731,10 +773,8 @@ function listarTablaTemp() {
   
         </button>
         </td>
-        </tr>
-                      
-                  
-                      `;
+        </tr>             
+              `;
       });
       var elemento = document.getElementById("tbComponentes");
       elemento.innerHTML = template;
@@ -829,8 +869,7 @@ function buscarEquipo() {
     if (equipos != "vacio") {
       equipos.forEach(function (equipos) {
         template += `
-                  <tr>
-                    
+                  <tr>                    
                       <td>${equipos.codigo}</td>
                       <td>${equipos.nombreArea}</td>
                       <td>${equipos.nombreMarca}</td>
@@ -841,10 +880,9 @@ function buscarEquipo() {
                       <td>${equipos.mac}</td>
                       <td>${equipos.estado}</td>
                       <td>${equipos.Fecha}</td>
-                      <td>
-                      <button type="button" onClick='mostrarEnModal("${equipos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      
+                      <td class="text-center">
+                        <button type="button" onClick='mostrarEnModal("${equipos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>                      
                       </td>
 
                   </tr>
@@ -944,8 +982,16 @@ function mostrarEnModal(equipoID) {
     let datos = JSON.parse(respuesta);
     console.log(datos);
     document.getElementById("selMarcaEquipo").value = datos.nombreMarca;
-    var eventoChange = new Event("change");
-    document.getElementById("selMarcaEquipo").dispatchEvent(eventoChange);
+    /* var promise = listarSelectModelo();
+    console.log(promise); */
+    let promise = listarSelectModelo();
+    promise.then((e) => {
+      console.log("values: " + e);
+      console.log("message: termino listar SelectModelo");
+      selecModelo.value = datos.nombreModelo;
+      console.log("modelo seleccionado: " + datos.nombreModelo);
+    });
+
     document.getElementById("selTipoEquipo").value = datos.nombreTipo;
     document.getElementById("serie").value = datos.serie;
     document.getElementById("margesi").value = datos.margesi;
@@ -956,18 +1002,20 @@ function mostrarEnModal(equipoID) {
     document.getElementById("mac").value = datos.mac;
     document.getElementById("ip").value = datos.ip;
     /*Evento necesario para el combo anidado */
-    setTimeout(() => {
-      document.getElementById("selModeloEquipo").value = datos.nombreModelo;
-      console.log("modelo:" + document.getElementById("selModeloEquipo").value);
-    }, 420);
 
     document.getElementById("inputCodigo").value = datos.id;
   };
-  //guardarTempParaActualizar();
-  insertarTempParaActualizar();
+  //insertarTempParaActualizar();
+  setTimeout(() => {
+    insertarTempParaActualizar();
+    //listarTablaTemp();
+  }, 750);
+  /* setTimeout(() => {
+    selecModelo.value = datos.nombreModelo;
+    console.log("modelo seleccionado: "+datos.nombreModelo);
+  }, 500); */
   ajax.send(data);
   //componentesEquipoEnModal();
-  listarTablaTemp();
 }
 
 // function eliminarComponentes(id) {
@@ -1130,6 +1178,35 @@ function cerrarEditar() {
   var elemento = document.getElementById("tbComponentes");
   elemento.innerHTML = ``;
   ajax.send(data);
+}
+
+function limpiarreiniciar() {
+  return new Promise(function (resolve, reject) {
+    let idEquipo = document.getElementById("inputCodigo").value;
+    console.log("id equipo boton: " + idEquipo);
+    const ajax = new XMLHttpRequest();
+    //Se establace la direccion del archivo php que procesara la peticion
+    ajax.open("POST", "../controller/equiposController.php", true);
+    var data = new FormData();
+    data.append("id", idEquipo);
+    data.append("accion", "botonCerrar");
+    ajax.onload = function () {
+      realizado = ajax.responseText;
+      console.log(realizado);
+      if (realizado * 1 > 0) {
+        console.log("Se borro datos de temporal");
+        resolve("terminado->a reiniciar");
+        //listarTablaTemp();
+      } else {
+        reject("algo ha fallado");
+      }
+      frmEquipos.reset();
+      var elemento = document.getElementById("tbComponentes");
+      elemento.innerHTML = ``;
+    };
+
+    ajax.send(data);
+  });
 }
 
 /*********Paginación equipo***********/

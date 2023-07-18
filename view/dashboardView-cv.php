@@ -296,9 +296,9 @@ WHERE `esActivo` = 1;";
           <div class="card-body">
 
             <!-- /.row-->
-            <div class="table-responsive">
+            <div class="table-responsive" style="height:400px;">
               <table class="table table-hover border mb-0">
-                <thead class="table-light fw-semibold">
+                <thead class="table-dark fw-semibold"  style="position:sticky;top:0;">
                   <tr class="align-middle">
                     <th class="text-center">
                       <svg class="icon">

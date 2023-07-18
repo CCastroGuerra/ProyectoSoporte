@@ -283,7 +283,7 @@ include('../templates/cabecera.php');
 <!-- Fin del modal  -->
  
 <!-- Tabla -->
-<div class="col-md-12 col-lg-12 ">
+<div class="col-md-12 col-lg-12" style="padding-left: 0px;    padding-right: 0px;">
     <div class="row ">
         <div class="col-xs-1-12">
             <div class="card">
@@ -310,7 +310,7 @@ include('../templates/cabecera.php');
         </div>
         <div class="col-xs-1-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="padding-left: 8px;padding-right: 8px;">
                     <!-- encabezado--->
                     <div class="container text-center">
                         <div class="row mb-auto">
@@ -335,8 +335,8 @@ include('../templates/cabecera.php');
                     </div>
                     <!-- /encabezado--->
 
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle">
+                    <div class="table-responsive-xxl">
+                        <table class="table table-hover align-middle table-sm">
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>Codigo</strong></th>
@@ -353,19 +353,7 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbEquipos">
-                                <tr>
-                                    <td><a href="#" id="href" data-coreui-toggle="modal" data-coreui-target="#añadirEquipo">01</a></td>
-                                    <td>Logistica</td>
-                                    <td>HP</td>
-                                    <td>SCR1023</td>
-                                    <td>1544816718</td>
-                                    <td>######</td>
-                                    <td>192.168.2.145</td>
-                                    <td>8d:5f:6c:7a:6b</td>
-                                    <td>Bueno</td>
-                                    <td>22/10/2022</td>
-                                    <td><a href="">DEL</a></td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>

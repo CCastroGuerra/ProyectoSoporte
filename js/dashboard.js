@@ -321,7 +321,7 @@ function productosxterminar() {
         </td>
         <td>
           <div>${element.nombre}</div>
-          <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+          <div class="small text-medium-emphasis"><span>New</span> | Registered: ${element.fecha_reg}</div>
         </td>
         <td class="text-center">
           <div><span>${element.cantidad}</span></div>
@@ -329,7 +329,7 @@ function productosxterminar() {
 
         <td>
           <div class="small text-medium-emphasis">Last login</div>
-          <div class="fw-semibold">10 sec ago</div>
+          <div class="fw-semibold">${element.fecha_mod}</div>
         </td>
         <td>
           <div class="dropdown">

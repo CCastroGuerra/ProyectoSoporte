@@ -292,7 +292,7 @@
             </li>
           `;
             console.log("evaluando");
-            let rl = document.querySelector("#sessRol").dataset.sess;
+            var rl = document.querySelector("#sessRol").dataset.sess;
             let gper = document.getElementById("gesper");
             if (rl == 1) {
               var range = document.createRange();
