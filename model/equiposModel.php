@@ -358,9 +358,9 @@ class Equipos extends Conectar
         c.componentes_capacidad,
         e.nombre_estado
         from temp_componentes as tc
-        inner JOIN componentes c ON tc.serie_comp = c.serie
-        inner JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes
-        inner join clase_componentes cl ON cl.id_clase_componentes = c.clase_componentes_id
+        INNER JOIN componentes c ON tc.serie_comp = c.serie
+        INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes
+        INNER join clase_componentes cl ON cl.id_clase_componentes = c.clase_componentes_id
         INNER JOIN marca ma ON ma.id_marca = c.marca_id
         INNER JOIN modelo m ON m.id_modelo = c.modelo_id
         INNER JOIN estado e ON e.id_estado = c.estado_id

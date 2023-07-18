@@ -1,5 +1,6 @@
-<?php 
-class Marca extends Conectar{
+<?php
+class Marca extends Conectar
+{
 
     public function listarSelectMarca()
     {
@@ -26,7 +27,7 @@ class Marca extends Conectar{
             echo $jsonString;
         }
     }
-    
+
     public function agregarMarca($nombreMarca, $valorSeleccionado)
     {
         $conectar = parent::conexion();
@@ -38,30 +39,32 @@ class Marca extends Conectar{
             echo '0';
         }
     }
-    public function actulizarMarca($idMarca,$nombreMarca,$categoriaMarcaId){
-        $conectar= parent::conexion();
-        $sql="UPDATE marca
+    public function actulizarMarca($idMarca, $nombreMarca, $categoriaMarcaId)
+    {
+        $conectar = parent::conexion();
+        $sql = "UPDATE marca
             SET
                nombre_marca=? ,
                categoria_marca_id =?
             WHERE
                 id_marca = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$nombreMarca);
-        $sql->bindValue(2,$categoriaMarcaId);
-        $sql->bindValue(3,$idMarca);
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $nombreMarca);
+        $sql->bindValue(2, $categoriaMarcaId);
+        $sql->bindValue(3, $idMarca);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
 
-    public function eliminarMarca($id){
+    public function eliminarMarca($id)
+    {
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
             $sql = "UPDATE marca SET esActivo = 0 WHERE id_marca = ?";
-            $sql = $conectar ->prepare($sql);
-            $sql -> bindValue(1, $id);
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado = $sql->fetchAll();
         } else {
@@ -69,41 +72,43 @@ class Marca extends Conectar{
         }
     }
 
-    public function traeMarcaXId($idMarca){
-        $conectar= parent::conexion();
+    public function traeMarcaXId($idMarca)
+    {
+        $conectar = parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql ="SELECT @con := @con + 1 as NRO, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria, m.categoria_marca_id
+        $sql = "SELECT @con := @con + 1 as NRO, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria, m.categoria_marca_id
         FROM marca AS m
         cross join(select @con := 0) r
         INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria where m.id_marca = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$idMarca);
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $idMarca);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
 
-    public function buscarMarca($pagina = 1) {
+    public function buscarMarca($pagina = 1)
+    {
         $conectar = parent::conexion();
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
-          
+
             if (isset($_POST['registros'])) {
-            $limit = $_POST['registros'];
-            $sLimit = "LIMIT $limit";
+                $limit = $_POST['registros'];
+                $sLimit = "LIMIT $limit";
             }
-            $inicio = ($pagina-1)*$limit;
-            $sql = "SELECT @con:=@con + 1 as nro, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria FROM marca AS m
+            $inicio = ($pagina - 1) * $limit;
+            $sql = "SELECT @con:=@con + 1 as nro, m.id_marca, m.nombre_marca, c.nombre_categoria_marca AS nombre_categoria FROM marca AS m
             cross join(select @con := 0) r
-            INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria WHERE m.esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY nombre_marca LIMIT $inicio,$limit ";
+            INNER JOIN categoria_marca AS c ON m.categoria_marca_id = c.id_categoria_marca WHERE m.esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY nombre_marca LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
             $json = [];
             $marcas =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if(!empty($marcas)){
+            if (!empty($marcas)) {
                 $listado = array();
-                foreach($marcas as $marca){
+                foreach ($marcas as $marca) {
                     $listado[] = array(
                         'nro' => $marca['nro'],
                         "id" => $marca["id_marca"],
@@ -115,14 +120,13 @@ class Marca extends Conectar{
                 $sqlNroFilas = "SELECT count(id_marca) as cantidad FROM marca WHERE esActivo = 1";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
-    
+
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$limit);
-                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
+                $paginas = ceil($array['cantidad'] / $limit);
+                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
-
-            }else{
+            } else {
                 $resultado = array("listado" => "vacio");
                 $jsonString = json_encode($resultado);
                 echo $jsonString;
@@ -130,9 +134,5 @@ class Marca extends Conectar{
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    } 
-
+    }
 }
-
-
-?>

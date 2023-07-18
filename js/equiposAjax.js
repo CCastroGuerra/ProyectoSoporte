@@ -85,7 +85,7 @@ $("#tbComponentes").bind("DOMSubtreeModified", function () {
   } else {
     console.log("no es 0");
   }
-}); 
+});
 
 //estilo css de los mensajes de error
 var ofr = document.querySelectorAll("#formAEquipo .alerta");
@@ -930,7 +930,7 @@ function buscarEquipo() {
 
 function mostrarEnModal(equipoID) {
   btnComponente.disabled = false;
-  btmguardar.disabled=false;
+  btmguardar.disabled = false;
   id = equipoID;
   console.log(id);
   const ajax = new XMLHttpRequest();
