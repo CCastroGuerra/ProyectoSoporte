@@ -3,14 +3,25 @@ require_once("../config/conexion.php");
 $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
 $conectar = $conectarObj->Conexion();
 $idMovimientos = (isset($_GET['id'])) ? $_GET['id'] : "";
+
+// Obtener el ID del equipo
+$consultaEquipoID = "SELECT e.id_equipos
+FROM detalles_translado dt
+    INNER JOIN equipos e ON dt.equipo_id = e.cod_equipo
+WHERE id_translado = '$idMovimientos';";
+$consultaEquipoID = $conectar->prepare($consultaEquipoID);
+$consultaEquipoID->execute();
+$resultadoEquipoID = $consultaEquipoID->fetch(PDO::FETCH_ASSOC);
+$equipoID = $resultadoEquipoID['id_equipos'];
+
 // consulta fecha
-$consultaFecha = "SELECT DISTINCT  DATE_FORMAT(fecha, '%d/%m/%y') as Fecha from translado;";
+$consultaFecha = "SELECT DISTINCT DATE_FORMAT(fecha, '%d/%m/%y') as Fecha from translado WHERE id_translado = '$idMovimientos';";
 $consultaFecha = $conectar->prepare($consultaFecha);
 $consultaFecha->execute();
 $resultadoFecha = $consultaFecha->fetch(PDO::FETCH_ASSOC);
 $fechaRegistro = $resultadoFecha['Fecha'];
 
-$consulta1 = "SELECT te.nombre_tipo_equipo,
+$consulta1 = "SELECT e.id_equipos,te.nombre_tipo_equipo,
         m.nombre_marca,
         mo.nombre_modelo,
         e.serie,
@@ -26,8 +37,8 @@ $consulta1 = $conectar->prepare($consulta1);
 $consulta1->execute();
 $resultado1 = $consulta1->fetchAll(PDO::FETCH_ASSOC);
 $cantidadFilas = count($resultado1);
-$fechaActual = date('d/m/Y');
-// echo $cantidadFilas;
+$fechaActual = date('d/m/y');
+//echo $cantidadFilas;
 //print_r($resultado1);
 $equipo1 = [];
 $equipo2 = [];
@@ -39,8 +50,73 @@ if ($cantidadFilas == 2) {
             array_push($equipo2, $resultado1[$i]);
         }
     }
-    // print_r($equipo1);
-    // print_r($equipo2);
+    //print_r($equipo1);
+    $equipo1ID = $equipo1[0]['id_equipos'];
+    //echo $equipo1ID;
+    // echo $equipo1ID;
+    $consultaComponentes2 = "SELECT tc.nombre_tipo_componente,
+    mar.nombre_marca,
+    mo.nombre_modelo,
+    ec.serie_id,
+    es.nombre_estado
+    FROM equipo_componentes ec
+    INNER JOIN componentes c ON c.tipo_componentes_id = ec.id_equipo_componentes
+    INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
+    INNER JOIN marca mar ON mar.id_marca = c.marca_id
+    INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
+    INNER JOIN estado es ON c.estado_id = es.id_estado
+    WHERE ec.`esActivo` = 1
+    AND equipo_id = $equipo1ID;";
+    $consultaComponentes2 = $conectar->prepare($consultaComponentes2);
+    $consultaComponentes2->execute();
+    $resultadoComponentes2 = $consultaComponentes2->fetchAll(PDO::FETCH_ASSOC);
+    //print_r($resultadoComponentes2);
+
+    /****EQUIPO 2****/
+    //print_r($equipo1);
+    $equipo2ID = $equipo2[0]['id_equipos'];
+    //echo $equipo2ID;
+    // echo $equipo2ID;
+    $consultaComponentes3 = "SELECT tc.nombre_tipo_componente,
+    mar.nombre_marca,
+    mo.nombre_modelo,
+    ec.serie_id,
+    es.nombre_estado
+    FROM equipo_componentes ec
+    INNER JOIN componentes c ON c.tipo_componentes_id = ec.id_equipo_componentes
+    INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
+    INNER JOIN marca mar ON mar.id_marca = c.marca_id
+    INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
+    INNER JOIN estado es ON c.estado_id = es.id_estado
+    WHERE ec.`esActivo` = 1
+    AND equipo_id = $equipo2ID;";
+    $consultaComponentes3 = $conectar->prepare($consultaComponentes3);
+    $consultaComponentes3->execute();
+    $resultadoComponentes3 = $consultaComponentes3->fetchAll(PDO::FETCH_ASSOC);
+    //  print_r($resultadoComponentes3);
+} else {
+    for ($i = 0; $i < $cantidadFilas; $i++) {
+        array_push($equipo1, $resultado1[$i]);
+    }
+    //print_r($resultado1);
+    $equipoID = $resultado1[0]['id_equipos'];
+    //echo $equipoID;
+    $consultaComponentes = "SELECT tc.nombre_tipo_componente,
+    mar.nombre_marca,
+    mo.nombre_modelo,
+    ec.serie_id,
+    es.nombre_estado
+    FROM equipo_componentes ec
+    INNER JOIN componentes c ON c.serie = ec.serie_id
+    INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
+    INNER JOIN marca mar ON mar.id_marca = c.marca_id
+    INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
+    INNER JOIN estado es ON c.estado_id = es.id_estado
+    WHERE ec.`esActivo` = 1
+    AND equipo_id = $equipoID;";
+    $consultaComponentes = $conectar->prepare($consultaComponentes);
+    $consultaComponentes->execute();
+    $resultadoComponentes2 = $consultaComponentes->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // $consulta = "SELECT te.nombre_tipo_equipo,
@@ -239,33 +315,66 @@ if ($cantidadFilas == 2) {
                     <td><?php echo $equipo['nombre_estado'] ?></td>
             </tr>
         <?php } ?>
-        </table>
-    </section>
-    <section>
-        <p class="p-tabla">bien patrimonial retirado</p>
-        <table class="tabla" border="default">
-            <tr>
-                <th>UD</th>
-                <th>EQUIPO</th>
-                <th>MARCA</th>
-                <th>MODELO</th>
-                <th>SERIE</th>
-                <th>MARGESI</th>
-                <th>ESTADO</th>
-            </tr>
-            <tr>
-                <?php foreach ($equipo2 as $equipo) { ?>
+        <tr>
+            <?php if (!empty($resultadoComponentes2)) { ?>
+                <?php foreach ($resultadoComponentes2 as $resultado2) { ?>
                     <td>01</td>
-                    <td><?php echo $equipo['nombre_tipo_equipo'] ?></td>
-                    <td><?php echo $equipo['nombre_marca'] ?></td>
-                    <td><?php echo $equipo['nombre_modelo'] ?></td>
-                    <td><?php echo $equipo['serie'] ?></td>
-                    <td><?php echo $equipo['margesi'] ?></td>
-                    <td><?php echo $equipo['nombre_estado'] ?></td>
-            </tr>
-        <?php } ?>
+                    <td><?php echo $resultado2['nombre_tipo_componente'] ?></td>
+                    <td><?php echo $resultado2['nombre_marca'] ?></td>
+                    <td><?php echo $resultado2['nombre_modelo'] ?></td>
+                    <td><?php echo $resultado2['serie_id'] ?></td>
+                    <td>-</td>
+                    <td><?php echo $resultado2['nombre_estado'] ?></td>
+
+        </tr>
+    <?php } ?>
+<?php } else { ?>
+    <tr>
+        <td colspan="7">No hay datos disponibles para el equipo.</td>
+    </tr>
+<?php } ?>
         </table>
     </section>
+    <?php if (!empty($equipo2) || !empty($resultadoComponentes3)) { ?>
+        <section>
+            <p class="p-tabla">bien patrimonial retirado</p>
+            <table class="tabla" border="default">
+                <tr>
+                    <th>UD</th>
+                    <th>EQUIPO</th>
+                    <th>MARCA</th>
+                    <th>MODELO</th>
+                    <th>SERIE</th>
+                    <th>MARGESI</th>
+                    <th>ESTADO</th>
+                </tr>
+                <tr>
+                    <?php foreach ($equipo2 as $equipo) { ?>
+                        <td>01</td>
+                        <td><?php echo $equipo['nombre_tipo_equipo'] ?></td>
+                        <td><?php echo $equipo['nombre_marca'] ?></td>
+                        <td><?php echo $equipo['nombre_modelo'] ?></td>
+                        <td><?php echo $equipo['serie'] ?></td>
+                        <td><?php echo $equipo['margesi'] ?></td>
+                        <td><?php echo $equipo['nombre_estado'] ?></td>
+                </tr>
+            <?php } ?>
+            <tr>
+
+                <?php foreach ($resultadoComponentes3 as $resultado3) { ?>
+                    <td>01</td>
+                    <td><?php echo $resultado3['nombre_tipo_componente'] ?></td>
+                    <td><?php echo $resultado3['nombre_marca'] ?></td>
+                    <td><?php echo $resultado3['nombre_modelo'] ?></td>
+                    <td><?php echo $resultado3['serie_id'] ?></td>
+                    <td>-</td>
+                    <td><?php echo $resultado3['nombre_estado'] ?></td>
+            </tr>
+
+        <?php } ?>
+            </table>
+        </section>
+    <?php } ?>
     <section class="firmas">
         <div class="firma">
             <span>_________________________</span>
