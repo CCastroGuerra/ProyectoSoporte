@@ -167,12 +167,12 @@
 
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-      <li class="nav-item"><a class="nav-link" href="../view/dashboardView-edit.php">
+      <li class="nav-item"><a class="nav-link" href="../view/dashboardView-cv.php">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
           </svg> Dashboard</a>
       </li>
-      <li class="nav-item visually-hidden"><a class="nav-link" href="../view/dashboardView.php">
+      <li class="nav-item visually-hidden"><a class="nav-link" href="../view/dashboardView-cv.php">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
           </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a>
@@ -360,7 +360,7 @@
         </div>
         <div class="col-lg-8 col-lg-7 text-start">
           <ul class="header-nav d-none d-md-flex">
-            <li class="nav-item"><a class="nav-link" href="../view/dashboardView.php">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="../view/dashboardView-cv.php">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Usuarios</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
           </ul>

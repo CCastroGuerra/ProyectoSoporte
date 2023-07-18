@@ -1,8 +1,16 @@
 <?php
 class Dashboard extends Conectar
 {
+    public function revisarProductosxTerm(){
+        $conectar = parent::conexion();
+        $sql = "SELECT * FROM productos WHERE cantidad_productos<3 and esActivo = '1';";
+        $fila = $conectar->prepare($sql);
+        $fila->execute();
+        return $resultado = $fila->fetchAll();
+    }
+
     public function traerTrabajosXMes()
-    {
+    {   
         $conectar = parent::conexion();
         $sql = "SELECT mes_nombre, COUNT(*) AS cantidad_trabajos
         FROM (

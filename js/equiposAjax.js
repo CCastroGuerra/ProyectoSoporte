@@ -693,7 +693,7 @@ function guardarComponentes() {
       ajaxGuardar.send(dataGuardar);
     } else {
       console.log("NO SE ENCONTRO EL COMPONENTE");
-      swal.fire("ERROR!", "No se encontro el componente.", "error");
+      swal.fire("ERROR!", "No se encontro el componente o ya esta ingresado", "error");
     }
   };
   ajax.send(data);
