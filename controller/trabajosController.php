@@ -16,6 +16,7 @@ switch ($accion) {
                 $output['nombrePersonal'] = $row["NombrePersonal"];
                 $output['areaID'] = $row["area_id"];
                 $output['nombreArea'] = $row["nombre_area"];
+                $output['tipoId'] = $row["tipo_equipo_id"];
                 $output['nombreTipo'] = $row["nombre_tipo_equipo"];
                 $output['nombreMarca'] = $row["nombre_marca"];
                 $output['nombreModelo'] = $row["nombre_modelo"];
@@ -60,6 +61,7 @@ switch ($accion) {
                 $output['tipoEquipo'] = $row["nombre_tipo_equipo"];
                 $output['nombreArea'] = $row["nombre_area"];
                 $output['areaID'] = $row["area_id"];
+                $output['tipoEquipoId'] = $row["tipo_equipo_id"];
                 $output['nombreMarca'] = $row["nombre_marca"];
                 $output['nombreModelo'] = $row["nombre_modelo"];
                 $output['falla'] = $row["falla"];

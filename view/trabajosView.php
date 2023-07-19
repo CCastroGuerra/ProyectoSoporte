@@ -100,7 +100,7 @@ include('../templates/cabecera.php');
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selModelo" name="selModelo">
                                             <small class="alerta" id="almodelo"></small>
                                         </div>
-                                        <div class="form-group visually-hidden">
+                                        <div class="form-group">
                                             <label for="consumible" class="mb-2">Consumible</label>
                                             <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible">
                                         </div>
