@@ -87,6 +87,7 @@ include('../templates/cabecera.php');
                                         <div class="form-group">
                                             <label for="selEquipo" class="mb-2">Equipo:</label>
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
+                                            <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selEquipoValue" name="selEquipoValue">
                                             <small class="alerta" id="alequipo"></small>
                                         </div>
                                         <div class="form-group visually-hidden">
