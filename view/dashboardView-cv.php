@@ -306,8 +306,10 @@ WHERE `esActivo` = 1;";
                       </svg>
                     </th>
                     <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Unidad</th>
                     <th class="text-center">Cantidad</th>
-                    <th>Activity</th>
+                    <th>Actividad</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -320,12 +322,14 @@ WHERE `esActivo` = 1;";
                       <div>[nombre]</div>
                       <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
                     </td>
+                    <td>[Tipo]</td>
+                    <td>[Unidad]</td>
                     <td class="text-center">
                       <div><span>[10]</span></div>
                     </td>
 
                     <td>
-                      <div class="small text-medium-emphasis">Last login</div>
+                      <div class="small text-medium-emphasis">[movimiento]</div>
                       <div class="fw-semibold">10 sec ago</div>
                     </td>
                     <td>

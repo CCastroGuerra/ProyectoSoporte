@@ -4,11 +4,32 @@ class Dashboard extends Conectar
     public function revisarProductosxTerm()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM productos WHERE cantidad_productos<3 and esActivo = '1';";
+        $sql = "SELECT p.id_productos,p.codigo_productos,p.nombre_productos,p.tipo_productos,
+        CASE
+                    WHEN p.tipo_productos = 0 THEN 'Vacio'
+                    WHEN p.tipo_productos = 1 THEN 'Equipo'
+                    WHEN p.tipo_productos = 2 THEN 'Componente'
+                    WHEN p.tipo_productos = 3 THEN 'Herramienta'
+                    WHEN p.tipo_productos = 4 THEN 'Insumo'
+                END as Tipo,
+        p.presentacion_productos,pre.nombre_presentacion as NPres,
+        p.cantidad_productos,
+        (select CASE
+            WHEN m_.tipo_movimientos = 1 THEN 'ENTRADA'
+            WHEN m_.tipo_movimientos = 2 THEN 'SALIDA'
+            ELSE 'Última modificación'
+        END AS movi from movimientos m_ where (m_.producto_id = p.id_productos) ORDER BY m_.fecha DESC LIMIT 1) as movi,
+        p.fecha_crea,
+        p.fecha_modi
+        FROM productos p
+        INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion
+        WHERE p.cantidad_productos<3 and p.esActivo = '1'";
         $fila = $conectar->prepare($sql);
         $fila->execute();
-        return $resultado = $fila->fetchAll();
-        
+        $datos = $fila->fetchAll();
+        $resultado = array();
+        //var_dump($datos);
+        return $datos;
     }
 
     public function traerTrabajosXMes()

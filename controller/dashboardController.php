@@ -40,15 +40,30 @@ switch ($accion) {
                     $fecha_mod="Sin cambios";
                 }
                 else{
-                    $fecha_mod=date('d',strtotime($row["fecha_modi"]))." de ".date('M',strtotime($row["fecha_modi"])).",".date('y',strtotime($row["fecha_modi"]));
+                    $fecha_mod=date('d',strtotime($row["fecha_modi"]))." de ".date('M',strtotime($row["fecha_modi"])).",".date('Y',strtotime($row["fecha_modi"]));
                 }
                 $fecha=date("d", strtotime($row['fecha_crea']))." de ".date("M", strtotime($row['fecha_crea'])).",".date("Y", strtotime($row['fecha_crea']));
+                //$crea = new date();
+                $crea = new DateTime($row['fecha_crea']);
+                $hoy = new DateTime('now');
+                $diff =  $crea -> diff($hoy);
+                $dias = $diff->days.' days ';
+                if ($dias < 2) {
+                    $new = 'Nuevo | ';
+                } else {
+                    $new = '';
+                }
+                
                 $output[] = array(
                     'codigo' => $row['codigo_productos'],
                     'nombre' => $row['nombre_productos'],
+                    'tipo' => $row['Tipo'],                    
+                    'presentacion' => $row['NPres'],
                     'cantidad' => $row['cantidad_productos'],
+                    'movimiento' => $row['movi'],
                     'fecha_reg' => $fecha,     
-                    'fecha_mod' => $fecha_mod
+                    'fecha_mod' => $fecha_mod,
+                    'tiempo' => $new
                 );
             }
             echo json_encode($output);

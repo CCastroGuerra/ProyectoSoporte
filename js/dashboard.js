@@ -314,6 +314,19 @@ function productosxterminar() {
     var template = ""; // Estructura de la tabla html
     console.log(datos);
     datos.forEach((element) => {
+      let movStyle =element.movimiento === "SALIDA" ? "color: green;" : "color: red;";
+      switch (element.movimiento) {
+        case "SALIDA":
+          movStyle="color: red !important; font-weight: bold;";
+          break;
+          case "ENTRADA":
+            movStyle="color: green !important; font-weight: bold;";
+            break;      
+        default:
+          movStyle="font-weight: bold;";
+          break;
+      }
+       // Establecer estilo según el estado
       template += `
       <tr class="align-middle">
         <td class="text-center">
@@ -321,14 +334,20 @@ function productosxterminar() {
         </td>
         <td>
           <div>${element.nombre}</div>
-          <div class="small text-medium-emphasis"><span>New</span> | Registered: ${element.fecha_reg}</div>
+          <div class="small text-medium-emphasis"><span>${element.tiempo}</span>Registrado: ${element.fecha_reg}</div>
+        </td>
+        <td>
+        <div>${element.tipo}</div>
+        </td>
+        <td>
+        <div>${element.presentacion}</div>
         </td>
         <td class="text-center">
           <div><span>${element.cantidad}</span></div>
         </td>
 
         <td>
-          <div class="small text-medium-emphasis">Last login</div>
+          <div class="small text-medium-emphasis" style="${movStyle}">${element.movimiento}</div>
           <div class="fw-semibold">${element.fecha_mod}</div>
         </td>
         <td>
@@ -338,9 +357,8 @@ function productosxterminar() {
                 <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
               </svg>
             </button>
-            <div class="dropdown-menu dropdown-menu-end">
-              <a class="dropdown-item" href="#">Info</a>
-              <a class="dropdown-item" href="#">Edit</a>
+            <div class="dropdown-menu dropdown-menu-end">              
+              <a class="dropdown-item" href="../view/productosView.php">Editar</a>
             </div>
           </div>
         </td>

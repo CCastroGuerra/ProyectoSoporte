@@ -228,7 +228,7 @@ function guardarEntrada() {
   var data = new FormData(frmInventario);
   data.append("codProducto", codigoProducto);
   data.append("cantidad", cantidad);
-  data.append("selAccion", "2");
+  data.append("selAccion", "1");
   data.append("accion", "guardarEntrada");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
