@@ -1,40 +1,66 @@
 <?php
-// require_once("../config/conexion.php");
-// $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
-// $conectar = $conectarObj->Conexion();
-// $idTrabajps = (isset($_GET['id'])) ? $_GET['id'] : "";
-// //echo $idTrabajps;
+require_once("../config/conexion.php");
+$conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
+$conectar = $conectarObj->Conexion();
+$idTrabajps = (isset($_GET['id'])) ? $_GET['id'] : "";
+//echo $idTrabajps;
 
-// $consulta = "";
+$consulta = "SELECT t.id_trabajos,
+        t.equipo_id,
+        te.id_tipo_equipo,
+        te.nombre_tipo_equipo,
+        eq.serie,
+        mar.nombre_marca,
+        mo.nombre_modelo,
+        eq.margesi,
+        t.responsable_id,
+        CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
+        t.area_id,
+        a.nombre_area,
+        t.tecnico_id,
+        ts.servicio_id,
+        s.nombre_servicios,
+        t.falla,
+        t.solucion,
+        t.recomendacion,
+        CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
+        DATE_FORMAT(t.fecha_alta, '%d/%m/%y') as Fecha
+        FROM trabajos t
+        INNER JOIN personal per ON t.tecnico_id = per.id_personal
+        INNER JOIN personal p ON p.id_personal = t.responsable_id
+        INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+        INNER JOIN area a ON a.id_area = t.area_id
+        INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
+        INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
+        INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
+        INNER JOIN marca mar ON eq.marca_id = mar.id_marca
+        INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
+        WHERE t.es_activo = 1
+        AND ts.`esActivo` = 1
+        AND id_trabajos = '$idTrabajps'";
 
-// $consulta = $conectar->prepare($consulta);
-// $consulta->execute();
+$consulta = $conectar->prepare($consulta);
+$consulta->execute();
 
-// // Obtener los resultados de la consulta
-// $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
-
-// $codigoCorrelativo = $resultado['codigo_correlativo'];
-// $equipoId = $resultado['equipo_id'];
-// $tipoEquipoId = $resultado['id_tipo_equipo'];
-// $nombreTipoEquipo = $resultado['nombre_tipo_equipo'];
-// $serie = $resultado['serie'];
-// $margesi = $resultado['margesi'];
-// $nombrePersonalId = $resultado['responsable_id'];
-// $nombreResponsable = $resultado['NombreResponsable'];
-// $tipoEquipo = $resultado['nombre_tipo_equipo'];
-// $nombreArea = $resultado['nombre_area'];
-// $areaID = $resultado['area_id'];
-// $nombreMarca = $resultado['nombre_marca'];
-// $nombreModelo = $resultado['nombre_modelo'];
-// $falla = $resultado['falla'];
-// $nombreTecnico = $resultado['tecnico_id'];
-// $solucion = $resultado['solucion'];
-// $recomendacion = $resultado['recomendacion'];
-// $fecha = $resultado['Fecha'];
-
-
-//echo $servicios
-
+// Obtener los resultados de la consulta
+$resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+$equipoId = $resultado['equipo_id'];
+$servicioId = $resultado['servicio_id'];
+$nombreTipoEquipo = $resultado['nombre_tipo_equipo'];
+$serie = $resultado['serie'];
+$margesi = $resultado['margesi'];
+$nombrePersonalId = $resultado['responsable_id'];
+$nombreResponsable = $resultado['NombreResponsable'];
+$tipoEquipo = $resultado['nombre_tipo_equipo'];
+$nombreArea = $resultado['nombre_area'];
+$areaID = $resultado['area_id'];
+$nombreMarca = $resultado['nombre_marca'];
+$nombreModelo = $resultado['nombre_modelo'];
+$falla = $resultado['falla'];
+$nombreTecnico = $resultado['tecnico_id'];
+$solucion = $resultado['solucion'];
+$recomendacion = $resultado['recomendacion'];
+$fecha = $resultado['Fecha'];
 
 
 ?>
@@ -319,15 +345,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding: 0 0">
-                                                                <span name="fechaDia" id="fechaDia">16</span>
-                                                            </td>
-                                                            <td style="padding: 0 0">
-                                                                <span name="fechaMes" id="fechaMes">06</span>
-                                                            </td>
-                                                            <td style="padding: 0 0">
-                                                                <span name="fechaAño" id="fechaAño">23</span>
-                                                            </td>
+                                                            <td style="text-align: center;"><span name="fechaRec"><?php echo $fecha ?></span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -348,7 +366,7 @@
                                                     <strong>MARCA</strong>
                                                 </th>
                                                 <td class="cellcort">
-                                                    <span name="marca" id="marca">Marca1</span>
+                                                    <span name="marca" id="marca"><?php echo $nombreMarca; ?></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -356,7 +374,7 @@
                                                     <strong>MODELO</strong>
                                                 </th>
                                                 <td class="cellcort">
-                                                    <span name="modelo" id="modelo">Modelo 1</span>
+                                                    <span name="modelo" id="modelo"><?php echo $nombreModelo ?></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -364,7 +382,7 @@
                                                     <strong>MARQUESI</strong>
                                                 </th>
                                                 <td class="cellcort">
-                                                    <span name="marquesi" id="marquesi">313546494891</span>
+                                                    <span name="marquesi" id="marquesi"><?php echo $margesi ?></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -404,7 +422,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <span id="nombreRes" name="nombreRes">Cristiam Viera Burneo</span>
+                                                                    <span id="nombreRes" name="nombreRes"><?php echo $nombreResponsable; ?></span>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -428,7 +446,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <span name="ofServ" id="ofServ">Oficina 1</span>
+                                                                    <span name="ofServ" id="ofServ"><?php echo $nombreArea; ?></span>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -446,17 +464,17 @@
                                 <tr>
                                     <td class="container" style="display: flex; justify-content: space-evenly">
                                         <div>
-                                            <input class="form-check-input" type="checkbox" id="checkToner" style="accent-color: white" />
+                                            <input class="form-check-input" type="checkbox" id="checkToner" <?php if ($servicioId == 7) echo 'checked'; ?>style="accent-color: white" />
                                             <label class="form-check-label" for="checkToner">
                                                 Toner</label>
                                         </div>
                                         <div>
-                                            <input class="form-check-input" type="checkbox" id="checkCinta" />
+                                            <input class="form-check-input" type="checkbox" id="checkCinta" <?php if ($servicioId == 6) echo 'checked'; ?> />
                                             <label class="form-check-label" for="checkCinta">
                                                 CINTA</label>
                                         </div>
                                         <div>
-                                            <input class="form-check-input" type="checkbox" id="checkTinta" />
+                                            <input class="form-check-input" type="checkbox" id="checkTinta" <?php if ($servicioId == 2) echo 'checked'; ?> />
                                             <label class="form-check-label" for="checkTinta">
                                                 TINTA</label>
                                         </div>
@@ -477,23 +495,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="cellcort lista" style="font-size: 15px" name="fallas" id="fallas">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Praesent id congue nunc. Integer eu lobortis turpis. In
-                                            mollis sem luctus turpis sodales, sed faucibus odio
-                                            egestas. Quisque id faucibus ligula. Sed vestibulum
-                                            faucibus libero, in consequat nulla eleifend nec. Nullam
-                                            ultrices fringilla laoreet. Mauris sed risus quis lorem
-                                            dictum luctus ut eu metus. Etiam interdum tincidunt
-                                            lacinia. Curabitur finibus ornare enim nec mattis. Donec
-                                            sit amet ultricies enim. Nunc iaculis vel ipsum vitae
-                                            lacinia.Mauris sed risus quis lorem dictum luctus ut eu
-                                            metus. Etiam interdum tincidunt lacinia. Curabitur
-                                            finibus ornare enim nec mattis. Donec sit amet ultricies
-                                            enim. Nunc iaculis vel ipsum vitae lacinia.Mauris sed
-                                            risus quis lorem dictum luctus ut eu metus. Etiam
-                                            interdum tincidunt lacinia. Curabitur finibus ornare
-                                            enim nec mattis. Donec sit amet ultricies enim. Nunc
-                                            iaculis vel ipsum vitae lacinia.
+                                            <?php echo $falla ?>
                                         </td>
                                     </tr>
                                 </tbody>

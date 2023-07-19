@@ -298,6 +298,7 @@ class Trabajos extends Conectar
         t.responsable_id,
         tp.nombre_tipo_equipo,
         t.area_id,
+        e.tipo_equipo_id,
         a.nombre_area,
         m.nombre_marca,
         mo.nombre_modelo,
@@ -313,7 +314,7 @@ class Trabajos extends Conectar
         INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
         INNER JOIN personal per ON t.tecnico_id = per.id_personal
         INNER JOIN personal p ON p.id_personal = t.responsable_id
-        INNER JOIN tipo_equipo tp ON TP.id_tipo_equipo = e.tipo_equipo_id
+        INNER JOIN tipo_equipo tp ON tp.id_tipo_equipo = e.tipo_equipo_id
         WHERE t.id_trabajos = ?;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idTrabajos);

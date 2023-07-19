@@ -75,6 +75,7 @@ fabtn.addEventListener("click", function () {
 }); */
 /******************************************************* */
 
+/**************************/
 /* Activar boton añadir con validaciones*/
 inpserie.addEventListener("input", function () {
   if (this.value.trim().length > 0) {
@@ -332,6 +333,29 @@ function mostrarDatosEquipoXSerie() {
       document.getElementById("selEquipo").value = datos.nombreTipo;
       document.getElementById("selMarca").value = datos.nombreMarca;
       document.getElementById("selModelo").value = datos.nombreModelo;
+      document.getElementById("selEquipoValue").value = datos.tipoId;
+
+      //ocultarMostrarOpciones();
+      let inputCodigoTipo = document.getElementById("selEquipoValue").value;
+      let miSelect = document.getElementById("selServicio");
+      console.log("codigo de tipo de equipo: " + inputCodigoTipo);
+      for (let i = 0; i < miSelect.options.length; i++) {
+        const option = miSelect.options[i];
+        const valorOpcion = parseInt(option.value);
+
+        if (
+          (inputCodigoTipo === "2" &&
+            (valorOpcion === 2 || valorOpcion === 6 || valorOpcion === 7)) ||
+          (inputCodigoTipo !== "2" &&
+            valorOpcion !== 2 &&
+            valorOpcion !== 6 &&
+            valorOpcion !== 7)
+        ) {
+          option.style.display = "block"; // Mostrar opciones que cumplen la condición
+        } else {
+          option.style.display = "none"; // Ocultar opciones que no cumplen la condición
+        }
+      }
     }
   };
 
@@ -582,6 +606,29 @@ function buscarTrabajos() {
   ajax.send(data);
 }
 
+function ocultarMostrarOpciones() {
+  let inputCodigoTipo = document.getElementById("selEquipoValue").value;
+  let miSelect = document.getElementById("selServicio");
+  console.log("codigo de tipo de equipo: " + inputCodigoTipo);
+  for (let i = 0; i < miSelect.options.length; i++) {
+    const option = miSelect.options[i];
+    const valorOpcion = parseInt(option.value);
+
+    if (
+      (inputCodigoTipo === "2" &&
+        (valorOpcion === 2 || valorOpcion === 6 || valorOpcion === 7)) ||
+      (inputCodigoTipo !== "2" &&
+        valorOpcion !== 2 &&
+        valorOpcion !== 6 &&
+        valorOpcion !== 7)
+    ) {
+      option.style.display = "block"; // Mostrar opciones que cumplen la condición
+    } else {
+      option.style.display = "none"; // Ocultar opciones que no cumplen la condición
+    }
+  }
+}
+
 function mostrarEnModal(trabajoId) {
   //btnComponente.disabled = false;
   id = trabajoId;
@@ -611,6 +658,28 @@ function mostrarEnModal(trabajoId) {
     document.getElementById("textSolucion").value = datos.solucion;
     document.getElementById("textrecom").value = datos.recomendacion;
     document.getElementById("inputCodigo").value = datos.id;
+    document.getElementById("selEquipoValue").value = datos.tipoEquipoId;
+    //ocultarMostrarOpciones();
+    let inputCodigoTipo = document.getElementById("selEquipoValue").value;
+    let miSelect = document.getElementById("selServicio");
+    console.log("codigo de tipo de equipo: " + inputCodigoTipo);
+    for (let i = 0; i < miSelect.options.length; i++) {
+      const option = miSelect.options[i];
+      const valorOpcion = parseInt(option.value);
+
+      if (
+        (inputCodigoTipo === "2" &&
+          (valorOpcion === 2 || valorOpcion === 6 || valorOpcion === 7)) ||
+        (inputCodigoTipo !== "2" &&
+          valorOpcion !== 2 &&
+          valorOpcion !== 6 &&
+          valorOpcion !== 7)
+      ) {
+        option.style.display = "block"; // Mostrar opciones que cumplen la condición
+      } else {
+        option.style.display = "none"; // Ocultar opciones que no cumplen la condición
+      }
+    }
   };
   //guardarTempParaActualizar();
   insertarTempParaActualizar();
