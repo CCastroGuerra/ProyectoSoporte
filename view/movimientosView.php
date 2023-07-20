@@ -64,25 +64,32 @@ include('../templates/cabecera.php');
                                             <input type="text" class="form-control" id="idMov" name="idMov" placeholder="id del movimiento" readonly>
                                         </div>
 
-                                        <label for="selTipo" class="mb-2">Tipo:</label>
-                                        <select class="form-select" aria-label="Default select example" id="selTipo" name="selTipo">
-                                            <option value="0" selected>Seleccione el tipo</option>
-                                            <option value="1">Traslado</option>
-                                            <option value="2">Intercambio</option>
-                                        </select>
+                                        <div class="form-group mb-2">
+                                            <label for="selTipo" class="mb-2">Tipo:</label>
+                                            <select class="form-select" aria-label="Default select example" id="selTipo" name="selTipo">
+                                                <option value="0" selected>Seleccione el tipo</option>
+                                                <option value="1">Traslado</option>
+                                                <option value="2">Intercambio</option>
+                                            </select>                                            
+                                            <div id="alerta1" class ="alerta"></div>
+                                        </div>
 
-                                        <label for="selTecnico" class="mb-2">Técnico:</label>
-                                        <select class="form-select" aria-label="Default select example" id="selTecnico" name="selTecnico">
-                                            <option selected>Seleccione el Técnico</option>
-                                            <option value="1">Técnico 1</option>
-                                            <option value="2">Técnico 2</option>
-                                            <option value="3">Técnico 3</option>
-                                            <option value="4">Técnico 4</option>
-                                        </select>
+                                        <div class="form-group mb-2">
+                                            <label for="selTecnico" class="mb-2">Técnico:</label>
+                                            <select class="form-select" aria-label="Default select example" id="selTecnico" name="selTecnico">
+                                                <option selected>Seleccione el Técnico</option>
+                                                <option value="1">Técnico 1</option>
+                                                <option value="2">Técnico 2</option>
+                                                <option value="3">Técnico 3</option>
+                                                <option value="4">Técnico 4</option>
+                                            </select>                                            
+                                            <div id="alerta2" class ="alerta"></div>
+                                        </div>
 
-                                        <label for="fallaObservada" class="mb-2">Observación:</label>
-                                        <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3"></textarea>
-                                        <div id="alerta"></div>
+                                        <div class="form-group">
+                                            <label for="fallaObservada" class="mb-2">Observación:</label>
+                                            <textarea class="form-control" id="fallaObservada" name="fallaObservada" rows="3"></textarea>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -163,7 +170,7 @@ include('../templates/cabecera.php');
                             <div class="col-lg-10 col-sm-6">Lista de Movimientos
                             </div>
                             <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal">Añadir</button>
+                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal" id="btmodal">Añadir</button>
                             </div>
                         </div>
                     </h3>
