@@ -7,7 +7,7 @@ $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
 switch ($accion) {
     case "mostrarDetallesEquipo":
-        $datos = $trabajo->detallesEquipoXSerie($_POST['serie']);
+        $datos = $trabajo->detallesEquipoXSerie($_POST['codEquipo']);
         if (is_array($datos) == true && count($datos) > 0) {
             foreach ($datos as $row) {
                 $output['id'] = $row["id_equipos"];
@@ -25,7 +25,7 @@ switch ($accion) {
         }
         break;
     case "listarServicios":
-        $trabajo->listarServicios();
+        $trabajo->listarServicios($_POST['valor']);
         break;
     case "listarTecnicos":
         $trabajo->listarTecnicos();
@@ -38,11 +38,11 @@ switch ($accion) {
         $trabajo->listarTablaTempServicios();
         break;
     case "guardarTrabajos":
-        $trabajo->guardarTrabajos($_POST["inputCodigo"], $_POST["selTecnico"], $_POST['idEquipo'], $_POST['nombreUsuarioID'], $_POST['selAreaID'], $_POST['fallaObservada'], $_POST['textSolucion'], $_POST['textrecom']);
+        $trabajo->guardarTrabajos($_POST["inputCodigo"], $_POST["selTecnico"], $_POST['idEquipo'], $_POST['nombreUsuarioID'], $_POST['selAreaID'], $_POST['fallaObservada'], $_POST['textSolucion'], $_POST['textrecom'], $_POST['consumible']);
         break;
     case "guardarTrabajosServicios":
         //var_dump($_POST);
-        $trabajo->guardarTrabajoServicios($_POST['inputCodigo']);
+        $trabajo->guardarTrabajoServicios($_POST['inputCodigo'], $_POST['codigoProducto']);
         break;
     case "buscarTrabajos":
         $trabajo->buscarTrabajos(intval($_POST['pag']));
@@ -68,6 +68,17 @@ switch ($accion) {
                 $output['nombreTecnico'] = $row["tecnico_id"];
                 $output['solucion'] = $row["solucion"];
                 $output['recomendacion'] = $row["recomendacion"];
+            }
+            echo json_encode($output);
+        }
+        break;
+    case "mostrarProductoXCod":
+        // var_dump($_POST);
+        $datos = $trabajo->traerProductoXCodigo($_POST['consumible']);
+        if (is_array($datos) == true && count($datos) > 0) {
+            foreach ($datos as $row) {
+                $output['nombreProducto'] = $row["nombre_productos"];
+                $output['cantidad'] = $row["cantidad_productos"];
             }
             echo json_encode($output);
         }
@@ -109,5 +120,13 @@ switch ($accion) {
         break;
     case "botonCerrar":
         $trabajo->cerrarBoton($_POST['id']);
+        break;
+    case "salidaConsumibles":
+        //var_dump($_POST);
+        $trabajo->salidaConsumibles($_POST['consumible']);
+        break;
+    case "guardarConsumibles":
+        //var_dump($_POST);
+        $trabajo->guardarSalidaConsumibles($_POST['consumible']);
         break;
 }

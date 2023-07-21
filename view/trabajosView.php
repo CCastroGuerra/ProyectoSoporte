@@ -101,8 +101,9 @@ include('../templates/cabecera.php');
                                             <small class="alerta" id="almodelo"></small>
                                         </div>
                                         <div class="form-group">
-                                            <label for="consumible" class="mb-2">Consumible</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible">
+                                            <label for="consumible" class="mb-2" style="display: none;" id="labelConsumible">Consumible</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible" style="display: none;">
+                                            <small class="alerta" id="alComsumible"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="fallaObservada" class="mb-2">Falla observada:</label>

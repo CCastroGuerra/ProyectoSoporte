@@ -3,10 +3,10 @@
 class Trabajos extends Conectar
 {
 
-    public function listarServicios()
+    public function listarServicios($tipoServicio = null)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM servicios WHERE `esActivo` = 1
+        $sql = "SELECT * FROM servicios WHERE `esActivo` = 1 $tipoServicio 
         ORDER BY nombre_servicios ASC;";
         $fila = $conectar->prepare($sql);
         $fila->execute();
@@ -22,7 +22,8 @@ class Trabajos extends Conectar
             foreach ($resultado as $row) {
                 $listado[] = array(
                     'id' => $row['id_servicios'],
-                    'nombre' => $row['nombre_servicios']
+                    'nombre' => $row['nombre_servicios'],
+                    'tipoTrabajo' => $row['tipoTrabajo']
 
 
                 );
@@ -66,19 +67,33 @@ class Trabajos extends Conectar
             echo $jsonString;
         }
     }
-    public function detallesEquipoXSerie($serie)
+    public function detallesEquipoXSerie($codEquipo)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT id_equipos,margesi,clientes_id,CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombrePersonal,eq.area_id, a.nombre_area, eq.tipo_equipo_id,te.nombre_tipo_equipo,eq.marca_id,mar.nombre_marca,eq.modelo_id,mo.nombre_modelo from equipos eq
+        $sql = "SELECT id_equipos,
+        cod_equipo,
+        margesi,
+        clientes_id,
+        CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombrePersonal,
+        eq.area_id,
+        a.nombre_area,
+        eq.tipo_equipo_id,
+        te.nombre_tipo_equipo,
+        eq.marca_id,
+        mar.nombre_marca,
+        eq.modelo_id,
+        mo.nombre_modelo
+    from equipos eq
         INNER JOIN personal per ON per.id_personal = eq.clientes_id
         INNER JOIN area a ON a.id_area = eq.area_id
-        INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id 
+        INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
         INNER JOIN marca mar ON eq.marca_id = mar.id_marca
         INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
-        WHERE eq.serie = ?  AND eq.es_activo = 1;";
+    WHERE eq.cod_equipo = ?
+        AND eq.es_activo = 1;";
         //echo 'consulta sql'.$sql;
         $sql = $conectar->prepare($sql);
-        $sql->bindValue(1, $serie);
+        $sql->bindValue(1, $codEquipo);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -99,7 +114,7 @@ class Trabajos extends Conectar
         }
     }
 
-    public function guardarTrabajoServicios($trabajoId)
+    public function guardarTrabajoServicios($trabajoId, $codProducto)
     {
         $conectar = parent::conexion();
         $sql = "INSERT INTO `trabajo_servicio` (
@@ -126,7 +141,9 @@ class Trabajos extends Conectar
             ";
             $fila2 = $conectar->prepare($slq2);
             if ($fila2->execute()) {
+                $fila2->closeCursor();
                 //echo 'Se elimino correctamente tabla temporal';
+                $this->salidaConsumibles($codProducto);
             } else {
 
                 //echo 'Error al ejecutar la consulta 2';
@@ -169,23 +186,23 @@ class Trabajos extends Conectar
             echo $jsonString;
         }
     }
-    public function guardarTrabajos($idTrabajos, $tecnicoID, $equipoId, $usuarioId, $areaId, $falla, $solucion, $recomendaciones)
+    public function guardarTrabajos($idTrabajos, $tecnicoID, $equipoId, $usuarioId, $areaId, $falla, $solucion, $recomendaciones, $codigoProductos)
     {
         if ($idTrabajos == '') {
             $idTrabajos = "0";
         }
         $conectar = parent::conexion();
-        $sql = "INSERT INTO trabajos  (id_trabajos,tecnico_id, equipo_id, responsable_id, area_id, falla, solucion, recomendacion)
-            VALUES ('$idTrabajos','$tecnicoID', '$equipoId', '$usuarioId', '$areaId', '$falla', '$solucion', '$recomendaciones')
-            ON DUPLICATE KEY UPDATE id_trabajos='$idTrabajos',tecnico_id = '$tecnicoID', equipo_id = '$equipoId', responsable_id = '$usuarioId', area_id = '$areaId', falla = '$falla', solucion = '$solucion', recomendacion = '$recomendaciones';";
+        $sql = "INSERT INTO trabajos  (id_trabajos,tecnico_id, equipo_id, responsable_id, area_id, falla, solucion, recomendacion,codigo_productos)
+            VALUES ('$idTrabajos','$tecnicoID', '$equipoId', '$usuarioId', '$areaId', '$falla', '$solucion', '$recomendaciones','$codigoProductos')
+            ON DUPLICATE KEY UPDATE id_trabajos='$idTrabajos',tecnico_id = '$tecnicoID', equipo_id = '$equipoId', responsable_id = '$usuarioId', area_id = '$areaId', falla = '$falla', solucion = '$solucion', recomendacion = '$recomendaciones',codigo_productos = '$codigoProductos';";
         $fila = $conectar->prepare($sql);
 
         if ($fila->execute()) {
-            $consulta = "Select id_trabajos  from trabajos  where equipo_id = '$equipoId';";
+            $consulta = "Select IF (COUNT(id_trabajos)=0,0,id_trabajos) id  from trabajos  where equipo_id = '$equipoId';";
             $fila2 = $conectar->prepare($consulta); // Obtener el ID del registro insertado
             $fila2->execute();
             $resultado = $fila2->fetch(PDO::FETCH_LAZY);
-            $listado = array("listado" => $resultado['id_trabajos']);
+            $listado = array("listado" => $resultado['id']);
             $jsonString = json_encode($listado);
             echo $jsonString;
         } else {
@@ -395,5 +412,60 @@ class Trabajos extends Conectar
         $consulta->execute();
 
         return $resultado = $consulta->fetchAll();
+    }
+    public function traerProductoXCodigo($codProducto)
+    {
+        $conectar = parent::conexion();
+        $sql = "SELECT nombre_productos, cantidad_productos FROM productos WHERE codigo_productos = ?;";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $codProducto);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+    public function salidaConsumibles($codProducto)
+    {
+        $conectar = parent::conexion();
+        $query = "SELECT CAST(cantidad_productos AS DECIMAL) cant FROM productos  WHERE codigo_productos = '$codProducto' ";
+        $stmt = $conectar->prepare($query);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_LAZY);
+        $cantidadActual = $resultado['cant'];
+        //echo $cantidadActual;
+        // //$stmt->closeCursor();
+        // echo $cantidad;
+        // echo "<br/>";
+        // echo "Cantidad Formulario " . $cantidad;
+        $cantidad = 1;
+        if ($cantidad <= $cantidadActual) {
+            $nuevaCantidad = $cantidadActual - $cantidad;
+
+            //Actualizar cantidad del producto
+
+            $consulta = "UPDATE productos SET cantidad_productos = ?  WHERE codigo_productos = ?";
+            $stmt = $conectar->prepare($consulta);
+            $stmt->bindValue(1, $nuevaCantidad);
+            $stmt->bindValue(2, $codProducto, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+                // echo '1';
+                $this->guardarSalidaConsumibles($codProducto);
+            } else {
+                echo '0';
+            }
+        } else {
+            echo '0';
+        }
+    }
+    public function guardarSalidaConsumibles($codProducto)
+    {
+        $conectar = parent::conexion();
+        $query = "INSERT INTO movimientos (producto_id, cantidad, tipo_movimientos)
+        SELECT id_productos, 1, 2 FROM productos WHERE codigo_productos = ?;";
+        $fila = $conectar->prepare($query);
+        $fila->bindValue(1, $codProducto);
+        if ($fila->execute()) {
+            echo '1';
+        } else {
+            echo '0';
+        }
     }
 }

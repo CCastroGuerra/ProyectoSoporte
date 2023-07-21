@@ -1,5 +1,6 @@
 let numPagina = 1;
-listarSelecServicios();
+// ocultarMostrarOpciones();
+//listarSelecServicios();
 listarSelecTecnicos();
 //listarTablaTempServicios();
 buscarTrabajos();
@@ -14,9 +15,13 @@ let btnX = document.getElementById("btncerrarX");
 let btnServicios = document.getElementById("btnServicio"); //btn que levanta modal servicio
 btnServicios.disabled = true;
 let btnmodal = document.getElementById("btmguardar");
+let inputConsumible = document.getElementById("consumible");
+let alertComsumible = document.getElementById("alComsumible");
 
 /***************************************/
-
+// btnmodal.addEventListener("click", function (e) {
+//   salidaMovimientos();
+// });
 /***********recorrer elememntos a validar****************/
 let inpserie = document.getElementById("nroSerie");
 let inpmargesi = document.getElementById("marquesi");
@@ -76,6 +81,11 @@ fabtn.addEventListener("click", function () {
 /******************************************************* */
 
 /**************************/
+inputConsumible.addEventListener("input", function () {
+  //salidaMovimientos();
+  mostrarProductoXCod();
+});
+
 /* Activar boton añadir con validaciones*/
 inpserie.addEventListener("input", function () {
   if (this.value.trim().length > 0) {
@@ -275,9 +285,16 @@ btnServicios.addEventListener("click", function (e) {
   } else {
     if (contro == 3) {
       guardarTrabajo();
-      console.log("Trabajo guardado");
     }
   }
+  let tipoEquipo = document.getElementById("selEquipoValue").value;
+  console.log("Valor del tipo: " + tipoEquipo);
+  if (tipoEquipo == "2") {
+    listarSelecServicios(" AND tipoTrabajo > 0");
+  } else {
+    listarSelecServicios(" AND tipoTrabajo = 0");
+  }
+  console.log("Trabajo guardado");
 });
 
 btnX.addEventListener("click", function (e) {
@@ -309,12 +326,12 @@ btnCerrar.addEventListener("click", function (e) {
 });
 
 function mostrarDatosEquipoXSerie() {
-  let idSerie = document.getElementById("nroSerie").value;
-  console.log(idSerie);
+  let codigoEquipo = document.getElementById("nroSerie").value;
+  console.log(codigoEquipo);
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/trabajosController.php", true);
   const data = new FormData();
-  data.append("serie", idSerie);
+  data.append("codEquipo", codigoEquipo);
   data.append("accion", "mostrarDetallesEquipo");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
@@ -335,26 +352,21 @@ function mostrarDatosEquipoXSerie() {
       document.getElementById("selModelo").value = datos.nombreModelo;
       document.getElementById("selEquipoValue").value = datos.tipoId;
 
-      //ocultarMostrarOpciones();
-      let inputCodigoTipo = document.getElementById("selEquipoValue").value;
-      let miSelect = document.getElementById("selServicio");
-      console.log("codigo de tipo de equipo: " + inputCodigoTipo);
-      for (let i = 0; i < miSelect.options.length; i++) {
-        const option = miSelect.options[i];
-        const valorOpcion = parseInt(option.value);
-
-        if (
-          (inputCodigoTipo === "2" &&
-            (valorOpcion === 2 || valorOpcion === 6 || valorOpcion === 7)) ||
-          (inputCodigoTipo !== "2" &&
-            valorOpcion !== 2 &&
-            valorOpcion !== 6 &&
-            valorOpcion !== 7)
-        ) {
-          option.style.display = "block"; // Mostrar opciones que cumplen la condición
-        } else {
-          option.style.display = "none"; // Ocultar opciones que no cumplen la condición
-        }
+      // Obtener el elemento del input
+      const valor = document.getElementById("selEquipoValue").value;
+      const input = document.getElementById("consumible");
+      const inputLabel = document.getElementById("labelConsumible");
+      console.log("valor del input " + valor);
+      // Verificar si el valor es igual a "2"
+      if (valor === "2") {
+        // Si el valor es "2", mostramos el input
+        console.log("Mostrnado el input");
+        input.style.display = "block";
+        inputLabel.style.display = "block";
+      } else {
+        // Si el valor no es "2", ocultamos el input
+        input.style.display = "none";
+        inputLabel.style.display = "none";
       }
     }
   };
@@ -362,11 +374,36 @@ function mostrarDatosEquipoXSerie() {
   ajax.send(data);
 }
 
-function listarSelecServicios() {
+function mostrarProductoXCod() {
+  let codProducto = document.getElementById("consumible").value;
+  console.log(codProducto);
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/trabajosController.php", true);
+  const data = new FormData();
+  data.append("consumible", codProducto);
+  data.append("accion", "mostrarProductoXCod");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    if (respuesta == "") {
+      alertComsumible.innerText = "El codigo del producto no existe";
+      console.log("el codigo del producto no existe");
+    } else {
+      let datos = JSON.parse(respuesta);
+      console.log(datos);
+      alertComsumible.innerHTML = datos.nombreProducto;
+    }
+  };
+
+  ajax.send(data);
+}
+
+function listarSelecServicios(valor) {
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/trabajosController.php", true);
   var data = new FormData();
   data.append("accion", "listarServicios");
+  data.append("valor", valor);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
@@ -378,7 +415,7 @@ function listarSelecServicios() {
       servicios.forEach(function (servicios) {
         template += `
                      
-                      <option value="${servicios.id}">${servicios.nombre}</option>
+                      <option data-printer="${servicios.tipoTrabajo}" value="${servicios.id}">${servicios.nombre}</option>
                   
                       `;
       });
@@ -492,9 +529,12 @@ function guardarTrabajo() {
     let respuesta = JSON.parse(realizado);
     //console.log("Contenido de respuesta.listado =" + respuesta.listado);
     if (respuesta.listado * 1 > 0) {
-      document.getElementById("inputCodigo").value = respuesta.listado;
-
-      guardarTrabajosServicios();
+      let codigo = document.getElementById("inputCodigo").value;
+      if (codigo.length > 0) {
+        guardarTrabajosServicios();
+      } else {
+        document.getElementById("inputCodigo").value = respuesta.listado;
+      }
     }
 
     buscarTrabajos();
@@ -506,6 +546,7 @@ function guardarTrabajo() {
 
 function guardarTrabajosServicios() {
   let inputCodigo = document.getElementById("inputCodigo").value;
+  let codigoProducto = document.getElementById("consumible").value;
   var realizado = "";
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
@@ -514,6 +555,7 @@ function guardarTrabajosServicios() {
   /*data.append("serie", serie);
   data.append("margesi",margesi);*/
   data.append("inputCodigo", inputCodigo);
+  data.append("codigoProducto", codigoProducto);
   data.append("accion", "guardarTrabajosServicios");
   ajax.onload = function () {
     realizado = ajax.responseText;
@@ -527,6 +569,7 @@ function guardarTrabajosServicios() {
       console.log("Trabajos-Servicios registrado correctamente");
     }
     buscarTrabajos();
+
     cerrarEditar();
     //buscarArea();
     //buscarComponente();
@@ -610,17 +653,18 @@ function ocultarMostrarOpciones() {
   let inputCodigoTipo = document.getElementById("selEquipoValue").value;
   let miSelect = document.getElementById("selServicio");
   console.log("codigo de tipo de equipo: " + inputCodigoTipo);
-  for (let i = 0; i < miSelect.options.length; i++) {
-    const option = miSelect.options[i];
+  for (let i = 0; i < miSelect.dataset.length; i++) {
+    const option = miSelect.options[i].dataset.printer;
     const valorOpcion = parseInt(option.value);
+    //console.log(valorOpcion);
 
     if (
       (inputCodigoTipo === "2" &&
-        (valorOpcion === 2 || valorOpcion === 6 || valorOpcion === 7)) ||
+        (valorOpcion === 1 || valorOpcion === 2 || valorOpcion === 3)) ||
       (inputCodigoTipo !== "2" &&
+        valorOpcion !== 1 &&
         valorOpcion !== 2 &&
-        valorOpcion !== 6 &&
-        valorOpcion !== 7)
+        valorOpcion !== 3)
     ) {
       option.style.display = "block"; // Mostrar opciones que cumplen la condición
     } else {
@@ -659,26 +703,21 @@ function mostrarEnModal(trabajoId) {
     document.getElementById("textrecom").value = datos.recomendacion;
     document.getElementById("inputCodigo").value = datos.id;
     document.getElementById("selEquipoValue").value = datos.tipoEquipoId;
-    //ocultarMostrarOpciones();
-    let inputCodigoTipo = document.getElementById("selEquipoValue").value;
-    let miSelect = document.getElementById("selServicio");
-    console.log("codigo de tipo de equipo: " + inputCodigoTipo);
-    for (let i = 0; i < miSelect.options.length; i++) {
-      const option = miSelect.options[i];
-      const valorOpcion = parseInt(option.value);
-
-      if (
-        (inputCodigoTipo === "2" &&
-          (valorOpcion === 2 || valorOpcion === 6 || valorOpcion === 7)) ||
-        (inputCodigoTipo !== "2" &&
-          valorOpcion !== 2 &&
-          valorOpcion !== 6 &&
-          valorOpcion !== 7)
-      ) {
-        option.style.display = "block"; // Mostrar opciones que cumplen la condición
-      } else {
-        option.style.display = "none"; // Ocultar opciones que no cumplen la condición
-      }
+    // Obtener el elemento del input
+    const valor = document.getElementById("selEquipoValue").value;
+    const input = document.getElementById("consumible");
+    const inputLabel = document.getElementById("labelConsumible");
+    console.log("valor del input " + valor);
+    // Verificar si el valor es igual a "2"
+    if (valor === "2") {
+      // Si el valor es "2", mostramos el input
+      console.log("Mostrnado el input");
+      input.style.display = "block";
+      inputLabel.style.display = "block";
+    } else {
+      // Si el valor no es "2", ocultamos el input
+      input.style.display = "none";
+      inputLabel.style.display = "none";
     }
   };
   //guardarTempParaActualizar();
@@ -812,6 +851,44 @@ function imprimir(idTrabajo) {
   ajax.send(data);
 }
 
+// function salidaMovimientos() {
+//   let codigoProducto = document.getElementById("consumible").value;
+//   console.log(codigoProducto);
+//   const ajax = new XMLHttpRequest();
+//   ajax.open("POST", "../controller/trabajosController.php", true);
+//   var data = new FormData();
+//   //console.log(codigoProducto, ": ", cantidad);
+//   data.append("consumible", codigoProducto);
+//   data.append("accion", "salidaConsumibles");
+//   ajax.onload = function () {
+//     let respuesta = ajax.responseText;
+//     console.log(respuesta);
+
+//     if (respuesta === "1") {
+//       console.log("Cantidad actualizada");
+//       ///guardaSalida(codigoProducto, cantidad);
+//       guardaSalidaMovimiento(codigoProducto);
+//     } else {
+//       swal.fire("AVISO DEL SISTEMA", "Error, cantidad no disponible", "error");
+//       console.log("Erro al actualizar");
+//     }
+//   };
+//   ajax.send(data);
+// }
+
+function guardaSalidaMovimiento() {
+  let codigoProducto = document.getElementById("consumible").value;
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/trabajosController.php", true);
+  var data = new FormData();
+  data.append("consumible", codigoProducto);
+  data.append("accion", "guardarConsumibles");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+  };
+  ajax.send(data);
+}
 /*********Paginación trabajos***********/
 let pagInicio = document.querySelector("#btnPrimero");
 pagInicio.addEventListener("click", function (e) {

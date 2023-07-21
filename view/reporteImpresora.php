@@ -5,39 +5,43 @@ $conectar = $conectarObj->Conexion();
 $idTrabajps = (isset($_GET['id'])) ? $_GET['id'] : "";
 //echo $idTrabajps;
 
-$consulta = "SELECT t.id_trabajos,
-        t.equipo_id,
-        te.id_tipo_equipo,
-        te.nombre_tipo_equipo,
-        eq.serie,
-        mar.nombre_marca,
-        mo.nombre_modelo,
-        eq.margesi,
-        t.responsable_id,
-        CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
-        t.area_id,
-        a.nombre_area,
-        t.tecnico_id,
-        ts.servicio_id,
-        s.nombre_servicios,
-        t.falla,
-        t.solucion,
-        t.recomendacion,
-        CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
-        DATE_FORMAT(t.fecha_alta, '%d/%m/%y') as Fecha
-        FROM trabajos t
-        INNER JOIN personal per ON t.tecnico_id = per.id_personal
-        INNER JOIN personal p ON p.id_personal = t.responsable_id
-        INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
-        INNER JOIN area a ON a.id_area = t.area_id
-        INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
-        INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
-        INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
-        INNER JOIN marca mar ON eq.marca_id = mar.id_marca
-        INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
-        WHERE t.es_activo = 1
-        AND ts.`esActivo` = 1
-        AND id_trabajos = '$idTrabajps'";
+$consulta = "  SELECT t.id_trabajos,
+t.equipo_id,
+te.id_tipo_equipo,
+te.nombre_tipo_equipo,
+eq.serie,
+mar.nombre_marca,
+mo.nombre_modelo,
+eq.margesi,
+t.responsable_id,
+CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
+t.area_id,
+a.nombre_area,
+t.tecnico_id,
+ts.servicio_id,
+s.tipoTrabajo,
+s.nombre_servicios,
+t.falla,
+t.solucion,
+t.recomendacion,
+CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
+DATE_FORMAT(t.fecha_alta, '%d/%m/%y') as Fecha,
+t.codigo_productos,
+pro.nombre_productos
+FROM trabajos t
+INNER JOIN personal per ON t.tecnico_id = per.id_personal
+INNER JOIN personal p ON p.id_personal = t.responsable_id
+INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+INNER JOIN area a ON a.id_area = t.area_id
+INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
+INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
+INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
+INNER JOIN marca mar ON eq.marca_id = mar.id_marca
+INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
+INNER JOIN productos pro ON pro.codigo_productos = t.codigo_productos
+WHERE t.es_activo = 1
+AND ts.`esActivo` = 1
+AND id_trabajos = '$idTrabajps';";
 
 $consulta = $conectar->prepare($consulta);
 $consulta->execute();
@@ -45,7 +49,7 @@ $consulta->execute();
 // Obtener los resultados de la consulta
 $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 $equipoId = $resultado['equipo_id'];
-$servicioId = $resultado['servicio_id'];
+$servicioId = $resultado['tipoTrabajo'];
 $nombreTipoEquipo = $resultado['nombre_tipo_equipo'];
 $serie = $resultado['serie'];
 $margesi = $resultado['margesi'];
@@ -61,6 +65,7 @@ $nombreTecnico = $resultado['tecnico_id'];
 $solucion = $resultado['solucion'];
 $recomendacion = $resultado['recomendacion'];
 $fecha = $resultado['Fecha'];
+$consumibles = $resultado['nombre_productos'];
 
 
 ?>
@@ -338,7 +343,7 @@ $fecha = $resultado['Fecha'];
                             ">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col" colspan="3" id="enres" style="padding: 0 0">
+                                                            <th scope="col" colspan="3" id="enres" style="padding: 0 0;text-align: center;">
                                                                 <strong>FECHA</strong>
                                                             </th>
                                                         </tr>
@@ -390,17 +395,17 @@ $fecha = $resultado['Fecha'];
                                                     <strong>CONSUMIBLE</strong>
                                                 </th>
                                                 <td class="cellcort">
-                                                    <span name="consumible" id="consumible">Consumible 1</span>
+                                                    <span name="consumible" id="consumible"><?php echo $consumibles ?></span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <th class="cellcort" id="enres">
                                                     <strong>IMPRESIONES</strong>
                                                 </th>
                                                 <td class="cellcort">
                                                     <span name="impresiones" id="inpresiones">1254</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </table>
                                     </td>
                                     <td style="padding: 0 0; border: none">
@@ -464,17 +469,17 @@ $fecha = $resultado['Fecha'];
                                 <tr>
                                     <td class="container" style="display: flex; justify-content: space-evenly">
                                         <div>
-                                            <input class="form-check-input" type="checkbox" id="checkToner" <?php if ($servicioId == 7) echo 'checked'; ?>style="accent-color: white" />
+                                            <input class="form-check-input" type="checkbox" id="checkToner" <?php if ($servicioId == 2) echo 'checked'; ?> style="accent-color: white" />
                                             <label class="form-check-label" for="checkToner">
                                                 Toner</label>
                                         </div>
                                         <div>
-                                            <input class="form-check-input" type="checkbox" id="checkCinta" <?php if ($servicioId == 6) echo 'checked'; ?> />
+                                            <input class="form-check-input" type="checkbox" id="checkCinta" <?php if ($servicioId == 3) echo 'checked'; ?> />
                                             <label class="form-check-label" for="checkCinta">
                                                 CINTA</label>
                                         </div>
                                         <div>
-                                            <input class="form-check-input" type="checkbox" id="checkTinta" <?php if ($servicioId == 2) echo 'checked'; ?> />
+                                            <input class="form-check-input" type="checkbox" id="checkTinta" <?php if ($servicioId == 1) echo 'checked'; ?> />
                                             <label class="form-check-label" for="checkTinta">
                                                 TINTA</label>
                                         </div>
