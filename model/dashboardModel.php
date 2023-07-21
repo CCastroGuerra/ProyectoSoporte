@@ -4,11 +4,41 @@ class Dashboard extends Conectar
     public function revisarProductosxTerm()
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM productos WHERE cantidad_productos<3 and esActivo = '1';";
+        $sql = "select 
+        p.id_productos,
+        p.codigo_productos,
+        p.nombre_productos,
+        (CASE
+            WHEN p.tipo_productos = 0 THEN 'Vacio'
+            WHEN p.tipo_productos = 1 THEN 'Equipo'
+            WHEN p.tipo_productos = 2 THEN 'Componente'
+            WHEN p.tipo_productos = 3 THEN 'Herramienta'
+            WHEN p.tipo_productos = 4 THEN 'Insumo'
+        END) as Tipo,
+        p.cantidad_productos,
+        p.presentacion_productos,
+        pres.nombre_presentacion NPres,
+        (CASE 
+            WHEN m.tipo_movimientos = 1 THEN 'ENTRADA'
+            WHEN m.tipo_movimientos = 2 THEN 'SALIDA' 
+            ELSE  'REGISTRO'
+        END) movi,
+        p.fecha_crea,
+        p.fecha_modi
+    FROM productos p
+    INNER JOIN presentacion pres ON p.presentacion_productos = pres.id_presentacion
+    LEFT JOIN (select t1.* from movimientos t1
+                where (t1.id_movimientos,t1.producto_id) IN
+                    (select max(t2.id_movimientos),max(t2.producto_id) from movimientos t2 GROUP BY t2.producto_id)) m 
+        ON p.id_productos=m.producto_id
+    WHERE p.cantidad_productos<4 and p.`esActivo`=1
+    ORDER BY p.fecha_modi desc;";
         $fila = $conectar->prepare($sql);
         $fila->execute();
-        return $resultado = $fila->fetchAll();
-        
+        $datos = $fila->fetchAll();
+        $resultado = array();
+        //var_dump($datos);
+        return $datos;
     }
 
     public function traerTrabajosXMes()

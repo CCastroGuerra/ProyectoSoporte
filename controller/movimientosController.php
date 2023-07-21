@@ -59,7 +59,7 @@ switch ($accion) {
         $movimientos->eliminarEquipoMov($_POST["id"]);
         break;
     case "actualizarMovimientos":
-        //var_dump($_POST);
+        var_dump($_POST);
         $movimientos->actulizarDatosMovimietnos($_POST["id"], $_POST["selTipo"], $_POST["selTecnico"], $_POST["fallaObservada"]);
         echo "actualizado correctamente";
         break;

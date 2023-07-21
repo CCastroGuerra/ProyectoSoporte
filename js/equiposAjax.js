@@ -49,7 +49,7 @@ document.addEventListener("keydown", function (evt) {
   var tecla = evt.key;
   console.log(evt.key);
   if (tecla === "F5") {
-    if(confirm('Si recarga la página perdera todos los datos ingresados,<br> ¿Deseas recargar la página?"')==true){
+    if(confirm('Si recarga la página perdera todos los datos ingresados,\n ¿Deseas recargar la página?')==true){
       //console.log("preiosnaste si");
       let promesa = limpiarreiniciar();
       promesa.then(

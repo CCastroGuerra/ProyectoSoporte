@@ -3,10 +3,14 @@ include('../templates/cabecera.php');
 ?>
 <!-- Plugins and scripts required by this view-->
 <script src="../vendors/chart.js/js/chart.min.js"></script>
+
 <script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
 <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
 
 <script src="../js/dashboard.js"></script>
+
+
+
 
 
 <!-- contenido -->
@@ -298,7 +302,7 @@ WHERE `esActivo` = 1;";
             <!-- /.row-->
             <div class="table-responsive" style="height:400px;">
               <table class="table table-hover border mb-0">
-                <thead class="table-dark fw-semibold"  style="position:sticky;top:0;">
+                <thead class="table-dark fw-semibold" style="position:sticky;top:0;">
                   <tr class="align-middle">
                     <th class="text-center">
                       <svg class="icon">
@@ -306,8 +310,10 @@ WHERE `esActivo` = 1;";
                       </svg>
                     </th>
                     <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Unidad</th>
                     <th class="text-center">Cantidad</th>
-                    <th>Activity</th>
+                    <th>Actividad</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -320,12 +326,14 @@ WHERE `esActivo` = 1;";
                       <div>[nombre]</div>
                       <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
                     </td>
+                    <td>[Tipo]</td>
+                    <td>[Unidad]</td>
                     <td class="text-center">
                       <div><span>[10]</span></div>
                     </td>
 
                     <td>
-                      <div class="small text-medium-emphasis">Last login</div>
+                      <div class="small text-medium-emphasis">[movimiento]</div>
                       <div class="fw-semibold">10 sec ago</div>
                     </td>
                     <td>
@@ -358,10 +366,10 @@ WHERE `esActivo` = 1;";
 <!-- /contenido -->
 
 
+
 <?php
 include '../templates/footer.php';
 ?>
-
 
 <!-- <script>
   Chart.defaults.pointHitDetectionRadius = 1;
