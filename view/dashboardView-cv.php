@@ -3,10 +3,14 @@ include('../templates/cabecera.php');
 ?>
 <!-- Plugins and scripts required by this view-->
 <script src="../vendors/chart.js/js/chart.min.js"></script>
+
 <script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
 <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
 
 <script src="../js/dashboard.js"></script>
+
+
+
 
 
 <!-- contenido -->
@@ -298,7 +302,7 @@ WHERE `esActivo` = 1;";
             <!-- /.row-->
             <div class="table-responsive" style="height:400px;">
               <table class="table table-hover border mb-0">
-                <thead class="table-dark fw-semibold"  style="position:sticky;top:0;">
+                <thead class="table-dark fw-semibold" style="position:sticky;top:0;">
                   <tr class="align-middle">
                     <th class="text-center">
                       <svg class="icon">
@@ -362,10 +366,10 @@ WHERE `esActivo` = 1;";
 <!-- /contenido -->
 
 
+
 <?php
 include '../templates/footer.php';
 ?>
-
 
 <!-- <script>
   Chart.defaults.pointHitDetectionRadius = 1;

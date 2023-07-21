@@ -1,4 +1,4 @@
-console.log("iniciando");
+//console.log("iniciando");
 
 const generarColorAleatorio = () => {
   const r = Math.floor(Math.random() * 255);
@@ -21,7 +21,7 @@ const random = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
 function traerTrabajosxMes() {
-  console.log("traerTrabajosxMes");
+  //console.log("traerTrabajosxMes");
   const ajax = new XMLHttpRequest();
   // Se establece la dirección del archivo php que procesará la petición
   ajax.open("POST", "../controller/dashboardController.php", true);
@@ -32,7 +32,7 @@ function traerTrabajosxMes() {
     let cantidad = [];
     const colores = [];
     realizado = ajax.responseText;
-    console.log(realizado);
+    //console.log(realizado);
     if (realizado == "") {
       //execute
       //console.log("vacio");
@@ -42,7 +42,7 @@ function traerTrabajosxMes() {
       document.getElementById("no-data").style.display = "block";
     } else {
       let respuesta = JSON.parse(realizado);
-      console.log(respuesta);
+      //console.log(respuesta);
       for (let i = 0; i < respuesta.length; i++) {
         mes.push(respuesta[i].mes);
         cantidad.push(respuesta[i].cantidad);
@@ -52,8 +52,8 @@ function traerTrabajosxMes() {
         const myChart = new Chart(ctx, {
           type: "bar",
           data: {
-            /*labels:  mes, */
-            labels: [
+            labels:  mes, 
+            /* labels: [
               "Enero",
               "Febrero",
               "Marzo",
@@ -61,11 +61,12 @@ function traerTrabajosxMes() {
               "Mayo",
               "Junio",
               "Julio",
-            ],
+            ], */
             datasets: [
               {
                 label: "Trabajos",
-                backgroundColor: /* colores */ [
+                backgroundColor: colores,
+                /*backgroundColor: [
                   generarColorAleatorio(),
                   generarColorAleatorio(),
                   generarColorAleatorio(),
@@ -73,9 +74,12 @@ function traerTrabajosxMes() {
                   generarColorAleatorio(),
                   generarColorAleatorio(),
                   generarColorAleatorio(),
-                ],
-                /* borderColor: coreui.Utils.getStyle('--cui-info'),
-                borderWidth: 2, */
+                ] ,*/
+                //backgroundColor: coreui.Utils.hexToRgba(coreui.Utils.getStyle('--cui-info'), 10), //para line
+                //borderColor: coreui.Utils.getStyle('--cui-info'),
+                //pointHoverBackgroundColor: '#fff',
+                //borderWidth: 2,
+                //pointBackgroundColor: coreui.Utils.getStyle("--cui-primary"),
                 /* data: cantidad, */
                 data: [
                   random(50, 200),
@@ -137,14 +141,14 @@ function traerTrabajosxMes() {
                   dataSum = firstSet.reduce(
                     (accumulator, currentValue) => accumulator + currentValue
                   );
-                console.log("firstSet: " + firstSet);
+                /* console.log("firstSet: " + firstSet);
                 console.log("datasum: " + dataSum);
 
                 if (dataSum === 0) {
                   console.log("se cumple ocultando");
                   document.getElementById("no-data").style.display = "block";
                   document.getElementById("miCanvas").style.display = "none";
-                }
+                } */
               },
             },
           },
@@ -156,22 +160,13 @@ function traerTrabajosxMes() {
         );
         var colrs = myChart.config.data.datasets[0].backgroundColor;
         var template = "";
-        console.log(dataSum);
+        //console.log("firstset:" + firstSet);
+        //console.log("datasum: " + dataSum);
         var foot = document.getElementById("Foot1-content");
         for (let index = 0; index < ejex.length; index++) {
           var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
-          console.log(
-            "(" +
-              ejex[index] +
-              "," +
-              firstSet[index] +
-              ")=> " +
-              perc +
-              "% " +
-              "c:" +
-              colrs[index]
-          );
-
+          //console.log("("+ejex[index]+","+firstSet[index]+")=> "+perc+"% "+"c: "+colrs[index]+"");
+          //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
           template += `<div class="col mb-sm-2 mb-0">
           <div class="text-medium-emphasis">Visits</div>
           <div class="fw-semibold">${firstSet[index]} ${ejex[index]} (${perc}%)</div>
@@ -188,7 +183,7 @@ function traerTrabajosxMes() {
 }
 
 function traerTrabajosXArea() {
-  console.log("traerTrabajosXArea");
+  //console.log("traerTrabajosXArea");
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/dashboardController.php", true);
   var data = new FormData();
@@ -200,7 +195,7 @@ function traerTrabajosXArea() {
     realizado = ajax.responseText;
     if (realizado == "") {
       //execute
-      console.log("vacio");
+      //console.log("vacio");
       mes.push(null);
       cantidad.push(null);
       document.getElementById("miCanvas").setAttribute("style", "display:none");
@@ -271,22 +266,11 @@ function traerTrabajosXArea() {
       );
       var colrs = myChart2.config.data.datasets[0].backgroundColor;
       var template = "";
-      console.log(dataSum);
+      //console.log("dataSum: "+dataSum);
       var foot = document.getElementById("Foot2-content");
       for (let index = 0; index < ejex.length; index++) {
         var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
-        console.log(
-          "(" +
-            ejex[index] +
-            "," +
-            firstSet[index] +
-            ")=> " +
-            perc +
-            "% " +
-            "c:" +
-            colrs[index]
-        );
-
+        //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
         template += `<div class="col mb-sm-2 mb-0">
           <div class="text-medium-emphasis">Visits</div>
           <div class="fw-semibold">${firstSet[index]} ${ejex[index]} (${perc}%)</div>
@@ -302,38 +286,39 @@ function traerTrabajosXArea() {
 }
 
 function productosxterminar() {
-  console.log("productosxterminar()");
+  //console.log("productosxterminar()");
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/dashboardController.php", true);
   var data = new FormData();
   data.append("accion", "productosporterminarse");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
-    console.log(respuesta);
+    //console.log(respuesta);
     const datos = JSON.parse(respuesta);
     var template = ""; // Estructura de la tabla html
-    console.log(datos);
+    //console.log(datos);
     datos.forEach((element) => {
-      let movStyle =element.movimiento === "SALIDA" ? "color: green;" : "color: red;";
+      let movStyle =
+        element.movimiento === "SALIDA" ? "color: green;" : "color: red;";
       switch (element.movimiento) {
         case "SALIDA":
-          movStyle="color: red !important; font-weight: bold;";
+          movStyle = "color: red !important; font-weight: bold;";
           break;
-          case "ENTRADA":
-            movStyle="color: green !important; font-weight: bold;";
-            break;      
+        case "ENTRADA":
+          movStyle = "color: green !important; font-weight: bold;";
+          break;
         default:
-          movStyle="font-weight: bold;";
+          movStyle = "color: blue !important; font-weight: bold;";
           break;
       }
-       // Establecer estilo según el estado
+      // Establecer estilo según el estado
       template += `
       <tr class="align-middle">
         <td class="text-center">
           <div><span>${element.codigo}</span></div>
         </td>
         <td>
-          <div>${element.nombre}</div>
+          <div style="font-weight:bold;">${element.nombre}</div>
           <div class="small text-medium-emphasis"><span>${element.tiempo}</span>Registrado: ${element.fecha_reg}</div>
         </td>
         <td>
@@ -365,7 +350,7 @@ function productosxterminar() {
       </tr>`;
     });
     var elemento = document.getElementById("productos_Terminar");
-      elemento.innerHTML = template;
+    elemento.innerHTML = template;
   };
 
   ajax.send(data);

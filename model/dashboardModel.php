@@ -16,7 +16,8 @@ class Dashboard extends Conectar
             WHEN p.tipo_productos = 4 THEN 'Insumo'
         END) as Tipo,
         p.cantidad_productos,
-        p.presentacion_productos NPres,
+        p.presentacion_productos,
+        pres.nombre_presentacion NPres,
         (CASE 
             WHEN m.tipo_movimientos = 1 THEN 'ENTRADA'
             WHEN m.tipo_movimientos = 2 THEN 'SALIDA' 
@@ -25,6 +26,7 @@ class Dashboard extends Conectar
         p.fecha_crea,
         p.fecha_modi
     FROM productos p
+    INNER JOIN presentacion pres ON p.presentacion_productos = pres.id_presentacion
     LEFT JOIN (select t1.* from movimientos t1
                 where (t1.id_movimientos,t1.producto_id) IN
                     (select max(t2.id_movimientos),max(t2.producto_id) from movimientos t2 GROUP BY t2.producto_id)) m 

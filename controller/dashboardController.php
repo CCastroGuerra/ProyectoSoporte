@@ -47,7 +47,7 @@ switch ($accion) {
                 $crea = new DateTime($row['fecha_crea']);
                 $hoy = new DateTime('now');
                 $diff =  $crea -> diff($hoy);
-                $dias = $diff->days.' days ';
+                $dias = $diff->days;
                 if ($dias < 2) {
                     $new = 'Nuevo | ';
                 } else {
@@ -63,6 +63,7 @@ switch ($accion) {
                     'movimiento' => $row['movi'],
                     'fecha_reg' => $fecha,     
                     'fecha_mod' => $fecha_mod,
+                    'dias' => $dias,
                     'tiempo' => $new
                 );
             }
