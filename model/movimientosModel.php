@@ -282,7 +282,27 @@ class Movimiento extends Conectar
             $sql2 = $conectar->prepare($sql2);
             $sql2->bindValue(1, $tipoMovimiento);
             $sql2->bindValue(2, $idTranslado);
-            $sql2->execute();
+            if ($sql2->execute()) {
+                //var_dump($_POST);
+                $consultaEquipos = "SELECT equipo_id,area_destino
+                from detalles_translado
+                WHERE id_translado = $idTranslado;";
+                $consultaEquipos = $conectar->prepare($consultaEquipos);
+                $consultaEquipos->execute();
+                $resultado = $consultaEquipos->fetchAll();
+
+                $cantidad = count($resultado);
+                for ($i = 0; $i < $cantidad; $i++) {
+                    $idEquipo = $resultado[$i]['equipo_id'];
+                    $areaDestino = $resultado[$i]['area_destino'];
+                    // print_r($idEquipo);
+                    // print_r($areaDestino);
+                    $sql3 = "UPDATE equipos set area_id = '$areaDestino' WHERE cod_equipo = '$idEquipo'";
+                    // echo $sql3;
+                    $sql3 = $conectar->prepare($sql3);
+                    $sql3->execute();
+                }
+            }
         }
         return $resultado = $sql->fetchAll();
     }

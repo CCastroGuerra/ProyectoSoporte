@@ -356,11 +356,11 @@ function mostrarDatosEquipoXSerie() {
       const valor = document.getElementById("selEquipoValue").value;
       const input = document.getElementById("consumible");
       const inputLabel = document.getElementById("labelConsumible");
-      console.log("valor del input " + valor);
+      //console.log("valor del input " + valor);
       // Verificar si el valor es igual a "2"
       if (valor === "2") {
         // Si el valor es "2", mostramos el input
-        console.log("Mostrnado el input");
+        //console.log("Mostrnado el input");
         input.style.display = "block";
         inputLabel.style.display = "block";
       } else {
@@ -390,7 +390,7 @@ function mostrarProductoXCod() {
       console.log("el codigo del producto no existe");
     } else {
       let datos = JSON.parse(respuesta);
-      console.log(datos);
+      //console.log(datos);
       alertComsumible.innerHTML = datos.nombreProducto;
     }
   };
@@ -406,7 +406,7 @@ function listarSelecServicios(valor) {
   data.append("valor", valor);
   ajax.onload = function () {
     let respuesta = ajax.responseText;
-    console.log(respuesta);
+    //console.log(respuesta);
     const servicios = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (servicios.length > 0) {
@@ -433,7 +433,7 @@ function listarSelecTecnicos() {
   data.append("accion", "listarTecnicos");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
-    console.log(respuesta);
+    //console.log(respuesta);
     const tecnicos = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (tecnicos.length > 0) {
@@ -461,7 +461,7 @@ function listarTablaTempServicios() {
   data.append("accion", "listarTablaTempServicios");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
-    console.log(respuesta);
+    //console.log(respuesta);
     const temp = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (temp.length > 0) {
