@@ -103,7 +103,15 @@ modal.addEventListener("show.coreui.modal", (event) => {
       tabladetalle.innerHTML=` <tr>
       <td colspan="6" class="text-center">No se encontraron datos</td>
     </tr>`;
-      btnAñadir.disabled=true;
+      btnAñadir.disabled=true;      
+      btnAñadir.setAttribute("style","display: block")
+      selecAccion.disabled=false;
+      selecTecnico.disabled=false;
+      fallaobs.readOnly=false
+      
+      $("#tbopciones").show();   
+      tipmod="";
+
       break;
     case "btnEditar":
       modalTitle.textContent = "Ver Movimiento";      
@@ -116,7 +124,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
       tipmod="Ver";
       $("#tbopciones").hide();      
       btnAñadir.disabled =true;
-
+      btnAñadir.setAttribute("style","display: none")
       break;
   }
 });
@@ -311,8 +319,10 @@ function listarTablaMovimientos() {
                       <td>${area.idEquipo}</td>
                       <td>${area.areaOrigen}</td>
                       <td>${area.areaDestino}</td>
-                      <td style='${styleop}'><button type="button" onClick='eliminarEquipoMovimiento("${area.idEquipo}")' class="btn btn-danger pelim" id="btnEditar"><i class="fa fa-trash" aria-hidden="true"></i>
-                      </button></td>
+                      <td style='${styleop}'>
+                      <button type="button" onClick='eliminarEquipoMovimiento("${area.idEquipo}")' class="btn btn-danger pelim" id="btnEditar"><i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                      </td>
                     
                   </tr>
                   `;
@@ -356,11 +366,11 @@ function buscarMovimientos() {
         <td>${movimientos.fecha}</td>
         <td>
             <div class="row">
-                <div class="col-lg-6 col-sm-6 px-5">
+                <div class="col-lg-auto col-sm-auto px-0"">
                     <button type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-0 col-sm-0">
                     <button class="btn" style="background-color: green" type="button" onClick='imprimir("${movimientos.id}")' id="btnImprimir"> <i class="fa fa-print text-white" aria-hidden="true"></i>
                     </button>
                 </div>
