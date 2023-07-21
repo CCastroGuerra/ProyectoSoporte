@@ -18,14 +18,14 @@ include('../templates/cabecera.php');
   <div class="container-lg">
 
     <div class="row">
+      <!-- php para tarjetas -->
       <?php
       //Consultas para total de productos
       require_once("../config/conexion.php");
       $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
       $conectar = $conectarObj->Conexion();
 
-      $consulta = "SELECT COUNT(id_productos) AS totalProductos
-FROM productos WHERE `esActivo` = 1;";
+      $consulta = "SELECT COUNT(id_productos) AS totalProductos FROM productos WHERE cantidad_productos < 3 AND `esActivo` = 1;";
       $consulta = $conectar->prepare($consulta);
       if ($consulta->execute()) {
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
@@ -35,9 +35,7 @@ FROM productos WHERE `esActivo` = 1;";
       }
 
       //Consultas para total de Usuarios
-      $consulta2 = "SELECT COUNT(*) totalUsuarios
-from usuario
-where `esActivo` = 1;";
+      $consulta2 = "SELECT COUNT(*) totalUsuarios FROM usuario WHERE `esActivo` = 1;";
       $consulta2 = $conectar->prepare($consulta2);
       if ($consulta2->execute()) {
         $resultado2 = $consulta2->fetch(PDO::FETCH_ASSOC);
@@ -47,8 +45,7 @@ where `esActivo` = 1;";
       }
 
       //Consultas para total de trabajos
-      $consulta3 = "SELECT COUNT(*) totalTrabajos
-FROM trabajos";
+      $consulta3 = "SELECT COUNT(*) totalTrabajos FROM trabajos";
       $consulta3 = $conectar->prepare($consulta3);
       if ($consulta3->execute()) {
         $resultado3 = $consulta3->fetch(PDO::FETCH_ASSOC);
@@ -58,9 +55,7 @@ FROM trabajos";
       }
 
       //Consultas para total de bajas
-      $consulta4 = "SELECT COUNT(*) totalBajas
-from bajas
-WHERE `esActivo` = 1;";
+      $consulta4 = "SELECT COUNT(*) totalBajas FROM bajas WHERE `esActivo` = 1;";
       $consulta4 = $conectar->prepare($consulta4);
       if ($consulta4->execute()) {
         $resultado4 = $consulta4->fetch(PDO::FETCH_ASSOC);
@@ -69,6 +64,7 @@ WHERE `esActivo` = 1;";
         echo 'Error al ejecutar la consulta.';
       }
       ?>
+      <!--/ php para tarjetas -->
 
       <!-- Usuarios -->
       <div class="col-sm-6 col-lg-3">
@@ -106,23 +102,31 @@ WHERE `esActivo` = 1;";
       <div class="col-sm-6 col-lg-3">
         <div class="card mb-4 text-white bg-info">
           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-            <div class="">
-              <div class="fs-4 fw-semibold"><?php echo  $total_productos; ?>
-                <div class="fs-6 fw-normal">Productos</div>
+            <div class="col-sm-12 col-lg-12">
+              <div class="row">
+                <div class="col-10">
+                  <div class="fs-4 fw-semibold"><?php echo  $total_productos; ?> </div>
+                </div>
+                <div class="col-1">
+                  <div class="dropdown">
+                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <svg class="icon">
+                        <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="fs-6 fw-normal">Productos por Terminarse</div>
               </div>
             </div>
-            <div class="dropdown">
-              <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <svg class="icon">
-                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                </svg>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
+
           </div>
           <div class="c-chart-wrapper mt-3 mx-3">
             <!-- <canvas class="chart" id="card-chart1" height="70"></canvas> -->
@@ -296,63 +300,77 @@ WHERE `esActivo` = 1;";
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-4">
-          <div class="card-header">Productos</div>
+          <!-- <div class="card-header">
+            Productos
+
+          </div> -->
           <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title mb-0">Productos</h4>
+                <div class="small text-medium-emphasis">Por Terminarse</div>
+              </div>
+            </div>
+
+            <div class="c-chart-wrapper row ">
+              <div class="table-responsive" style="height:400px;">
+                <table class="table table-hover border mb-0">
+                  <thead class="table-dark fw-semibold" style="position:sticky;top:0;">
+                    <tr class="align-middle">
+                      <th class="text-center">
+                        <svg class="icon">
+                          <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
+                        </svg>
+                      </th>
+                      <th>Nombre</th>
+                      <th>Tipo</th>
+                      <th>Unidad</th>
+                      <th class="text-center">Cantidad</th>
+                      <th>Actividad</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="productos_Terminar">
+                    <tr class="align-middle">
+                      <td class="text-center">
+                        <div><span>[E0000001]</span></div>
+                      </td>
+                      <td>
+                        <div>[nombre]</div>
+                        <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                      </td>
+                      <td>[Tipo]</td>
+                      <td>[Unidad]</td>
+                      <td class="text-center">
+                        <div><span>[10]</span></div>
+                      </td>
+
+                      <td>
+                        <div class="small text-medium-emphasis">[movimiento]</div>
+                        <div class="fw-semibold">10 sec ago</div>
+                      </td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg class="icon">
+                              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
+                            </svg>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="#">Info</a>
+                            <a class="dropdown-item" href="#">Edit</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
             <!-- /.row-->
-            <div class="table-responsive" style="height:400px;">
-              <table class="table table-hover border mb-0">
-                <thead class="table-dark fw-semibold" style="position:sticky;top:0;">
-                  <tr class="align-middle">
-                    <th class="text-center">
-                      <svg class="icon">
-                        <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-list-numbered"></use>
-                      </svg>
-                    </th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Unidad</th>
-                    <th class="text-center">Cantidad</th>
-                    <th>Actividad</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="productos_Terminar">
-                  <tr class="align-middle">
-                    <td class="text-center">
-                      <div><span>[E0000001]</span></div>
-                    </td>
-                    <td>
-                      <div>[nombre]</div>
-                      <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
-                    </td>
-                    <td>[Tipo]</td>
-                    <td>[Unidad]</td>
-                    <td class="text-center">
-                      <div><span>[10]</span></div>
-                    </td>
 
-                    <td>
-                      <div class="small text-medium-emphasis">[movimiento]</div>
-                      <div class="fw-semibold">10 sec ago</div>
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <svg class="icon">
-                            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                          </svg>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">Info</a>
-                          <a class="dropdown-item" href="#">Edit</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+
           </div>
         </div>
       </div>

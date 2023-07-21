@@ -6,7 +6,7 @@ include('../templates/cabecera.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="serviciosModal">Agregar Servicios</h5>
+                <h5 class="modal-title" id="serviciosModal">Agregar Detalles</h5>
                 <button type="button" class="btn-close" data-coreui-target="#TrabajoModal" data-coreui-toggle="modal" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formServicios">
@@ -49,7 +49,7 @@ include('../templates/cabecera.php');
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registrar Movimientos</h5>
-                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btncerrar" data-coreui-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="frmTrabajoa">
                 <div class="modal-body">
@@ -123,7 +123,7 @@ include('../templates/cabecera.php');
                                                         <th scope="col"><strong> Id Equipo</strong></th>
                                                         <th scope="col"><strong> Área Origen</strong></th>
                                                         <th scope="col"><strong>Área Destino</strong> </th>
-                                                        <th scope="col"><strong>Opciones</strong> </th>
+                                                        <th scope="col" id="tbopciones"><strong>Opciones</strong> </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbEquipos">

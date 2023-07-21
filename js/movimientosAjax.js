@@ -12,7 +12,10 @@ let frmMovimientos = document.getElementById("frmTrabajoa");
 let frmAgregarEquipos = document.getElementById("formServicios");
 let btnAñadir = document.getElementById("btnServicio");
 let cajaIdMovimiento = document.getElementById("idMov");
+let fallaobs =document.getElementById("fallaObservada");
+let tabladetalle = document.getElementById("tbEquipos");
 let btnGuardarEquipo = document.getElementById("guardarEquipo");
+let tipmod="";
 
 //modal equipos
 let areaOrig = document.getElementById("areaORId");
@@ -90,16 +93,30 @@ modal.addEventListener("show.coreui.modal", (event) => {
   btecnico=1;
   //limpiar mensajes de error
   alTipo.innerText="";
-  alTecnico.innerText="";
+  alTecnico.innerText="";  
+  tipmod="";
   //modelo debe estar bloqueado
   switch (button.id) {
     case "btmodal":
       modalTitle.textContent = "Registrar Movimiento";
+      frmMovimientos.reset();
+      tabladetalle.innerHTML=` <tr>
+      <td colspan="6" class="text-center">No se encontraron datos</td>
+    </tr>`;
       btnAñadir.disabled=true;
       break;
     case "btnEditar":
-      modalTitle.textContent = "Editar Movimiento";
-      btnAñadir.disabled =false;
+      modalTitle.textContent = "Ver Movimiento";      
+      cajaIdMovimiento.readOnly=true;
+      selecAccion.disabled=true;
+      selecAccion.setAttribute("style","background-color:transparent;");
+      selecTecnico.disabled=true;
+      selecTecnico.setAttribute("style","background-color:transparent;");
+      fallaobs.readOnly=true;
+      tipmod="Ver";
+      $("#tbopciones").hide();      
+      btnAñadir.disabled =true;
+
       break;
   }
 });
@@ -218,7 +235,7 @@ function mostrarAreaXId() {
 function guardarMovimiento() {
   let tipoMovimiento = selecAccion.value;
   let idTecnico = selecTecnico.value;
-  let observacion = document.getElementById("fallaObservada").value;
+  let observacion = fallaobs.value;
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/movimientosController.php", true);
@@ -272,6 +289,11 @@ function guardarEquipos() {
 function listarTablaMovimientos() {
   let cajaIdMov = cajaIdMovimiento.value;
   console.log(cajaIdMov);
+  if (tipmod==="Ver") {
+    styleop="display: none !important";
+  } else {
+    styleop="";
+  }
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/movimientosController.php", true);
   var data = new FormData();
@@ -289,7 +311,7 @@ function listarTablaMovimientos() {
                       <td>${area.idEquipo}</td>
                       <td>${area.areaOrigen}</td>
                       <td>${area.areaDestino}</td>
-                      <td><button type="button" onClick='eliminarEquipoMovimiento("${area.idEquipo}")' class="btn btn-danger pelim" id="btnEditar"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <td style='${styleop}'><button type="button" onClick='eliminarEquipoMovimiento("${area.idEquipo}")' class="btn btn-danger pelim" id="btnEditar"><i class="fa fa-trash" aria-hidden="true"></i>
                       </button></td>
                     
                   </tr>
@@ -437,7 +459,7 @@ function eliminarEquipoMovimiento(id) {
 function actualizar(id) {
   let selectTecnico = selecTecnico.value;
   let tipoMovimientoInput = selecAccion.value;
-  let observacion = document.getElementById("fallaObservada").value;
+  let observacion = fallaobs.value;
   // Obtener los valores actualizados desde los elementos del modal
 
   const ajax = new XMLHttpRequest();
