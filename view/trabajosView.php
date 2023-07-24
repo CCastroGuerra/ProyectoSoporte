@@ -264,7 +264,7 @@ include('../templates/cabecera.php');
                         </div>
                     </div>
                     <!-- /encabezado--->
-                    <div class="table-responsive">
+                    <div class="table-responsive-sm">
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>

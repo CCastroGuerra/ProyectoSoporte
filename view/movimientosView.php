@@ -18,7 +18,7 @@ include('../templates/cabecera.php');
                                 <input type="text" class="form-control" id="codEquipo" name="codEquipo" placeholder="id/margesi/codigo">
                                 <label class="control-label" for="areaOR">Area de origen</label>
                                 <input type="text" class="form-control" id="areaOR" name="areaOR" placeholder="" readonly>
-                                <input type="text" class="form-control" id="areaORId" name="areaORId" placeholder="" readonly>
+                                <input type="text" class="form-control visually-hidden" id="areaORId" name="areaORId" placeholder="" readonly>
                                 </select>
                                 <label for="selServicio" class="mb-2">Area Destino:</label>
                                 <select class="form-select" aria-label="Default select example" id="selServicio" name="selServicio">
@@ -59,7 +59,7 @@ include('../templates/cabecera.php');
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <div class="porocultar" id="divcodigo" name="divcodigo">
+                                        <div class="visually-hidden" id="divcodigo" name="divcodigo">
                                             <label class="control-label" for="idMov">ID Movimiento</label>
                                             <input type="text" class="form-control" id="idMov" name="idMov" placeholder="id del movimiento" readonly>
                                         </div>
@@ -206,11 +206,11 @@ include('../templates/cabecera.php');
                         </div>
                     </div>
                     <!-- /encabezado--->
-                    <div class="table-responsive">
+                    <div class="table-responsive-sm">
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col"><strong>ID de Movimiento</strong></th>
+                                    <th scope="col"><strong>ID</strong></th>
                                     <th scope="col"><strong>Tipo</strong></th>
                                     <th scope="col"><strong>Técnico</strong></th>
                                     <th scope="col"><strong>Observación</strong></th>
@@ -221,13 +221,13 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbTrabajos">
                                 <tr>
-                                    <td>01</td>
-                                    <td>Traslado</td>
-                                    <td>Tecnico 1</td>
-                                    <td>...........</td>
-                                    <td>27/04/2023</td>
-                                    <td>-------</td>
-                                    <td>[][][]</td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-6"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
                                 </tr>
                             </tbody>
                         </table>
