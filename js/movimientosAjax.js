@@ -374,14 +374,17 @@ function buscarMovimientos() {
              `;
       // Verificamos si el estado es diferente de "anulado" para agregar el tercer botón
       if (movimientos.estado !== "Anulado") {
-        template +=`
-                <div class="col-lg-auto col-sm-auto px-0">
-                    <button type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
+        template +=`               
+                    
+                <div class="col-lg-auto col-sm-auto px-1">
+                    <button class="btn" style="background-color: green" type="button" onClick='imprimir("${movimientos.id}")' id="btnImprimir">
+                    <i class="fa fa-print text-white" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="col-lg-1 col-sm-1">
-                    <button class="btn" style="background-color: green" type="button" onClick='imprimir("${movimientos.id}")' id="btnImprimir"> <i class="fa fa-print text-white" aria-hidden="true"></i>
-                    </button>
+                <div class="col-lg-1 col-sm-1 px-0">
+                  <button class="btn" style="background-color: red" type="button" onClick='eliminar("${movimientos.id}")' id="btnEliminar">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
                 </div>
         `;
       }
@@ -506,4 +509,47 @@ function imprimir(idMovimiento) {
   let link = "../view/reporteEntregaRetiro.php?id=" + idMovimiento;
 
   window.open(link, "_blank");
+}
+
+
+function eliminar(id) {
+  console.log(id);
+  swal
+    .fire({
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea anular el Registro?",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "../controller/movimientosController.php", true);
+        const data = new FormData();
+        data.append("id", id);
+        data.append("accion", "eliminar");
+        ajax.onload = function () {
+          var respuesta = ajax.responseText;
+          //console.log(respuesta);
+          buscarMovimientos();
+          swal.fire(
+            "Eliminado!",
+            "El registro se anuló correctamente.",
+            "success"
+          );
+        };
+        let tab = document.getElementById("tbTrabajos");
+        if (tab.rows.length == 1) {
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
+        }
+        ajax.send(data);
+      }
+    });
 }

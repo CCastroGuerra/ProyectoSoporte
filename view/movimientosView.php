@@ -215,6 +215,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Técnico</strong></th>
                                     <th scope="col"><strong>Observación</strong></th>
                                     <th scope="col"><strong>Fecha</strong></th>
+                                    <th scope="col"><strong>Estado</strong></th>
                                     <th scope="col"><strong>Opciones</strong></th>
                                 </tr>
                             </thead>
@@ -225,6 +226,7 @@ include('../templates/cabecera.php');
                                     <td>Tecnico 1</td>
                                     <td>...........</td>
                                     <td>27/04/2023</td>
+                                    <td>-------</td>
                                     <td>[][][]</td>
                                 </tr>
                             </tbody>
