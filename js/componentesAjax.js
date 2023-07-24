@@ -113,7 +113,7 @@ frmComponentes.onsubmit = function (e) {
       band++;
       alerta5.innerText = "Ingrese el # de serie";
     }
-    
+
     if (estado_compo.value == 0) {
       band++;
       alerta7.innerText = "Especifique el estado del componente";
@@ -319,16 +319,16 @@ function buscarComponente() {
     let componentes = datos.listado;
     console.log(componentes);
     let template = ""; // Estructura de la tabla html
-    var disponible="";
-    var dispostyle="";
+    var disponible = "";
+    var dispostyle = "";
     if (componentes != "vacio") {
       componentes.forEach(function (componentes) {
         if (componentes.Disponible == 0) {
-          disponible="NO";
-          dispostyle="color: red;";
+          disponible = "NO";
+          dispostyle = "color: red;";
         } else {
-          disponible="SI";          
-          dispostyle="color: green;";
+          disponible = "SI";
+          dispostyle = "color: green;";
         }
         template += `
                   <tr>
@@ -426,8 +426,11 @@ function eliminarComponentes(id) {
         };
         let tab = document.getElementById("tbComponentes");
         if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }

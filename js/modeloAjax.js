@@ -261,8 +261,11 @@ function eliminarModelo(id) {
         };
         let tab = document.getElementById("tbModelo");
         if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }

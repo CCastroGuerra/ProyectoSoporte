@@ -380,8 +380,11 @@ function eliminarProducto(id) {
         };
         let tab = document.getElementById("tbProductos");
         if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }
@@ -430,12 +433,14 @@ function buscarProducto() {
     let producto = datos.listado;
     console.log(producto);
     let template = ""; // Estructura de la tabla html
-    var prodstyle="";
+    var prodstyle = "";
     if (producto != "vacio" && producto.length > 0) {
       producto.forEach(function (producto) {
-        if (producto.cantidad<3) {
-          prodstyle="color:red; font-weight:bold;"
-        }else {prodstyle="";}
+        if (producto.cantidad < 3) {
+          prodstyle = "color:red; font-weight:bold;";
+        } else {
+          prodstyle = "";
+        }
         template += `
         <tr>
              <td class="visually-hidden" >${producto.nro}</td>
@@ -606,8 +611,11 @@ function eliminarPresentacion(idPre) {
         };
         let tab = document.getElementById("tbPres");
         if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
 
         ajax.send(data);

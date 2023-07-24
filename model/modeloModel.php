@@ -136,6 +136,3 @@ class Modelo extends Conectar{
     } 
 
 }
-
-
-?>

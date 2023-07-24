@@ -53,14 +53,19 @@ switch ($accion) {
         break;
     case "buscarMovimiento":
         //var_dump($_POST);
+        //echo $_POST['pag'];
         $movimientos->buscarMovimiento(intval($_POST['pag']));
         break;
     case "eliminarEquipoMov":
         $movimientos->eliminarEquipoMov($_POST["id"]);
         break;
     case "actualizarMovimientos":
-        var_dump($_POST);
+        //var_dump($_POST);
         $movimientos->actulizarDatosMovimietnos($_POST["id"], $_POST["selTipo"], $_POST["selTecnico"], $_POST["fallaObservada"]);
         echo "actualizado correctamente";
+        break;
+    case "eliminar":
+        var_dump($_POST);
+        $movimientos->eliminar($_POST["id"]);
         break;
 }

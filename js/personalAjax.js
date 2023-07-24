@@ -163,7 +163,7 @@ frmPersonal.onsubmit = function (e) {
     // listarArea();
     bcontrol = vapp + vnoms + vdni + vtelf + vcorr + vcargo;
     if (bcontrol == 6) {
-      $("#"+modalp).modal("hide");
+      $("#" + modalp).modal("hide");
       guardarPersonal();
       console.log("guardo");
     }
@@ -337,8 +337,11 @@ function eliminarPersonal(id) {
         };
         let tab = document.getElementById("tbPersonal");
         if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }
