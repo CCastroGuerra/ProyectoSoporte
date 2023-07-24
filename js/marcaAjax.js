@@ -101,7 +101,7 @@ function listarSelectMarca() {
     const rol = JSON.parse(respuesta);
     let template = ""; // Estructura de la tabla html
     if (rol.length > 0) {
-      template = `<option value="0">Seleccione Marca</option>
+      template = `<option value="0">Seleccione Categoría</option>
         `;
       rol.forEach(function (rol) {
         template += `
