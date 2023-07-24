@@ -362,7 +362,7 @@ function buscarMovimientos() {
         <td>${movimientos.estado}</td>
         
         <td>
-            <div class="row">
+            <div class="row text-center">
                 <div class="col-lg-auto col-sm-auto px-0">
                 <button style="background-color: #18c223; border-color: #18c223;" type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-eye " aria-hidden="true"></i>
                     </button>

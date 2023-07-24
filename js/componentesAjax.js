@@ -342,11 +342,17 @@ function buscarComponente() {
                       <td style="${dispostyle} font-weight: bold;">${disponible}</td>
                       <td>${componentes.Fecha}</td>
                       <td>
-
-                      <button type="button" onClick='mostrarEnModal("${componentes.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </button>
-                      <button type="button" onClick='eliminarComponentes("${componentes.id}")' class="btn btn-danger pelim" data-fila="${componentes.id}"><i class="fa fa-trash" aria-hidden="true"></i>
-                      </button>
+                        <div class="row">
+                          <div class="col-lg-auto col-sm-auto px-1">
+                            <button type="button" onClick='mostrarEnModal("${componentes.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirComponente"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>                      
+                          </div>
+                          <div class="col-lg-auto col-sm-auto px-0">
+                            <button type="button" onClick='eliminarComponentes("${componentes.id}")' class="btn btn-danger pelim" data-fila="${componentes.id}"><i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        <div>
+                      </td>                      
                   </tr>
                   `;
       });
