@@ -138,7 +138,14 @@
 
   }
 </style>
+<script>
+  function expandConfig(){
+    var conf = document.getElementById("config");
+    var menu=con.querySelector("ul .nav-group-items")
+    conf.classList.toggle("show")
 
+  }
+</script>
 <body>
   <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">

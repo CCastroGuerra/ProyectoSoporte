@@ -2,10 +2,10 @@
 </div>
 </div>
 </div>
-<div class="wrapper d-flex flex-column">
-  <footer class="footer">
-    <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2022 creativeLabs.</div>
-    <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+<div class="wrapper d-flex flex-column text-white" >
+  <footer class="footer footer-sticky text-white" style="background-color:#303C54;">
+    <div>Desarrollado por: Area de Informática © 2022 Derechos Reservados.</div>
+    <div class="ms-auto">Contacto:&nbsp;<a href="https://wa.me/+51959252498?text=%C2%BFHola%20puedes%20ayudarme%3F">+51-959-252-498</a></div>
   </footer>
 
 </div>
