@@ -28,27 +28,32 @@
   <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+  <!-- <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
   <link rel="manifest" href="assets/favicon/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png"> -->
   <meta name="theme-color" content="#ffffff">
+  <link rel="shortcut icon" href="img/icosoporte.png" type="image/x-icon" sizes="16x16 32x32">
 
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+ <!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> -->
+
+  <!-- Bootstrap  v5.3.0-alpha3 css -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Vendors styles-->
   <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
   <link rel="stylesheet" href="css/vendors/simplebar.css">
   <!-- Main styles for this application-->
   <link href="css/style.css" rel="stylesheet">
   <!-- We use those styles to show code examples, you should remove them in your application.-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css"> -->
+  <link rel="stylesheet" href="css/prism.css">
   <link href="css/examples.css" rel="stylesheet">
   <!-- Global site tag (gtag.js) - Google Analytics-->
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+  <!-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script> -->
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -62,7 +67,10 @@
     gtag('config', 'UA-118965717-5');
   </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+<!-- jQuery v3.7.0 | (c) OpenJS Foundation and other contributors | jquery.org/license -->
+<script src="librerias/jquery-3.7.0.min.js"></script>
 
   <style>
     input#passwd::-ms-reveal,
@@ -73,7 +81,7 @@
 </head>
 <?php
 
-session_start();
+//session_start();
 
 if (isset($_SESSION['id'])) {
   header("Location: view/dashboardView.php");
@@ -148,7 +156,10 @@ if (isset($_SESSION['id'])) {
     </div>
   </form>
   <!-- CoreUI and necessary plugins-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap  v5.3.0-alpha3 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> -->
+  <script src="librerias/bootstrap.bundle.min.js"></script>
 
   <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="vendors/simplebar/js/simplebar.min.js"></script>

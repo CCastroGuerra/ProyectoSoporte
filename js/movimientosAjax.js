@@ -366,18 +366,31 @@ function buscarMovimientos() {
         <td>${movimientos.fecha}</td>
         <td>
             <div class="row">
-                <div class="col-lg-auto col-sm-auto px-0"">
+                <div class="col-lg-auto col-sm-auto px-0">
                     <button type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="col-lg-0 col-sm-0">
+                
+             `;
+      // Verificamos si el estado es diferente de "anulado" para agregar el tercer botón
+      if (movimientos.estado !== "Anulado") {
+        template +=`
+                <div class="col-lg-auto col-sm-auto px-0">
+                    <button type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="col-lg-1 col-sm-1">
                     <button class="btn" style="background-color: green" type="button" onClick='imprimir("${movimientos.id}")' id="btnImprimir"> <i class="fa fa-print text-white" aria-hidden="true"></i>
                     </button>
                 </div>
-            </div>
+        `;
+      }
+      template+= `
+        </div>
         </td>
-    </tr>
-                  `;
+        </tr>
+      `
+
       });
       var elemento = document.getElementById("tbTrabajos");
       elemento.innerHTML = template;

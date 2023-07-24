@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW (Versión de evaluación) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="35px" height="50px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 35 49.5"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <font id="FontID0" horiz-adv-x="1024" font-variant="normal" class="str6" style="fill-rule:nonzero" font-weight="400">
+	<font-face 
+		font-family="Pirulen Rg">
+		<font-face-src>
+			<font-face-name name="PirulenRg-Regular"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="O" horiz-adv-x="1000" d="M727.037 0c156.019,0 215.463,67.2222 215.463,165.648l0 354.815c0,98.4259 -59.4444,165.648 -215.463,165.648l-453.148 0c-155.926,0 -215.37,-67.2222 -215.37,-165.648l0 -354.815c0,-98.4259 59.4444,-165.648 215.37,-165.648l453.148 0zm85.8333 164.722c0,-40.9259 -27.3148,-63.3333 -85.8333,-63.3333l-453.148 0c-58.5185,0 -85.7407,22.4074 -85.7407,63.3333l0 356.667c0,41.0185 27.2222,63.4259 85.7407,63.4259l453.148 0c58.5185,0 85.8333,-22.4074 85.8333,-63.4259l0 -356.667z"/>
+   <glyph unicode="P" horiz-adv-x="868" d="M625.741 253.426c155.926,0 215.37,67.2222 215.37,165.648l0 101.389c0,98.4259 -59.4444,165.648 -215.37,165.648l-562.407 0 0 -686.111 129.63 0 0 253.426 432.778 0zm85.7407 164.722c0,-40.9259 -27.3148,-63.4259 -85.7407,-63.4259l-432.778 0 0 230.093 432.778 0c58.4259,0 85.7407,-22.4074 85.7407,-63.4259l0 -103.241z"/>
+   <glyph unicode="R" horiz-adv-x="902" d="M853.796 0l-161.852 307.963c121.852,11.7593 169.63,75.0926 169.63,163.796l0 48.7037c0,98.4259 -59.4444,165.648 -215.37,165.648l-582.87 0 0 -686.111 129.63 0 0 306.019 361.574 0 160.833 -306.019 138.426 0zm-121.852 470.741c0,-40.9259 -27.3148,-63.3333 -85.7407,-63.3333l-453.241 0 0 177.407 453.241 0c58.4259,0 85.7407,-22.4074 85.7407,-63.4259l0 -50.6481z"/>
+   <glyph unicode="c" horiz-adv-x="890" d="M843.654 0l0 103.462 -564.103 0c-59.6795,0 -87.5641,22.8846 -87.5641,64.6795l0 364.103c0,41.7949 27.8846,64.6795 87.5641,64.6795l564.103 0 0 103.462 -564.103 0c-159.167,0 -219.872,-68.6538 -219.872,-169.103l0 -362.179c0,-100.449 60.7051,-169.103 219.872,-169.103l564.103 0z"/>
+   <glyph unicode="e" horiz-adv-x="832" d="M784.936 0l0 103.462 -587.949 0 0 214.872 558.141 0 0 103.462 -558.141 0 0 175.128 587.949 0 0 103.462 -720.256 0 0 -700.385 720.256 0z"/>
+   <glyph unicode="i" horiz-adv-x="271" d="M201.987 0l0 700.385 -132.372 0 0 -700.385 132.372 0z"/>
+   <glyph unicode="n" horiz-adv-x="1056" d="M991.859 0l0 700.385 -115.385 0 0 -520.321 -697.372 520.321 -114.423 0 0 -700.385 115.385 0 0 545.192 747.179 -545.192 64.6154 0z"/>
+   <glyph unicode="o" horiz-adv-x="1021" d="M742.179 0c159.167,0 219.872,68.6538 219.872,169.103l0 362.179c0,100.449 -60.7051,169.103 -219.872,169.103l-462.628 0c-159.167,0 -219.872,-68.6538 -219.872,-169.103l0 -362.179c0,-100.449 60.7051,-169.103 219.872,-169.103l462.628 0zm87.5641 168.141c0,-41.7949 -27.8846,-64.6795 -87.5641,-64.6795l-462.628 0c-59.6795,0 -87.5641,22.8846 -87.5641,64.6795l0 364.103c0,41.7949 27.8846,64.6795 87.5641,64.6795l462.628 0c59.6795,0 87.5641,-22.8846 87.5641,-64.6795l0 -364.103z"/>
+   <glyph unicode="t" horiz-adv-x="903" d="M522.308 0l0 596.923 357.179 0 0 103.462 -856.603 0 0 -103.462 367.115 0 0 -596.923 132.308 0z"/>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Pirulen Rg";font-variant:normal;font-weight:normal;src:url("#FontID0") format(svg)}
+    .str6 {stroke-width:48.85;stroke-miterlimit:22.9256}
+    .str9 {stroke-width:70.56;stroke-miterlimit:22.9256}
+    .str1 {stroke:#FEFEFE;stroke-width:0.06;stroke-miterlimit:22.9256}
+    .str0 {stroke:#D2D3D5;stroke-width:0.03;stroke-miterlimit:22.9256}
+    .str5 {stroke:#6082C0;stroke-width:0.03;stroke-miterlimit:22.9256}
+    .str4 {stroke:#6082C0;stroke-width:0.03;stroke-miterlimit:22.9256}
+    .str8 {stroke:#A9ABAE;stroke-width:0.03;stroke-miterlimit:22.9256}
+    .str2 {stroke:#373435;stroke-width:0.01;stroke-miterlimit:22.9256}
+    .str3 {stroke:#373435;stroke-width:0.01;stroke-miterlimit:22.9256}
+    .str7 {stroke:#1DFF1D;stroke-width:0.01;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil3 {fill:#4B4B4D}
+    .fil6 {fill:#373435}
+    .fil4 {fill:#373435}
+    .fil0 {fill:#373435}
+    .fil2 {fill:#0098DA}
+    .fil7 {fill:#1DFF1D}
+    .fil5 {fill:#FF3232}
+    .fnt1 {font-weight:normal;font-size:0.18px;font-family:'Pirulen Rg'}
+    .fnt0 {font-weight:normal;font-size:0.26px;font-family:'Pirulen Rg'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0 str0" x="16.39" y="11.03" width="3.43" height="1.32"/>
+  <g id="_2693634256528">
+   <path class="fil1 str1" d="M18.95 11.77c0.12,-0.01 0.31,-0.12 0.45,-0.12 0.31,0 0.41,0.22 -0.33,0.22"/>
+   <g>
+    <polygon class="fil2 str2" points="19.03,11.81 19.07,11.81 19.07,11.82 19.09,11.82 19.09,11.83 19.11,11.83 19.11,11.91 19.09,11.91 19.09,11.92 19.07,11.92 19.07,11.93 19.03,11.93 "/>
+    <rect class="fil2 str3" x="18.95" y="11.81" width="0.08" height="0.13"/>
+   </g>
+  </g>
+  <g id="_2693634251824">
+   <g>
+    <rect class="fil3 str4" x="16.99" y="11.68" width="1.94" height="0.38" rx="0.08" ry="0.09"/>
+    <rect class="fil4 str5" x="17.23" y="12.1" width="1.49" height="0.03"/>
+   </g>
+   <g>
+    <g transform="matrix(1.01529 0 0 1 -0.599245 -12.7944)">
+     <text x="17.5" y="24.75"  class="fil3 str7 fnt0">tecnico </text>
+    </g>
+    <rect class="fil5" x="18.77" y="11.82" width="0.09" height="0.09" rx="0.02" ry="0.02"/>
+   </g>
+  </g>
+  <g id="_2693634247744">
+   <rect class="fil1 str8" x="17.27" y="11.46" width="1.49" height="0.19"/>
+   <g transform="matrix(1.12974 0 0 1 -2.37294 -13.1232)">
+    <text x="17.5" y="24.75"  class="fil6 str7 fnt1">OPORte </text>
+   </g>
+   <rect class="fil7" x="18.6" y="11.51" width="0.09" height="0.09" rx="0.02" ry="0.02"/>
+  </g>
+  <g id="_2693634245776">
+   <path class="fil1 str1" d="M17.5 11.31c0.01,-0.33 -0.47,-0.1 -0.52,0.06 -0.07,0.21 0.31,0.19 0.27,0.34 -0.03,0.09 -0.76,0.71 -0.79,0.35 0,-0.08 0.11,-0.13 0.25,-0.18 0.06,-0.03 0.23,-0.09 0.27,-0.09"/>
+   <g>
+    <polygon class="fil2 str2" points="17.43,11.38 17.43,11.35 17.44,11.35 17.44,11.33 17.45,11.33 17.45,11.31 17.54,11.31 17.54,11.33 17.55,11.33 17.55,11.35 17.56,11.35 17.56,11.38 "/>
+    <rect class="fil2 str3" transform="matrix(2.64845E-14 -0.593958 1 1.57307E-14 17.4318 11.4438)" width="0.11" height="0.13"/>
+   </g>
+  </g>
+ </g>
+</svg>
