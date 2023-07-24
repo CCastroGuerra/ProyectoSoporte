@@ -70,8 +70,8 @@ include('../templates/cabecera.php');
                                                 <option value="0" selected>Seleccione el tipo</option>
                                                 <option value="1">Traslado</option>
                                                 <option value="2">Intercambio</option>
-                                            </select>                                            
-                                            <div id="alerta1" class ="alerta"></div>
+                                            </select>
+                                            <div id="alerta1" class="alerta"></div>
                                         </div>
 
                                         <div class="form-group mb-2">
@@ -82,8 +82,8 @@ include('../templates/cabecera.php');
                                                 <option value="2">Técnico 2</option>
                                                 <option value="3">Técnico 3</option>
                                                 <option value="4">Técnico 4</option>
-                                            </select>                                            
-                                            <div id="alerta2" class ="alerta"></div>
+                                            </select>
+                                            <div id="alerta2" class="alerta"></div>
                                         </div>
 
                                         <div class="form-group">

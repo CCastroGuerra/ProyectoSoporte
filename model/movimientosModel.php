@@ -188,20 +188,26 @@ class Movimiento extends Conectar
             }
             $inicio = ($pagina - 1) * $limit;
             //echo $inicio;
-            $sql = "SELECT distinct dt.id_translado,
-                        CASE
-                            dt.tipo
-                            WHEN 1 THEN 'Translado'
-                            WHEN 2 THEN 'Intercambio'
-                            ELSE 'Otro'
-                        END AS tipo,
-                        t.tecnico_id,
-                        CONCAT(nombre_personal, ' ', apellidos_personal) AS NombreTecnico,
-                        t.observacion,
-                        DATE_FORMAT(t.fecha, '%d/%m/%y') AS Fecha
-                        FROM detalles_translado dt
-                        INNER JOIN translado t ON t.id_translado = dt.id_translado
-                        INNER JOIN personal p ON p.id_personal = t.tecnico_id AND CONCAT(nombre_personal, ' ', apellidos_personal) LIKE '%$textoBusqueda%' LIMIT $inicio,$limit ";
+            $sql = "SELECT DISTINCT t.id_translado,
+            CASE
+                t.tipo_movimiento
+                WHEN 1 THEN 'Translado'
+                WHEN 2 THEN 'Intercambio'
+                ELSE 'Otro'
+            END AS tipo,
+            t.tecnico_id,
+            CONCAT(nombre_personal, ' ', apellidos_personal) AS NombreTecnico,
+            t.observacion,
+            DATE_FORMAT(t.fecha, '%d/%m/%y') AS Fecha,
+            CASE
+                t.anulado
+                WHEN 0 THEN 'Activo'
+                WHEN 1 THEN 'Anulado'
+                ELSE 'Otro'
+            END AS estado
+        FROM detalles_translado dt
+            INNER JOIN translado t on t.id_translado = dt.id_translado
+            INNER JOIN personal p ON p.id_personal = t.tecnico_id AND CONCAT(nombre_personal, ' ', apellidos_personal) LIKE '%$textoBusqueda%' LIMIT $inicio,$limit ";
             //echo $sql;
             $stmt = $conectar->prepare($sql);
             //echo $sql;
@@ -218,6 +224,7 @@ class Movimiento extends Conectar
                     $listado[] = array(
                         'id' => $movimiento['id_translado'],
                         "tipo" => $movimiento["tipo"],
+                        "estado" => $movimiento["estado"],
                         "nombreTecnico" => $movimiento["NombreTecnico"],
                         'observacion' => $movimiento["observacion"],
                         'fecha' => $movimiento["Fecha"]
@@ -337,14 +344,14 @@ class Movimiento extends Conectar
             $sql = "UPDATE  translado set anulado= 1 WHERE id_translado = $idTranslado;
                     ";
             $sql = $conectar->prepare($sql);
-
-            if ($sql->execute()) {
-                $sql->closeCursor();
-                $sql2 = "DELETE from detalles_translado where id_translado = ?;";
-                $sql2 = $conectar->prepare($sql2);
-                $sql2->bindValue(1, $idTranslado);
-                $sql2->execute();
-            }
+            $sql->execute();
+            // if ($sql->execute()) {
+            //     $sql->closeCursor();
+            //     $sql2 = "DELETE from detalles_translado where id_translado = ?;";
+            //     $sql2 = $conectar->prepare($sql2);
+            //     $sql2->bindValue(1, $idTranslado);
+            //     $sql2->execute();
+            // }
         } else {
             echo "El parámetro 'id' no ha sido enviado";
         }

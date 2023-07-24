@@ -65,7 +65,7 @@ switch ($accion) {
         echo "actualizado correctamente";
         break;
     case "eliminar":
-        var_dump($_POST);
+        //var_dump($_POST);
         $movimientos->eliminar($_POST["id"]);
         break;
 }
