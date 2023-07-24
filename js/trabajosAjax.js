@@ -611,7 +611,7 @@ function buscarTrabajos() {
         <td>${trabajos.fecha}</td>
         <td>
             <div class="row">
-                <div class="col-lg-6 col-sm-6 px-5">
+                <div class="col-lg-6 col-sm-6 px-0">
                     <button type="button" onClick='mostrarEnModal("${trabajos.idTrabajo}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                     </button>
                 </div>

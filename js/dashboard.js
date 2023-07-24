@@ -169,7 +169,7 @@ function traerTrabajosxMes() {
           //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
           template += `<div class="col mb-sm-2 mb-0">
           <div class="text-medium-emphasis">Visits</div>
-          <div class="fw-semibold">${firstSet[index]} ${ejex[index]} (${perc}%)</div>
+          <div class="fw-semibold">${ejex[index]}: ${firstSet[index]}  (${perc}%)</div>
           <div class="progress progress-thin mt-2">
             <div class="progress-bar" role="progressbar" style="width: ${perc}%; background-color:${colrs[index]}" aria-valuenow="${perc}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
@@ -296,7 +296,7 @@ function productosxterminar() {
     //console.log(respuesta);
     const datos = JSON.parse(respuesta);
     var template = ""; // Estructura de la tabla html
-    //console.log(datos);
+    console.log(datos);
     datos.forEach((element) => {
       let movStyle =
         element.movimiento === "SALIDA" ? "color: green;" : "color: red;";

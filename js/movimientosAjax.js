@@ -12,7 +12,10 @@ let frmMovimientos = document.getElementById("frmTrabajoa");
 let frmAgregarEquipos = document.getElementById("formServicios");
 let btnAñadir = document.getElementById("btnServicio");
 let cajaIdMovimiento = document.getElementById("idMov");
+let fallaobs = document.getElementById("fallaObservada");
+let tabladetalle = document.getElementById("tbEquipos");
 let btnGuardarEquipo = document.getElementById("guardarEquipo");
+let tipmod = "";
 
 //modal equipos
 let areaOrig = document.getElementById("areaORId");
@@ -92,7 +95,19 @@ modal.addEventListener("show.coreui.modal", (event) => {
   switch (button.id) {
     case "btmodal":
       modalTitle.textContent = "Registrar Movimiento";
+      frmMovimientos.reset();
+      tabladetalle.innerHTML = ` <tr>
+      <td colspan="6" class="text-center">No se encontraron datos</td>
+    </tr>`;
       btnAñadir.disabled = true;
+      btnAñadir.setAttribute("style", "display: block");
+      selecAccion.disabled = false;
+      selecTecnico.disabled = false;
+      fallaobs.readOnly = false;
+
+      $("#tbopciones").show();
+      tipmod = "";
+
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar Movimiento";
@@ -213,7 +228,7 @@ function mostrarAreaXId() {
 function guardarMovimiento() {
   let tipoMovimiento = selecAccion.value;
   let idTecnico = selecTecnico.value;
-  let observacion = document.getElementById("fallaObservada").value;
+  let observacion = fallaobs.value;
   const ajax = new XMLHttpRequest();
   //Se establace la direccion del archivo php que procesara la peticion
   ajax.open("POST", "../controller/movimientosController.php", true);
@@ -267,6 +282,11 @@ function guardarEquipos() {
 function listarTablaMovimientos() {
   let cajaIdMov = cajaIdMovimiento.value;
   console.log(cajaIdMov);
+  if (tipmod === "Ver") {
+    styleop = "display: none !important";
+  } else {
+    styleop = "";
+  }
   const ajax = new XMLHttpRequest();
   ajax.open("POST", "../controller/movimientosController.php", true);
   var data = new FormData();
@@ -284,8 +304,10 @@ function listarTablaMovimientos() {
                       <td>${area.idEquipo}</td>
                       <td>${area.areaOrigen}</td>
                       <td>${area.areaDestino}</td>
-                      <td><button type="button" onClick='eliminarEquipoMovimiento("${area.idEquipo}")' class="btn btn-danger pelim" id="btnEditar"><i class="fa fa-trash" aria-hidden="true"></i>
-                      </button></td>
+                      <td style='${styleop}'>
+                      <button type="button" onClick='eliminarEquipoMovimiento("${area.idEquipo}")' class="btn btn-danger pelim" id="btnEditar"><i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                      </td>
                     
                   </tr>
                   `;
@@ -328,11 +350,11 @@ function buscarMovimientos() {
         <td>${movimientos.fecha}</td>
         <td>
             <div class="row">
-                <div class="col-lg-4 col-sm-6 ">
+                <div class="col-lg-6 col-sm-6 px-5">
                     <button type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-6 col-sm-6">
                     <button class="btn" style="background-color: green" type="button" onClick='imprimir("${movimientos.id}")' id="btnImprimir"> <i class="fa fa-print text-white" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -440,7 +462,7 @@ function eliminarEquipoMovimiento(id) {
 function actualizar(id) {
   let selectTecnico = selecTecnico.value;
   let tipoMovimientoInput = selecAccion.value;
-  let observacion = document.getElementById("fallaObservada").value;
+  let observacion = fallaobs.value;
   // Obtener los valores actualizados desde los elementos del modal
 
   const ajax = new XMLHttpRequest();
