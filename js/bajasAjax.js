@@ -442,7 +442,11 @@ function eliminarBajas(id) {
         };
         let tab = document.getElementById("tbBajas");
         if (tab.rows.length == 1) {
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }

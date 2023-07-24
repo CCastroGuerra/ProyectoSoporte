@@ -187,6 +187,7 @@ class Movimiento extends Conectar
                 $sLimit = "LIMIT $limit";
             }
             $inicio = ($pagina - 1) * $limit;
+            //echo $inicio;
             $sql = "SELECT distinct dt.id_translado,
                         CASE
                             dt.tipo
@@ -200,7 +201,8 @@ class Movimiento extends Conectar
                         DATE_FORMAT(t.fecha, '%d/%m/%y') AS Fecha
                         FROM detalles_translado dt
                         INNER JOIN translado t ON t.id_translado = dt.id_translado
-                        INNER JOIN personal p ON p.id_personal = t.tecnico_id AND tipo LIKE '%$textoBusqueda%' LIMIT $inicio,$limit ";
+                        INNER JOIN personal p ON p.id_personal = t.tecnico_id AND CONCAT(nombre_personal, ' ', apellidos_personal) LIKE '%$textoBusqueda%' LIMIT $inicio,$limit ";
+            //echo $sql;
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -307,15 +309,44 @@ class Movimiento extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function imprimirMovimiento($idMovimiento)
+    public function eliminar($idTranslado)
     {
         $conectar = parent::conexion();
-        $consulta = "";
+        if (isset($_POST["id"])) {
+            $idTranslado = $_POST["id"];
+            $consultaEquipos = "SELECT equipo_id,area_origen
+            from detalles_translado
+            WHERE id_translado = $idTranslado;";
+            $consultaEquipos = $conectar->prepare($consultaEquipos);
+            $consultaEquipos->execute();
+            $resultado = $consultaEquipos->fetchAll();
+            $cantidad = count($resultado);
+            for ($i = 0; $i < $cantidad; $i++) {
+                $idEquipo = $resultado[$i]['equipo_id'];
+                $areaOrigen = $resultado[$i]['area_origen'];
+                // print_r($idEquipo);
+                // print_r($areaDestino);
+                $sql3 = "UPDATE equipos set area_id = '$areaOrigen' WHERE cod_equipo = '$idEquipo'";
+                // echo $sql3;
+                $sql3 = $conectar->prepare($sql3);
+                $sql3->execute();
+            }
+            $sql3->closeCursor();
+            // Resto del código para eliminar la tarea
 
-        $consulta = $conectar->prepare($consulta);
-        $consulta->bindValue(1, $idMovimiento);
-        $consulta->execute();
+            $sql = "UPDATE  translado set anulado= 1 WHERE id_translado = $idTranslado;
+                    ";
+            $sql = $conectar->prepare($sql);
 
-        return $resultado = $consulta->fetchAll();
+            if ($sql->execute()) {
+                $sql->closeCursor();
+                $sql2 = "DELETE from detalles_translado where id_translado = ?;";
+                $sql2 = $conectar->prepare($sql2);
+                $sql2->bindValue(1, $idTranslado);
+                $sql2->execute();
+            }
+        } else {
+            echo "El parámetro 'id' no ha sido enviado";
+        }
     }
 }

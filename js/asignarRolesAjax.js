@@ -53,14 +53,14 @@ srol.addEventListener("change", function () {
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
-modal.addEventListener('show.coreui.modal', event =>{
+modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
-  console.log("el modal fue levantado por: "+button.id);
-  var modalTitle= modal.querySelector('.modal-title');
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
   msgal.forEach((element) => {
-    element.innerText="";
+    element.innerText = "";
   });
   switch (button.id) {
     case "":
@@ -318,8 +318,11 @@ function eliminar(id) {
         };
         let tab = document.getElementById("tbRoles");
         if (tab.rows.length == 1) {
-          //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }

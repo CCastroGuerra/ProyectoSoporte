@@ -6,7 +6,7 @@ listarSelecArea();
 buscarMovimientos();
 /***********************************/
 let selecAccion = document.getElementById("selTipo");
-let selecTecnico =document.getElementById("selTecnico");
+let selecTecnico = document.getElementById("selTecnico");
 let idEquipo = document.getElementById("codEquipo");
 let frmMovimientos = document.getElementById("frmTrabajoa");
 let frmAgregarEquipos = document.getElementById("formServicios");
@@ -30,53 +30,50 @@ ofr.forEach((element) => {
 });
 /************* */
 /******variables de control */
-let btipo=1;
-let btecnico=1;
+let btipo = 1;
+let btecnico = 1;
 /************************** */
 /******eventos de error */
-function activar_botondet(){
-  if(validarFormulario()){
-    btnAñadir.disabled=false;    
-  } else{    
-    btnAñadir.disabled=true;
+function activar_botondet() {
+  if (validarFormulario()) {
+    btnAñadir.disabled = false;
+  } else {
+    btnAñadir.disabled = true;
   }
 }
 
-
-selecAccion.addEventListener("change",(e)=>{
-  console.log("seleccionado: "+selecAccion.value);
+selecAccion.addEventListener("change", (e) => {
+  console.log("seleccionado: " + selecAccion.value);
   if (selecAccion.value == 0) {
-    alTipo.innerText=msgT;
-    btipo=1;
+    alTipo.innerText = msgT;
+    btipo = 1;
   } else {
-    alTipo.innerText=msg0;
-    btipo=0;
-  }  
-  activar_botondet();
-});
-selecTecnico.addEventListener("change",(e)=>{
-  if (selecTecnico.value == 0) {
-    alTecnico.innerText=msgTc;
-    btecnico=1;
-  } else {
-    alTecnico.innerText=msg0;
-    btecnico=0;    
+    alTipo.innerText = msg0;
+    btipo = 0;
   }
   activar_botondet();
 });
-function validarFormulario(){
+selecTecnico.addEventListener("change", (e) => {
+  if (selecTecnico.value == 0) {
+    alTecnico.innerText = msgTc;
+    btecnico = 1;
+  } else {
+    alTecnico.innerText = msg0;
+    btecnico = 0;
+  }
+  activar_botondet();
+});
+function validarFormulario() {
   let cont = btipo + btecnico;
   let ret;
   console.log(cont);
-  if (cont==0) {
-    ret = true
+  if (cont == 0) {
+    ret = true;
   } else {
     ret = false;
   }
   return ret;
 }
-
-
 
 //cambiar titulo de modal
 const modal = document.getElementById("TrabajoModal");
@@ -86,34 +83,32 @@ modal.addEventListener("show.coreui.modal", (event) => {
   var button = event.relatedTarget;
   //console.log("el modal fue levantado por: " + button.id);
   var modalTitle = modal.querySelector(".modal-title");
-  btipo=1;
-  btecnico=1;
+  btipo = 1;
+  btecnico = 1;
   //limpiar mensajes de error
-  alTipo.innerText="";
-  alTecnico.innerText="";
+  alTipo.innerText = "";
+  alTecnico.innerText = "";
   //modelo debe estar bloqueado
   switch (button.id) {
     case "btmodal":
       modalTitle.textContent = "Registrar Movimiento";
-      btnAñadir.disabled=true;
+      btnAñadir.disabled = true;
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar Movimiento";
-      btnAñadir.disabled =false;
+      btnAñadir.disabled = false;
       break;
   }
 });
-
 
 /********************** */
 frmMovimientos.onsubmit = function (e) {
   e.preventDefault();
   let cajaid = frmMovimientos.querySelector("#idMov").value;
-  console.log("id a guardar: "+ cajaid);
-  
-    //actualizar
-    actualizar(cajaid);
-  
+  console.log("id a guardar: " + cajaid);
+
+  //actualizar
+  actualizar(cajaid);
 };
 
 idEquipo.addEventListener("input", function () {
@@ -311,7 +306,6 @@ function buscarMovimientos() {
   ajax.open("POST", "../controller/movimientosController.php", true);
   var data = new FormData();
   data.append("accion", "buscarMovimiento");
-  data.append("cantidad", "5");
   data.append("registros", num_registros);
   data.append("pag", numPagina);
   data.append("textoBusqueda", textoBusqueda);
@@ -334,12 +328,17 @@ function buscarMovimientos() {
         <td>${movimientos.fecha}</td>
         <td>
             <div class="row">
-                <div class="col-lg-6 col-sm-6 px-5">
+                <div class="col-lg-4 col-sm-6 ">
                     <button type="button" onClick='mostrarEnModal("${movimientos.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#TrabajoModal"><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <button class="btn" style="background-color: green" type="button" onClick='imprimir("${movimientos.id}")' id="btnImprimir"> <i class="fa fa-print text-white" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <button class="btn" style="background-color: red" type="button" onClick='eliminar("${movimientos.id}")' id="btnEliminar"> <i class="fa fa-times" aria-hidden="true"></i>
+
                     </button>
                 </div>
             </div>
@@ -427,7 +426,11 @@ function eliminarEquipoMovimiento(id) {
         };
         let tab = document.getElementById("tbEquipos");
         if (tab.rows.length == 1) {
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
         ajax.send(data);
       }
@@ -461,4 +464,46 @@ function imprimir(idMovimiento) {
   let link = "../view/reporteEntregaRetiro.php?id=" + idMovimiento;
 
   window.open(link, "_blank");
+}
+
+function eliminar(id) {
+  console.log(id);
+  swal
+    .fire({
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea anular el Registro?",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "../controller/movimientosController.php", true);
+        const data = new FormData();
+        data.append("id", id);
+        data.append("accion", "eliminar");
+        ajax.onload = function () {
+          var respuesta = ajax.responseText;
+          //console.log(respuesta);
+          buscarMovimientos();
+          swal.fire(
+            "Eliminado!",
+            "El registro se anuló correctamente.",
+            "success"
+          );
+        };
+        let tab = document.getElementById("tbTrabajos");
+        if (tab.rows.length == 1) {
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
+        }
+        ajax.send(data);
+      }
+    });
 }
