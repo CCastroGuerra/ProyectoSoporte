@@ -19,7 +19,7 @@
   <meta name="author" content="Łukasz Holeczek">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
   <meta http-equiv="Cache-control" content="must-revalidate">
-  
+
   <title>Soporte Técnico</title>
 
   <link rel="shortcut icon" href="../img/icosoporte.png" type="image/x-icon" sizes="16x16 32x32">
@@ -139,13 +139,19 @@
   }
 </style>
 <script>
-  function expandConfig(){
+  function expandConfig() {
     var conf = document.getElementById("config");
-    var menu=con.querySelector("ul .nav-group-items")
-    conf.classList.toggle("show")
+    var menu = conf.querySelector("ul .nav-group-items")
+    if ($.inArray("show", conf.classList) == -1) {
+      conf.classList.toggle("show");
+      conf.ariaExpanded = true;
+      menu.style.height = "auto";
+    }
+
 
   }
 </script>
+
 <body>
   <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
@@ -153,7 +159,7 @@
         <use xlink:href="../assets/brand/coreui.svg#full"></use>
       </svg> -->
       <!-- <h2 class="cssFont_1">Soporte Técnico</h2> -->
-      <img src="../img/soportelogo.png" class="sidebar-brand-full" alt="Soporte Técnico" >
+      <img src="../img/soportelogo.png" class="sidebar-brand-full" alt="Soporte Técnico">
 
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
@@ -233,7 +239,7 @@
       </li>
       <!--/item Trabajos-->
       <!--item almacen-->
-      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+      <li class="nav-group" id="config"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
           </svg> Configuración</a>
@@ -259,6 +265,7 @@
       <!-- gestion de personal -->
       <li id="gesper">
         <script>
+          //$("body").ready(()=>{console.log("cargó el contenido");});
           window.onload = function() {
             let seccion = "";
             seccion += `
@@ -352,7 +359,7 @@
           <ul class="header-nav d-none d-md-flex">
             <li class="nav-item"><a class="nav-link" href="../view/dashboardView-cv.php">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="expandConfig()">Configuración</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-4 text-end">
