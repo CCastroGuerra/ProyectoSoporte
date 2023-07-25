@@ -70,6 +70,9 @@ frmBajas.onsubmit = function (e) {
     var completo = validarFormulario();
     if (completo == 3) {
       guardarBajas();
+      setTimeout(function () {
+        $("#" + modalp).modal("hide");
+      }, 2000);
       //listarArea();
       console.log("guardo");
       frmBajas.reset();
@@ -217,71 +220,6 @@ function editarEstadoEquipo() {
   ajax.send(data);
 }
 
-// function buscarBajas() {
-//   let numPagina = 1;
-//   var cajaBuscar = document.getElementById("inputbuscarBajas");
-//   const textoBusqueda = cajaBuscar.value;
-//   let num_registros = document.getElementById("numRegistros").value;
-//   const ajax = new XMLHttpRequest();
-//   ajax.open("POST", "../controller/bajasController.php", true);
-//   var data = new FormData();
-//   data.append("accion", "buscarBajas");
-//   data.append("cantidad", "4");
-//   data.append("registros", num_registros);
-//   data.append("pag", numPagina);
-//   data.append("textoBusqueda", textoBusqueda);
-//   ajax.onload = function () {
-//     let respuesta = ajax.responseText;
-//     console.log(respuesta);
-//     const datos = JSON.parse(respuesta);
-//     console.log(datos);
-//     let bajas = datos.listado;
-//     console.log(bajas);
-//     let template = ""; // Estructura de la tabla html
-//     if (bajas != "vacio") {
-//       bajas.forEach(function (bajas) {
-//         let estadoStyle =
-//           bajas.tipoBajas === "TEMPORAL" ? "color: #bbaf1b;" : "color: red;";
-//         template += `
-//               <tr>
-
-//                 <td>${bajas.nombreTipoEquipo}</td>
-//                 <td>${bajas.nombreArea}</td>
-//                 <td>${bajas.motivo}</td>
-//                 <td>${bajas.fecha}</td>
-//                 <td style = "${estadoStyle}; font-weight: bold;">${bajas.tipoBajas}</td>
-//                 <td>
-//                 <button type="button" onClick='mostrarEnModal("${bajas.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#bajasModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-//                 </button>
-//                 <button type="button" onClick='eliminarBajas("${bajas.id}")' class="btn btn-danger" ><i class="fa fa-trash" aria-hidden="true"></i>
-//                 </button>
-
-//                 </td>
-//               </tr>
-//             `;
-//       });
-//       var elemento = document.getElementById("tbBajas");
-//       elemento.innerHTML = template;
-//       document.getElementById("txtPagVista").value = numPagina;
-//       document.getElementById("txtPagTotal").value = datos.paginas;
-
-//       /* Mostrando mensaje de los registros*/
-//       let registros = document.getElementById("txtcontador");
-//       let mostrarRegistro = `
-//         <p><span id="totalRegistros">Mostrando ${bajas.length} de ${datos.total} registros</span></p>`;
-//       registros.innerHTML = mostrarRegistro;
-//     } else {
-//       var elemento = document.getElementById("tbBajas");
-//       elemento.innerHTML = `
-//             <tr>
-//               <td colspan="3" class="text-center">No se encontraron resultados</td>
-//             </tr>
-//           `;
-//     }
-//   };
-//   ajax.send(data);
-// }
-
 function buscarBajas() {
   var cajaBuscar = document.getElementById("inputbuscarBajas");
   const textoBusqueda = cajaBuscar.value;
@@ -362,7 +300,7 @@ function mostrarEnModal(bajasId) {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
-    document.getElementById("codigoEquipo").value = datos.serie;
+    document.getElementById("codigoEquipo").value = datos.cod;
     document.getElementById("selArea").value = datos.nombreTipoId;
     document.getElementById("motivo").value = datos.motivo;
     document.getElementById("inputCodigo").value = datos.id;
@@ -452,3 +390,46 @@ function eliminarBajas(id) {
       }
     });
 }
+
+/**************************/
+/* BOTONES DE PAGINACIÓN */
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarBajas();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarBajas();
+    pagAnterior.blur();
+  }
+});
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarBajas();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarBajas();
+  pagFinal.blur();
+});

@@ -27,6 +27,7 @@ switch ($accion) {
         if (is_array($datos) == true && count($datos) > 0) {
             foreach ($datos as $row) {
                 $output['id'] = $row['id_bajas'];
+                $output['cod'] = $row['cod_equipo'];
                 $output['serie'] = $row['serie'];
                 $output['nombreTipoId'] = $row['tipo_baja'];
                 $output['nombreTipo'] = $row['tipoBajas'];

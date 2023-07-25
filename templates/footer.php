@@ -2,9 +2,9 @@
 </div>
 </div>
 </div>
-<div class="wrapper d-flex flex-column text-white" >
+<div class="wrapper d-flex flex-column text-white">
   <footer class="footer footer-sticky text-white" style="background-color:#303C54;">
-    <div>Desarrollado por: Area de Informática © 2022 Derechos Reservados.</div>
+    <div>Desarrollado por: UEI © 2023 Derechos Reservados.</div>
     <div class="ms-auto">Contacto:&nbsp;<a href="https://wa.me/+51959252498?text=%C2%BFHola%20puedes%20ayudarme%3F">+51-959-252-498</a></div>
   </footer>
 
