@@ -145,7 +145,7 @@ ob_start();
 
     $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
     $conectar = $conectarObj->Conexion();
-    $sql = $conectar->prepare("SELECT e.id_equipos, tp.nombre_tipo_equipo, p.nombre_personal, mar.nombre_marca, mo.nombre_modelo, e.serie, e.margesi, a.nombre_area, est.nombre_estado, DATE_FORMAT(fecha_alta, '%d/%m/%y') as Fecha from equipos e INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo INNER JOIN marca mar ON mar.id_marca = e.marca_id INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id INNER JOIN area a ON a.id_area = e.area_id INNER JOIN estado est ON est.id_estado = e.estado_id INNER JOIN personal p ON e.clientes_id = p.id_personal WHERE e.es_activo = 1
+    $sql = $conectar->prepare("SELECT e.id_equipos,e.cod_equipo, tp.nombre_tipo_equipo, p.nombre_personal, mar.nombre_marca, mo.nombre_modelo, e.serie, e.margesi, a.nombre_area, est.nombre_estado, DATE_FORMAT(fecha_alta, '%d/%m/%y') as Fecha from equipos e INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo INNER JOIN marca mar ON mar.id_marca = e.marca_id INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id INNER JOIN area a ON a.id_area = e.area_id INNER JOIN estado est ON est.id_estado = e.estado_id INNER JOIN personal p ON e.clientes_id = p.id_personal WHERE e.es_activo = 1
     ORDER BY tp.nombre_tipo_equipo;  ");
     $sql->execute();
     $listaEquipos = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -191,7 +191,7 @@ ob_start();
             <tbody>
                 <?php foreach ($listaEquipos as $equipos) { ?>
                     <tr>
-                        <td><?php echo $equipos['id_equipos'] ?></td>
+                        <td><?php echo $equipos['cod_equipo'] ?></td>
                         <td><?php echo $equipos['nombre_tipo_equipo'] ?></td>
                         <td><?php echo $equipos['nombre_personal'] ?></td>
                         <td><?php echo $equipos['nombre_marca'] ?></td>

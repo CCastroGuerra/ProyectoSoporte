@@ -52,41 +52,41 @@ numRegistors.addEventListener("change", () => {
   buscarArea();
 });
 
-function listarArea() {
-  let num_registros = document.getElementById("numRegistros").value;
-  const ajax = new XMLHttpRequest();
-  ajax.open("POST", "../controller/areaController.php", true);
-  var data = new FormData();
-  data.append("accion", "listar");
-  data.append("valor", "");
-  data.append("cantidad", "4");
-  data.append("registros", num_registros);
-  ajax.onload = function () {
-    let respuesta = ajax.responseText;
-    console.log(respuesta);
-    const area = JSON.parse(respuesta);
-    let template = ""; // Estructura de la tabla html
-    if (area.length > 0) {
-      area.forEach(function (area) {
-        template += `
-                  <tr>
-                      
-                      <td>${area.nombre}</td>
-                      <td>
-                      <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
-                      
-                      <button type="button" onClick='eliminarPresentacion("${area.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
-                      </button>
-            </td>
-                  </tr>
-                  `;
-      });
-      var elemento = document.getElementById("tbArea");
-      elemento.innerHTML = template;
-    }
-  };
-  ajax.send(data);
-}
+// function listarArea() {
+//   let num_registros = document.getElementById("numRegistros").value;
+//   const ajax = new XMLHttpRequest();
+//   ajax.open("POST", "../controller/areaController.php", true);
+//   var data = new FormData();
+//   data.append("accion", "listar");
+//   data.append("valor", "");
+//   data.append("cantidad", "4");
+//   data.append("registros", num_registros);
+//   ajax.onload = function () {
+//     let respuesta = ajax.responseText;
+//     console.log(respuesta);
+//     const area = JSON.parse(respuesta);
+//     let template = ""; // Estructura de la tabla html
+//     if (area.length > 0) {
+//       area.forEach(function (area) {
+//         template += `
+//                   <tr>
+
+//                       <td>${area.nombre}</td>
+//                       <td>
+//                       <button type="button" class="btn btn-success btn-outline" data-coreui-toggle="modal" data-coreui-target="#productosModal"><i class="fa fa-plus" aria-hidden="true"></i>
+
+//                       <button type="button" onClick='eliminarPresentacion("${area.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
+//                       </button>
+//             </td>
+//                   </tr>
+//                   `;
+//       });
+//       var elemento = document.getElementById("tbArea");
+//       elemento.innerHTML = template;
+//     }
+//   };
+//   ajax.send(data);
+// }
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);

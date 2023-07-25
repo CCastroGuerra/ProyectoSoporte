@@ -3,37 +3,6 @@
 class Area extends Conectar
 {
 
-    public function listarArea()
-    {
-        $conectar = parent::conexion();
-        $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
-        //Para comprobar si se a mandado el parametro de registros
-        if (isset($_POST['registros'])) {
-            $limit = $_POST['registros'];
-            $sLimit = "LIMIT $limit";
-        }
-        $sql = "SELECT * FROM `area` WHERE esActivo = 1 $sLimit ";
-        $fila = $conectar->prepare($sql);
-        $fila->execute();
-
-        $resultado = $fila->fetchAll();
-        if (empty($resultado)) {
-            $resultado = array('listado' => 'vacio');
-            $jsonString = json_encode($resultado);
-            echo $jsonString;
-        } else {
-            $json = array();
-            $listado = array();
-            foreach ($resultado as $row) {
-                $listado[] = array(
-                    'id' => $row['id_area'],
-                    'nombre' => $row['nombre_area']
-                );
-            }
-            $jsonString = json_encode($listado);
-            echo $jsonString;
-        }
-    }
 
     public function agregarArea($nombreArea)
     {

@@ -43,7 +43,7 @@ class Bajas extends Conectar
         $conectar = parent::conexion();
 
         // Verificar si el código de producto existe en la base de datos
-        $consultaSerie = "SELECT id_equipos FROM equipos WHERE serie = ?";
+        $consultaSerie = "SELECT id_equipos FROM equipos WHERE cod_equipo = ?";
         $query = $conectar->prepare($consultaSerie);
         $query->bindValue(1, $serie);
         $query->execute();
@@ -62,7 +62,7 @@ class Bajas extends Conectar
                     SET
                     es_activo = 0 
                     WHERE
-                    serie = ?";
+                    cod_equipo = ?";
                 $query = $conectar->prepare($sql);
                 $query->bindValue(1, $serie);
                 if ($query->execute()) {
@@ -166,7 +166,7 @@ class Bajas extends Conectar
     public function traerBajaXId($idBajas)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT b.id_bajas, b.equipo_id, eq.serie,b.tipo_baja, CASE WHEN tipo_baja = 1 THEN 'TEMPORAL' WHEN tipo_baja = 2 THEN 'PERMANENTE' END tipoBajas, b.motivo FROM bajas b INNER JOIN equipos eq ON b.equipo_id = eq.id_equipos WHERE id_bajas = ?";
+        $sql = "SELECT b.id_bajas, eq.cod_equipo, b.equipo_id, eq.serie,b.tipo_baja, CASE WHEN tipo_baja = 1 THEN 'TEMPORAL' WHEN tipo_baja = 2 THEN 'PERMANENTE' END tipoBajas, b.motivo FROM bajas b INNER JOIN equipos eq ON b.equipo_id = eq.id_equipos WHERE id_bajas = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idBajas);
         $sql->execute();
