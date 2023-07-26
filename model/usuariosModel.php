@@ -1,4 +1,6 @@
 <?php
+
+require_once("../model/loginModel.php");
 class Usuario extends Conectar
 {
 
@@ -49,8 +51,10 @@ class Usuario extends Conectar
     public function guardarUsuario($idPersonal, $usuario, $password)
     {
         $conectar = parent::conexion();
+        $login = new Login();
+        $cryptpass = $login -> encriptar($password);
         $sql = "INSERT INTO usuario (nombre_usuario,usuario_password,personal_id)
-        VALUES ('$usuario', '$password','$idPersonal')";
+            VALUES ('$usuario', '$cryptpass','$idPersonal')";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';

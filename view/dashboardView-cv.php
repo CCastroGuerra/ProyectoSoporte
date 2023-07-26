@@ -82,9 +82,7 @@ include('../templates/cabecera.php');
                 </svg>
               </button>
               <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="usuariosView.php">Ir a</a>
               </div>
             </div>
           </div>
@@ -115,9 +113,7 @@ include('../templates/cabecera.php');
                       </svg>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <a class="dropdown-item" href="#prodxterm">Ir a</a>
                     </div>
                   </div>
                 </div>
@@ -154,9 +150,7 @@ include('../templates/cabecera.php');
                 </svg>
               </button>
               <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="trabajosView.php">Ir a</a>
               </div>
             </div>
           </div>
@@ -186,9 +180,7 @@ include('../templates/cabecera.php');
                 </svg>
               </button>
               <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="bajasView.php">Ir a</a>
               </div>
             </div>
           </div>
@@ -297,7 +289,7 @@ include('../templates/cabecera.php');
     <!-- /segundo grafico -->
 
     <!-- /.row-->
-    <div class="row">
+    <div class="row" id="prodxterm">
       <div class="col-md-12">
         <div class="card mb-4">
           <!-- <div class="card-header">

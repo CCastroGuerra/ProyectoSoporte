@@ -43,6 +43,26 @@ class Login extends Conectar{
             echo "Error: " . $e->getMessage();
         }
     }
+
+    function encriptar($password){
+        $cryptoword ="Hospital_Las_Mercedes";
+        $passmd5 = md5($password);
+        //echo "passmd5= ", $passmd5,"<br>";
+        $hashed_password = crypt($passmd5,$cryptoword);
+        //echo "hashed_password= ",$hashed_password,"<br>";
+        return $hashed_password;
+     }
+     
+     function comprobar_pass($user_input, $hashed_password){
+        if (hash_equals($hashed_password, crypt(md5($user_input), $hashed_password))) {
+           //echo "¡Contraseña verificada!\n";
+           return true;
+        }
+        else{
+           //echo "Contraseña erronea\n"; 
+           return false;
+        }
+     }
 }
  
 ?>

@@ -45,10 +45,11 @@ var bnadir = 0;
 
 // cuando se recargue la pagina se limpiará la tabla temporal
 document.addEventListener("keydown", function (evt) {
-  evt.preventDefault();
   var tecla = evt.key;
-  console.log(evt.key);
-  if (tecla === "F5") {
+  //console.log(evt.key);
+  var retorno = false;
+  if (tecla === "F5") {    
+  evt.preventDefault();
     if(confirm('Si recarga la página perdera todos los datos ingresados,\n ¿Deseas recargar la página?')==true){
       //console.log("preiosnaste si");
       let promesa = limpiarreiniciar();
@@ -61,8 +62,12 @@ document.addEventListener("keydown", function (evt) {
     }
     else{
       console.log("presionaste no");
+      retorno =false;
     }
+  }else{
+    retorno=true;
   }
+  return retorno;
 });
 
 var wasPressed = false;

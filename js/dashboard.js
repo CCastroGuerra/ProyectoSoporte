@@ -296,7 +296,7 @@ function productosxterminar() {
     //console.log(respuesta);
     const datos = JSON.parse(respuesta);
     var template = ""; // Estructura de la tabla html
-    console.log(datos);
+    //console.log(datos);
     datos.forEach((element) => {
       let movStyle =
         element.movimiento === "SALIDA" ? "color: green;" : "color: red;";

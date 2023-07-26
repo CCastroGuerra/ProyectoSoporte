@@ -11,10 +11,14 @@ $datos = $login->buscarUsuario(trim($_POST["usuario"]));
 if (is_array($datos) == true && count($datos) > 0) {
     foreach ($datos as $row) {
         $output["id"] = $row["id_usuario"];
-        $output['passwd'] = $row['usuario_password'];
+        //$output['passwd'] = $row['usuario_password'];
         $output['idper'] = $row['personal_id'];
 
-        if ($row['usuario_password'] == trim($_POST['passwd'])) {
+        $user_input =trim($_POST['passwd']);
+        $hash=$row['usuario_password'];
+        $passtest = $login->comprobar_pass($user_input,$hash);
+
+        if ($passtest==true) {
             //busca el nombre del usuario
             $usuario = $login->buscarPersonal($row['personal_id']);
             $apellidos = $usuario[0]['apellidos_personal'];
