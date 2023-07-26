@@ -159,7 +159,7 @@
         <use xlink:href="../assets/brand/coreui.svg#full"></use>
       </svg> -->
       <!-- <h2 class="cssFont_1">Soporte Técnico</h2> -->
-      <img src="../img/soportelogo.png" class="sidebar-brand-full" alt="Soporte Técnico">
+      <a href="../view/dashboardView-cv.php"><img src="../img/soportelogo.png" class="sidebar-brand-full" alt="Soporte Técnico"></a>
 
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
