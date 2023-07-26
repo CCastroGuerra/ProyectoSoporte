@@ -93,11 +93,11 @@ class Personal extends Conectar
         $sql = "SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
         CASE
             WHEN cargo_personal = 0 THEN 'Vacio'
-            WHEN cargo_personal = 1 THEN 'Administrador'
+            WHEN cargo_personal = 1 THEN 'Usuario del sistema'
             WHEN cargo_personal = 2
-            THEN 'Practicante'
+            THEN 'Usuario de equipo'
             WHEN cargo_personal = 3
-            THEN 'Secretaria'
+            THEN 'Auditor'
             WHEN cargo_personal = 4 THEN 'Técnico'
         END as cargoPersonal
         FROM `personal` WHERE id_personal = ?";
@@ -139,25 +139,24 @@ class Personal extends Conectar
             //echo $inicio;
             // $sql = "SELECT * FROM `marca` WHERE esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY id_marca LIMIT $inicio,$cantidadXHoja";
             $sql = "SELECT id_personal, apellidos_personal, nombre_personal,dni_personal,telefono_personal,correo_personal,cargo_personal cargoId, 
-            CASE
+             CASE
             WHEN cargo_personal = 0 THEN 'Vacio'
-            WHEN cargo_personal = 1 THEN 'Administrador'
+            WHEN cargo_personal = 1 THEN 'Usuario del sistema'
             WHEN cargo_personal = 2
-            THEN 'Practicante'
+            THEN 'Usuario de equipo'
             WHEN cargo_personal = 3
-            THEN 'Secretaria'
+            THEN 'Auditor'
             WHEN cargo_personal = 4 THEN 'Técnico'
-                
-            END as cargoPersonal
+        END as cargoPersonal
             FROM `personal` WHERE (nombre_personal LIKE '%$textoBusqueda%' 
             OR apellidos_personal LIKE '%$textoBusqueda%' OR dni_personal LIKE '%$textoBusqueda%' OR telefono_personal LIKE '%$textoBusqueda%' OR correo_personal LIKE '%$textoBusqueda%'
             OR  
             cargo_personal = CASE
             WHEN 'Vacio' LIKE '%$textoBusqueda%' THEN 0
-            WHEN 'Administrador' LIKE '%$textoBusqueda%' THEN 1
-            WHEN 'Practicante' LIKE '%$textoBusqueda%' 
+            WHEN 'Usuario del sistema' LIKE '%$textoBusqueda%' THEN 1
+            WHEN 'Usuario de equipo' LIKE '%$textoBusqueda%' 
             THEN 2
-            WHEN 'Secretaria' LIKE '%$textoBusqueda%' 
+            WHEN 'Auditor' LIKE '%$textoBusqueda%' 
             THEN 3
             WHEN 'Técnico' LIKE '%$textoBusqueda%'  THEN 4
                 

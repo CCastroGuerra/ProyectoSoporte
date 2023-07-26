@@ -48,24 +48,27 @@ document.addEventListener("keydown", function (evt) {
   var tecla = evt.key;
   //console.log(evt.key);
   var retorno = false;
-  if (tecla === "F5") {    
-  evt.preventDefault();
-    if(confirm('Si recarga la página perdera todos los datos ingresados,\n ¿Deseas recargar la página?')==true){
+  if (tecla === "F5") {
+    evt.preventDefault();
+    if (
+      confirm(
+        "Si recarga la página perdera todos los datos ingresados,\n ¿Deseas recargar la página?"
+      ) == true
+    ) {
       //console.log("preiosnaste si");
       let promesa = limpiarreiniciar();
       promesa.then(
         (e) => {
           //console.log("valor: "+e);
           location.reload();
-        }, //cuando terminó el método sin errores, ejecuta esto:
+        } //cuando terminó el método sin errores, ejecuta esto:
       );
-    }
-    else{
+    } else {
       console.log("presionaste no");
-      retorno =false;
+      retorno = false;
     }
-  }else{
-    retorno=true;
+  } else {
+    retorno = true;
   }
   return retorno;
 });

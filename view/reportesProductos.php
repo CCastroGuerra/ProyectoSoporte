@@ -144,7 +144,7 @@ ob_start();
 
     $conectarObj = new Conectar(); // Crear una instancia de la clase Conectar
     $conectar = $conectarObj->Conexion();
-    $sql = $conectar->prepare("SELECT codigo_productos,nombre_productos,cantidad_productos,pre.nombre_presentacion, DATE_FORMAT(p.fecha_crea, '%d/%m/%y') as Fecha FROM productos p INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 ORDER BY  nombre_productos;");
+    $sql = $conectar->prepare("SELECT codigo_productos,nombre_productos,cantidad_productos,pre.nombre_presentacion, DATE_FORMAT(p.fecha_crea, '%d/%m/%y') as Fecha FROM productos p INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1 ORDER BY  codigo_productos;");
     $sql->execute();
     $listaProductos = $sql->fetchAll(PDO::FETCH_ASSOC);
     $totalProductos = count($listaProductos);
