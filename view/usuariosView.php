@@ -2,16 +2,16 @@
 include('../templates/cabecera.php');
 ?>
 <script type="text/javascript">
-    var rolespermitidos=['1'];
-    var ro= document.getElementById("sessRol");
-    
+    var rolespermitidos = ['1'];
+    var ro = document.getElementById("sessRol");
 
-if(!rolespermitidos.includes(ro.dataset.sess)){
-    window.location.replace("../index.php");
-}
+
+    if (!rolespermitidos.includes(ro.dataset.sess)) {
+        window.location.replace("../index.php");
+    }
 </script>
 <!--Modal añadirEmpleado-->
-<div class="modal fade" id="añadirUsuario" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="añadirUsuario" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -44,7 +44,7 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
                                     <div class="input-group mb-2">
                                         <input type="password" autocomplete="new-password" class="form-control  form-control-sm mt-0 w-full block password" id="userpass" name="userpass" placeholder="" autocomplete="off" />
                                         <span class="input-group-text">
-                                            <i class="far fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>
+                                            <img src="../img/icons8-invisible-16.png" id="togglePassword" style="cursor: pointer">
                                         </span>
                                     </div>
                                     <small class="alerta" id="alpass"></small>

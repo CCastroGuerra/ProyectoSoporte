@@ -44,15 +44,17 @@ userpass.addEventListener("input", function () {
 });
 //visbilidad de  contraseña
 $("#togglePassword").on("click", function () {
-  var typ = $(this).parent().parent().find(".password").attr("type");
+  console.log("click" + $(this));
+  var typ = $(this).parent().parent().find("#userpass").attr("type");
+  console.log("input: " + typ);
+  var rvisible = "../img/icons8-visible-16.png";
+  var rinvisible = "../img/icons8-invisible-16.png";
   if (typ == "password") {
-    $(this).removeClass("fa-eye-slash");
-    $(this).addClass("fa-eye");
-    $(this).parent().parent().find(".password").attr("type", "text");
+    $(this).attr("src", rvisible);
+    $(this).parent().parent().find("#userpass").attr("type", "text");
   } else {
-    $(this).removeClass("fa-eye");
-    $(this).addClass("fa-eye-slash");
-    $(this).parent().parent().find(".password").attr("type", "password");
+    $(this).attr("src", rinvisible);
+    $(this).parent().parent().find("#userpass").attr("type", "password");
   }
 });
 
