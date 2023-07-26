@@ -18,7 +18,7 @@ class Equipos extends Conectar
             # code... si esta repetido, detener
             $rep = 1;
         }
-        
+
         return $rep;
     }
 

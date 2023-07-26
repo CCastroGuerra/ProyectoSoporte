@@ -548,3 +548,57 @@ function eliminar(id) {
       }
     });
 }
+
+/*BUSCAR*/
+var cajaBuscar = document.getElementById("inputbuscarTrabajo");
+const data = new FormData();
+data.append("accion", "buscarMovimiento");
+
+cajaBuscar.addEventListener("keyup", function (e) {
+  const textoBusqueda = cajaBuscar.value;
+  numPagina = 1;
+  buscarMovimientos();
+});
+
+/**************************/
+/* BOTONES DE PAGINACIÓN */
+let pagInicio = document.querySelector("#btnPrimero");
+pagInicio.addEventListener("click", function (e) {
+  numPagina = 1;
+  document.getElementById("txtPagVista").value = numPagina;
+  buscarMovimientos();
+  pagInicio.blur();
+});
+let pagAnterior = document.querySelector("#btnAnterior");
+pagAnterior.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagDestino = 0;
+  if (pagVisitada - 1 >= 1) {
+    pagDestino = pagVisitada - 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarMovimientos();
+    pagAnterior.blur();
+  }
+});
+let pagSiguiente = document.querySelector("#btnSiguiente");
+pagSiguiente.addEventListener("click", function (e) {
+  var pagVisitada = parseInt(document.getElementById("txtPagVista").value);
+  var pagFinal = parseInt(document.getElementById("txtPagTotal").value);
+  var pagDestino = 0;
+  if (pagVisitada + 1 <= pagFinal) {
+    pagDestino = pagVisitada + 1;
+    numPagina = pagDestino;
+    document.getElementById("txtPagVista").value = numPagina;
+    buscarMovimientos();
+    pagSiguiente.blur();
+  }
+});
+let pagFinal = document.querySelector("#btnUltimo");
+pagFinal.addEventListener("click", function (e) {
+  numPagina = document.getElementById("txtPagTotal").value;
+  document.getElementById("txtPagVista").value = numPagina;
+  console.log(numPagina);
+  buscarMovimientos();
+  pagFinal.blur();
+});

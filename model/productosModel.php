@@ -189,7 +189,19 @@ class Producto extends Conectar
              ORDER BY id_productos $sLimit"; */
             $sql = "SELECT @con :=@con + 1 as nro, id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p
              cross join(select @con := 0) r
-              INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1  AND nombre_productos LIKE '%$textoBusqueda%' LIMIT $inicio,$limit";
+              INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1  AND (nombre_productos LIKE '%$textoBusqueda%' OR codigo_productos LIKE '%$textoBusqueda%' 
+              OR
+              tipo_productos = CASE 
+                WHEN 'Equipo' LIKE '%$textoBusqueda%'  THEN 1 
+                WHEN 'Componente' LIKE '%$textoBusqueda%' THEN 2 
+                WHEN 'Herramienta' LIKE '%$textoBusqueda%' THEN 3
+                WHEN 'Insumo' LIKE '%$textoBusqueda%' THEN 4  END 
+                OR cantidad_productos LIKE '%$textoBusqueda%'
+                OR
+                almacen_id  = CASE 
+                WHEN 'Almacen 1' LIKE '%$textoBusqueda%' THEN 1 
+                WHEN 'Almacen 2' LIKE '%$textoBusqueda%' THEN 2
+                WHEN 'Almacen 3' LIKE '%$textoBusqueda%' THEN 3 END  )LIMIT $inicio,$limit";
 
             $fila = $conectar->prepare($sql);
             //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);

@@ -235,14 +235,20 @@ class Trabajos extends Conectar
             a.nombre_area,
             t.tecnico_id,
             CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
-            DATE_FORMAT(t.fecha_alta, '%d/%m/%y') as Fecha
-        FROM trabajos t
-            INNER JOIN personal per ON t.tecnico_id = per.id_personal
-            INNER JOIN personal p ON p.id_personal = t.responsable_id
-            INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
-            INNER JOIN area a ON a.id_area = t.area_id
-        WHERE t.es_activo = 1  AND p.nombre_personal LIKE '%$textoBusqueda%' 
-            ORDER BY NombreResponsable, YEAR(t.fecha_alta) ASC, MONTH(t.fecha_alta) ASC 
+            DATE_FORMAT(t.fecha_alta, '%d/%m/%y') AS Fecha
+     FROM trabajos t
+         INNER JOIN personal per ON t.tecnico_id = per.id_personal
+         INNER JOIN personal p ON p.id_personal = t.responsable_id
+         INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+         INNER JOIN area a ON a.id_area = t.area_id
+     WHERE t.es_activo = 1 AND (
+           CONCAT(p.nombre_personal, ' ', p.apellidos_personal) LIKE '%$textoBusqueda%'
+        OR CONCAT(per.nombre_personal, ' ', per.apellidos_personal) LIKE '%$textoBusqueda%'
+        OR eq.serie LIKE '%$textoBusqueda%'
+        OR eq.margesi LIKE '%$textoBusqueda%'
+        OR a.nombre_area LIKE '%$textoBusqueda%'
+     )
+     ORDER BY NombreResponsable, YEAR(t.fecha_alta) ASC, MONTH(t.fecha_alta) ASC
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();

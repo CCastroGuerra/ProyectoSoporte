@@ -100,7 +100,7 @@ class Marca extends Conectar
             $inicio = ($pagina - 1) * $limit;
             $sql = "SELECT @con:=@con + 1 as nro, m.id_marca, m.nombre_marca, c.nombre_categoria_marca AS nombre_categoria FROM marca AS m
             cross join(select @con := 0) r
-            INNER JOIN categoria_marca AS c ON m.categoria_marca_id = c.id_categoria_marca WHERE m.esActivo = 1 AND nombre_marca LIKE '$textoBusqueda%'  ORDER BY nombre_marca LIMIT $inicio,$limit ";
+            INNER JOIN categoria_marca AS c ON m.categoria_marca_id = c.id_categoria_marca WHERE m.esActivo = 1 AND (nombre_marca LIKE '$textoBusqueda%' OR nombre_categoria_marca LIKE '$textoBusqueda%'  ) ORDER BY nombre_categoria_marca LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
             $json = [];

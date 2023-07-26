@@ -116,7 +116,9 @@ class Inventario extends Conectar
             m.cantidad
                  from movimientos m
             INNER JOIN productos p ON p.id_productos = m.producto_id
-             WHERE tipo_movimientos = 1 AND p.nombre_productos LIKE '%$textoBusqueda%' LIMIT $inicio,$limit";
+             WHERE tipo_movimientos = 1 AND
+              (p.nombre_productos LIKE '%$textoBusqueda%'
+             or m.cantidad LIKE '%$textoBusqueda%')  LIMIT $inicio,$limit";
 
             $fila = $conectar->prepare($sql);
             //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
@@ -173,7 +175,8 @@ class Inventario extends Conectar
             m.cantidad
                  from movimientos m
             INNER JOIN productos p ON p.id_productos = m.producto_id
-             WHERE tipo_movimientos = 2 AND p.nombre_productos LIKE '%$textoBusqueda%' LIMIT $inicio,$limit";
+             WHERE tipo_movimientos = 2 AND (p.nombre_productos LIKE '%$textoBusqueda%'
+             or m.cantidad LIKE '%$textoBusqueda%')LIMIT $inicio,$limit";
 
             $fila = $conectar->prepare($sql);
             //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
@@ -235,7 +238,8 @@ class Inventario extends Conectar
             END AS estado
         from movimientos m
             INNER JOIN productos p ON p.id_productos = m.producto_id
-             WHERE  p.nombre_productos LIKE '%$textoBusqueda%' LIMIT $inicio,$limit";
+             WHERE  (p.nombre_productos LIKE '%$textoBusqueda%'
+             or m.cantidad LIKE '%$textoBusqueda%') LIMIT $inicio,$limit";
 
             $fila = $conectar->prepare($sql);
             //$fila -> bindParam('filtro', $filtro,PDO::PARAM_STR);
