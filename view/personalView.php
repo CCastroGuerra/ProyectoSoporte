@@ -57,9 +57,9 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
                                     <label for="selCargo" class="mb-2">Cargo:</label>
                                     <select class="form-select form-select-sm" aria-label="Default select example" id="selCargo" name="selCargo">
                                         <option value="0" selected>Seleccione el cargo </option>
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Practicante</option>
-                                        <option value="3">Secretaria</option>
+                                        <option value="1">Usuario del sistema</option>
+                                        <option value="2">Usuario de Equipo</option>
+                                        <option value="3">Auditor</option>
                                         <option value="4">Técnico</option>
                                     </select>
                                     <small class="alerta" id="alerta6"></small>
