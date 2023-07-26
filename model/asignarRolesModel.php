@@ -192,7 +192,7 @@ class asignarRoles extends Conectar
             inner JOIN usuario u on u.personal_id = p.id_personal
             INNER JOIN rol_usuario rp ON rp.usuario_id = u.id_usuario
             INNER JOIN roles AS r ON rp.rol_id = r.id_roles
-            WHERE (nombre_personal LIKE '%$textoBusqueda%' )
+            WHERE (nombre_personal LIKE '%$textoBusqueda%' OR apellidos_personal LIKE '%$textoBusqueda%' OR nombre_roles LIKE '%$textoBusqueda%'  )
             AND rp.esActivo = 1 
             ORDER BY nombre_personal 
             LIMIT $inicio, $limit";

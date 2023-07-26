@@ -85,7 +85,20 @@ class Usuario extends Conectar
                     END as cargoPersonal,u.nombre_usuario
                             FROM personal p
             INNER JOIN usuario u ON p.id_personal = u.personal_id
-                            WHERE u.esActivo = 1 AND nombre_personal LIKE '%$textoBusqueda%' 
+                            WHERE u.esActivo = 1 AND (nombre_personal LIKE '%$textoBusqueda%' OR 
+                            cargo_personal = CASE
+            WHEN 'Vacio' LIKE '%$textoBusqueda%' THEN 0
+            WHEN 'Administrador' LIKE '%$textoBusqueda%' THEN 1
+            WHEN 'Practicante' LIKE '%$textoBusqueda%' 
+            THEN 2
+            WHEN 'Secretaria' LIKE '%$textoBusqueda%' 
+            THEN 3
+            WHEN 'Técnico' LIKE '%$textoBusqueda%'  THEN 4
+                
+            END 
+            OR nombre_usuario LIKE '%$textoBusqueda%'
+            OR dni_personal LIKE '%$textoBusqueda%' 
+            OR apellidos_personal LIKE '%$textoBusqueda%')
             ORDER BY apellidos_personal,nombre_personal 
             LIMIT $inicio, $limit";
             $stmt = $conectar->prepare($sql);

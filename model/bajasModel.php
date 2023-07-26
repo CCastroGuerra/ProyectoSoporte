@@ -204,7 +204,9 @@ class Bajas extends Conectar
             INNER JOIN area a ON a.id_area = eq.area_id
         WHERE b.esActivo = 1
         AND (nombre_tipo_equipo LIKE '%$textoBusqueda%' 
-                OR  nombre_area LIKE '%$textoBusqueda%' 
+                OR  nombre_area LIKE '%$textoBusqueda%'
+                OR  motivo LIKE '%$textoBusqueda%'
+                OR  DATE_FORMAT(fecha_baja, '%d/%m/%y') LIKE '%$textoBusqueda%'    
                 OR (CASE
                         WHEN tipo_baja = 1 THEN 'TEMPORAL'
                         WHEN tipo_baja = 2 THEN 'PERMANENTE'

@@ -150,7 +150,18 @@ class Personal extends Conectar
                 
             END as cargoPersonal
             FROM `personal` WHERE (nombre_personal LIKE '%$textoBusqueda%' 
-            OR apellidos_personal LIKE '%$textoBusqueda%') and esActivo_personal = 1 
+            OR apellidos_personal LIKE '%$textoBusqueda%' OR dni_personal LIKE '%$textoBusqueda%' OR telefono_personal LIKE '%$textoBusqueda%' OR correo_personal LIKE '%$textoBusqueda%'
+            OR  
+            cargo_personal = CASE
+            WHEN 'Vacio' LIKE '%$textoBusqueda%' THEN 0
+            WHEN 'Administrador' LIKE '%$textoBusqueda%' THEN 1
+            WHEN 'Practicante' LIKE '%$textoBusqueda%' 
+            THEN 2
+            WHEN 'Secretaria' LIKE '%$textoBusqueda%' 
+            THEN 3
+            WHEN 'Técnico' LIKE '%$textoBusqueda%'  THEN 4
+                
+            END ) and esActivo_personal = 1 
             ORDER BY nombre_personal, cargoPersonal LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             //echo $sql;

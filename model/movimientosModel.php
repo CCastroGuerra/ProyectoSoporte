@@ -207,7 +207,14 @@ class Movimiento extends Conectar
             END AS estado
         FROM detalles_translado dt
             INNER JOIN translado t on t.id_translado = dt.id_translado
-            INNER JOIN personal p ON p.id_personal = t.tecnico_id AND CONCAT(nombre_personal, ' ', apellidos_personal) LIKE '%$textoBusqueda%' LIMIT $inicio,$limit ";
+            INNER JOIN personal p ON p.id_personal = t.tecnico_id where (CONCAT(nombre_personal, ' ', apellidos_personal) LIKE '%$textoBusqueda%') OR (  t.tipo_movimiento = CASE
+                WHEN 'Translado' LIKE '%$textoBusqueda%'  THEN 1
+                WHEN 'Intercambio' LIKE '%$textoBusqueda%' THEN 2
+            END) OR(observacion LIKE '%$textoBusqueda%')
+            OR (  t.anulado = CASE
+                WHEN 'Activo' LIKE '%$textoBusqueda%'  THEN 0
+                WHEN 'Anulado' LIKE '%$textoBusqueda%' THEN 1
+            END) LIMIT $inicio,$limit ";
             //echo $sql;
             $stmt = $conectar->prepare($sql);
             //echo $sql;

@@ -391,6 +391,17 @@ function eliminarBajas(id) {
     });
 }
 
+/*BUSCAR*/
+var cajaBuscar = document.getElementById("inputbuscarBajas");
+const data = new FormData();
+data.append("accion", "buscarBajas");
+
+cajaBuscar.addEventListener("keyup", function (e) {
+  const textoBusqueda = cajaBuscar.value;
+  numPagina = 1;
+  buscarBajas();
+});
+
 /**************************/
 /* BOTONES DE PAGINACIÓN */
 let pagInicio = document.querySelector("#btnPrimero");

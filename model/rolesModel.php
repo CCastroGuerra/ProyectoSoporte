@@ -137,5 +137,3 @@ class Rol extends Conectar{
         }
     }  
 }
-
-?>

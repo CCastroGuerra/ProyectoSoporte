@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 <!-- ---------------- -->
 <!-- Modal Area -->
-<div class="modal fade" id="areaModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="areaModalLabel" aria-hidden="true">
+<div class="modal fade" id="areaModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="areaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

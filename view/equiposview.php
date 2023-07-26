@@ -281,7 +281,7 @@ include('../templates/cabecera.php');
     </div>
 </div>
 <!-- Fin del modal  -->
- 
+
 <!-- Tabla -->
 <div class="col-md-12 col-lg-12" style="padding-left: 0px;    padding-right: 0px;">
     <div class="row ">
@@ -353,7 +353,7 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbEquipos">
-                                
+
                             </tbody>
                         </table>
                     </div>
