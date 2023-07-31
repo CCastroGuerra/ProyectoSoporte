@@ -337,7 +337,17 @@ function mostrarDatosEquipoXSerie() {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     if (respuesta == "") {
-      alserie.innerText = "el # de Serie no existe";
+      alserie.innerText = "el # de Serie no existe";      
+      document.getElementById("idEquipo").value = "";
+      document.getElementById("marquesi").value = "";
+      document.getElementById("nombreUsuario").value = "";
+      document.getElementById("nombreUsuarioID").value = "";
+      document.getElementById("selArea").value = "";
+      document.getElementById("selAreaID").value = "";
+      document.getElementById("selEquipo").value = "";
+      document.getElementById("selMarca").value = "";
+      document.getElementById("selModelo").value = "";
+      document.getElementById("selEquipoValue").value = "";
     } else {
       alserie.innerText = "";
       let datos = JSON.parse(respuesta);

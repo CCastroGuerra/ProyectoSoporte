@@ -1,0 +1,20 @@
+CREATE TRIGGER DESP_AGREGARENEQUIPO AFTER INSERT ON 
+EQUIPO_COMPONENTES FOR EACH ROW BEGIN 
+	set @id = (
+	        select
+	            id_componentes
+	        from componentes
+	        where
+	            serie = new.serie_id
+	    );
+	UPDATE componentes set es_activo = 0 where id_componentes=@id;
+END; 
+
+CREATE TRIGGER DESP_ELIMINARDEEQUIPO AFTER UPDATE ON 
+EQUIPO_COMPONENTES FOR EACH ROW BEGIN 
+	IF (new.esActivo = 0) THEN
+	update componentes
+	set es_activo = 1
+	where serie = new.serie_id;
+	END IF;
+END; 
