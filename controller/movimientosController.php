@@ -44,7 +44,7 @@ switch ($accion) {
         $movimientos->guardarMovimiento($_POST["selTipo"], $_POST["selTecnico"], $_POST["fallaObservada"]);
         break;
     case "guardarEquipo":
-        var_dump($_POST);
+        //var_dump($_POST);
         $movimientos->guardarEquipo($_POST["codEquipo"], $_POST["areaOR"], $_POST["selServicio"], $_POST["idMov"]);
         break;
     case "listarTablaMovimiento":
@@ -58,6 +58,10 @@ switch ($accion) {
         break;
     case "eliminarEquipoMov":
         $movimientos->eliminarEquipoMov($_POST["id"]);
+        break;
+    case "eliminarTranslado":
+        var_dump($_POST);
+        $movimientos->eliminarTransladoCabezera($_POST["idMov"]);
         break;
     case "actualizarMovimientos":
         //var_dump($_POST);

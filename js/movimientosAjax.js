@@ -4,6 +4,7 @@ let numPagina = 1;
 listarSelecTecnicos();
 listarSelecArea();
 buscarMovimientos();
+
 /***********************************/
 let selecAccion = document.getElementById("selTipo");
 let selecTecnico = document.getElementById("selTecnico");
@@ -15,7 +16,10 @@ let cajaIdMovimiento = document.getElementById("idMov");
 let fallaobs = document.getElementById("fallaObservada");
 let tabladetalle = document.getElementById("tbEquipos");
 let btnGuardarEquipo = document.getElementById("guardarEquipo");
+let btnGuardar = document.getElementById("btnGuardar");
+btnGuardar.disabled = true;
 let tipmod = "";
+let btnCerrar = document.getElementById("btncerrar");
 
 //modal equipos
 let areaOrig = document.getElementById("areaORId");
@@ -77,6 +81,10 @@ function validarFormulario() {
   }
   return ret;
 }
+
+btnCerrar.addEventListener("click", function (e) {
+  eliminarCabezeraTranlado();
+});
 
 //cambiar titulo de modal
 const modal = document.getElementById("TrabajoModal");
@@ -236,6 +244,7 @@ function mostrarAreaXId() {
       console.log(datos);
       document.getElementById("areaOR").value = datos.nombreArea;
       areaOrig.value = datos.areaId;
+      document.getElementById("alertaEquipo").innerHTML = "";
     }
   };
 
@@ -295,6 +304,7 @@ function guardarEquipos() {
       console.log("Se registro Correctamente el equipo");
     }
     listarTablaMovimientos(cajaIdMov);
+
     frmAgregarEquipos.reset();
   };
   ajax.send(data);
@@ -317,6 +327,7 @@ function listarTablaMovimientos() {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     const area = JSON.parse(respuesta);
+
     let template = ""; // Estructura de la tabla html
     if (area.length > 0) {
       area.forEach(function (area) {
@@ -335,6 +346,15 @@ function listarTablaMovimientos() {
       });
       var elemento = document.getElementById("tbEquipos");
       elemento.innerHTML = template;
+      btnGuardar.disabled = false;
+    } else {
+      btnGuardar.disabled = true;
+      var elemento = document.getElementById("tbEquipos");
+      elemento.innerHTML = `
+          <tr>
+          <td colspan="6" class="text-center">No se encontraron datos</td>
+          </tr>
+        `;
     }
   };
   ajax.send(data);
@@ -416,12 +436,12 @@ function buscarMovimientos() {
       var elemento = document.getElementById("tbTrabajos");
       elemento.innerHTML = `
           <tr>
-            <td colspan="10" class="text-center">No se encontraron resultados</td>
+            <td colspan="7" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
 
-      // document.getElementById("txtPagVista").value = 0;
-      // document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 0;
+      document.getElementById("txtPagTotal").value = 0;
     }
   };
   ajax.send(data);
@@ -480,13 +500,45 @@ function eliminarEquipoMovimiento(id) {
           );
           listarTablaMovimientos(id);
         };
+
         let tab = document.getElementById("tbEquipos");
         if (tab.rows.length == 1) {
-          numPagina = numPagina - 1;
+          if (numPagina == 1) {
+            numPagina = 1;
+          } else {
+            numPagina = numPagina - 1;
+          }
         }
+
         ajax.send(data);
       }
     });
+}
+
+function eliminarCabezeraTranlado() {
+  console.log("Funcion elimnar cabezera");
+  let cajaIdMov = cajaIdMovimiento.value;
+  console.log(cajaIdMov);
+
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/movimientosController.php", true);
+  const data = new FormData();
+  data.append("idMov", cajaIdMov);
+  data.append("accion", "eliminarTranslado");
+  ajax.onload = function () {
+    var respuesta = ajax.responseText;
+    console.log(respuesta);
+    buscarMovimientos();
+  };
+  let tab = document.getElementById("tbEquipos");
+  if (tab.rows.length == 1) {
+    if (numPagina == 1) {
+      numPagina = 1;
+    } else {
+      numPagina = numPagina - 1;
+    }
+  }
+  ajax.send(data);
 }
 
 function actualizar(id) {
@@ -540,13 +592,15 @@ function eliminar(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           //console.log(respuesta);
-          buscarMovimientos();
+          //buscarMovimientos();
+
           swal.fire(
             "Eliminado!",
             "El registro se anuló correctamente.",
             "success"
           );
         };
+        listarTablaMovimientos();
         let tab = document.getElementById("tbTrabajos");
         if (tab.rows.length == 1) {
           if (numPagina == 1) {
