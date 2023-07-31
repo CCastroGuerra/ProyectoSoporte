@@ -128,7 +128,7 @@ include('../templates/cabecera.php');
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbEquipos">
-                                                    <tr>
+                                                    <tr colspan="4">
                                                         <td>01</td>
                                                         <td>Area1</td>
                                                         <td>Area2</td>
@@ -148,7 +148,7 @@ include('../templates/cabecera.php');
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal" id="btncerrar" name="btncerrar">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary" data-coreui-dismiss="modal" id="btnGuardar" name="btnGuardar">Guardar</button>
 
                 </div>
             </form>
