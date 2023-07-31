@@ -149,7 +149,7 @@ btnComponente.addEventListener("click", function (e) {
     //console.log("guardando componentes actualizados");
   } else {
     guardarEquipo();
-    //listarArea();
+
     console.log("guardados los datos del equipo...");
   }
   //frmEquipos.reset();
@@ -241,33 +241,41 @@ margesi.addEventListener("input", function () {
     bmargesi = 0;
   }
 });
-var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
+var pattern =
+  /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
 x = 46;
-$('#ip').keypress(function (e) {
-    if (e.which != 8 && e.which != 0 && e.which != x && (e.which < 48 || e.which > 57)) {
-        console.log(e.which);
-        return false;
+$("#ip")
+  .keypress(function (e) {
+    if (
+      e.which != 8 &&
+      e.which != 0 &&
+      e.which != x &&
+      (e.which < 48 || e.which > 57)
+    ) {
+      console.log(e.which);
+      return false;
     }
-}).keyup(function () {
+  })
+  .keyup(function () {
     var this1 = $(this);
     if (!pattern.test(this1.val())) {
-        $('#alertaIP').text('No es un IP válido');
-        while (this1.val().indexOf("..") !== -1) {
-            this1.val(this1.val().replace('..', '.'));
-        }
-        x = 46;
+      $("#alertaIP").text("No es un IP válido");
+      while (this1.val().indexOf("..") !== -1) {
+        this1.val(this1.val().replace("..", "."));
+      }
+      x = 46;
     } else {
-        x = 0;
-        var lastChar = this1.val().substr(this1.val().length - 1);
-        if (lastChar == '.') {
-            this1.val(this1.val().slice(0, -1));
-        }
-        var ip = this1.val().split('.');
-        if (ip.length == 4) {
-            $('#alertaIP').text('');
-        }
+      x = 0;
+      var lastChar = this1.val().substr(this1.val().length - 1);
+      if (lastChar == ".") {
+        this1.val(this1.val().slice(0, -1));
+      }
+      var ip = this1.val().split(".");
+      if (ip.length == 4) {
+        $("#alertaIP").text("");
+      }
     }
-});
+  });
 
 frmEquipos.addEventListener("input", function () {
   console.log("cambio detectado en el formulario");
@@ -429,6 +437,7 @@ frmEquipos.onsubmit = function (e) {
   console.log("completos: " + bnadir);
   if (bnadir == 6) {
     guardarEquipo();
+    swal.fire("Registrado!", "Se registro correctamente.", "success");
     $("#" + modalp).modal("hide");
   }
 
@@ -817,7 +826,7 @@ function listarTablaTemp() {
     } else {
       var elemento = document.getElementById("tbComponentes");
       elemento.innerHTML = ` <tr>
-      <td colspan="6" class="text-center">No se encontraron datos</td>
+      <td colspan="8" class="text-center">No se encontraron datos</td>
     </tr>`;
     }
   };
@@ -842,9 +851,7 @@ function guardarEquipo() {
       document.getElementById("inputCodigo").value = respuesta.listado;
 
       guardarEquipoComponente();
-      // swal.fire("Registrado!", "Registrado correctamente.", "success");
     }
-
     buscarEquipo();
   };
   ajax.send(data);
@@ -868,11 +875,8 @@ function guardarEquipoComponente() {
 
     console.log(realizado);
     if (realizado * 1 > 0) {
-      swal.fire(
-        "Registrado!",
-        "El equipo se registro correctamente.",
-        "success"
-      );
+      /*no quitar */
+
       console.log("Equipo Componente registrado correctamente");
     }
     //buscarArea();
