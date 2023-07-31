@@ -259,6 +259,17 @@ include('../templates/cabecera.php');
                 </div>
             </div>
         </div>
+        <div class="col-xs-1-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Leyenda</h5>
+                    <div class="border-start border-start-4 border-start-danger px-3 mb-3">
+                        <p>Los números de color rojo indican a los elementos que están por terminarse</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="../js/productosAjax.js"></script>

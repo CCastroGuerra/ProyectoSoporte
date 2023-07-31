@@ -68,9 +68,12 @@ include('../templates/cabecera.php');
                                                     </label>
                                                 </div>
                                                 <div class="text-center col-lg-4 col-sm-4">
-                                                    <a href="reportesEquipos.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
-                                                        VER
-                                                    </a>
+                                                    <span class="d-inline-block" tabindex="0" data-coreui-toggle="popover" data-coreui-trigger="hover focus" data-coreui-content="Disabled popover">
+                                                        <a href="reportesEquipos.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
+                                                            VER
+                                                        </a>
+                                                    </span>
+
                                                 </div>
                                             </div>
                                             <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">

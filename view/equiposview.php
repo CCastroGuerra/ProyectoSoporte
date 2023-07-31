@@ -180,11 +180,12 @@ include('../templates/cabecera.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="mac" class="mb-2">MAC:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="mac" name="mac" placeholder="Ingrese MAC ##:##:##:##:##:##">
                                         </div>
                                         <div class="form-group">
                                             <label for="ip" class="mb-2">IP:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP ###.###.###.###">                                            
+                                            <small class="alerta" id="alertaIP"></small>
                                         </div>
 
                                     </div>

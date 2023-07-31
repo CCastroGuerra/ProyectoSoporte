@@ -1,3 +1,5 @@
+/* cuando un componente es agregado a un equipo, el estado de  actividad del componente es cambiado a 0 */
+
 CREATE TRIGGER DESP_AGREGARENEQUIPO AFTER INSERT ON 
 EQUIPO_COMPONENTES FOR EACH ROW BEGIN 
 	set @id = (
@@ -10,6 +12,7 @@ EQUIPO_COMPONENTES FOR EACH ROW BEGIN
 	UPDATE componentes set es_activo = 0 where id_componentes=@id;
 END; 
 
+---cuando se elimina un componente de equipo-componentes, el componente vuelve a estar activo/disponible
 CREATE TRIGGER DESP_ELIMINARDEEQUIPO AFTER UPDATE ON 
 EQUIPO_COMPONENTES FOR EACH ROW BEGIN 
 	IF (new.esActivo = 0) THEN
@@ -18,3 +21,10 @@ EQUIPO_COMPONENTES FOR EACH ROW BEGIN
 	where serie = new.serie_id;
 	END IF;
 END; 
+
+----cuando una nueva marca es creada se debe crear un modelo llamado sin modelo
+CREATE TRIGGER despuesdenuevamarca AFTER INSERT ON marca
+FOR EACH ROW
+BEGIN
+    insert into modelo (nombre_modelo,marca_id,`esActivo`) values("Sin modelo",new.id_marca,1);
+END;

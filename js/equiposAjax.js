@@ -22,6 +22,7 @@ let btnCerrar = document.getElementById("cerrarBot");
 let btnX = document.getElementById("cerrarSup");
 let btnmodal = document.getElementById("btmodal");
 var serieinp = document.getElementById("codigo");
+let inpip = document.getElementById("ip");
 var btmcomp = document.getElementById("btmcomp");
 let id = 0;
 
@@ -239,6 +240,33 @@ margesi.addEventListener("input", function () {
     alertMargesi.innerText = "es un valor obligatorio";
     bmargesi = 0;
   }
+});
+var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
+x = 46;
+$('#ip').keypress(function (e) {
+    if (e.which != 8 && e.which != 0 && e.which != x && (e.which < 48 || e.which > 57)) {
+        console.log(e.which);
+        return false;
+    }
+}).keyup(function () {
+    var this1 = $(this);
+    if (!pattern.test(this1.val())) {
+        $('#alertaIP').text('No es un IP válido');
+        while (this1.val().indexOf("..") !== -1) {
+            this1.val(this1.val().replace('..', '.'));
+        }
+        x = 46;
+    } else {
+        x = 0;
+        var lastChar = this1.val().substr(this1.val().length - 1);
+        if (lastChar == '.') {
+            this1.val(this1.val().slice(0, -1));
+        }
+        var ip = this1.val().split('.');
+        if (ip.length == 4) {
+            $('#alertaIP').text('');
+        }
+    }
 });
 
 frmEquipos.addEventListener("input", function () {

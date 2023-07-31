@@ -7,7 +7,7 @@ class Area extends Conectar
     public function agregarArea($nombreArea)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `area`(`nombre_area`,`esActivo`) VALUES ('$nombreArea',1)";
+        $sql = "INSERT INTO `area`(`nombre_area`,`esActivo`) VALUES (upper('$nombreArea'),1)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -21,7 +21,7 @@ class Area extends Conectar
         $conectar = parent::conexion();
         $sql = "UPDATE area
             SET
-               nombre_area=? 
+               nombre_area=upper(?) 
             WHERE
                 id_area = ?";
         $sql = $conectar->prepare($sql);
