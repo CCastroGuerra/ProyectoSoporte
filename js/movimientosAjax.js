@@ -221,9 +221,16 @@ function mostrarAreaXId() {
   ajax.onload = function () {
     let respuesta = ajax.responseText;
     console.log(respuesta);
-    if (respuesta == "") {
+    if (respuesta == "" || idEqu === "") {
       //alserie.innerText = "el # de Serie no existe";
-      console.log("el # de Serie no existe");
+      // console.log("el # de codigo no existe");
+      // document.getElementById("alertaEquipo").innerHTML =
+      //   "el # de codigo no existe";
+
+      document.getElementById("areaOR").value = ""; // Limpiamos el valor del área del equipo
+      areaOrig.value = ""; // Limpiamos el valor del ID de área del equipo
+      document.getElementById("alertaEquipo").innerHTML =
+        "el # de codigo no existe";
     } else {
       let datos = JSON.parse(respuesta);
       console.log(datos);
@@ -251,7 +258,11 @@ function guardarMovimiento() {
     realizado = ajax.responseText;
     console.log(realizado);
     if (realizado * 1 > 0) {
-      //swal.fire("Registrado!", "Registrado correctamente.", "success");
+      // swal.fire(
+      //   "Registrado!",
+      //   "Movimiento registrado correctamente.",
+      //   "success"
+      // );
       cajaIdMovimiento.value = realizado;
     }
 

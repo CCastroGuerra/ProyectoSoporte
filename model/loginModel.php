@@ -64,5 +64,3 @@ class Login extends Conectar{
         }
      }
 }
- 
-?>

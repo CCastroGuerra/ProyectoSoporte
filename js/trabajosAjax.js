@@ -339,6 +339,7 @@ function mostrarDatosEquipoXSerie() {
     if (respuesta == "") {
       alserie.innerText = "el # de Serie no existe";
     } else {
+      alserie.innerText = "";
       let datos = JSON.parse(respuesta);
       console.log(datos);
       document.getElementById("idEquipo").value = datos.id;

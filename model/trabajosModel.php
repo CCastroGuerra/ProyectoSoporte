@@ -83,13 +83,13 @@ class Trabajos extends Conectar
         mar.nombre_marca,
         eq.modelo_id,
         mo.nombre_modelo
-    from equipos eq
+        from equipos eq
         INNER JOIN personal per ON per.id_personal = eq.clientes_id
         INNER JOIN area a ON a.id_area = eq.area_id
         INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
         INNER JOIN marca mar ON eq.marca_id = mar.id_marca
         INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
-    WHERE eq.cod_equipo = ?
+        WHERE eq.cod_equipo = ?
         AND eq.es_activo = 1;";
         //echo 'consulta sql'.$sql;
         $sql = $conectar->prepare($sql);

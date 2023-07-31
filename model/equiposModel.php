@@ -459,7 +459,7 @@ class Equipos extends Conectar
             INNER JOIN area a ON a.id_area = e.area_id
             INNER JOIN estado est ON est.id_estado = e.estado_id
             WHERE e.es_activo = 1  AND nombre_area LIKE '%$textoBusqueda%' 
-            ORDER BY a.nombre_area, YEAR(fecha_alta) ASC, MONTH(fecha_alta) ASC 
+            ORDER BY cod_equipo
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();

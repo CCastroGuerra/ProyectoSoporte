@@ -290,7 +290,7 @@ if ($cantidadFilas == 2) {
     </div>
     <div class="fecha">
         <p>Fecha Actual: <?php echo $fechaActual; ?></p>
-        <p>Fecha de registro: <?php echo $fechaRegistro; ?></p>
+        <p>Fecha Registro: <?php echo $fechaRegistro; ?></p>
     </div>
     <section>
         <p class="p-tabla">bien patrimonial instalado</p>

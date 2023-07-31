@@ -61,4 +61,3 @@ if (is_array($datos) == true && count($datos) > 0) {
     $output['negativo'] = "0";
     echo json_encode($output);
 }
-?>

@@ -20,26 +20,32 @@ $("#togglePassword").on("click", function () {
 
 frmLogin.onsubmit = function (e) {
   e.preventDefault();
-  
+
   var elemento = document.getElementById("login-mensaje");
-  var eus= (document.querySelector("#usuario").value=="") ? 1:0;
-  var eps= (document.querySelector("#passwd").value=="") ? 2:0;
+  var eus = document.querySelector("#usuario").value == "" ? 1 : 0;
+  var eps = document.querySelector("#passwd").value == "" ? 2 : 0;
   var error = eus + eps;
-  console.log("eus: "+eus);
-  console.log("eps: "+eps);
-  console.log("error: "+error);
+  console.log("eus: " + eus);
+  console.log("eps: " + eps);
+  console.log("error: " + error);
   switch (error) {
     case 1:
-      elemento.querySelector("#msg").innerHTML = `<strong>El usuario está vacío<strong>`;
+      elemento.querySelector(
+        "#msg"
+      ).innerHTML = `<strong>El usuario está vacío<strong>`;
       break;
     case 2:
-      elemento.querySelector("#msg").innerHTML = `<strong>La contraseña está vacía</strong>`;
+      elemento.querySelector(
+        "#msg"
+      ).innerHTML = `<strong>La contraseña está vacía</strong>`;
       break;
     case 3:
-      elemento.querySelector("#msg").innerHTML = `<strong>El usuario o la contraseña están vacíos<strong>`;
+      elemento.querySelector(
+        "#msg"
+      ).innerHTML = `<strong>El usuario o la contraseña están vacíos<strong>`;
       break;
   }
-  if (error == 0  ) {
+  if (error == 0) {
     console.log("inicio de sesión");
     buscarUsuario();
   } else {

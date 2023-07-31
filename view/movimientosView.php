@@ -15,7 +15,8 @@ include('../templates/cabecera.php');
                         <div class="card-body">
                             <div class="form-group">
                                 <label class="control-label" for="codEquipo">Equipo</label>
-                                <input type="text" class="form-control" id="codEquipo" name="codEquipo" placeholder="id/margesi/codigo">
+                                <input type="text" class="form-control" id="codEquipo" name="codEquipo" placeholder="ejmp: E000001">
+                                <div id="alertaEquipo" style="color: red;"></div>
                                 <label class="control-label" for="areaOR">Area de origen</label>
                                 <input type="text" class="form-control" id="areaOR" name="areaOR" placeholder="" readonly>
                                 <input type="text" class="form-control visually-hidden" id="areaORId" name="areaORId" placeholder="" readonly>
@@ -221,13 +222,27 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbTrabajos">
                                 <tr>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-6"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-6"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
