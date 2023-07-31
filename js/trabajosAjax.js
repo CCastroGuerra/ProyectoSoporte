@@ -269,11 +269,11 @@ frmTrabajos.onsubmit = function (e) {
   }
 };
 
-let btnBuscarEquipo = document.getElementById("testBusca");
-btnBuscarEquipo.addEventListener("click", function (e) {
-  e.preventDefault();
-  mostrarDatosEquipoXSerie();
-});
+// let btnBuscarEquipo = document.getElementById("testBusca");
+// btnBuscarEquipo.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   mostrarDatosEquipoXSerie();
+// });
 
 btnServicios.addEventListener("click", function (e) {
   e.preventDefault();
@@ -337,7 +337,7 @@ function mostrarDatosEquipoXSerie() {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     if (respuesta == "") {
-      alserie.innerText = "el # de Serie no existe";      
+      alserie.innerText = "el # de Serie no existe";
       document.getElementById("idEquipo").value = "";
       document.getElementById("marquesi").value = "";
       document.getElementById("nombreUsuario").value = "";
@@ -542,6 +542,7 @@ function guardarTrabajo() {
     if (respuesta.listado * 1 > 0) {
       let codigo = document.getElementById("inputCodigo").value;
       if (codigo.length > 0) {
+        swal.fire("Registrado!", "Se registro correctamente.", "success");
         guardarTrabajosServicios();
       } else {
         document.getElementById("inputCodigo").value = respuesta.listado;
@@ -714,6 +715,7 @@ function mostrarEnModal(trabajoId) {
     document.getElementById("textrecom").value = datos.recomendacion;
     document.getElementById("inputCodigo").value = datos.id;
     document.getElementById("selEquipoValue").value = datos.tipoEquipoId;
+    document.getElementById("consumible").value = datos.codigoProducto;
     // Obtener el elemento del input
     const valor = document.getElementById("selEquipoValue").value;
     const input = document.getElementById("consumible");

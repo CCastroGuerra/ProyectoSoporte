@@ -317,6 +317,7 @@ class Trabajos extends Conectar
         $conectar = parent::conexion();
         $sql = "SELECT e.id_equipos,t.id_trabajos,e.serie,
         e.margesi,
+        t.codigo_productos,
         CONCAT(p.nombre_personal, ' ', p.apellidos_personal) NombreResponsable,
         t.responsable_id,
         tp.nombre_tipo_equipo,
