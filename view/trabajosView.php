@@ -61,9 +61,18 @@ include('../templates/cabecera.php');
                                             <input type="text" class="form-control form-control-sm" id="idEquipo" name="idEquipo" placeholder="id del equipo" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <label for="nroSerie" class="mb-2"># de Serie:
-                                                <button type="submit" name="testBusca" id="testBusca" class="btn btn-outline-primary visually-hidden"></button>
-                                            </label>
+                                            <div class="mb-2 row">
+                                                <div class="col-lg-8 col-sm-8">
+                                                    <label for="nroSerie">
+                                                        Codigo de Equipo:
+                                                    </label>
+                                                </div>
+                                                <div class="text-center col-lg-4 col-sm-4">
+                                                    <a href="reportesEquipos.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
+                                                        VER
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
                                             <small class="alerta" id="alserie"></small>
                                         </div>
@@ -87,7 +96,7 @@ include('../templates/cabecera.php');
                                         <div class="form-group">
                                             <label for="selEquipo" class="mb-2">Tipo de Equipo:</label>
                                             <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selEquipo" name="selEquipo">
-                                            <input class="form-control form-control-sm mb-2" aria-label="Default select example" id="selEquipoValue" name="selEquipoValue">
+                                            <input class="form-control form-control-sm mb-2 visually-hidden" aria-label="Default select example" id="selEquipoValue" name="selEquipoValue">
                                             <small class="alerta" id="alequipo"></small>
                                         </div>
                                         <div class="form-group visually-hidden">
