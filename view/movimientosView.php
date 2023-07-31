@@ -161,7 +161,7 @@ include('../templates/cabecera.php');
 
 
 <!--contenido ventana-->
-<div class="col-md-8 col-lg-12 ">
+<div class="col-md-12 col-lg-12 ">
     <div class="row ">
         <div class="col-xs-1-12">
             <div class="card">
@@ -207,7 +207,7 @@ include('../templates/cabecera.php');
                         </div>
                     </div>
                     <!-- /encabezado--->
-                    <div class="table-responsive-sm">
+                    <div class="table-responsive-xxl">
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
