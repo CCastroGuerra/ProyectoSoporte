@@ -1,0 +1,26 @@
+
+/* ocultar flechas de input[type=number]*/
+/*
+input#inputDni::-webkit-inner-spin-button,input#inputDni::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+*/
+
+input#dniusuario::-webkit-inner-spin-button, input#dniusuario::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+-moz-appearance: textfield;
+appearance: textfield;
+}
+
+
+
+input[type="number"]{
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+    margin: 0;
+  appearance: textfield;
+}

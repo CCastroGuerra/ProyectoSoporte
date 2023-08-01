@@ -132,8 +132,8 @@ include('../templates/cabecera.php');
                                         <input type="text" class="form-control mb-2 visually-hidden" id="presValue" name="presValue">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="mb-2">Cantidad:</label>
-                                        <input type="number" class="form-control mb-2" id="ctdProducto" name="ctdProducto" value="0">
+                                        <label for="ctdProducto" class="mb-2">Cantidad:</label>
+                                        <input type="number" class="form-control mb-2" id="ctdProducto" name="ctdProducto" value="0" min="0">
                                         <small class="form-text text-muted alerta" id="alerta4"></small>
                                     </div>
                                     <div class="form-group">
@@ -263,9 +263,20 @@ include('../templates/cabecera.php');
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Leyenda</h5>
-                    <div class="border-start border-start-4 border-start-danger px-3 mb-3">
-                        <p>Los números de color rojo indican a los elementos que están por terminarse</p>
+                    <div class="row">
+                        <div class="col-lg-auto col-sm-auto">
+                            <div class="border-start border-start-4 border-start-warning px-3 mb-3">
+                                <p>Productos que están por terminarse</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-auto col-sm-auto">
+                            <div class="border-start border-start-4 border-start-danger px-3 mb-3">
+                                <p>Productos que ya se han terminado</p>
+                            </div>
+                        </div>
                     </div>
+
+
 
                 </div>
             </div>
