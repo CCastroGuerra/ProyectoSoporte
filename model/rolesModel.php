@@ -1,6 +1,7 @@
 <?php
 
-class Rol extends Conectar{
+class Rol extends Conectar
+{
 
     public function listarRol()
     {
@@ -8,8 +9,8 @@ class Rol extends Conectar{
         $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
         //Para comprobar si se a mandado el parametro de registros
         if (isset($_POST['registros'])) {
-        $limit = $_POST['registros'];
-        $sLimit = "LIMIT $limit";
+            $limit = $_POST['registros'];
+            $sLimit = "LIMIT $limit";
         }
         $sql = "SELECT * FROM `roles` WHERE esActivo = 1 $sLimit ";
         $fila = $conectar->prepare($sql);
@@ -46,35 +47,38 @@ class Rol extends Conectar{
         }
     }
 
-    public function actulizarRol($idRol,$nombreRol){
-        $conectar= parent::conexion();
-        $sql="UPDATE roles
+    public function actulizarRol($idRol, $nombreRol)
+    {
+        $conectar = parent::conexion();
+        $sql = "UPDATE roles
             SET
                nombre_roles=? 
             WHERE
                 id_roles = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$nombreRol);
-        $sql->bindValue(2,$idRol);
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $nombreRol);
+        $sql->bindValue(2, $idRol);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
-    public function traerRolXId($idRol){
-        $conectar= parent::conexion();
-        $sql="SELECT * FROM roles WHERE id_roles = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1,$idRol);
+    public function traerRolXId($idRol)
+    {
+        $conectar = parent::conexion();
+        $sql = "SELECT * FROM roles WHERE id_roles = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $idRol);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
-    public function eliminarRol($id){
+    public function eliminarRol($id)
+    {
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
             $sql = "UPDATE roles SET esActivo = 0 WHERE id_roles = ?";
-            $sql = $conectar ->prepare($sql);
-            $sql -> bindValue(1, $id);
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado = $sql->fetchAll();
         } else {
@@ -85,7 +89,8 @@ class Rol extends Conectar{
 
 
 
-    public function buscarRol($pagina = 1) {
+    public function buscarRol($pagina = 1)
+    {
         $cantidadXHoja = 5;
         $textoBusqueda = $_POST['textoBusqueda'];
         try {
@@ -93,10 +98,10 @@ class Rol extends Conectar{
             $sLimit = "LIMIT 5"; // Valor predeterminado de 5 registros por página
             //Para comprobar si se a mandado el parametro de registros
             if (isset($_POST['registros'])) {
-            $limit = $_POST['registros'];
-            $sLimit = "LIMIT $limit";
+                $limit = $_POST['registros'];
+                $sLimit = "LIMIT $limit";
             }
-            $inicio = ($pagina-1)*$limit;
+            $inicio = ($pagina - 1) * $limit;
             //echo $inicio;
             $sql = "SELECT * FROM `roles` WHERE esActivo = 1 AND nombre_roles LIKE '$textoBusqueda%'  ORDER BY nombre_roles LIMIT $inicio,$limit";
             $stmt = $conectar->prepare($sql);
@@ -108,26 +113,25 @@ class Rol extends Conectar{
             $json = [];
             $roles =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if(!empty($roles)){
+            if (!empty($roles)) {
                 $listado = array();
-                foreach($roles as $rol){
+                foreach ($roles as $rol) {
                     $listado[] = array(
                         "id" => $rol["id_roles"],
                         "nombre" => $rol["nombre_roles"]
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_roles) as cantidad FROM roles WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_roles) as cantidad FROM `roles` WHERE esActivo = 1 AND nombre_roles LIKE '$textoBusqueda%'  ORDER BY nombre_roles";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
-    
+
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
-                $paginas = ceil($array['cantidad']/$limit);
-                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' =>$pagina, 'total' => $array['cantidad']);
+                $paginas = ceil($array['cantidad'] / $limit);
+                $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);
                 echo $jsonString;
-
-            }else{
+            } else {
                 $resultado = array("listado" => "vacio");
                 $jsonString = json_encode($resultado);
                 echo $jsonString;
@@ -135,5 +139,5 @@ class Rol extends Conectar{
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    }  
+    }
 }

@@ -117,7 +117,9 @@ class Marca extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_marca) as cantidad FROM marca WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_marca) as cantidad FROM marca AS m
+                cross join(select @con := 0) r
+                INNER JOIN categoria_marca AS c ON m.categoria_marca_id = c.id_categoria_marca WHERE m.esActivo = 1 AND (nombre_marca LIKE '$textoBusqueda%' OR nombre_categoria_marca LIKE '$textoBusqueda%'  ) ORDER BY nombre_categoria_marca";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

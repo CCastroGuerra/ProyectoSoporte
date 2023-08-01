@@ -463,8 +463,11 @@ function buscarProducto() {
       });
       var elemento = document.getElementById("tbProductos");
       elemento.innerHTML = template;
+
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
+      console.log("numero de paginas: " + numPagina);
+      console.log("total de paginas: " + datos.paginas);
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
