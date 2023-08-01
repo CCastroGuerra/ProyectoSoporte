@@ -349,7 +349,9 @@ class Equipos extends Conectar
                 }
 
 
-                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal WHERE esActivo_personal = 1";
+                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal
+                WHERE `esActivo_personal` = 1 AND CONCAT(nombre_personal, ' ' ,apellidos_personal) LIKE '%$textoBusqueda%' 
+                OR dni_personal LIKE '%$textoBusqueda%' ";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 
