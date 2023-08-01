@@ -52,7 +52,7 @@ class Usuario extends Conectar
     {
         $conectar = parent::conexion();
         $login = new Login();
-        $cryptpass = $login -> encriptar($password);
+        $cryptpass = $login->encriptar($password);
         $sql = "INSERT INTO usuario (nombre_usuario,usuario_password,personal_id)
             VALUES ('$usuario', '$cryptpass','$idPersonal')";
         $fila = $conectar->prepare($sql);
@@ -127,7 +127,22 @@ class Usuario extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_usuario) as cantidad FROM usuario WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_usuario) as cantidad FROM personal p
+                INNER JOIN usuario u ON p.id_personal = u.personal_id
+                                WHERE u.esActivo = 1 AND (nombre_personal LIKE '%$textoBusqueda%' OR 
+                                cargo_personal = CASE
+                WHEN 'Vacio' LIKE '%$textoBusqueda%' THEN 0
+                WHEN 'Administrador' LIKE '%$textoBusqueda%' THEN 1
+                WHEN 'Practicante' LIKE '%$textoBusqueda%' 
+                THEN 2
+                WHEN 'Secretaria' LIKE '%$textoBusqueda%' 
+                THEN 3
+                WHEN 'Técnico' LIKE '%$textoBusqueda%'  THEN 4
+                    
+                END 
+                OR nombre_usuario LIKE '%$textoBusqueda%'
+                OR dni_personal LIKE '%$textoBusqueda%' 
+                OR apellidos_personal LIKE '%$textoBusqueda%')";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

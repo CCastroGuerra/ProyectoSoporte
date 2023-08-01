@@ -122,7 +122,7 @@ class Servicio extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_servicios) as cantidad FROM servicios WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_servicios) as cantidad FROM `servicios` WHERE esActivo = 1 AND nombre_servicios LIKE '$textoBusqueda%'  ORDER BY nombre_servicios";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

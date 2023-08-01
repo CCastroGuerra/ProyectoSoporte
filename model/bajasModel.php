@@ -237,7 +237,19 @@ class Bajas extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_bajas) as cantidad FROM bajas WHERE esActivo = 1 ";
+                $sqlNroFilas = "SELECT count(id_bajas) as cantidad  FROM bajas b
+                INNER JOIN equipos eq ON b.equipo_id = eq.id_equipos
+                INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
+                INNER JOIN area a ON a.id_area = eq.area_id
+            WHERE b.esActivo = 1
+            AND (nombre_tipo_equipo LIKE '%$textoBusqueda%' 
+                    OR  nombre_area LIKE '%$textoBusqueda%'
+                    OR  motivo LIKE '%$textoBusqueda%'
+                    OR  DATE_FORMAT(fecha_baja, '%d/%m/%y') LIKE '%$textoBusqueda%'    
+                    OR (CASE
+                            WHEN tipo_baja = 1 THEN 'TEMPORAL'
+                            WHEN tipo_baja = 2 THEN 'PERMANENTE'
+                        END) LIKE '%$textoBusqueda%')  ";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

@@ -139,7 +139,11 @@ class Inventario extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_movimientos) as cantidad FROM movimientos WHERE tipo_movimientos = 1 ";
+                $sqlNroFilas = "SELECT count(id_movimientos) as cantidad  from movimientos m
+                INNER JOIN productos p ON p.id_productos = m.producto_id
+                 WHERE tipo_movimientos = 1 AND
+                  (p.nombre_productos LIKE '%$textoBusqueda%'
+                 or m.cantidad LIKE '%$textoBusqueda%')";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 
@@ -197,7 +201,10 @@ class Inventario extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_movimientos) as cantidad FROM movimientos WHERE tipo_movimientos = 2 ";
+                $sqlNroFilas = "SELECT count(id_movimientos) as cantidad from movimientos m
+                INNER JOIN productos p ON p.id_productos = m.producto_id
+                 WHERE tipo_movimientos = 2 AND (p.nombre_productos LIKE '%$textoBusqueda%'
+                 or m.cantidad LIKE '%$textoBusqueda%')";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 
@@ -261,7 +268,10 @@ class Inventario extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_movimientos) as cantidad FROM movimientos";
+                $sqlNroFilas = "SELECT count(id_movimientos) as cantidad from movimientos m
+                INNER JOIN productos p ON p.id_productos = m.producto_id
+                 WHERE  (p.nombre_productos LIKE '%$textoBusqueda%'
+                 or m.cantidad LIKE '%$textoBusqueda%')";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

@@ -251,7 +251,15 @@ class Componente extends Conectar
                 }
 
 
-                $sqlNroFilas = "SELECT count(id_componentes) as cantidad FROM componentes ";
+                $sqlNroFilas = "SELECT count(id_componentes) as cantidad FROM componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id 
+                WHERE tp.nombre_tipo_componente LIKE '$textoBusqueda%'  
+                OR nombre_clase LIKE '$textoBusqueda%'  
+                OR nombre_marca LIKE '$textoBusqueda%'  
+                OR nombre_modelo LIKE '$textoBusqueda%'
+                OR serie LIKE '$textoBusqueda%' 
+                OR componentes_capacidad LIKE '$textoBusqueda%'
+                OR nombre_estado LIKE '$textoBusqueda%'     
+                ORDER BY tp.nombre_tipo_componente ASC , YEAR(fecha_alta) ASC, MONTH(fecha_alta) ASC";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

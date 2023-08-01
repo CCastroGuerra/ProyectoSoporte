@@ -271,7 +271,19 @@ class Trabajos extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_trabajos) as cantidad FROM trabajos WHERE es_activo = 1";
+                $sqlNroFilas = "SELECT count(id_trabajos) as cantidad  FROM trabajos t
+                INNER JOIN personal per ON t.tecnico_id = per.id_personal
+                INNER JOIN personal p ON p.id_personal = t.responsable_id
+                INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+                INNER JOIN area a ON a.id_area = t.area_id
+            WHERE t.es_activo = 1 AND (
+                  CONCAT(p.nombre_personal, ' ', p.apellidos_personal) LIKE '%$textoBusqueda%'
+               OR CONCAT(per.nombre_personal, ' ', per.apellidos_personal) LIKE '%$textoBusqueda%'
+               OR eq.serie LIKE '%$textoBusqueda%'
+               OR eq.margesi LIKE '%$textoBusqueda%'
+               OR a.nombre_area LIKE '%$textoBusqueda%'
+            )
+        ";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

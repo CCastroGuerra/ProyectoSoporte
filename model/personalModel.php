@@ -186,7 +186,20 @@ class Personal extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM personal WHERE esActivo_personal = 1";
+                $sqlNroFilas = "SELECT count(id_personal) as cantidad FROM `personal` WHERE (nombre_personal LIKE '%$textoBusqueda%' 
+                OR apellidos_personal LIKE '%$textoBusqueda%' OR dni_personal LIKE '%$textoBusqueda%' OR telefono_personal LIKE '%$textoBusqueda%' OR correo_personal LIKE '%$textoBusqueda%'
+                OR  
+                cargo_personal = CASE
+                WHEN 'Vacio' LIKE '%$textoBusqueda%' THEN 0
+                WHEN 'Usuario del sistema' LIKE '%$textoBusqueda%' THEN 1
+                WHEN 'Usuario de equipo' LIKE '%$textoBusqueda%' 
+                THEN 2
+                WHEN 'Auditor' LIKE '%$textoBusqueda%' 
+                THEN 3
+                WHEN 'Técnico' LIKE '%$textoBusqueda%'  THEN 4
+                    
+                END ) and esActivo_personal = 1 
+                ";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

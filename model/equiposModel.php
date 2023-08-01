@@ -489,7 +489,14 @@ class Equipos extends Conectar
                 }
 
 
-                $sqlNroFilas = "SELECT count(id_equipos) as cantidad FROM equipos WHERE es_activo = 1";
+                $sqlNroFilas = "SELECT count(id_equipos) as cantidad from equipos e
+                INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo
+                INNER JOIN marca mar ON mar.id_marca = e.marca_id
+                INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
+                INNER JOIN area a ON a.id_area = e.area_id
+                INNER JOIN estado est ON est.id_estado = e.estado_id
+                WHERE e.es_activo = 1  AND nombre_area LIKE '%$textoBusqueda%' 
+                ORDER BY cod_equipo";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

@@ -88,7 +88,7 @@ class Area extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_area) as cantidad FROM area WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_area) as cantidad FROM area WHERE esActivo = 1 AND nombre_area LIKE '$textoBusqueda%'  ORDER BY nombre_area";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

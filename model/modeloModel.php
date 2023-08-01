@@ -120,7 +120,9 @@ class Modelo extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_modelo) as cantidad FROM modelo WHERE esActivo = 1";
+                $sqlNroFilas = "SELECT count(id_modelo) as cantidad  FROM modelo AS mo 
+                cross join(select @con := 0) r
+                INNER JOIN marca AS mar ON mo.marca_id = mar.id_marca WHERE mo.esActivo  = 1 AND (nombre_modelo LIKE '$textoBusqueda%' OR nombre_marca LIKE '$textoBusqueda%' )  ORDER BY nombre_modelo";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 
