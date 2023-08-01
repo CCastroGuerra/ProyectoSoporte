@@ -434,15 +434,21 @@ function buscarProducto() {
     console.log(producto);
     let template = ""; // Estructura de la tabla html
     var prodstyle = "";
+    var classtyle = "";
     if (producto != "vacio" && producto.length > 0) {
       producto.forEach(function (producto) {
         if (producto.cantidad < 3) {
           prodstyle = "color:red; font-weight:bold;";
+          classtyle = "alert alert-warning";
+          if (producto.cantidad == 0) {
+            classtyle = "alert alert-danger";
+          }
         } else {
           prodstyle = "";
+          classtyle = "";
         }
         template += `
-        <tr>
+        <tr class="${classtyle}">
              <td class="visually-hidden" >${producto.nro}</td>
             <td>${producto.codigo}</td>
             <td>${producto.nombre}</td>

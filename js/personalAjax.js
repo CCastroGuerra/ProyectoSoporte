@@ -83,6 +83,16 @@ inpdni.addEventListener("keypress", function (evt) {
   }
 });
 
+intelf.addEventListener("keypress", function (evt) {
+  //console.log(evt.keyCode);
+  if (
+    (evt.keyCode != 8 && evt.keyCode != 0 && evt.keyCode < 48) ||
+    evt.keyCode > 57
+  ) {
+    evt.preventDefault();
+  }
+});
+
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
 modal.addEventListener("show.coreui.modal", (event) => {

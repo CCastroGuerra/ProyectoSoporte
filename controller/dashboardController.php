@@ -36,7 +36,7 @@ switch ($accion) {
         if (is_array($datos) && count($datos) > 0) {
             $output = array(); // Crear un array para almacenar los datos
             foreach ($datos as $row) {
-                if ($row['fecha_modi']==="0000-00-00 00:00:00"){
+                if ($row['fecha_modi']==="0000-00-00 00:00:00" or $row['fecha_modi']===NULL){
                     $fecha_mod="Sin cambios";
                 }
                 else{
