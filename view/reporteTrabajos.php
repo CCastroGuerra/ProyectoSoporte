@@ -163,25 +163,22 @@ ob_start();
     //     INNER JOIN servicios ser on ts.servicio_id = ser.id_servicios
     //     INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
     //     WHERE ser.`esActivo` = 1;");
-    $sql = $conectar->prepare("SELECT t.id_trabajos,
-    id_trabajos,
+    $sql = $conectar->prepare("SELECT
+    t.id_trabajos,
     te.nombre_tipo_equipo,
     a.nombre_area,
-    CONCAT(per.nombre_personal, ' ', per.apellidos_personal) NombreTecnico,
+    CONCAT(per.nombre_personal, ' ', per.apellidos_personal) AS NombreTecnico,
     GROUP_CONCAT(s.nombre_servicios SEPARATOR ', ') AS servicios,
-    DATE_FORMAT(ts.create_time, '%d/%m/%y') as Fecha
+    DATE_FORMAT(ts.create_time, '%d/%m/%y') AS Fecha
 FROM trabajos t
-    INNER JOIN personal per ON t.tecnico_id = per.id_personal
-    INNER JOIN personal p ON p.id_personal = t.responsable_id
-    INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
-    INNER JOIN area a ON a.id_area = t.area_id
-    INNER JOIN trabajo_servicio ts ON ts.trabajo_id = t.id_trabajos
-    INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
-    INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
-    INNER JOIN marca mar ON eq.marca_id = mar.id_marca
-    INNER JOIN modelo mo ON mo.id_modelo = eq.modelo_id
-WHERE t.es_activo = 1
-    AND ts.`esActivo` = 1;");
+INNER JOIN trabajo_servicio ts ON t.id_trabajos = ts.trabajo_id
+INNER JOIN personal per ON t.tecnico_id = per.id_personal
+INNER JOIN equipos eq ON eq.id_equipos = t.equipo_id
+INNER JOIN area a ON a.id_area = t.area_id
+INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
+INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
+WHERE ts.esActivo = 1 AND t.es_activo = 1
+GROUP BY t.id_trabajos, eq.id_equipos;");
     $sql->execute();
     $listaTrabajos = $sql->fetchAll(PDO::FETCH_ASSOC);
     $totalTrabajos = count($listaTrabajos);
