@@ -239,7 +239,7 @@ class Movimiento extends Conectar
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_translado) as cantidad FROM detalles_translado dt
+                $sqlNroFilas = "SELECT count(dt.id_translado) as cantidad FROM detalles_translado dt
                 INNER JOIN translado t on t.id_translado = dt.id_translado
                 INNER JOIN personal p ON p.id_personal = t.tecnico_id where (CONCAT(nombre_personal, ' ', apellidos_personal) LIKE '%$textoBusqueda%') OR (  t.tipo_movimiento = CASE
                     WHEN 'Translado' LIKE '%$textoBusqueda%'  THEN 1
