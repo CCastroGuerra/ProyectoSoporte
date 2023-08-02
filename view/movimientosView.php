@@ -136,7 +136,7 @@ include('../templates/cabecera.php');
                                             <div class="row">
                                                 <div class="col-lg-8 col-sm-6">Equipos implicados </div>
                                                 <div class="col-lg-4 col-sm-4 text-end">
-                                                    <button type="button" class="btn btn-outline-primary" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" data-coreui-target="#detallesModal"><strong>Añadir</strong></button>
+                                                    <button type="button" class="btn btn-success" id="btnServicio" name="btnServicio" data-coreui-toggle="modal" data-coreui-target="#detallesModal"><strong>Añadir</strong></button>
                                                 </div>
                                             </div>
                                         </h5>

@@ -20,6 +20,8 @@ let btnGuardar = document.getElementById("btnGuardar");
 let tipmod = "";
 let btnCerrar = document.getElementById("btncerrar");
 
+var cfilas=0;
+
 //modal equipos
 let areaOrig = document.getElementById("areaORId");
 let areaDest = document.getElementById("selServicio");
@@ -115,6 +117,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
 
       btnCerrar.disabled = false;
       btnGuardar.disabled = true;
+      cfilas=0;
 
       $("#tbopciones").show();
       tipmod = "";
@@ -166,14 +169,63 @@ btnGuardarEquipo.addEventListener("click", function () {
     console.log("id de movimiento es: " + id);
   }
   guardarEquipos();
+  cfilas++;
+  controldefilas(cfilas);
 });
 /******* ****** contador de elemento en tabla visible */
-$("#tbEquipos").on("DOMSubtreeModified", function () {
+function controldefilas(contador){
+  var tabla = document.querySelectorAll("#tbEquipos tr");
+  console.log("la tabla cambió: " + contador);
+  
+  console.log("elementos: "+contador);
+  if(selecAccion.value==1){
+    if (contador==1) {
+      btnAñadir.disabled=true;
+    }else{
+      btnAñadir.disabled=false;}
+  }
+  if(selecAccion.value==2){
+    if (contador==2) {
+      btnAñadir.disabled=true;
+    }else{
+      btnAñadir.disabled=false;}
+  }
+}
+$("#tbEquipos").bind("MutationObserver", function () {
+  var tabla = document.querySelectorAll("#tbEquipos tr");
+  console.log("la tabla cambió: " + tabla.length);
+  
+});
+/*
+$("#tableModal").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbEquipos tr");
   //console.log("la tabla cambió: " + tabla.length);
-  console.log("elemento en tabla modal: "+tabla.length);
+  
   console.log("tabla cambio");
+  console.log("elemento en tabla modal: "+tabla.length);
+  var band=0;
+  if (tabla.length==1) {
+    var as=(tabla[0].querySelectorAll("td")).length
+    console.log("celdas de fila1 : "+as)
+    if (as==1) {
+      band=0;
+    } else{band=tabla.length;}
+  }
+  console.log("elementos: "+band);
+  if(selecAccion.value==1){
+    if (band==1) {
+      btnAñadir.disabled=true;
+    }else{
+      btnAñadir.disabled=false;}
+  }
+  if(selecAccion.value==2){
+    if (band==2) {
+      btnAñadir.disabled=true;
+    }else{
+      btnAñadir.disabled=false;}
+  }
 });
+*/
 
 function listarSelecTecnicos() {
   const ajax = new XMLHttpRequest();
@@ -519,6 +571,8 @@ function eliminarEquipoMovimiento(id) {
             "success"
           );
           listarTablaMovimientos(id);
+          cfilas--;
+          controldefilas(cfilas);
         };
 
         let tab = document.getElementById("tbEquipos");
