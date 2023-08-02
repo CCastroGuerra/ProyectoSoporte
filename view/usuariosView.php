@@ -30,7 +30,7 @@ include('../templates/cabecera.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="codPersonal" class="mb-2">Codigo de Personal:</label>
-                                    <input type="text" class="form-control form-control-sm mb-2" id="codPersonal" name="codPersonal" placeholder="PER########">
+                                    <input type="text" class="form-control form-control-sm mb-2" id="codPersonal" name="codPersonal" placeholder="Ingrese DNI">
 
                                     <small class="alerta" id="alcod"></small>
                                 </div>
