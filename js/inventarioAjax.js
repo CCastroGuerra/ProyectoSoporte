@@ -2,7 +2,7 @@ let numPagina = 1;
 buscarEntrada();
 buscarSalida();
 buscarResumen();
-let formulario=document.getElementById("formInventario")
+let formulario = document.getElementById("formInventario");
 let modalp = formulario.parentNode.parentNode.parentNode.id;
 let cbxAccion = document.getElementById("selAccion");
 let inproducto = document.getElementById("nombreproducto");
@@ -73,14 +73,14 @@ inctd.addEventListener("input", function () {
 
 //cambiar titulo de modal
 const modal = document.getElementById(modalp);
-modal.addEventListener('show.coreui.modal', event =>{
+modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
-  console.log("el modal fue levantado por: "+button.id);
-  var modalTitle= modal.querySelector('.modal-title');
+  console.log("el modal fue levantado por: " + button.id);
+  var modalTitle = modal.querySelector(".modal-title");
   msgs.forEach((element) => {
-    element.innerText="";
+    element.innerText = "";
   });
   switch (button.id) {
     case "":
@@ -94,53 +94,53 @@ modal.addEventListener('show.coreui.modal', event =>{
 /**** */
 
 formulario.addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("validando accion");
-    if (cbxAccion.value == 0) {
-      vac = 0;
-      alac.innerText = "Selecione una opción valida";
-    } else {
-      vac = 1;
-      alac.innerText = "";
-    }
+  event.preventDefault();
+  console.log("validando accion");
+  if (cbxAccion.value == 0) {
+    vac = 0;
+    alac.innerText = "Selecione una opción valida";
+  } else {
+    vac = 1;
+    alac.innerText = "";
+  }
 
-    console.log("validando producto");
-    if (inproducto.value.trim().length == 0) {
-      vprod = 0;
-      alprod.innerText = "El Codigo de Producto es obligatorio";
-    } else {
-      vprod = 1;
-      alprod.innerText = "";
-    }
+  console.log("validando producto");
+  if (inproducto.value.trim().length == 0) {
+    vprod = 0;
+    alprod.innerText = "El Codigo de Producto es obligatorio";
+  } else {
+    vprod = 1;
+    alprod.innerText = "";
+  }
 
-    console.log("validando ctd");
-    if (inctd.value.trim().length == 0) {
+  console.log("validando ctd");
+  if (inctd.value.trim().length == 0) {
+    vctd = 0;
+    alctd.innerText = "La cantidad es obligatoria";
+  } else {
+    if (inctd.value == 0) {
       vctd = 0;
-      alctd.innerText = "La cantidad es obligatoria";
+      alctd.innerText = "La cantidad no debe ser 0";
     } else {
-      if (inctd.value == 0) {
-        vctd = 0;
-        alctd.innerText = "La cantidad no debe ser 0";
-      } else {
-        vctd = 1;
-        alctd.innerText = "";
-      }
+      vctd = 1;
+      alctd.innerText = "";
     }
+  }
 
-    vcon = vac + vprod + vctd;
-    if (vcon == 3) {
-      console.log("todo ok");
-      //aqui pondrí my funcion guardar si tuviera una, pero son 2
-      if (cbxAccion.value == 1) {
-        console.log("entrada");
-        entradaProductos();
-      } else {
-        console.log("salida");
-        salidaProductos();
-      }
-      $("#inventarioModal").modal("hide");
+  vcon = vac + vprod + vctd;
+  if (vcon == 3) {
+    console.log("todo ok");
+    //aqui pondrí my funcion guardar si tuviera una, pero son 2
+    if (cbxAccion.value == 1) {
+      console.log("entrada");
+      entradaProductos();
+    } else {
+      console.log("salida");
+      salidaProductos();
     }
-  });
+    $("#inventarioModal").modal("hide");
+  }
+});
 
 function traerNombreProducto() {
   let codigoProducto = document.getElementById("nombreproducto").value;
@@ -348,6 +348,13 @@ function buscarEntrada() {
             <td colspan="8" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
+      document.getElementById("txtPagVistaEn").value = 1;
+      document.getElementById("txtPagTotalEn").value = 1;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+          <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
 
@@ -414,6 +421,13 @@ function buscarSalida() {
             <td colspan="8" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
+      document.getElementById("txtPagVistaSa").value = 1;
+      document.getElementById("txtPagTotalSa").value = 1;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+          <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
 
@@ -485,6 +499,13 @@ function buscarResumen() {
             <td colspan="8" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+          <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
 
@@ -496,7 +517,7 @@ let pagInicio = document.querySelector("#btnPrimeroRe");
 pagInicio.addEventListener("click", function (e) {
   numPagina = 1;
   document.getElementById("txtPagVista").value = numPagina;
-  buscarArea();
+  buscarResumen();
   pagInicio.blur();
 });
 let pagAnterior = document.querySelector("#btnAnteriorRe");
@@ -507,7 +528,7 @@ pagAnterior.addEventListener("click", function (e) {
     pagDestino = pagVisitada - 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
-    buscarArea();
+    buscarResumen();
     pagAnterior.blur();
   }
 });
@@ -520,7 +541,7 @@ pagSiguiente.addEventListener("click", function (e) {
     pagDestino = pagVisitada + 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
-    buscarArea();
+    buscarResumen();
     pagSiguiente.blur();
   }
 });
@@ -529,7 +550,7 @@ pagFinal.addEventListener("click", function (e) {
   numPagina = document.getElementById("txtPagTotal").value;
   document.getElementById("txtPagVista").value = numPagina;
   console.log(numPagina);
-  buscarArea();
+  buscarResumen();
   pagFinal.blur();
 });
 
@@ -538,7 +559,7 @@ let pagInicioEn = document.querySelector("#btnPrimeroEn");
 pagInicioEn.addEventListener("click", function (e) {
   numPagina = 1;
   document.getElementById("txtPagVista").value = numPagina;
-  buscarArea();
+  buscarEntrada();
   pagInicioEn.blur();
 });
 let pagAnteriorEn = document.querySelector("#btnAnteriorEn");
@@ -549,7 +570,7 @@ pagAnteriorEn.addEventListener("click", function (e) {
     pagDestino = pagVisitada - 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
-    buscarArea();
+    buscarEntrada();
     pagAnteriorEn.blur();
   }
 });
@@ -562,7 +583,7 @@ pagSiguienteEn.addEventListener("click", function (e) {
     pagDestino = pagVisitada + 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
-    buscarArea();
+    buscarEntrada();
     pagSiguienteEn.blur();
   }
 });
@@ -571,7 +592,7 @@ pagFinalEn.addEventListener("click", function (e) {
   numPagina = document.getElementById("txtPagTotal").value;
   document.getElementById("txtPagVista").value = numPagina;
   console.log(numPagina);
-  buscarArea();
+  buscarEntrada();
   pagFinalEn.blur();
 });
 
@@ -580,7 +601,7 @@ let pagInicioSa = document.querySelector("#btnPrimeroSa");
 pagInicioSa.addEventListener("click", function (e) {
   numPagina = 1;
   document.getElementById("txtPagVista").value = numPagina;
-  buscarArea();
+  buscarSalida();
   pagInicioSa.blur();
 });
 let pagAnteriorSa = document.querySelector("#btnAnteriorSa");
@@ -591,7 +612,7 @@ pagAnteriorSa.addEventListener("click", function (e) {
     pagDestino = pagVisitada - 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
-    buscarArea();
+    buscarSalida();
     pagAnteriorSa.blur();
   }
 });
@@ -604,7 +625,7 @@ pagSiguienteSa.addEventListener("click", function (e) {
     pagDestino = pagVisitada + 1;
     numPagina = pagDestino;
     document.getElementById("txtPagVista").value = numPagina;
-    buscarArea();
+    buscarSalida();
     pagSiguienteSa.blur();
   }
 });
@@ -613,6 +634,6 @@ pagFinalSa.addEventListener("click", function (e) {
   numPagina = document.getElementById("txtPagTotal").value;
   document.getElementById("txtPagVista").value = numPagina;
   console.log(numPagina);
-  buscarArea();
+  buscarSalida();
   pagFinalSa.blur();
 });

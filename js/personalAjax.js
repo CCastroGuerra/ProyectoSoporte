@@ -449,6 +449,10 @@ function buscarPersonal() {
             <td colspan="7" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
+      var elemento = document.getElementById("tbPersonal");
+      elemento.innerHTML = template;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
     }
   };
   ajax.send(data);

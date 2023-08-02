@@ -186,6 +186,21 @@ function buscarModelo() {
       let mostrarRegistro = `
       <p><span id="totalRegistros">Mostrando ${modelo.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
+    } else {
+      var elemento = document.getElementById("tbModelo");
+      elemento.innerHTML = `
+          <tr>
+            <td colspan="6" class="text-center">No se encontraron resultados</td>
+          </tr>
+        `;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
+
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+        <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
   ajax.send(data);
@@ -332,9 +347,14 @@ function buscarModelo() {
             <td colspan="6" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
 
-      // document.getElementById("txtPagVista").value = 0;
-      // document.getElementById("txtPagTotal").value = 0;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
   ajax.send(data);

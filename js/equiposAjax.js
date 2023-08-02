@@ -692,8 +692,13 @@ function buscarResponsable() {
           </tr>
         `;
 
-      // document.getElementById("txtPagVista").value = 0;
-      // document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+        <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
   ajax.send(data);
@@ -939,72 +944,24 @@ function buscarEquipo() {
       <p><span id="totalRegistros">Mostrando ${equipos.length} de ${datos.total} registros</span></p>`;
       registros.innerHTML = mostrarRegistro;
     } else {
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
       var elemento = document.getElementById("tbEquipos");
       elemento.innerHTML = `
           <tr>
-            <td colspan="10" class="text-center">No se encontraron resultados</td>
+            <td colspan="12" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
 
-      // document.getElementById("txtPagVista").value = 0;
-      // document.getElementById("txtPagTotal").value = 0;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+        <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
   ajax.send(data);
 }
-
-/*function componentesEquipoEnModal(equipoIdTemp) {
-  equipoIdTemp = id;
-  console.log("id para mostrar detalles de equipo: " + equipoIdTemp);
-  const ajax = new XMLHttpRequest();
-  ajax.open("POST", "../controller/equiposController.php", true);
-  const data = new FormData();
-  data.append("id", equipoIdTemp);
-  data.append("accion", "mostrarComponentesEquipos");
-  ajax.onload = function () {
-    let respuesta = ajax.responseText;
-    console.log(respuesta);
-    const datos = JSON.parse(respuesta);
-    console.log(datos);
-    let componentes = datos.listado;
-    console.log(componentes);
-
-    console.log(componentes);
-    let template = ""; // Estructura de la tabla html
-    if (componentes != "vacio") {
-      componentes.forEach(function (componentes) {
-        template += `
-                  <tr>
-                      <td>${componentes.serie}</td>
-                      <td>${componentes.nombreTipo}</td>
-                      <td>${componentes.nombreClase}</td>
-                      <td>${componentes.nombreMarca}</td>
-                      <td>${componentes.nombreModelo}</td>
-                      <td>${componentes.capacidad}</td>
-                      <td>${componentes.estado}</td>
-                      <td>
-                      <button type="button" onClick='eliminarComponentesTemp("${componentes.serie}")' class="btn btn-danger" data-fila="${datos.id}"><i class="fa fa-trash" aria-hidden="true"></i>
-                      </button>
-                      </td>
-                  </tr>
-                  `;
-      });
-      var elemento = document.getElementById("tbComponentes");
-      elemento.innerHTML = template;
-    } else {
-      var elemento = document.getElementById("tbComponentes");
-      elemento.innerHTML = `
-          <tr>
-            <td colspan="6" class="text-center">No se encontraron resultados</td>
-          </tr>
-        `;
-    }
-  };
-  ///mostrarEnModal();
-  listarTablaTemp();
-  ajax.send(data);
-  //listarTablaTemp();
-}*/
 
 function mostrarEnModal(equipoID) {
   btnComponente.disabled = false;
@@ -1058,45 +1015,6 @@ function mostrarEnModal(equipoID) {
   //componentesEquipoEnModal();
 }
 
-// function eliminarComponentes(id) {
-//   console.log(id);
-//   swal
-//     .fire({
-//       title: "AVISO DEL SISTEMA",
-//       text: "¿Desea Eliminar el Componente?",
-//       icon: "error",
-//       showCancelButton: true,
-//       confirmButtonText: "Si",
-//       cancelButtonText: "No",
-//       reverseButtons: true,
-//     })
-//     .then((result) => {
-//       if (result.isConfirmed) {
-//         const ajax = new XMLHttpRequest();
-//         ajax.open("POST", "../controller/equiposController.php", true);
-//         const data = new FormData();
-//         data.append("id", id);
-//         data.append("accion", "eliminarComponente");
-//         ajax.onload = function () {
-//           var respuesta = ajax.responseText;
-//           console.log(respuesta);
-//           listarTablaTemp();
-//           swal.fire(
-//             "Eliminado!",
-//             "El registro se elimino correctamente.",
-//             "success"
-//           );
-//         };
-//         /*let tab = document.getElementById("tbComponentes");
-//         if (tab.rows.length == 1) {
-//           //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-//           numPagina = numPagina - 1;
-//         }*/
-//         ajax.send(data);
-//       }
-//     });
-// }
-
 /*Funcion para cargar los componentes de los equipos existentes*/
 function insertarTempParaActualizar(equipoID) {
   //let codigo = document.getElementById("codigo").value;
@@ -1127,36 +1045,6 @@ function insertarTempParaActualizar(equipoID) {
   elemento.innerHTML = ``;
   //actualizarCompoentesTempo(equipoIdTemp);
 }
-
-/*function actualizarCompoentesTempo(actuaId) {
-  actuaId = id;
-  console.log("id para actuañozar componenete: " + actuaId);
-  const ajax = new XMLHttpRequest();
-  ajax.open("POST", "../controller/equiposController.php", true);
-  const data = new FormData();
-  data.append("id", actuaId);
-  data.append("accion", "actualizarTempComponentes");
-  ajax.onload = function () {
-    var respuesta = ajax.responseText;
-    console.log(respuesta);
-    //listarTablaTemp();
-    // swal.fire(
-    //   "Eliminado!",
-    //   "El registro se elimino correctamente.",
-    //   "success"
-    // );
-    console.log("Se actualizo correctamente en la temporal...!!!");
-    listarTablaTemp();
-
-  };
-  //let tab = document.getElementById("tbComponentes");
-  // if (tab.rows.length == 1) {
-  //   //document.getElementById('txtPagVistaPre').value = numPagina - 1;
-  //   numPagina = numPagina - 1;
-  // }
-  ajax.send(data);
-  guardarEquipoComponente();
-}*/
 
 function eliminarComponentesTemp(serie) {
   console.log("Id para eliminar componentes de tabla temporal: " + serie);

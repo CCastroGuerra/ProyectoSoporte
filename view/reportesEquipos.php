@@ -20,13 +20,12 @@ ob_start();
 
         /* bordes para impresiones horizontal */
         @page {
-            /*margin: 180px 50px;
-             margin-left: 0.5cm;
-            margin-right: 0; */
+
+            margin-right: 0;
             margin-bottom: 1cm;
             margin-top: 5cm;
-            margin-left: 0.5cm;
-            margin-right: 0.5cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
         }
 
         .encabezado {
@@ -117,6 +116,7 @@ ob_start();
             /* border: 1px solid #000; */
             padding: 8px;
             border: 1px solid #000;
+            font-size: 12px;
         }
 
         thead {
@@ -170,7 +170,7 @@ ob_start();
     <h1>Lista de equipos</h1>
 
     <div class="">
-        <table class=" align-middle" style="border: 2px solid red ;">
+        <table class=" align-middle" style="width: 100%;">
             <thead>
                 <tr>
                     <th scope="col"><strong>Codigo</strong></th>
@@ -182,7 +182,7 @@ ob_start();
                     <th scope="col"><strong>Margesi</strong></th>
                     <th scope="col"><strong>Area</strong></th>
                     <th scope="col"><strong>Estado</strong></th>
-                    <th scope="col"><strong>Fecha de creación</strong></th>
+                    <th scope="col"><strong>F.Creación</strong></th>
 
 
 
