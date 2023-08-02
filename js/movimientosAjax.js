@@ -605,7 +605,7 @@ function eliminar(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           //console.log(respuesta);
-          //buscarMovimientos();
+          buscarMovimientos();
 
           swal.fire(
             "Eliminado!",
