@@ -370,7 +370,7 @@
           <ul class="header-nav d-none d-md-flex">
             <li class="nav-item"><a class="nav-link" href="../view/dashboardView-cv.php">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="../view/personalView.php">Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" onclick="expandConfig()">Configuración</a></li>
+            <li class="nav-item"><a class="nav-link" href="#config" onclick="expandConfig()">Configuración</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-4 text-end">
