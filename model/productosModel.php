@@ -228,24 +228,20 @@ class Producto extends Conectar
 
                 $sqlNroFilas = "SELECT count(id_productos) as cantidad
                 FROM productos p
-                    INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion
-                WHERE esActivo = 1
-                    AND (
-                        nombre_productos LIKE '%$textoBusqueda%'
-                        OR codigo_productos LIKE '%$textoBusqueda%'
-                        OR tipo_productos = CASE
-                            WHEN 'Equipo' LIKE '%$textoBusqueda%' THEN 1
-                            WHEN 'Componente' LIKE '%$textoBusqueda%' THEN 2
-                            WHEN 'Herramienta' LIKE '%$textoBusqueda%' THEN 3
-                            WHEN 'Insumo' LIKE '%%' THEN 4
-                        END
-                        OR cantidad_productos LIKE '%$textoBusqueda%'
-                        OR almacen_id = CASE
-                            WHEN 'Almacen 1' LIKE '%$textoBusqueda%' THEN 1
-                            WHEN 'Almacen 2' LIKE '%$textoBusqueda%' THEN 2
-                            WHEN 'Almacen 3' LIKE '%$textoBusqueda%' THEN 3
-                        END
-                    ); ";
+             cross join(select @con := 0) r
+              INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1  AND (nombre_productos LIKE '%$textoBusqueda%' OR codigo_productos LIKE '%$textoBusqueda%' 
+              OR
+              tipo_productos = CASE 
+                WHEN 'Equipo' LIKE '%$textoBusqueda%'  THEN 1 
+                WHEN 'Componente' LIKE '%$textoBusqueda%' THEN 2 
+                WHEN 'Herramienta' LIKE '%$textoBusqueda%' THEN 3
+                WHEN 'Insumo' LIKE '%$textoBusqueda%' THEN 4  END 
+                OR cantidad_productos LIKE '%$textoBusqueda%'
+                OR
+                almacen_id  = CASE 
+                WHEN 'Almacen 1' LIKE '%$textoBusqueda%' THEN 1 
+                WHEN 'Almacen 2' LIKE '%$textoBusqueda%' THEN 2
+                WHEN 'Almacen 3' LIKE '%$textoBusqueda%' THEN 3 END  ) ";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

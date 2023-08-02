@@ -342,9 +342,6 @@ class Equipos extends Conectar
                         "id" => $marca["id_personal"],
                         "nombre" => $marca["NombrePersonal"],
                         'dni' => $marca["dni_personal"]
-
-
-
                     );
                 }
 
