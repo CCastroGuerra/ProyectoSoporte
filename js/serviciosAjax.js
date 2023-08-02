@@ -193,8 +193,8 @@ function buscarServicio() {
             <td colspan="3" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      document.getElementById("txtPagVista").value = 0;
-      document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");

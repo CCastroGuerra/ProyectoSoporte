@@ -654,8 +654,8 @@ function buscarTrabajos() {
           </tr>
         `;
 
-      document.getElementById("txtPagVista").value = 0;
-      document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
 
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
@@ -869,31 +869,6 @@ function imprimir(idTrabajo) {
   };
   ajax.send(data);
 }
-
-// function salidaMovimientos() {
-//   let codigoProducto = document.getElementById("consumible").value;
-//   console.log(codigoProducto);
-//   const ajax = new XMLHttpRequest();
-//   ajax.open("POST", "../controller/trabajosController.php", true);
-//   var data = new FormData();
-//   //console.log(codigoProducto, ": ", cantidad);
-//   data.append("consumible", codigoProducto);
-//   data.append("accion", "salidaConsumibles");
-//   ajax.onload = function () {
-//     let respuesta = ajax.responseText;
-//     console.log(respuesta);
-
-//     if (respuesta === "1") {
-//       console.log("Cantidad actualizada");
-//       ///guardaSalida(codigoProducto, cantidad);
-//       guardaSalidaMovimiento(codigoProducto);
-//     } else {
-//       swal.fire("AVISO DEL SISTEMA", "Error, cantidad no disponible", "error");
-//       console.log("Erro al actualizar");
-//     }
-//   };
-//   ajax.send(data);
-// }
 
 function guardaSalidaMovimiento() {
   let codigoProducto = document.getElementById("consumible").value;

@@ -348,8 +348,8 @@ function buscarEntrada() {
             <td colspan="8" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      document.getElementById("txtPagVistaEn").value = 0;
-      document.getElementById("txtPagTotalEn").value = 0;
+      document.getElementById("txtPagVistaEn").value = 1;
+      document.getElementById("txtPagTotalEn").value = 1;
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
       let mostrarRegistro = `
@@ -421,8 +421,8 @@ function buscarSalida() {
             <td colspan="8" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      document.getElementById("txtPagVistaSa").value = 0;
-      document.getElementById("txtPagTotalSa").value = 0;
+      document.getElementById("txtPagVistaSa").value = 1;
+      document.getElementById("txtPagTotalSa").value = 1;
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
       let mostrarRegistro = `
@@ -499,8 +499,8 @@ function buscarResumen() {
             <td colspan="8" class="text-center">No se encontraron resultados</td>
           </tr>
         `;
-      document.getElementById("txtPagVista").value = 0;
-      document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
       /* Mostrando mensaje de los registros*/
       let registros = document.getElementById("txtcontador");
       let mostrarRegistro = `

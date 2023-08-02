@@ -488,8 +488,8 @@ function buscarProducto() {
           </tr>
         `;
 
-      document.getElementById("txtPagVista").value = 0;
-      document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 1;
+      document.getElementById("txtPagTotal").value = 1;
       let registros = document.getElementById("txtcontador");
       let mostrarRegistro = `
       <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
@@ -547,7 +547,7 @@ function buscarPresentacion() {
       elemento.innerHTML = template;
       document.getElementById("txtPagVistaPre").value = numPagina;
       document.getElementById("txtPagTotalPre").value = datos.paginas;
-      console.log("Pagina ultima: " + numPagina);
+      ///console.log("Pagina ultima: " + numPagina);
 
       /* Seleccionar datos de la tabla */
       /*Modal presentación*/
@@ -590,6 +590,9 @@ function buscarPresentacion() {
               <td colspan="5" class="text-center">No se encontraron resultados</td>
             </tr>
           `;
+
+      document.getElementById("txtPagVistaPre").value = 1;
+      document.getElementById("txtPagTotalPre").value = 1;
     }
   };
   ajax.send(data);
