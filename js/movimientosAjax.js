@@ -167,6 +167,13 @@ btnGuardarEquipo.addEventListener("click", function () {
   }
   guardarEquipos();
 });
+/******* ****** contador de elemento en tabla visible */
+$("#tbEquipos").on("DOMSubtreeModified", function () {
+  var tabla = document.querySelectorAll("#tbEquipos tr");
+  //console.log("la tabla cambió: " + tabla.length);
+  console.log("elemento en tabla modal: "+tabla.length);
+  console.log("tabla cambio");
+});
 
 function listarSelecTecnicos() {
   const ajax = new XMLHttpRequest();
