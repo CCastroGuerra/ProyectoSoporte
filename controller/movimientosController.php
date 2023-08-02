@@ -47,6 +47,7 @@ switch ($accion) {
         //var_dump($_POST);
         $movimientos->guardarEquipo($_POST["codEquipo"], $_POST["areaOR"], $_POST["selServicio"], $_POST["idMov"]);
         break;
+
     case "listarTablaMovimiento":
         //var_dump($_POST);
         $movimientos->listarTablaMovimientos($_POST['idMov']);
