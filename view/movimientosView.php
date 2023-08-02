@@ -1,6 +1,23 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+<!-- Estilos css boton -->
+<style>
+    .pdf-button {
+        display: inline-block;
+        /* align-items: center;
+        justify-content: center; */
+        padding: 10px 20px;
+        background-color: #d72121;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+</style>
+<!-- fin de estilos -->
+
 <!--modal detalle del movimiento-->
 <div class="modal fade" id="detallesModal" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="serviciosModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -14,7 +31,19 @@ include('../templates/cabecera.php');
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label class="control-label" for="codEquipo">Equipo</label>
+                                <div class="mb-2 row">
+                                    <div class="col-lg-8 col-sm-8">
+                                        <label class="control-label" for="codEquipo">Equipo</label>
+                                    </div>
+                                    <div class="text-center col-lg-4 col-sm-4">
+                                        <span class="d-inline-block" tabindex="0" data-coreui-toggle="popover" data-coreui-trigger="hover focus" data-coreui-content="Disabled popover">
+                                            <a href="reportesEquipos.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
+                                                VER
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+
                                 <input type="text" class="form-control" id="codEquipo" name="codEquipo" placeholder="ejmp: E000001">
                                 <div id="alertaEquipo" style="color: red;"></div>
                                 <label class="control-label" for="areaOR">Area de origen</label>

@@ -9,11 +9,10 @@ input#inputDni::-webkit-inner-spin-button,input#inputDni::-webkit-outer-spin-but
 }
 */
 
+
 input#dniusuario::-webkit-inner-spin-button, input#dniusuario::-webkit-outer-spin-button {
 -webkit-appearance: none;
 margin: 0;
--moz-appearance: textfield;
-appearance: textfield;
 }
 
 

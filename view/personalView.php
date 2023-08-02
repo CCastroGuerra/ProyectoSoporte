@@ -46,7 +46,7 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
                                 </div>
                                 <div class="form-group">
                                     <label for="telefono" class="mb-2">Telefono:</label>
-                                    <input type="tel" class="form-control  form-control-sm mb-2" id="telefono" name="telefono" placeholder="Ingrese la telefono">
+                                    <input type="tel" class="form-control  form-control-sm mb-2" id="telefono" name="telefono" placeholder="Ingrese la telefono" min="6" max="12">
                                     <small class="alerta" id="alerta4"></small>
                                 </div>
                                 <div class="form-group">
