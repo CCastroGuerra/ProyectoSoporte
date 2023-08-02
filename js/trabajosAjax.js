@@ -654,8 +654,14 @@ function buscarTrabajos() {
           </tr>
         `;
 
-      // document.getElementById("txtPagVista").value = 0;
-      // document.getElementById("txtPagTotal").value = 0;
+      document.getElementById("txtPagVista").value = 0;
+      document.getElementById("txtPagTotal").value = 0;
+
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+        <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
   ajax.send(data);

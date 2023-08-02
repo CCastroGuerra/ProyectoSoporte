@@ -112,9 +112,9 @@ modal.addEventListener("show.coreui.modal", (event) => {
       selecAccion.disabled = false;
       selecTecnico.disabled = false;
       fallaobs.readOnly = false;
-      
-      btnCerrar.disabled =false;
-      btnGuardar.disabled =true;
+
+      btnCerrar.disabled = false;
+      btnGuardar.disabled = true;
 
       $("#tbopciones").show();
       tipmod = "";
@@ -132,8 +132,8 @@ modal.addEventListener("show.coreui.modal", (event) => {
       $("#tbopciones").hide();
       btnAñadir.disabled = true;
       btnAñadir.setAttribute("style", "display: none");
-      btnCerrar.disabled =true;
-      btnGuardar.disabled =true;
+      btnCerrar.disabled = true;
+      btnGuardar.disabled = true;
       break;
   }
 });
@@ -355,7 +355,6 @@ function listarTablaMovimientos() {
       } else {
         btnGuardar.disabled = false;
       }
-      
     } else {
       btnGuardar.disabled = true;
       var elemento = document.getElementById("tbEquipos");
@@ -451,6 +450,11 @@ function buscarMovimientos() {
 
       document.getElementById("txtPagVista").value = 0;
       document.getElementById("txtPagTotal").value = 0;
+      /* Mostrando mensaje de los registros*/
+      let registros = document.getElementById("txtcontador");
+      let mostrarRegistro = `
+      <p><span id="totalRegistros">Mostrando 0 de 0 registros</span></p>`;
+      registros.innerHTML = mostrarRegistro;
     }
   };
   ajax.send(data);
