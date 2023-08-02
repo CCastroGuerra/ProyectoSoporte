@@ -602,7 +602,7 @@ function eliminarCabezeraTranlado() {
   ajax.onload = function () {
     var respuesta = ajax.responseText;
     console.log(respuesta);
-    buscarMovimientos();
+    //buscarMovimientos();
   };
   let tab = document.getElementById("tbEquipos");
   if (tab.rows.length == 1) {
@@ -666,7 +666,7 @@ function eliminar(id) {
         ajax.onload = function () {
           var respuesta = ajax.responseText;
           //console.log(respuesta);
-          //buscarMovimientos();
+          buscarMovimientos();
 
           swal.fire(
             "Eliminado!",

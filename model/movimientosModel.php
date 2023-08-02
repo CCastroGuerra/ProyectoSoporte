@@ -144,6 +144,9 @@ class Movimiento extends Conectar
         }
     }
 
+
+
+
     public function listarTablaMovimientos($idTranslado)
     {
         $conectar = parent::conexion();
@@ -283,20 +286,45 @@ class Movimiento extends Conectar
         }
     }
 
+    // public function eliminarTransladoCabezera($id)
+    // {
+    //     if (isset($_POST["idMov"])) {
+    //         $id = $_POST["idMov"];
+    //         // Resto del código para eliminar la tarea
+    //         $conectar = parent::conexion();
+    //         //$sql = "DELETE FROM  translado  WHERE id_translado = ?;";
+    //         $sql = "DELETE FROM translado,  detalles_translado
+    //         USING translado
+    //         LEFT JOIN  detalles_translado ON translado.id_translado = detalles_translado.id_translado
+    //         WHERE translado.id_translado = ?;";
+    //         $sql = $conectar->prepare($sql);
+    //         $sql->bindValue(1, $id);
+    //         $sql->execute();
+    //         return $resultado = $sql->fetchAll();
+    //     } else {
+    //         echo "El parámetro 'id' no ha sido enviado";
+    //     }
+    // }
+
     public function eliminarTransladoCabezera($id)
     {
         if (isset($_POST["idMov"])) {
             $id = $_POST["idMov"];
             // Resto del código para eliminar la tarea
             $conectar = parent::conexion();
-            //$sql = "DELETE FROM  translado  WHERE id_translado = ?;";
-            $sql = "DELETE FROM translado,  detalles_translado
-            USING translado
-            LEFT JOIN  detalles_translado ON translado.id_translado = detalles_translado.id_translado
-            WHERE translado.id_translado = ?;";
+            $sql = "DELETE FROM  detalles_translado  WHERE id_translado = ?;";
+            // $sql = "DELETE FROM translado,  detalles_translado
+            // USING translado
+            // LEFT JOIN  detalles_translado ON translado.id_translado = detalles_translado.id_translado
+            // WHERE translado.id_translado = ?;";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $id);
-            $sql->execute();
+            if ($sql->execute()) {
+                $sql2 = "DELETE FROM translado  WHERE id_translado = ?;";
+                $sql2 = $conectar->prepare($sql2);
+                $sql2->bindValue(1, $id);
+                $sql2->execute();
+            }
             return $resultado = $sql->fetchAll();
         } else {
             echo "El parámetro 'id' no ha sido enviado";
