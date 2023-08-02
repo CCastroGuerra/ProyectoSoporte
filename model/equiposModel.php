@@ -457,7 +457,15 @@ class Equipos extends Conectar
             INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
             INNER JOIN area a ON a.id_area = e.area_id
             INNER JOIN estado est ON est.id_estado = e.estado_id
-            WHERE e.es_activo = 1  AND nombre_area LIKE '%$textoBusqueda%' 
+            WHERE e.es_activo = 1  AND (nombre_area LIKE '%$textoBusqueda%' or nombre_marca LIKE '%$textoBusqueda%' or nombre_modelo LIKE '%$textoBusqueda%'
+            or serie LIKE '%$textoBusqueda%'
+            or margesi LIKE '%$textoBusqueda%'
+            or ip LIKE '%$textoBusqueda%'
+            or mac LIKE '%$textoBusqueda%'
+            or margesi LIKE '%$textoBusqueda%'
+            or nombre_estado LIKE '%$textoBusqueda%'
+            or cod_equipo LIKE '%$textoBusqueda%'
+            or DATE_FORMAT(fecha_alta,'%d/%m/%y') LIKE '%$textoBusqueda%')
             ORDER BY cod_equipo
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
