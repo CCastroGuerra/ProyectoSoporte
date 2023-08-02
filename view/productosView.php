@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                             <div class="card-body">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="20">
-                                    <button class="btn btn-outline-primary visually-hidden" type="submit" id="button-addon2">Guardar</button>
+                                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Guardar</button>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@ include('../templates/cabecera.php');
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="mb-2">Presentación:</label>
-                                        <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
+                                        <button type="button" class="btn btn-outline-primary visually-hidden" data-coreui-toggle="modal" data-coreui-target="#presentacionModal"></button>
                                         <input type="text" class="form-control mb-2" id="selUnidad" name="selUnidad" placeholder="Ingrese Presentacion" data-coreui-toggle="modal" data-coreui-target="#presentacionModal" readonly>
                                         <small class="form-text text-muted alerta" id="alerta3"></small>
                                         <input type="text" class="form-control mb-2 visually-hidden" id="presValue" name="presValue">
