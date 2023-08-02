@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                             <div class="card-body">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Busca la  Presentación" aria-label="BuscaPrestentacion" id="BuscarPre" name="BuscarPre" aria-describedby="button-addon2" size="10" maxlength="20">
-                                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Guardar</button>
+                                    <button class="btn btn-outline-primary visually-hidden" type="submit" id="button-addon2">Guardar</button>
                                 </div>
                             </div>
                         </div>
