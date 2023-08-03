@@ -78,6 +78,22 @@ include('../templates/cabecera.php');
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="selAlim" class="mb-2">Alimentación:</label>
+                                    <select class="form-select" aria-label="Default select example" id="selAlim" name="selAlim">
+                                        <option selected>Seleccione el modelo</option>
+                                        <option value="1" selected>Cable directo</option>
+                                        <option value="2">Transformador</option>
+                                    </select>
+                                    <small class="alerta" id="alerta8"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="conector" class="mb-2">Conector:</label>
+                                    <input type="text" class="form-control mb-2" id="conector" name="conector" placeholder="VGA/HDMI/DiplayPort/DVI">
+                                    <small class="alerta" id="alerta9"></small>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="exampleInputEmail1" class="mb-2">Estado: </label>
                                     <select class="form-select" aria-label="Default select example" id="selEstado" name="selEstado">
                                         <option selected>Seleccione estado</option>
