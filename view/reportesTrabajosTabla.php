@@ -434,17 +434,17 @@ $servicios = $resultado2['servicios'];
                                   justify-content: space-evenly;
                                 ">
                                                             <div>
-                                                                <input class="form-check-input" type="checkbox" id="checkCPU" <?php if ($tipoEquipoId == 2) echo 'checked'; ?> />
+                                                                <input class="form-check-input" type="checkbox" id="checkCPU" <?php if ($tipoEquipoId == 1) echo 'checked'; ?> />
                                                                 <label class="form-check-label" for="checkCPU">
                                                                     CPU</label>
                                                             </div>
                                                             <div>
-                                                                <input class="form-check-input" type="checkbox" id="checkImpr" <?php if ($tipoEquipoId == 3) echo 'checked'; ?> />
+                                                                <input class="form-check-input" type="checkbox" id="checkImpr" <?php if ($tipoEquipoId == 2) echo 'checked'; ?> />
                                                                 <label class="form-check-label" for="checkImpr">
                                                                     Impresora</label>
                                                             </div>
                                                             <div>
-                                                                <input class="form-check-input" type="checkbox" id="checkLaptop" <?php if ($tipoEquipoId == 1) echo 'checked'; ?> />
+                                                                <input class="form-check-input" type="checkbox" id="checkLaptop" <?php if ($tipoEquipoId == 3) echo 'checked'; ?> />
                                                                 <label class="form-check-label" for="checkLaptop">
                                                                     Laptop</label>
                                                             </div>
