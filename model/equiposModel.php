@@ -227,7 +227,7 @@ class Equipos extends Conectar
     public function listarSelectModelo($idMarca)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM `modelo`  WHERE marca_id = ?";
+        $sql = "SELECT * FROM `modelo`  WHERE marca_id = ? AND esActivo=1";
         $fila = $conectar->prepare($sql);
         $fila->bindValue(1, $idMarca);
         $fila->execute();
