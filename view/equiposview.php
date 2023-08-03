@@ -110,6 +110,12 @@ include('../templates/cabecera.php');
                                             <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                         </div>
 
+                                        <div class="form-group mb-2">
+                                            <label for="nomEquipo" class="mb-2">Nombre Equipo:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="nomEquipo" name="nomEquipo" placeholder="........">                                            
+                                            <small class="alerta" id="alertaUSL"></small>
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="selTipoEquipo" class="mb-2">Tipo de equipo:</label>
                                             <select class="form-select form-select-sm mb-2" aria-label="Default select example" id="selTipoEquipo" name="selTipoEquipo">
@@ -187,6 +193,14 @@ include('../templates/cabecera.php');
                                             <input type="text" class="form-control form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP ###.###.###.###">                                            
                                             <small class="alerta" id="alertaIP"></small>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="usLocal" class="mb-2">Usuario Local:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="usLocal" name="usLocal" placeholder="[AREA]-PC##/HLMP">                                            
+                                            <small class="alerta" id="alertaUSL"></small>
+                                        </div>
+
+                                        
 
                                     </div>
                                 </div>
