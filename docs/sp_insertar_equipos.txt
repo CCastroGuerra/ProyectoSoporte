@@ -1,5 +1,19 @@
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_equipo`(IN `p_id` INT, IN `p_serie` VARCHAR(50), IN `p_margesi` VARCHAR(50), IN `p_marca_id` INT, IN `p_modelo_id` INT, IN `p_tipo_equipo_id` INT, IN `p_area_id` INT, IN `p_clientes_id` INT, IN `p_estado_id` INT, IN `p_ip` VARCHAR(50), IN `p_mac` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_equipo`(
+  IN p_id INT,
+  IN p_serie VARCHAR(50),
+  IN p_margesi VARCHAR(50),
+  IN p_marca_id INT,
+  IN p_modelo_id INT,
+  IN p_tipo_equipo_id INT,
+  IN p_area_id INT,
+  IN p_clientes_id INT,
+  IN p_estado_id INT,
+  IN p_ip VARCHAR(50),
+  IN p_mac VARCHAR(50),
+  IN p_nomeq VARCHAR(50),
+  IN p_usloc VARCHAR(50)
+)
 BEGIN
   SET @v_codigo = CONCAT('E', LPAD((SELECT COUNT(*) + 1 FROM equipos), 6, '0'));
  
@@ -15,7 +29,9 @@ BEGIN
     clientes_id, 
     estado_id, 
     ip, 
-    mac
+    mac,
+    nombre_equipo,
+    usuario_local
   )
   VALUES (
     p_id,
@@ -29,7 +45,9 @@ BEGIN
     p_clientes_id,
     p_estado_id,
     p_ip,
-    p_mac
+    p_mac,
+    p_nomeq,
+    p_usloc
   )ON DUPLICATE KEY UPDATE
     serie = (p_serie),
     margesi = (p_margesi),
@@ -40,7 +58,9 @@ BEGIN
     clientes_id = (p_clientes_id),
     estado_id = (p_estado_id),
     ip = (p_ip),
-    mac = (p_mac);
+    mac = (p_mac),
+    nombre_equipo = (p_nomeq),
+    usuario_local = (p_usloc);
+
   
 END$$
-DELIMITER ;
