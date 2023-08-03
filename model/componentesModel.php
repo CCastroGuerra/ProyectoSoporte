@@ -142,7 +142,7 @@ class Componente extends Conectar
     public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`,` 	tipo_alimentacion`,`tipo_conector `) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect','$tipoAlimentaco','$tipoConector')";
+        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`,`tipo_alimentacion`,`tipo_conector`) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect','$tipoAlimentaco','$tipoConector')";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -151,7 +151,7 @@ class Componente extends Conectar
         }
     }
 
-    public function actulizarComponentes($idComponentes, $componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect)
+    public function actulizarComponentes($idComponentes, $componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
     {
         $conectar = parent::conexion();
         $sql = "UPDATE componentes
@@ -162,7 +162,9 @@ class Componente extends Conectar
                modelo_id=?,
                serie = ?,
                componentes_capacidad = ?,
-               estado_id = ?
+               estado_id = ?,
+               tipo_alimentacion =?,
+               tipo_conector = ?
             WHERE
             id_componentes = ?";
         $sql = $conectar->prepare($sql);
@@ -173,7 +175,9 @@ class Componente extends Conectar
         $sql->bindValue(5, $serie);
         $sql->bindValue(6, $capacidad);
         $sql->bindValue(7, $estadoSelect);
-        $sql->bindValue(8, $idComponentes);
+        $sql->bindValue(8, $tipoAlimentaco);
+        $sql->bindValue(9, $tipoConector);
+        $sql->bindValue(10, $idComponentes);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -197,7 +201,35 @@ class Componente extends Conectar
     public function traeComponenteXId($idComponentes)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT id_componentes, tipo_componentes_id, tp.nombre_tipo_componente,clase_componentes_id,cc.nombre_clase,c.marca_id, ma.nombre_marca,modelo_id, m.nombre_modelo, serie,componentes_capacidad,estado_id, e.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha FROM componentes c INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id INNER JOIN marca ma ON ma.id_marca = c.marca_id INNER JOIN modelo m ON m.id_modelo = c.modelo_id INNER JOIN estado e ON e.id_estado = c.estado_id WHERE id_componentes = ?";
+        $sql = "SELECT id_componentes,
+        tipo_componentes_id,
+        tp.nombre_tipo_componente,
+        clase_componentes_id,
+        cc.nombre_clase,
+        c.marca_id,
+        ma.nombre_marca,
+        modelo_id,
+        m.nombre_modelo,
+        serie,
+        componentes_capacidad,
+        estado_id,
+        e.nombre_estado,
+        c.tipo_alimentacion,
+        CASE
+            c.tipo_alimentacion
+            WHEN 1 THEN 'TRANSFORMADOR'
+            WHEN 2 THEN 'CABLE DE PODER'
+            ELSE 'Otro'
+        END AS tipoAlimentacion,
+        c.tipo_conector,
+        DATE_FORMAT(fecha_alta, '%d/%m/%y') as Fecha
+    FROM componentes c
+        INNER JOIN tipo_componentes tp ON c.tipo_componentes_id = tp.id_tipo_componentes
+        INNER JOIN clase_componentes cc ON cc.id_clase_componentes = c.clase_componentes_id
+        INNER JOIN marca ma ON ma.id_marca = c.marca_id
+        INNER JOIN modelo m ON m.id_modelo = c.modelo_id
+        INNER JOIN estado e ON e.id_estado = c.estado_id
+    WHERE id_componentes = ?;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idComponentes);
         $sql->execute();

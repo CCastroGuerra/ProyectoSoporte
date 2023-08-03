@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!--Modal añadir componente-->
-<div class="modal fade" id="añadirComponente" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="añadirComponente" aria-hidden="true" aria-modal="true">
+<div class="modal fade" id="añadirComponente" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="añadirComponente" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog" modal-sm>
         <div class="modal-content">
             <div class="modal-header">
@@ -171,7 +171,7 @@ include('../templates/cabecera.php');
                                     <th scope="col"><strong>Modelo</strong></th>
                                     <th scope="col"><strong># Serie</strong></th>
                                     <th scope="col"><strong>Capacidad</strong></th>
-                                    <th scope="col"><strong>Estado</strong></th>                                    
+                                    <th scope="col"><strong>Estado</strong></th>
                                     <th scope="col"><strong>Disponible</strong></th>
                                     <th scope="col"><strong>Fecha</strong></th>
                                     <th scope="col"><strong>Opciones</strong></th>

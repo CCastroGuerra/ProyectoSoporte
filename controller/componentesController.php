@@ -35,6 +35,8 @@ switch ($accion) {
             foreach ($datos as $row) {
                 $output['id'] = $row["id_componentes"];
                 $output['nombreTipo'] = $row["tipo_componentes_id"];
+                $output['tipoAlimentacion'] = $row["tipo_alimentacion"];
+                $output['tipoConector'] = $row["tipo_conector"];
                 $output['nombreClase'] = $row["clase_componentes_id"];
                 $output['nombreMarca'] = $row["marca_id"];
                 $output['nombreModelo'] = $row["modelo_id"];
@@ -47,11 +49,12 @@ switch ($accion) {
         break;
     case "actualizar":
         //var_dump($_POST);
-        $componente->actulizarComponentes($_POST['id'], $_POST['nombreTipo'], $_POST["nombreClase"], $_POST["nombreMarca"], $_POST["nombreModelo"], $_POST["serie"], $_POST["capacidad"], $_POST["estado"]);
+        $componente->actulizarComponentes($_POST['id'], $_POST['nombreTipo'], $_POST["nombreClase"], $_POST["nombreMarca"], $_POST["nombreModelo"], $_POST["serie"], $_POST["capacidad"], $_POST["estado"], $_POST['selAlim'], $_POST['conector']);
         echo "actualizado correctamente";
         break;
 
     case "guardar":
-        $componente->agregarComponetes($_POST['selTipo'], $_POST["selClase"], $_POST["selMarca"], $_POST["selModelo"], $_POST["serie"], $_POST["capacidad"], $_POST["selEstado"]);
+        //var_dump($_POST);
+        $componente->agregarComponetes($_POST['selTipo'], $_POST["selClase"], $_POST["selMarca"], $_POST["selModelo"], $_POST["serie"], $_POST["capacidad"], $_POST["selEstado"], $_POST['selAlim'], $_POST['conector']);
         break;
 }
