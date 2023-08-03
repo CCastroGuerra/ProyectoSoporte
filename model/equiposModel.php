@@ -65,7 +65,7 @@ class Equipos extends Conectar
         }
     }
 
-    public function guardarEquipo($idEquipo, $serie, $margesi, $marcaId, $modeloId, $idTipo, $areaId, $responsable, $estadoId, $ip, $mac)
+    public function guardarEquipo($idEquipo, $serie, $margesi, $marcaId, $modeloId, $idTipo, $areaId, $responsable, $estadoId, $ip, $mac, $nombreEquipo, $usuarioLocal)
     {
         if ($idEquipo == '') {
             $idEquipo = '0';
@@ -76,7 +76,7 @@ class Equipos extends Conectar
             ON DUPLICATE KEY UPDATE id_equipos='$idEquipo',serie = '$serie', margesi = '$margesi', marca_id = '$marcaId', modelo_id = '$modeloId', tipo_equipo_id = '$idTipo', area_id = '$areaId', clientes_id = '$responsable', estado_id = '$estadoId', ip = '$ip', mac = '$mac';"; */
 
         /***PROCEDIMIENTO ALMACENADO***/
-        $sql = "call sp_insertar_equipo(?,?,?,?,?,?,?,?,?,?,?);";
+        $sql = "call sp_insertar_equipo(?,?,?,?,?,?,?,?,?,?,?,?,?);";
         $fila = $conectar->prepare($sql);
         $fila->bindParam(1, $idEquipo, PDO::PARAM_INT);
         $fila->bindParam(2, $serie, PDO::PARAM_STR);
@@ -89,6 +89,8 @@ class Equipos extends Conectar
         $fila->bindParam(9, $estadoId, PDO::PARAM_INT);
         $fila->bindParam(10, $ip, PDO::PARAM_STR);
         $fila->bindParam(11, $mac, PDO::PARAM_STR);
+        $fila->bindParam(12, $nombreEquipo, PDO::PARAM_STR);
+        $fila->bindParam(13, $usuarioLocal, PDO::PARAM_STR);
         /*******************************/
         /* $fila = $conectar->prepare($sql); */
 

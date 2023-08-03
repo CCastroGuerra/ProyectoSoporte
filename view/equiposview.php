@@ -112,7 +112,7 @@ include('../templates/cabecera.php');
 
                                         <div class="form-group mb-2">
                                             <label for="nomEquipo" class="mb-2">Nombre Equipo:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="nomEquipo" name="nomEquipo" placeholder="........">                                            
+                                            <input type="text" class="form-control form-control-sm mb-2" id="nomEquipo" name="nomEquipo" placeholder="PC-000">
                                             <small class="alerta" id="alertaUSL"></small>
                                         </div>
 
@@ -190,17 +190,17 @@ include('../templates/cabecera.php');
                                         </div>
                                         <div class="form-group">
                                             <label for="ip" class="mb-2">IP:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP ###.###.###.###">                                            
+                                            <input type="text" class="form-control form-control-sm mb-2" id="ip" name="ip" placeholder="Ingrese IP ###.###.###.###">
                                             <small class="alerta" id="alertaIP"></small>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="usLocal" class="mb-2">Usuario Local:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="usLocal" name="usLocal" placeholder="[AREA]-PC##/HLMP">                                            
+                                            <input type="text" class="form-control form-control-sm mb-2" id="usLocal" name="usLocal" placeholder="[AREA]-PC##/HLMP">
                                             <small class="alerta" id="alertaUSL"></small>
                                         </div>
 
-                                        
+
 
                                     </div>
                                 </div>
