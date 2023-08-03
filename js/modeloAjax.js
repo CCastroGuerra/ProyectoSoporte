@@ -12,7 +12,7 @@ const alerta2 = frmModelo.querySelector("#alerta2");
 const calert = frmModelo.querySelectorAll(".alerta");
 const nombre_modelo = frmModelo.querySelector("#nombreModelo");
 const categ = frmModelo.querySelector("#selMarca");
-const regla = new RegExp("[a-zA-Z0-9]+$");
+const regla = new RegExp("[a-zA-Z0-9]*");
 
 var ofr = document.querySelectorAll("#formModelo .alerta");
 
@@ -161,9 +161,9 @@ function buscarModelo() {
       modelo.forEach(function (modelo) {
         template += `
                   <tr>
-                      <!-- <td>${modelo.nro}</td> -->
-                      <td>${modelo.nombre}</td>
+                      <!-- <td>${modelo.nro}</td> -->                      
                       <td>${modelo.nombreMarca}</td>
+                      <td>${modelo.nombre}</td>
                       <td>
                       
                       <button type="button" onClick='mostrarEnModal("${modelo.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -319,8 +319,9 @@ function buscarModelo() {
       modelo.forEach(function (modelo) {
         template += `
                   <tr>
-                      <td>${modelo.nombre}</td>
+                  
                       <td>${modelo.nombreMarca}</td>
+                      <td>${modelo.nombre}</td>
                       <td>
 
                       <button type="button" onClick='mostrarEnModal("${modelo.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#añadirModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>

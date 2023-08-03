@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal -->
-<div class="modal fade" id="añadirModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="añadirModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -21,9 +21,6 @@ include('../templates/cabecera.php');
                   <input type="text" class="form-control mb-2" id="codigoModelo" name="codigoModelo" readonly>
                 </div>
 
-                <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
-                <input type="text" class="form-control mb-2" id="nombreModelo" name="nombreModelo" placeholder="Ingrese modelo">
-                <div class="alerta" id="alerta1"></div>
                 <label for="exampleInputEmail1" class="mb-2">Marca:</label>
                 <select class="form-select form-select-sm" aria-label="Default select example" id="selMarca" name="selMarca">
                   <option selected>Selecciona la marca</option>
@@ -32,6 +29,11 @@ include('../templates/cabecera.php');
                   <option value="3">Sasmsung</option>
                 </select>
                 <div class="alerta" id="alerta2"></div>
+
+                <label for="exampleInputEmail1" class="mb-2">Nombre:</label>
+                <input type="text" class="form-control mb-2" id="nombreModelo" name="nombreModelo" placeholder="Ingrese modelo">
+                <div class="alerta" id="alerta1"></div>
+
               </div>
             </div>
           </div>
@@ -97,8 +99,9 @@ include('../templates/cabecera.php');
             <table class="table table-hover align-middle">
               <thead>
                 <tr>
-                  <th scope="col"><strong>Modelo</strong></th>
+
                   <th scope="col"><strong>Marca</strong></th>
+                  <th scope="col"><strong>Modelo</strong></th>
                   <th scope="col"><strong>Opciones</strong></th>
                 </tr>
               </thead>
