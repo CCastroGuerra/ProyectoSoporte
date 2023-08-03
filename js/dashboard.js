@@ -32,7 +32,7 @@ function traerTrabajosxMes() {
     let cantidad = [];
     const colores = [];
     realizado = ajax.responseText;
-    //console.log(realizado);
+    console.log(realizado);
     if (realizado == "") {
       //execute
       //console.log("vacio");
@@ -47,13 +47,15 @@ function traerTrabajosxMes() {
         mes.push(respuesta[i].mes);
         cantidad.push(respuesta[i].cantidad);
         colores.push(generarColorAleatorio());
-        const ctx = document.getElementById("miCanvas");
+        //console.log(respuesta[i].mes + " " + respuesta[i].cantidad);
+      }
 
-        const myChart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels:  mes, 
-            /* labels: [
+      const ctx = document.getElementById("miCanvas");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: mes,
+          /* labels: [
               "Enero",
               "Febrero",
               "Marzo",
@@ -62,11 +64,11 @@ function traerTrabajosxMes() {
               "Junio",
               "Julio",
             ], */
-            datasets: [
-              {
-                label: "Trabajos",
-                backgroundColor: colores,
-                /*backgroundColor: [
+          datasets: [
+            {
+              label: "Trabajos",
+              backgroundColor: colores,
+              /*backgroundColor: [
                   generarColorAleatorio(),
                   generarColorAleatorio(),
                   generarColorAleatorio(),
@@ -75,73 +77,65 @@ function traerTrabajosxMes() {
                   generarColorAleatorio(),
                   generarColorAleatorio(),
                 ] ,*/
-                //backgroundColor: coreui.Utils.hexToRgba(coreui.Utils.getStyle('--cui-info'), 10), //para line
-                //borderColor: coreui.Utils.getStyle('--cui-info'),
-                //pointHoverBackgroundColor: '#fff',
-                //borderWidth: 2,
-                //pointBackgroundColor: coreui.Utils.getStyle("--cui-primary"),
-                /* data: cantidad, */
-                data: [
-                  random(50, 200),
-                  random(50, 200),
-                  random(50, 200),
-                  random(50, 200),
-                  random(50, 200),
-                  random(50, 200),
-                  random(50, 200),
-                ],
-                fill: false,
-              },
-            ],
+              //backgroundColor: coreui.Utils.hexToRgba(coreui.Utils.getStyle('--cui-info'), 10), //para line
+              //borderColor: coreui.Utils.getStyle('--cui-info'),
+              //pointHoverBackgroundColor: '#fff',
+              //borderWidth: 2,
+              //pointBackgroundColor: coreui.Utils.getStyle("--cui-primary"),
+              /* data: cantidad, */
+              data: cantidad,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true, // Hace que el gráfico sea responsive
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+              external: null,
+              position: "average",
+            },
           },
-          options: {
-            responsive: true, // Hace que el gráfico sea responsive
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                display: false,
-              },
-              tooltip: {
-                enabled: true,
-                external: null,
-                position: "average",
+          // Permite ajustar el tamaño del gráfico
+          //indexAxis: "y", //cambiar de posicion el grafico
+          scales: {
+            x: {
+              grid: {
+                drawOnChartArea: false,
               },
             },
-            // Permite ajustar el tamaño del gráfico
-            //indexAxis: "y", //cambiar de posicion el grafico
-            scales: {
-              x: {
-                grid: {
-                  drawOnChartArea: false,
-                },
-              },
-              y: {
-                ticks: {
-                  beginAtZero: true,
-                  maxTicksLimit: 5,
-                  stepSize: Math.ceil(250 / 5),
-                  max: 100,
-                },
+            y: {
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 5,
+                stepSize: Math.ceil(250 / 5),
+                max: 100,
               },
             },
-            elements: {
-              line: {
-                tension: 0.4,
-              },
-              point: {
-                radius: 0,
-                hitRadius: 10,
-                hoverRadius: 4,
-                hoverBorderWidth: 3,
-              },
+          },
+          elements: {
+            line: {
+              tension: 0.4,
             },
-            animation: {
-              oncomplete: function (animation) {
-                var firstSet = animation.chart.config.data.datasets[0].data,
-                  dataSum = firstSet.reduce(
-                    (accumulator, currentValue) => accumulator + currentValue
-                  );
-                /* console.log("firstSet: " + firstSet);
+            point: {
+              radius: 0,
+              hitRadius: 10,
+              hoverRadius: 4,
+              hoverBorderWidth: 3,
+            },
+          },
+          animation: {
+            oncomplete: function (animation) {
+              var firstSet = animation.chart.config.data.datasets[0].data,
+                dataSum = firstSet.reduce(
+                  (accumulator, currentValue) => accumulator + currentValue
+                );
+              /* console.log("firstSet: " + firstSet);
                 console.log("datasum: " + dataSum);
 
                 if (dataSum === 0) {
@@ -149,34 +143,33 @@ function traerTrabajosxMes() {
                   document.getElementById("no-data").style.display = "block";
                   document.getElementById("miCanvas").style.display = "none";
                 } */
-              },
             },
           },
-        });
-        var firstSet = myChart.config.data.datasets[0].data;
-        var ejex = myChart.config.data.labels;
-        var dataSum = firstSet.reduce(
-          (accumulator, currentValue) => accumulator + currentValue
-        );
-        var colrs = myChart.config.data.datasets[0].backgroundColor;
-        var template = "";
-        //console.log("firstset:" + firstSet);
-        //console.log("datasum: " + dataSum);
-        var foot = document.getElementById("Foot1-content");
-        for (let index = 0; index < ejex.length; index++) {
-          var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
-          //console.log("("+ejex[index]+","+firstSet[index]+")=> "+perc+"% "+"c: "+colrs[index]+"");
-          //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
-          template += `<div class="col mb-sm-2 mb-0">
-          <div class="text-medium-emphasis">Visits</div>
+        },
+      });
+      var firstSet = myChart.config.data.datasets[0].data;
+      var ejex = myChart.config.data.labels;
+      var dataSum = firstSet.reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      );
+      var colrs = myChart.config.data.datasets[0].backgroundColor;
+      var template = "";
+      //console.log("firstset:" + firstSet);
+      //console.log("datasum: " + dataSum);
+      var foot = document.getElementById("Foot1-content");
+      for (let index = 0; index < ejex.length; index++) {
+        var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
+        //console.log("("+ejex[index]+","+firstSet[index]+")=> "+perc+"% "+"c: "+colrs[index]+"");
+        //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
+        template += `<div class="col mb-sm-2 mb-0">
+          <div class="text-medium-emphasis"></div>
           <div class="fw-semibold">${ejex[index]}: ${firstSet[index]}  (${perc}%)</div>
           <div class="progress progress-thin mt-2">
             <div class="progress-bar" role="progressbar" style="width: ${perc}%; background-color:${colrs[index]}" aria-valuenow="${perc}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>`;
-        }
-        foot.innerHTML = template;
       }
+      foot.innerHTML = template;
     }
   };
   ajax.send(data);
@@ -272,8 +265,8 @@ function traerTrabajosXArea() {
         var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
         //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
         template += `<div class="col mb-sm-2 mb-0">
-          <div class="text-medium-emphasis">Visits</div>
-          <div class="fw-semibold">${firstSet[index]} ${ejex[index]} (${perc}%)</div>
+          <div class="text-medium-emphasis"></div>
+          <div class="fw-semibold">${ejex[index]}: ${firstSet[index]}  (${perc}%)</div>
           <div class="progress progress-thin mt-2">
             <div class="progress-bar" role="progressbar" style="width: ${perc}%; background-color:${colrs[index]}" aria-valuenow="${perc}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>

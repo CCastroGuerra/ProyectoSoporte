@@ -21,7 +21,7 @@ $consultaFecha->execute();
 $resultadoFecha = $consultaFecha->fetch(PDO::FETCH_ASSOC);
 $fechaRegistro = $resultadoFecha['Fecha'];
 
-$consulta1 = "SELECT e.id_equipos,te.nombre_tipo_equipo,
+$consulta1 = "SELECT e.cod_equipo,e.id_equipos,te.nombre_tipo_equipo,
         m.nombre_marca,
         mo.nombre_modelo,
         e.serie,
@@ -54,7 +54,7 @@ if ($cantidadFilas == 2) {
     $equipo1ID = $equipo1[0]['id_equipos'];
     //echo $equipo1ID;
     // echo $equipo1ID;
-    $consultaComponentes2 = "SELECT tc.nombre_tipo_componente,
+    $consultaComponentes2 = "SELECT c.id_componentes, tc.nombre_tipo_componente,
     mar.nombre_marca,
     mo.nombre_modelo,
     ec.serie_id,
@@ -81,7 +81,7 @@ if ($cantidadFilas == 2) {
     mar.nombre_marca,
     mo.nombre_modelo,
     ec.serie_id,
-    es.nombre_estado
+    es.nombre_estado,
     FROM equipo_componentes ec
     INNER JOIN componentes c ON c.tipo_componentes_id = ec.id_equipo_componentes
     INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
@@ -93,7 +93,8 @@ if ($cantidadFilas == 2) {
     $consultaComponentes3 = $conectar->prepare($consultaComponentes3);
     $consultaComponentes3->execute();
     $resultadoComponentes3 = $consultaComponentes3->fetchAll(PDO::FETCH_ASSOC);
-    //  print_r($resultadoComponentes3);
+    //print_r($resultadoComponentes3);
+    //echo $resultadoComponentes3;
 } else {
     for ($i = 0; $i < $cantidadFilas; $i++) {
         array_push($equipo1, $resultado1[$i]);
@@ -297,6 +298,7 @@ if ($cantidadFilas == 2) {
         <table class="tabla" border="default">
             <tr>
                 <th>UD</th>
+                <th>CODIGO</th>
                 <th>EQUIPO</th>
                 <th>MARCA</th>
                 <th>MODELO</th>
@@ -307,6 +309,7 @@ if ($cantidadFilas == 2) {
             <tr>
                 <?php foreach ($equipo1 as $equipo) { ?>
                     <td>01</td>
+                    <td><?php echo $equipo['cod_equipo'] ?></td>
                     <td><?php echo $equipo['nombre_tipo_equipo'] ?></td>
                     <td><?php echo $equipo['nombre_marca'] ?></td>
                     <td><?php echo $equipo['nombre_modelo'] ?></td>
@@ -319,6 +322,7 @@ if ($cantidadFilas == 2) {
             <?php if (!empty($resultadoComponentes2)) { ?>
                 <?php foreach ($resultadoComponentes2 as $resultado2) { ?>
                     <td>01</td>
+                    <td>-</td>
                     <td><?php echo $resultado2['nombre_tipo_componente'] ?></td>
                     <td><?php echo $resultado2['nombre_marca'] ?></td>
                     <td><?php echo $resultado2['nombre_modelo'] ?></td>

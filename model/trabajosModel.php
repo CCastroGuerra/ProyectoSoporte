@@ -248,7 +248,7 @@ class Trabajos extends Conectar
         OR eq.margesi LIKE '%$textoBusqueda%'
         OR a.nombre_area LIKE '%$textoBusqueda%'
      )
-     ORDER BY NombreResponsable, YEAR(t.fecha_alta) ASC, MONTH(t.fecha_alta) ASC
+     ORDER BY  YEAR(t.fecha_alta) ASC, MONTH(t.fecha_alta) desc
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();

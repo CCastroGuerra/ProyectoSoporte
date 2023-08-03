@@ -139,10 +139,10 @@ class Componente extends Conectar
     }
 
 
-    public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect)
+    public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect')";
+        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`,` 	tipo_alimentacion`,`tipo_conector `) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect','$tipoAlimentaco','$tipoConector')";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';

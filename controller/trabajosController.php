@@ -110,6 +110,8 @@ switch ($accion) {
                 $output['fecha'] = $row["Fecha"];
             }
             echo json_encode($output);
+        } else {
+            echo 'error';
         }
         break;
     case "inserTablaTempActualizar":

@@ -855,17 +855,28 @@ function imprimir(idTrabajo) {
   data.append("accion", "mostrarEnTabla");
   ajax.onload = function () {
     let respuesta = ajax.responseText;
-    console.log(respuesta);
-    let datos = JSON.parse(respuesta);
-    console.log(datos.idTipoTrabajo);
-    let link;
-    if (datos.idTipoTrabajo == 0) {
-      link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
+    if (respuesta != "error") {
+      console.log(respuesta);
+      let datos = JSON.parse(respuesta);
+      console.log(datos.idTipoTrabajo);
+      let link;
+      if (datos.idTipoTrabajo == 0) {
+        link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
+      } else {
+        link = "../view/reporteImpresora.php?id=" + idTrabajo;
+      }
+      window.open(link, "_blank");
+      //document.getElementById("nombre").value = datos.nombrePersonal;
     } else {
-      link = "../view/reporteImpresora.php?id=" + idTrabajo;
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Error, no tiene servicios registrados",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      console.log("Error, no tiene servicios registrados");
     }
-    window.open(link, "_blank");
-    //document.getElementById("nombre").value = datos.nombrePersonal;
   };
   ajax.send(data);
 }

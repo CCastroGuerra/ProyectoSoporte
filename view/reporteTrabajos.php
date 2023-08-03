@@ -178,7 +178,8 @@ INNER JOIN area a ON a.id_area = t.area_id
 INNER JOIN servicios s ON s.id_servicios = ts.servicio_id
 INNER JOIN tipo_equipo te ON te.id_tipo_equipo = eq.tipo_equipo_id
 WHERE ts.esActivo = 1 AND t.es_activo = 1
-GROUP BY t.id_trabajos, eq.id_equipos;");
+GROUP BY t.id_trabajos, eq.id_equipos
+ORDER BY id_trabajos asc;");
     $sql->execute();
     $listaTrabajos = $sql->fetchAll(PDO::FETCH_ASSOC);
     $totalTrabajos = count($listaTrabajos);
