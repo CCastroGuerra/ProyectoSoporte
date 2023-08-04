@@ -37,6 +37,3 @@ switch($accion){
             //var_dump($_POST);
             $modelo ->buscarModelo(intval($_POST['pag']));
 }
-
-
-?>

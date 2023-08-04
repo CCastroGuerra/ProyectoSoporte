@@ -480,6 +480,7 @@ function mostrarEnModal(componenteId) {
     //document.getElementById("Fecha").value = datos.fecha;
     document.getElementById("selAlim").value = datos.tipoAlimentacion;
     document.getElementById("conector").value = datos.tipoConector;
+    document.getElementById("inMargesi").value = datos.margesi;
     document.getElementById("inputCodigo").value = datos.id;
   };
   ajax.send(data);
@@ -495,6 +496,7 @@ function actualizar(id) {
   let capacidad = document.getElementById("capacidad").value;
   let estado = document.getElementById("selEstado").value;
   let tipoAalimentacion = document.getElementById("selAlim").value;
+  let margesi = document.getElementById("inMargesi").value;
   let conector = document.getElementById("conector").value;
   //let fecha = document.getElementById("Fecha").value;
   // Obtener los valores actualizados desde los elementos del modal
@@ -525,6 +527,7 @@ function actualizar(id) {
         data.append("estado", estado);
         data.append("selAlim", tipoAalimentacion);
         data.append("conector", conector);
+        data.append("inMargesi", margesi);
         //data.append("fecha", fecha);
         data.append("accion", "actualizar");
         ajax.onload = function () {

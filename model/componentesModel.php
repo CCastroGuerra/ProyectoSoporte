@@ -139,10 +139,10 @@ class Componente extends Conectar
     }
 
 
-    public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
+    public function agregarComponetes($componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $margesi, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
     {
         $conectar = parent::conexion();
-        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`componentes_capacidad`, `estado_id`,`tipo_alimentacion`,`tipo_conector`) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$capacidad','$estadoSelect','$tipoAlimentaco','$tipoConector')";
+        $sql = "INSERT INTO `componentes`( `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`,`margesi `,`componentes_capacidad`, `estado_id`,`tipo_alimentacion`,`tipo_conector`) VALUES ('$componenteSelect','$claseSelect','$marcaSelect','$modeloSelect','$serie','$margesi','$capacidad','$estadoSelect','$tipoAlimentaco','$tipoConector')";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -151,7 +151,7 @@ class Componente extends Conectar
         }
     }
 
-    public function actulizarComponentes($idComponentes, $componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
+    public function actulizarComponentes($idComponentes, $componenteSelect, $claseSelect, $marcaSelect, $modeloSelect, $serie, $margesi, $capacidad, $estadoSelect, $tipoAlimentaco, $tipoConector)
     {
         $conectar = parent::conexion();
         $sql = "UPDATE componentes
@@ -161,6 +161,7 @@ class Componente extends Conectar
                marca_id=?,
                modelo_id=?,
                serie = ?,
+               margesi = ?,
                componentes_capacidad = ?,
                estado_id = ?,
                tipo_alimentacion =?,
@@ -173,11 +174,12 @@ class Componente extends Conectar
         $sql->bindValue(3, $marcaSelect);
         $sql->bindValue(4, $modeloSelect);
         $sql->bindValue(5, $serie);
-        $sql->bindValue(6, $capacidad);
-        $sql->bindValue(7, $estadoSelect);
-        $sql->bindValue(8, $tipoAlimentaco);
-        $sql->bindValue(9, $tipoConector);
-        $sql->bindValue(10, $idComponentes);
+        $sql->bindValue(6, $margesi);
+        $sql->bindValue(7, $capacidad);
+        $sql->bindValue(8, $estadoSelect);
+        $sql->bindValue(9, $tipoAlimentaco);
+        $sql->bindValue(10, $tipoConector);
+        $sql->bindValue(11, $idComponentes);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -211,6 +213,7 @@ class Componente extends Conectar
         modelo_id,
         m.nombre_modelo,
         serie,
+        margesi,
         componentes_capacidad,
         estado_id,
         e.nombre_estado,
