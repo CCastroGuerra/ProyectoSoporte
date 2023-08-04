@@ -67,13 +67,18 @@ include('../templates/cabecera.php');
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="mb-2"># Serie:</label>
-                                    <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie" maxlength="16">
+                                    <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie" maxlength="40">
                                     <small class="alerta" id="alerta5"></small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="inMargesi" class="mb-2">Margesi:</label>
+                                    <input type="text" class="form-control mb-2" id="inMargesi" name="inMargesi" placeholder="Ingrese serie" maxlength="40">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="mb-2">Capacidad:</label>
-                                    <input type="text" class="form-control mb-2" id="capacidad" name="capacidad" placeholder="Ingrese capacidad">
+                                    <input type="text" class="form-control mb-2" id="capacidad" name="capacidad" placeholder="Ingrese capacidad" value="0">
                                     <small class="alerta" id="alerta6"></small>
                                 </div>
 
