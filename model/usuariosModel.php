@@ -80,11 +80,11 @@ class Usuario extends Conectar
             $sql = "SELECT id_usuario,p.dni_personal, p.apellidos_personal, p.nombre_personal, cargo_personal,
             CASE
             WHEN cargo_personal = 0 THEN 'Vacio'
-            WHEN cargo_personal = 1 THEN 'Administrador'
+            WHEN cargo_personal = 1 THEN 'Usuario del sistema'
             WHEN cargo_personal = 2
-            THEN 'Practicante'
+            THEN 'Usuario de equipo'
             WHEN cargo_personal = 3
-            THEN 'Secretaria'
+            THEN 'Auditor'
             WHEN cargo_personal = 4 THEN 'Técnico'
                     END as cargoPersonal,u.nombre_usuario
                             FROM personal p
@@ -92,10 +92,10 @@ class Usuario extends Conectar
                             WHERE u.esActivo = 1 AND (nombre_personal LIKE '%$textoBusqueda%' OR 
                             cargo_personal = CASE
             WHEN 'Vacio' LIKE '%$textoBusqueda%' THEN 0
-            WHEN 'Administrador' LIKE '%$textoBusqueda%' THEN 1
-            WHEN 'Practicante' LIKE '%$textoBusqueda%' 
+            WHEN 'Usuario del sistema' LIKE '%$textoBusqueda%' THEN 1
+            WHEN 'Usuario de equipo' LIKE '%$textoBusqueda%' 
             THEN 2
-            WHEN 'Secretaria' LIKE '%$textoBusqueda%' 
+            WHEN 'Auditor' LIKE '%$textoBusqueda%' 
             THEN 3
             WHEN 'Técnico' LIKE '%$textoBusqueda%'  THEN 4
                 
