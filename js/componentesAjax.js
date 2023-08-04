@@ -339,6 +339,7 @@ function buscarComponente() {
                       <td>${componentes.nombreModelo}</td>
                       <td>${componentes.serie}</td>
                       <td>${componentes.capacidad}</td>
+                      <td>${componentes.tipoConector}</td>
                       <td>${componentes.estado}</td>
                       <td style="${dispostyle} font-weight: bold;">${disponible}</td>
                       <td>${componentes.Fecha}</td>
