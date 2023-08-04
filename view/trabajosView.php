@@ -64,7 +64,7 @@ include('../templates/cabecera.php');
                                             <div class="mb-2 row">
                                                 <div class="col-lg-8 col-sm-8">
                                                     <label for="nroSerie">
-                                                        Codigo de Equipo:
+                                                        Código de Equipo:
                                                     </label>
                                                 </div>
                                                 <div class="text-center col-lg-4 col-sm-4">
@@ -76,23 +76,23 @@ include('../templates/cabecera.php');
 
                                                 </div>
                                             </div>
-                                            <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese # de Serie">
+                                            <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese código de equipo">
                                             <small class="alerta" id="alserie"></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="marquesi" class="mb-2">Marquesi:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="marquesi" name="marquesi" placeholder="Ingrese el Marquesi">
+                                            <input type="text" class="form-control form-control-sm mb-2" id="marquesi" name="marquesi" placeholder="">
                                             <small class="alerta" id="almargesi" disabled></small>
                                         </div>
                                         <div class="form-group">
                                             <label for="nombreUsuario" class="mb-2">Responsable del Equipo:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese el Area" disabled>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="nombreUsuario" name="nombreUsuario" placeholder="" disabled>
                                             <small class="alerta" id="alusuario"></small>
-                                            <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="nombreUsuarioID" name="nombreUsuarioID" placeholder="Ingrese el AreaId">
+                                            <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="nombreUsuarioID" name="nombreUsuarioID" placeholder="">
                                         </div>
                                         <div class="form-group">
-                                            <label for="selArea" class="mb-2">Area:</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" id="selArea" name="selArea" placeholder="Ingrese el Area" disabled>
+                                            <label for="selArea" class="mb-2">Área:</label>
+                                            <input type="text" class="form-control form-control-sm mb-2" id="selArea" name="selArea" placeholder="" disabled>
                                             <small class="alerta" id="alarea"></small>
                                             <input type="text" class="visually-hidden form-control form-control-sm mb-2" id="selAreaID" name="selAreaID" placeholder="Ingrese el AreaId">
                                         </div>
@@ -135,7 +135,7 @@ include('../templates/cabecera.php');
                                             <small class="alerta" id="altecnico"></small>
                                         </div>
                                         <div class="form-group">
-                                            <label for="textSolucion" class="form-label">Solucion:</label>
+                                            <label for="textSolucion" class="form-label">Solución:</label>
                                             <textarea class="form-control" id="textSolucion" name="textSolucion" rows="3" id="solucion" name="solucion" maxlength="550"></textarea>
                                             <small class="alerta" id="alsolucion"></small>
                                         </div>
