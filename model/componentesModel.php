@@ -260,7 +260,7 @@ class Componente extends Conectar
             OR nombre_modelo LIKE '$textoBusqueda%'
             OR serie LIKE '$textoBusqueda%' 
             OR componentes_capacidad LIKE '$textoBusqueda%'
-            OR nombre_estado LIKE '$textoBusqueda%'     
+            OR nombre_estado LIKE '$textoBusqueda%'  
             ORDER BY tp.nombre_tipo_componente ASC , YEAR(fecha_alta) ASC, MONTH(fecha_alta) ASC LIMIT $inicio,$limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
