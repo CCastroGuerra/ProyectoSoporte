@@ -171,6 +171,7 @@ include('../templates/cabecera.php');
                                 <tr>
 
                                     <th scope="col"><strong>Tipo</strong></th>
+                                    <th scope="col"><strong>Clase</strong></th>
                                     <th scope="col"><strong>Marca</strong></th>
                                     <th scope="col"><strong>Modelo</strong></th>
                                     <th scope="col"><strong># Serie</strong></th>
