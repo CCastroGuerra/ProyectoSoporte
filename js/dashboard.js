@@ -184,13 +184,13 @@ function traerTrabajosXArea() {
   ajax.onload = function () {
     const colores = [];
     let area = [];
-    let cantidad = [];
+    let cantidad2 = [];
     realizado = ajax.responseText;
     if (realizado == "") {
       //execute
       //console.log("vacio");
       area.push(null);
-      cantidad.push(null);
+      cantidad2.push(null);
       document.getElementById("miCanvas").setAttribute("style", "display:none");
       document.getElementById("no-data2").style.display = "block";
     } else {
