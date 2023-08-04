@@ -67,6 +67,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
   //console.log("el modal fue levantado por: " + button.id);
   var modalTitle = modal.querySelector(".modal-title");
   var ofr = document.querySelectorAll("#formAcomponente .alerta");
+  frmComponentes.reset();
   ofr.forEach((element) => {
     element.innerText = "";
   });
