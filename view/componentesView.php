@@ -70,10 +70,10 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control mb-2" id="serie" name="serie" placeholder="Ingrese serie" maxlength="40">
                                     <small class="alerta" id="alerta5"></small>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="inMargesi" class="mb-2">Margesi:</label>
-                                    <input type="text" class="form-control mb-2" id="inMargesi" name="inMargesi" placeholder="Ingrese serie" maxlength="40">
+                                    <input type="text" class="form-control mb-2" id="inMargesi" name="inMargesi" placeholder="Ingrese Margesi" maxlength="40">
                                 </div>
 
                                 <div class="form-group">
@@ -171,11 +171,11 @@ include('../templates/cabecera.php');
                                 <tr>
 
                                     <th scope="col"><strong>Tipo</strong></th>
-                                    <th scope="col"><strong>Clase</strong></th>
                                     <th scope="col"><strong>Marca</strong></th>
                                     <th scope="col"><strong>Modelo</strong></th>
                                     <th scope="col"><strong># Serie</strong></th>
                                     <th scope="col"><strong>Capacidad</strong></th>
+                                    <th scope="col"><strong>Conector</strong></th>
                                     <th scope="col"><strong>Estado</strong></th>
                                     <th scope="col"><strong>Disponible</strong></th>
                                     <th scope="col"><strong>Fecha</strong></th>
@@ -184,15 +184,36 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbComponentes">
                                 <tr>
-                                    <td>tipo 1</td>
-                                    <td>clase 1</td>
-                                    <td>marca 1</td>
-                                    <td>modelo 1</td>
-                                    <td>##########</td>
-                                    <td>16 tb</td>
-                                    <td>nuevo</td>
-                                    <td>02/05/2023</td>
-                                    <td>[ ] [ ] [ ]</td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-6"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-1"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
                                 </tr>
 
                             </tbody>
