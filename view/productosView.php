@@ -226,7 +226,6 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="visually-hidden"><strong>#</strong></th>
                                     <th scope="col"><strong>Codigo</strong></th>
                                     <th scope="col"><strong>Nombre</strong></th>
                                     <th scope="col"><strong>Tipo</strong></th>
@@ -237,7 +236,15 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbProductos">
-
+                                <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -142,12 +142,12 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbBajas">
                                 <tr>
-                                    <td>01</td>
-                                    <td>Equipo 01</td>
-                                    <td>Area 01</td>
-                                    <td>Motivo</td>
-                                    <td>Fecha</td>
-                                    <td>[] [] []</td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
                                 </tr>
                             </tbody>
 

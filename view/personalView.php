@@ -142,14 +142,14 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
                                 </tr>
                             </thead>
                             <tbody id="tbPersonal">
-                                <tr>
-                                    <td scope="col">Viera Burneo</td>
-                                    <td scope="col">Cristian</td>
-                                    <td scope="col">73376279</td>
-                                    <td scope="col">977256520</td>
-                                    <td scope="col">nexcris95@gmail.com</td>
-                                    <td scope="col">Practicante</td>
-                                    <td scope="col">[][][]</td>
+                                <tr>                                    
+                                    <td><p class="placeholder-glow"><span class="placeholder col-6"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-6"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-5"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-10"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-7"></span></p></td>
                                 </tr>
                             </tbody>
                         </table>

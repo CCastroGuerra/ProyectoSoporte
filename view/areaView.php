@@ -98,7 +98,10 @@ include('../templates/cabecera.php');
               </tr>
             </thead>
             <tbody id="tbArea">
-
+              <tr>
+                <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
+                <td><p class="placeholder-glow"><span class="placeholder col-10"></span></p></td>              
+              </tr>
             </tbody>
           </table>
           <!-- Paginador Inicio -->

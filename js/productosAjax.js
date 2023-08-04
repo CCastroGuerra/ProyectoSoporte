@@ -449,7 +449,7 @@ function buscarProducto() {
         }
         template += `
         <tr class="${classtyle}">
-             <td class="visually-hidden" >${producto.nro}</td>
+            
             <td>${producto.codigo}</td>
             <td>${producto.nombre}</td>
             <td>${producto.tipo}</td>

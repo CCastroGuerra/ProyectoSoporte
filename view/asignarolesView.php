@@ -115,11 +115,11 @@ if(!rolespermitidos.includes(ro.dataset.sess)){
                                 </tr>
                             </thead>
                             <tbody id="tbRoles">
-                                <tr>
-                                    <td>Nombre 1</td>
-                                    <td>Apellidos 1</td>
-                                    <td>Rol 1</td>
-                                    <td>[] [] []</td>
+                                <tr>                                    
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
                                 </tr>
                             </tbody>
                         </table>

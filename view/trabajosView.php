@@ -291,14 +291,14 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbTrabajos">
                                 <tr>
-                                    <td>01</td>
-                                    <td>48961871</td>
-                                    <td>14768498</td>
-                                    <td>Usuario</td>
-                                    <td>Administración</td>
-                                    <td>Técnico 1</td>
-                                    <td>27/04/2023</td>
-                                    <td>[][][]</td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
                                 </tr>
                             </tbody>
                         </table>

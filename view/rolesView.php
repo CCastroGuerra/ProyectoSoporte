@@ -29,7 +29,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btncerrar" data-coreui-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" >Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
 
                 </div>
             </form>
@@ -92,9 +92,12 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbRoles">
                                 <tr>
-                                    <td>01</td>
-                                    <td>Rol 1</td>
-                                    <td>[] [] []</td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-10"></span></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

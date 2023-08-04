@@ -133,9 +133,11 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbInventario">
-                                <td>01</td>
-                                <td>Producto 1</td>
-                                <td>##</td>
+                                <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                </tr>
                             </tbody>
                         </table>
                         <!-- Paginador Inicio -->
@@ -190,9 +192,10 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbEntradas">
-                                <td>01</td>
-                                <td>Producto 1</td>
-                                <td>###</td>
+                                <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                </tr>
                             </tbody>
                         </table>
                         <!-- Paginador Inicio -->
@@ -246,9 +249,10 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbSalidas">
-                                <td>01</td>
-                                <td>Producto 1</td>
-                                <td>####</td>
+                                <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                </tr>
                             </tbody>
                         </table>
                         <!-- Paginador Inicio -->

@@ -103,6 +103,11 @@ include('../templates/cabecera.php');
                 </tr>
               </thead>
               <tbody id="tbMarca">
+                                <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                </tr>
               </tbody>
             </table>
 

@@ -107,6 +107,20 @@ include('../templates/cabecera.php');
               </thead>
               <tbody id="tbModelo">
                 <tr>
+                  <td>
+                    <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                  </td>
+                </tr>
+                <tr>
                   <td>01</td>
                   <td>Modelo 01</td>
                   <td>Marca A</td>

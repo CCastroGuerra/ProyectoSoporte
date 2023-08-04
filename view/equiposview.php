@@ -368,6 +368,19 @@ include('../templates/cabecera.php');
                                 </tr>
                             </thead>
                             <tbody id="tbEquipos">
+                                <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                </tr>
 
                             </tbody>
                         </table>

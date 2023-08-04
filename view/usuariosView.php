@@ -127,12 +127,12 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbUsuarios">
                                 <tr>
-                                    <td scope="col">PER73376279</td>
-                                    <td scope="col">Viera Burneo</td>
-                                    <td scope="col">Cristian</td>
-                                    <td scope="col">Practicante</td>
-                                    <td scope="col">cvieraburneo</td>
-                                    <td scope="col">[][][]</td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-5"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>                
+                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
+                                    <td><p class="placeholder-glow"><span class="placeholder col-5"></span></p></td>
                                 </tr>
                             </tbody>
                         </table>

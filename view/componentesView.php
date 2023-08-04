@@ -124,7 +124,7 @@ include('../templates/cabecera.php');
 <!-- Fin del modal  -->
 
 <!-- Tabla -->
-<div class="col-md-12 col-lg-12 ">
+<div class="body flex-grow-1 px-0">
     <div class="row ">
         <div class="col-xs-1-12">
             <div class="card">
@@ -165,7 +165,7 @@ include('../templates/cabecera.php');
                     </div>
                     <!-- /encabezado--->
 
-                    <div class="table-responsive">
+                    <div class="table-responsive ">
                         <table class="table table-hover align-middle" id="tableModal">
                             <thead>
                                 <tr>
@@ -185,6 +185,25 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbComponentes">
                                 <tr>
+                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-10"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-5"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
                                     <td>
                                         <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
                                     </td>
@@ -192,28 +211,10 @@ include('../templates/cabecera.php');
                                         <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
                                     </td>
                                     <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
                                     </td>
                                     <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-6"></span></p>
-                                    </td>
-                                    <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
-                                    </td>
-                                    <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
-                                    </td>
-                                    <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-1"></span></p>
-                                    </td>
-                                    <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
-                                    </td>
-                                    <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
-                                    </td>
-                                    <td>
-                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
                                     </td>
                                 </tr>
 
