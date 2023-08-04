@@ -329,7 +329,7 @@ function mostrarEnModal(marcaId) {
     let respuesta = ajax.responseText;
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
-    //console.log(datos);
+    console.log(datos);
     document.getElementById("nombreMarca").value = datos.nombre;
     document.getElementById("selMarca").value = datos.nombreCategoria;
     document.getElementById("codigoMarca").value = datos.id;

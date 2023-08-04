@@ -76,10 +76,13 @@ class Marca extends Conectar
     {
         $conectar = parent::conexion();
         //$sql="SELECT * FROM area WHERE id_area = ?";
-        $sql = "SELECT @con := @con + 1 as NRO, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria, m.categoria_marca_id
-        FROM marca AS m
-        cross join(select @con := 0) r
-        INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria where m.id_marca = ?";
+        // $sql = "SELECT @con := @con + 1 as NRO, m.id_marca, m.nombre_marca, c.nombre_categoria AS nombre_categoria, m.categoria_marca_id
+        // FROM marca AS m
+        // cross join(select @con := 0) r
+        // INNER JOIN categoria AS c ON m.categoria_marca_id = c.id_categoria where m.id_marca = ?";
+        $sql = "SELECT nombre_marca,m.categoria_marca_id ,cm.nombre_categoria_marca FROM marca m
+        INNER JOIN categoria_marca cm ON m.categoria_marca_id = cm.id_categoria_marca
+        WHERE esActivo = 1 and id_marca = ?;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idMarca);
         $sql->execute();
