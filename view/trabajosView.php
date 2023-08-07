@@ -73,7 +73,6 @@ include('../templates/cabecera.php');
                                                             VER
                                                         </a>
                                                     </span>
-
                                                 </div>
                                             </div>
                                             <input type="search" class="form-control form-control-sm mb-2" id="nroSerie" name="nroSerie" placeholder="Ingrese código de equipo">
@@ -113,9 +112,23 @@ include('../templates/cabecera.php');
                                             <small class="alerta" id="almodelo"></small>
                                         </div>
                                         <div class="form-group">
-                                            <label for="consumible" class="mb-2" style="display: none;" id="labelConsumible">Consumible</label>
-                                            <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible" style="display: none;">
-                                            <small class="alerta" id="alComsumible"></small>
+                                            <div class="mb-2 row">
+                                                <div class="col-sm-8">
+                                                    <label for="consumible" class="mb-2" style="display: none;" id="labelConsumible">Consumible</label>
+                                                </div>
+                                                <!--  -->
+                                                <div class="text-center col-lg-4 col-sm-4">
+                                                    <span class="d-inline-block" tabindex="0" data-coreui-toggle="popover" data-coreui-trigger="hover focus" data-coreui-content="Disabled popover">
+                                                        <a href="reportesProductosImpresora.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
+                                                            VER
+                                                        </a>
+                                                    </span>
+
+                                                </div>
+                                                <!--  -->
+                                                <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible" style="display: none;">
+                                                <small class="alerta" id="alComsumible"></small>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="fallaObservada" class="mb-2">Falla observada:</label>
@@ -291,14 +304,30 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbTrabajos">
                                 <tr>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-4"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-3"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-2"></span></p></td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-4"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-3"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-2"></span></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

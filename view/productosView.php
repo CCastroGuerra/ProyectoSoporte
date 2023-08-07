@@ -121,6 +121,7 @@ include('../templates/cabecera.php');
                                             <option value="2">Componente</option>
                                             <option value="3">Herramienta</option>
                                             <option value="4">Insumo</option>
+                                            <option value="5">Insumo Impresora</option>
                                         </select>
                                         <small class="form-text text-muted alerta" id="alerta2"></small>
                                     </div>
@@ -237,13 +238,27 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbProductos">
                                 <tr>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
