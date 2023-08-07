@@ -63,6 +63,37 @@ class Usuario extends Conectar
         }
     }
 
+    public function traerUsuarioXId($idUsuario)
+    {
+        $conectar = parent::conexion();
+        $sql = "SELECT u.id_usuario ,p.dni_personal, u.nombre_usuario FROM usuario u 
+        INNER JOIN personal p ON u.personal_id = p.id_personal
+        WHERE id_usuario = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $idUsuario);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
+    public function actulizarUsuario($idUsuario, $usuario, $contraseña)
+    {
+        $conectar = parent::conexion();
+        $login = new Login();
+        $cryptpass = $login->encriptar($contraseña);
+        $sql = "UPDATE usuario
+            SET
+            nombre_usuario= ?,
+            usuario_password = ?
+            WHERE
+            id_usuario = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $usuario);
+        $sql->bindValue(2, $cryptpass);
+        $sql->bindValue(3, $idUsuario);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
     public function buscarUsuario($pagina = 1)
     {
         $cantidadXHoja = 5;

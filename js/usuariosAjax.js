@@ -64,6 +64,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
   console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
+  //console.log(button);
   console.log("el modal fue levantado por: " + button.id);
   var modalTitle = modal.querySelector(".modal-title");
   var msgal = document.querySelectorAll("#formEmpleados .alerta");
@@ -73,10 +74,13 @@ modal.addEventListener("show.coreui.modal", (event) => {
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
+      codpersonal.disabled = false;
       frmUsuario.reset();
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
+
+      codpersonal.disabled = true;
       break;
   }
 });
@@ -87,7 +91,10 @@ frmUsuario.onsubmit = function (e) {
   e.preventDefault();
   if (frmUsuario.querySelector("#inputCodigo").value !== "") {
     //console.log("actualizo");
-    //actualizar(id);
+    actualizar(id);
+    setTimeout(function () {
+      $("#añadirUsuario").modal("hide");
+    }, 3000);
   } else {
     if (codpersonal.value.trim().length == 0) {
       vcod = 0;
@@ -224,7 +231,8 @@ function buscarUsuario() {
                 
                 <button type="button" onClick='eliminar("${usuario.id}")' class="btn btn-danger pelim" data-fila="${usuario.id}"><i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
-  
+                <button type="button" id="btnEditar" onClick='mostrarEnModal("${usuario.id}")' class="btn btn-info btn-outline" data-fila="${usuario.id}" data-coreui-toggle="modal" data-coreui-target="#añadirUsuario" ><i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
+                </button>
                 </td>
             </tr>
             `;
@@ -257,6 +265,63 @@ function buscarUsuario() {
     }
   };
   ajax.send(data);
+}
+
+function mostrarEnModal(usuarioId) {
+  id = usuarioId;
+  console.log(id);
+  const ajax = new XMLHttpRequest();
+  ajax.open("POST", "../controller/usuariosController.php", true);
+  const data = new FormData();
+  data.append("id", id);
+  data.append("accion", "mostrar");
+  ajax.onload = function () {
+    let respuesta = ajax.responseText;
+    console.log(respuesta);
+    let datos = JSON.parse(respuesta);
+    document.getElementById("codPersonal").value = datos.dni;
+    document.getElementById("username").value = datos.nombreUsuario;
+    document.getElementById("inputCodigo").value = datos.id;
+  };
+  ajax.send(data);
+}
+
+function actualizar(id) {
+  const usuario = document.getElementById("username").value;
+  const contraseña = document.getElementById("userpass").value;
+
+  swal
+    .fire({
+      title: "AVISO DEL SISTEMA",
+      text: "¿Desea actualizar el registro?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "../controller/usuariosController.php", true);
+        const data = new FormData();
+        data.append("id", id);
+        data.append("username", usuario);
+        data.append("userpass", contraseña);
+        data.append("accion", "actualizar");
+        ajax.onload = function () {
+          console.log(ajax.responseText);
+          buscarUsuario();
+          swal.fire(
+            "Actualizado!",
+            "El registro se actualizó correctamente.",
+            "success"
+          );
+        };
+        cajaBuscar.value = "";
+        ajax.send(data);
+      }
+    });
 }
 
 function eliminar(id) {

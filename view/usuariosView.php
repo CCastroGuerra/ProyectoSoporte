@@ -127,12 +127,24 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbUsuarios">
                                 <tr>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-5"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>                
-                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder col-5"></span></p></td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-5"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder col-5"></span></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
