@@ -187,7 +187,9 @@ class Producto extends Conectar
             OR cantidad_productos LIKE '%$textoBusqueda%'
             OR codigo_productos LIKE '%$textoBusqueda%'
              ORDER BY id_productos $sLimit"; */
-            $sql = "SELECT @con :=@con + 1 as nro, id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo' END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p
+            $sql = "SELECT @con :=@con + 1 as nro, id_productos ,codigo_productos, nombre_productos, CASE WHEN tipo_productos = 1 THEN 'Equipo' WHEN tipo_productos = 2 THEN 'Componente' WHEN tipo_productos = 3 THEN 'Herramienta' WHEN tipo_productos = 4 THEN 'Insumo'
+            WHEN tipo_productos = 5 THEN 'Insumo Impresora'
+             END as Tipo, pre.nombre_presentacion, cantidad_productos, CASE WHEN almacen_id = 1 THEN 'Almacen 1' WHEN almacen_id = 2 THEN 'Almacen 2' WHEN almacen_id = 3 THEN 'Almacen 3' END as Almacen, descripcion_productos FROM productos p
              cross join(select @con := 0) r
               INNER JOIN presentacion pre ON p.presentacion_productos = pre.id_presentacion WHERE esActivo = 1  AND (nombre_productos LIKE '%$textoBusqueda%' OR codigo_productos LIKE '%$textoBusqueda%' 
               OR
@@ -195,7 +197,8 @@ class Producto extends Conectar
                 WHEN 'Equipo' LIKE '%$textoBusqueda%'  THEN 1 
                 WHEN 'Componente' LIKE '%$textoBusqueda%' THEN 2 
                 WHEN 'Herramienta' LIKE '%$textoBusqueda%' THEN 3
-                WHEN 'Insumo' LIKE '%$textoBusqueda%' THEN 4  END 
+                WHEN 'Insumo' LIKE '%$textoBusqueda%' THEN 4 
+                WHEN 'Insumo Impresora' LIKE '%$textoBusqueda%' THEN 5 END 
                 OR cantidad_productos LIKE '%$textoBusqueda%'
                 OR
                 almacen_id  = CASE 
@@ -235,7 +238,8 @@ class Producto extends Conectar
                 WHEN 'Equipo' LIKE '%$textoBusqueda%'  THEN 1 
                 WHEN 'Componente' LIKE '%$textoBusqueda%' THEN 2 
                 WHEN 'Herramienta' LIKE '%$textoBusqueda%' THEN 3
-                WHEN 'Insumo' LIKE '%$textoBusqueda%' THEN 4  END 
+                WHEN 'Insumo' LIKE '%$textoBusqueda%' THEN 4
+                WHEN 'Insumo Impresora' LIKE '%$textoBusqueda%' THEN 5  END 
                 OR cantidad_productos LIKE '%$textoBusqueda%'
                 OR
                 almacen_id  = CASE 
