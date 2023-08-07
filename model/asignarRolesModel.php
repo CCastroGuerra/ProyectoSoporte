@@ -26,7 +26,7 @@ class asignarRoles extends Conectar
         $sql = "SELECT id_personal, apellidos_personal, nombre_personal, u.id_usuario
         FROM personal p 
         INNER JOIN usuario u ON u.personal_id = p.id_personal
-        WHERE dni_personal = ?";
+        WHERE dni_personal = ? and u.esActivo=1";
 
         $fila = $conectar->prepare($sql);
         $fila->bindValue(1, $dni);
