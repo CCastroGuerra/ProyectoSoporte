@@ -71,7 +71,7 @@ if ($cantidadFilas == 2) {
     $consultaComponentes2->execute();
     $resultadoComponentes2 = $consultaComponentes2->fetchAll(PDO::FETCH_ASSOC);
     //print_r($resultadoComponentes2);
-
+    //echo $resultadoComponentes2;
     /****EQUIPO 2****/
     //print_r($equipo1);
     $equipo2ID = $equipo2[0]['id_equipos'];
@@ -81,6 +81,7 @@ if ($cantidadFilas == 2) {
     mar.nombre_marca,
     mo.nombre_modelo,
     ec.serie_id,
+    c.margesi,
     es.nombre_estado,
     FROM equipo_componentes ec
     INNER JOIN componentes c ON c.tipo_componentes_id = ec.id_equipo_componentes
@@ -88,6 +89,7 @@ if ($cantidadFilas == 2) {
     INNER JOIN marca mar ON mar.id_marca = c.marca_id
     INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
     INNER JOIN estado es ON c.estado_id = es.id_estado
+    INNER JOIN equipos e ON e.id_equipos = ec.equipo_id
     WHERE ec.`esActivo` = 1
     AND equipo_id = $equipo2ID;";
     $consultaComponentes3 = $conectar->prepare($consultaComponentes3);
@@ -102,10 +104,24 @@ if ($cantidadFilas == 2) {
     //print_r($resultado1);
     $equipoID = $resultado1[0]['id_equipos'];
     //echo $equipoID;
+    // $consultaComponentes = "SELECT tc.nombre_tipo_componente,
+    // mar.nombre_marca,
+    // mo.nombre_modelo,
+    // ec.serie_id,
+    // es.nombre_estado
+    // FROM equipo_componentes ec
+    // INNER JOIN componentes c ON c.serie = ec.serie_id
+    // INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
+    // INNER JOIN marca mar ON mar.id_marca = c.marca_id
+    // INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
+    // INNER JOIN estado es ON c.estado_id = es.id_estado
+    // WHERE ec.`esActivo` = 1
+    // AND equipo_id = $equipoID;";
     $consultaComponentes = "SELECT tc.nombre_tipo_componente,
     mar.nombre_marca,
     mo.nombre_modelo,
     ec.serie_id,
+    c.margesi,
     es.nombre_estado
     FROM equipo_componentes ec
     INNER JOIN componentes c ON c.serie = ec.serie_id
@@ -113,11 +129,13 @@ if ($cantidadFilas == 2) {
     INNER JOIN marca mar ON mar.id_marca = c.marca_id
     INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
     INNER JOIN estado es ON c.estado_id = es.id_estado
+    
     WHERE ec.`esActivo` = 1
     AND equipo_id = $equipoID;";
     $consultaComponentes = $conectar->prepare($consultaComponentes);
     $consultaComponentes->execute();
     $resultadoComponentes2 = $consultaComponentes->fetchAll(PDO::FETCH_ASSOC);
+    //print_r($resultadoComponentes2);
 }
 
 // $consulta = "SELECT te.nombre_tipo_equipo,
@@ -327,7 +345,7 @@ if ($cantidadFilas == 2) {
                     <td><?php echo $resultado2['nombre_marca'] ?></td>
                     <td><?php echo $resultado2['nombre_modelo'] ?></td>
                     <td><?php echo $resultado2['serie_id'] ?></td>
-                    <td>-</td>
+                    <td><?php echo $resultado2['margesi'] ?></td>
                     <td><?php echo $resultado2['nombre_estado'] ?></td>
 
         </tr>
@@ -371,7 +389,7 @@ if ($cantidadFilas == 2) {
                     <td><?php echo $resultado3['nombre_marca'] ?></td>
                     <td><?php echo $resultado3['nombre_modelo'] ?></td>
                     <td><?php echo $resultado3['serie_id'] ?></td>
-                    <td>-</td>
+                    <td><?php echo $resultado3['margesi'] ?></td>
                     <td><?php echo $resultado3['nombre_estado'] ?></td>
             </tr>
 
