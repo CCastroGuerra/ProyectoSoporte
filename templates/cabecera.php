@@ -138,9 +138,9 @@
 
   }
 
-  .sidebar.sidebar-dark.sidebar-fixed.sidebar-narrow-unfoldable .sidebar-brand-full{
+  .sidebar.sidebar-dark.sidebar-fixed.sidebar-narrow-unfoldable .sidebar-brand-full {
     width: 100% !important;
-    display:block;
+    display: block;
   }
 </style>
 <script>
@@ -169,7 +169,7 @@
       <!-- <h2 class="cssFont_1">Soporte Técnico</h2> -->
       <a href="../view/dashboardView-cv.php">
         <img src="../img/soportelogo.png" class="sidebar-brand-full" alt="Soporte Técnico">
-        
+
       </a>
     </div>
 
@@ -381,12 +381,12 @@
               </a>
               <div class="dropdown-menu dropdown-menu-end pt-0">
                 <div class="dropdown-header bg-light py-2">
-                  <div class="fw-semibold">Account</div>
+                  <div class="fw-semibold">Cuenta</div>
                 </div>
                 <a class="dropdown-item" href="../logout.php">
                   <svg class="icon me-2">
                     <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Logout</a>
+                  </svg> Cerrar sesion</a>
               </div>
             </li>
           </ul>
