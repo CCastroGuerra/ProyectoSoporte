@@ -119,7 +119,7 @@ include('../templates/cabecera.php');
                                                 <!--  -->
                                                 <div class="text-center col-lg-4 col-sm-4">
                                                     <span class="d-inline-block" tabindex="0" data-coreui-toggle="popover" data-coreui-trigger="hover focus" data-coreui-content="Disabled popover">
-                                                        <a href="reportesProductosImpresora.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
+                                                        <a id="btnVer" href="reportesProductosImpresora.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important; display: none;">
                                                             VER
                                                         </a>
                                                     </span>

@@ -58,7 +58,11 @@ var bsol = 0;
 var brecom = 0;
 var contro = 0;
 /*******************************************************/
+const btnVer = document.getElementById("btnVer");
+const input = document.getElementById("consumible");
+const inputLabel = document.getElementById("labelConsumible");
 
+btnVer.style.display = "none";
 /*****************estilo de las alertas****************/
 let msgal = document.querySelectorAll(".alerta");
 msgal.forEach((element) => {
@@ -348,6 +352,9 @@ function mostrarDatosEquipoXSerie() {
       document.getElementById("selMarca").value = "";
       document.getElementById("selModelo").value = "";
       document.getElementById("selEquipoValue").value = "";
+      btnVer.style.display = "none";
+      input.style.display = "none";
+      inputLabel.style.display = "none";
     } else {
       alserie.innerText = "";
       let datos = JSON.parse(respuesta);
@@ -362,22 +369,27 @@ function mostrarDatosEquipoXSerie() {
       document.getElementById("selMarca").value = datos.nombreMarca;
       document.getElementById("selModelo").value = datos.nombreModelo;
       document.getElementById("selEquipoValue").value = datos.tipoId;
-
+      btnVer.style.display = "block";
+      input.style.display = "block";
+      inputLabel.style.display = "block";
       // Obtener el elemento del input
       const valor = document.getElementById("selEquipoValue").value;
-      const input = document.getElementById("consumible");
-      const inputLabel = document.getElementById("labelConsumible");
+      // const input = document.getElementById("consumible");
+      // const inputLabel = document.getElementById("labelConsumible");
+
       //console.log("valor del input " + valor);
       // Verificar si el valor es igual a "2"
       if (valor === "2") {
         // Si el valor es "2", mostramos el input
         //console.log("Mostrnado el input");
         input.style.display = "block";
+        btnVer.style.display = "block";
         inputLabel.style.display = "block";
       } else {
         // Si el valor no es "2", ocultamos el input
         input.style.display = "none";
         inputLabel.style.display = "none";
+        btnVer.style.display = "none";
       }
     }
   };
@@ -724,8 +736,8 @@ function mostrarEnModal(trabajoId) {
     document.getElementById("consumible").value = datos.codigoProducto;
     // Obtener el elemento del input
     const valor = document.getElementById("selEquipoValue").value;
-    const input = document.getElementById("consumible");
-    const inputLabel = document.getElementById("labelConsumible");
+    // const input = document.getElementById("consumible");
+    // const inputLabel = document.getElementById("labelConsumible");
     console.log("valor del input " + valor);
     // Verificar si el valor es igual a "2"
     if (valor === "2") {
@@ -733,10 +745,12 @@ function mostrarEnModal(trabajoId) {
       console.log("Mostrnado el input");
       input.style.display = "block";
       inputLabel.style.display = "block";
+      btnVer.style.display = "block";
     } else {
       // Si el valor no es "2", ocultamos el input
       input.style.display = "none";
       inputLabel.style.display = "none";
+      btnVer.style.display = "none";
     }
   };
   //guardarTempParaActualizar();
@@ -834,6 +848,9 @@ function cerrarEditar() {
     if (realizado * 1 > 0) {
       console.log("Se borro datos de temporal");
       //listarTablaTemp();
+      btnVer.style.display = "none";
+      input.style.display = "none";
+      inputLabel.style.display = "none";
     }
   };
   //frmTrabajos.reset();
