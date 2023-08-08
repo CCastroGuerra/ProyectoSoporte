@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-08-2023 a las 15:38:41
+-- Tiempo de generación: 08-08-2023 a las 16:50:03
 -- Versión del servidor: 8.0.33
 -- Versión de PHP: 8.2.5
 
@@ -20,59 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_fechasyrel`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `componentes`
---
-
-CREATE TABLE `componentes` (
-  `id_componentes` int NOT NULL COMMENT 'primary key',
-  `tipo_componentes_id` int DEFAULT NULL,
-  `clase_componentes_id` int DEFAULT NULL,
-  `marca_id` int DEFAULT NULL,
-  `modelo_id` int DEFAULT NULL,
-  `serie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `margesi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `componentes_capacidad` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
-  `estado_id` int DEFAULT NULL,
-  `producto_id` int DEFAULT NULL,
-  `tipo_alimentacion` int NOT NULL DEFAULT '1',
-  `tipo_conector` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'VGA',
-  `es_activo` int NOT NULL DEFAULT '1',
-  `fecha_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fecha_borrado` timestamp NULL DEFAULT NULL,
-  `fecha_modify` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `componentes`
---
-
-INSERT INTO `componentes` (`id_componentes`, `tipo_componentes_id`, `clase_componentes_id`, `marca_id`, `modelo_id`, `serie`, `margesi`, `componentes_capacidad`, `estado_id`, `producto_id`, `tipo_alimentacion`, `tipo_conector`, `es_activo`, `fecha_alta`, `fecha_borrado`, `fecha_modify`) VALUES
-(1, 6, 2, 28, 5, '304NDUNB5382', '', '0', 3, NULL, 2, 'VGA', 1, '2023-08-04 14:35:19', NULL, '2023-08-04 15:07:48'),
-(2, 6, 2, 18, 81, 'ADV4021N22A030699', '', '0', 1, NULL, 2, 'VGA', 1, '2023-08-04 14:38:42', NULL, '2023-08-04 15:08:29'),
-(3, 6, 2, 19, 90, 'CM-07XJH5-FCC00-07G-A22I-A08', '', '0', 1, NULL, 1, 'VGA', 1, '2023-08-04 14:45:10', NULL, '2023-08-04 15:08:44'),
-(4, 6, 2, 27, 104, 'V2001848', '740881870011', '0', 3, NULL, 1, 'VGA', 1, '2023-08-04 14:47:28', NULL, '2023-08-04 15:21:36'),
-(5, 6, 2, 28, 108, '201NTTQ0F897', '740880370051', '0', 1, NULL, 2, 'HDMI', 1, '2023-08-04 14:50:12', NULL, '2023-08-04 15:21:00'),
-(6, 2, 2, 1, 1, 'test67238768gug', '', '0', 1, NULL, 1, 'VGA', 1, '2023-08-04 15:09:58', NULL, NULL);
-
---
--- Disparadores `componentes`
---
-DELIMITER $$
-CREATE TRIGGER `COMPONENTE_ISACTIVO_BEFORE_LASTUPDATE` BEFORE UPDATE ON `componentes` FOR EACH ROW BEGIN
-	IF(old.es_activo <> new.es_activo) THEN
-    	IF(new.es_activo = 0) THEN 
-        	SET new.fecha_borrado = CURRENT_TIMESTAMP;
-         ELSE SET new.fecha_borrado = null;
-        END IF;
-    END IF;
-
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -122,7 +69,8 @@ INSERT INTO `marca` (`id_marca`, `nombre_marca`, `categoria_marca_id`, `esActivo
 (30, 'Samsung', 1, 1),
 (31, 'VIEWSONIC', 1, 1),
 (32, 'WIDE', 1, 1),
-(33, 'GENERICO', 4, 1);
+(33, 'GENERICO', 4, 1),
+(34, 'TEST2', 4, 0);
 
 --
 -- Disparadores `marca`
@@ -164,7 +112,6 @@ INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `marca_id`, `esActivo`) VALU
 (10, 'Sin Modelo', 1, 1),
 (11, 'Sin Modelo', 2, 1),
 (12, 'Sin Modelo', 3, 1),
-(13, 'Sin Modelo', 1, 0),
 (14, 'Sin Modelo', 4, 1),
 (15, 'Sin Modelo', 5, 1),
 (16, 'Sin Modelo', 6, 1),
@@ -284,22 +231,13 @@ INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `marca_id`, `esActivo`) VALU
 (130, 'VS14768', 31, 1),
 (131, 'Sin modelo', 32, 1),
 (132, 'IDP2400WD', 32, 1),
-(133, 'Sin modelo', 33, 1);
+(133, 'Sin modelo', 33, 1),
+(134, 'Sin modelo', 34, 1),
+(135, 'TEST2', 11, 0);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `componentes`
---
-ALTER TABLE `componentes`
-  ADD PRIMARY KEY (`id_componentes`),
-  ADD KEY `tipo_componentes_id` (`tipo_componentes_id`),
-  ADD KEY `producto_id` (`producto_id`),
-  ADD KEY `modelo_id` (`modelo_id`),
-  ADD KEY `estado_id` (`estado_id`),
-  ADD KEY `clase_componentes_id` (`clase_componentes_id`);
 
 --
 -- Indices de la tabla `marca`
@@ -320,36 +258,20 @@ ALTER TABLE `modelo`
 --
 
 --
--- AUTO_INCREMENT de la tabla `componentes`
---
-ALTER TABLE `componentes`
-  MODIFY `id_componentes` int NOT NULL AUTO_INCREMENT COMMENT 'primary key', AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int NOT NULL AUTO_INCREMENT COMMENT 'primary key', AUTO_INCREMENT=34;
+  MODIFY `id_marca` int NOT NULL AUTO_INCREMENT COMMENT 'primary key', AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id_modelo` int NOT NULL AUTO_INCREMENT COMMENT 'primary key', AUTO_INCREMENT=134;
+  MODIFY `id_modelo` int NOT NULL AUTO_INCREMENT COMMENT 'primary key', AUTO_INCREMENT=136;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `componentes`
---
-ALTER TABLE `componentes`
-  ADD CONSTRAINT `componentes_ibfk_1` FOREIGN KEY (`tipo_componentes_id`) REFERENCES `tipo_componentes` (`id_tipo_componentes`),
-  ADD CONSTRAINT `componentes_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_productos`),
-  ADD CONSTRAINT `componentes_ibfk_3` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id_modelo`),
-  ADD CONSTRAINT `componentes_ibfk_4` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id_estado`),
-  ADD CONSTRAINT `componentes_ibfk_5` FOREIGN KEY (`clase_componentes_id`) REFERENCES `clase_componentes` (`id_clase_componentes`);
 
 --
 -- Filtros para la tabla `marca`
