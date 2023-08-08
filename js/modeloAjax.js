@@ -178,6 +178,7 @@ function buscarModelo() {
       });
       var elemento = document.getElementById("tbModelo");
       elemento.innerHTML = template;
+      Secretaria();
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 
@@ -333,6 +334,7 @@ function buscarModelo() {
       });
       var elemento = document.getElementById("tbModelo");
       elemento.innerHTML = template;
+      Secretaria();
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 

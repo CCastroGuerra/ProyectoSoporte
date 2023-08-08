@@ -935,6 +935,7 @@ function buscarEquipo() {
       });
       var elemento = document.getElementById("tbEquipos");
       elemento.innerHTML = template;
+      Secretaria();
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 
@@ -990,6 +991,8 @@ function mostrarEnModal(equipoID) {
     });
 
     document.getElementById("selTipoEquipo").value = datos.nombreTipo;
+    document.getElementById("nomEquipo").value = datos.nombreEquipo;
+    document.getElementById("usLocal").value= datos.usuarioLocal;
     document.getElementById("serie").value = datos.serie;
     document.getElementById("margesi").value = datos.margesi;
     document.getElementById("respValue").value = datos.nombrePersonalId;

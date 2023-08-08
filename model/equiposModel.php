@@ -453,7 +453,7 @@ class Equipos extends Conectar
             //     $pagina = 1;
             // }
             $inicio = ($pagina - 1) * $limit;
-            $sql = "SELECT id_equipos,cod_equipo,e.area_id,a.nombre_area,e.marca_id, mar.nombre_marca,e.modelo_id,mo.nombre_modelo,serie,margesi, ip,mac,e.estado_id, est.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha from equipos e
+            $sql = "SELECT id_equipos,cod_equipo,nombre_equipo,usuario_local,e.area_id,a.nombre_area,e.marca_id, mar.nombre_marca,e.modelo_id,mo.nombre_modelo,serie,margesi, ip,mac,e.estado_id, est.nombre_estado,DATE_FORMAT(fecha_alta,'%d/%m/%y') as Fecha from equipos e
             INNER JOIN tipo_equipo tp ON e.tipo_equipo_id = tp.id_tipo_equipo
             INNER JOIN marca mar ON mar.id_marca = e.marca_id
             INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
@@ -484,6 +484,8 @@ class Equipos extends Conectar
                     $listado[] = array(
                         "id" => $marca["id_equipos"],
                         "codigo" => $marca["cod_equipo"],
+                        "nombreEquipo"=>$marca["nombre_equipo"],
+                        "usuariolocal"=>$marca["usuario_local"],
                         "nombreArea" => $marca["nombre_area"],
                         'nombreMarca' => $marca["nombre_marca"],
                         'nombreModelo' => $marca["nombre_modelo"],
@@ -647,6 +649,8 @@ class Equipos extends Conectar
         $conectar = parent::conexion();
         $sql = "SELECT e.id_equipos,
         e.cod_equipo,
+        e.nombre_equipo,
+        e.usuario_local,
         tc.id_tipo_equipo,
         tc.nombre_tipo_equipo,
         e.serie,

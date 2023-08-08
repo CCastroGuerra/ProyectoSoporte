@@ -277,6 +277,7 @@ function buscarMarca() {
       });
       var elemento = document.getElementById("tbMarca");
       elemento.innerHTML = template;
+      Secretaria();
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 

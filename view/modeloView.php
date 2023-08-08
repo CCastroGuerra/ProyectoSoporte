@@ -152,7 +152,6 @@ include('../templates/cabecera.php');
 <!--contenido-->
 
 <script src="../js/modeloAjax.js"></script>
-
 <script src="../js/sesionAjax.js"></script>
 <?php
 include '../templates/footer.php';

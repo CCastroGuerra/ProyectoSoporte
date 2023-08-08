@@ -1,3 +1,4 @@
+$.getScript("../js/sesionAjax.js");
 var valorBuscar = "";
 var numPagina = 1;
 listarSelectComponentes();
@@ -360,6 +361,7 @@ function buscarComponente() {
       });
       var elemento = document.getElementById("tbComponentes");
       elemento.innerHTML = template;
+      Secretaria();
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 

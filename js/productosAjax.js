@@ -1,3 +1,5 @@
+$.getScript("../js/sesionAjax.js");
+
 let numPagina = 1;
 let id = "";
 let clickBuscar = false;
@@ -469,6 +471,7 @@ function buscarProducto() {
       });
       var elemento = document.getElementById("tbProductos");
       elemento.innerHTML = template;
+      Secretaria();
 
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
@@ -498,6 +501,7 @@ function buscarProducto() {
   };
 
   ajax.send(data);
+ 
 }
 
 /*BUSCAR PRESENTACION*/
@@ -734,3 +738,25 @@ pagFinalPre.addEventListener("click", function (e) {
   buscarPresentacion();
   pagFinalPre.blur();
 });
+/* 
+
+function Secretaria() {
+  var el = document.getElementById("sessRol");
+  el.dataset.sess;
+  var rolespermitidos = ["1"];
+  var ro = document.getElementById("sessRol");
+  var permSecretaria = ["2"];
+  //console.log("funcion secretaria");
+  if (permSecretaria.includes(ro.dataset.sess)) {
+    //console.log("susuario secretaria");
+    botonEliminar = document.querySelectorAll(".pelim");
+    botonEdit = document.querySelectorAll("#btnEditar");
+    botonEdit.forEach((element) => {
+      element.disabled = true;
+    });
+    botonEliminar.forEach((element) => {
+      element.disabled = true;
+    });
+  }
+}
+ */

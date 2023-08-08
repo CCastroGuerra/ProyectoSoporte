@@ -477,7 +477,7 @@ function buscarMovimientos() {
                     </button>
                 </div>
                 <div class="col-lg-1 col-sm-1 px-0">
-                  <button class="btn" style="background-color: red" type="button" onClick='eliminar("${movimientos.id}")' id="btnEliminar">
+                  <button class="btn pelim" style="background-color: red" type="button" onClick='eliminar("${movimientos.id}")' id="btnEliminar">
                   <i class="fa fa-times" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -491,6 +491,7 @@ function buscarMovimientos() {
       });
       var elemento = document.getElementById("tbTrabajos");
       elemento.innerHTML = template;
+      Secretaria();
       document.getElementById("txtPagVista").value = numPagina;
       document.getElementById("txtPagTotal").value = datos.paginas;
 

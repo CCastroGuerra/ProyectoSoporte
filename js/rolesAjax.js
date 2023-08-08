@@ -141,6 +141,7 @@ function buscarRol() {
       });
       var elemento = document.getElementById("tbRoles");
       elemento.innerHTML = template;
+      Secretaria();
       // document.getElementById('txtPagVista').value = numPagina;
       // document.getElementById('txtPagTotal').value = datos.paginas;
       /* Mostrando mensaje de los registros*/

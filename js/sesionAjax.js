@@ -19,7 +19,7 @@ $("#tbComponentes").bind("MutationObserver", function () {
   //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
- 
+
 $("#tbBajas").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbBajas tr");
   //console.log("la tabla cambió, componentes: " + tabla.length);
@@ -64,16 +64,44 @@ $("#tbServicio").bind("MutationObserver", function () {
 */
 
 function Secretaria() {
-  var permSecretaria = ["2"];
+  var rolespermitidos = ["1"];
+  var ro = document.getElementById("sessRol");//obtiene el rol de quien se a logueado
+  var permSecretaria = ["2","3","4"];
+  var permAdmin =["1"];
+  //console.log("funcion secretaria");
   if (permSecretaria.includes(ro.dataset.sess)) {
     //console.log("susuario secretaria");
-    botonEliminar = document.querySelectorAll(".pelim");
-    botonEdit = document.querySelectorAll("#btnEditar");
+    sinEliminar();
+  }
+  if (permAdmin.includes(ro.dataset.sess)) {
+    conEdicion();
+    conEliminar();
+  }
+}
+
+function sinEdicion(){
+  botonEdit = document.querySelectorAll("#btnEditar");
     botonEdit.forEach((element) => {
       element.disabled = true;
     });
+}
+
+function conEdicion() {
+  botonEdit = document.querySelectorAll("#btnEditar");
+    botonEdit.forEach((element) => {
+      element.disabled = false;
+    });
+}
+
+function sinEliminar(){
+  botonEliminar = document.querySelectorAll(".pelim");    
     botonEliminar.forEach((element) => {
       element.disabled = true;
     });
-  }
+}
+function conEliminar() {
+  botonEliminar = document.querySelectorAll(".pelim");    
+    botonEliminar.forEach((element) => {
+      element.disabled = false;
+    });
 }
