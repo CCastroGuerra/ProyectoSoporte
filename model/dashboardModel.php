@@ -14,6 +14,7 @@ class Dashboard extends Conectar
             WHEN p.tipo_productos = 2 THEN 'Componente'
             WHEN p.tipo_productos = 3 THEN 'Herramienta'
             WHEN p.tipo_productos = 4 THEN 'Insumo'
+            WHEN p.tipo_productos = 5 THEN 'Insumo Impresora'
         END) as Tipo,
         p.cantidad_productos,
         p.presentacion_productos,
@@ -82,6 +83,5 @@ class Dashboard extends Conectar
         $fila = $conectar->prepare($sql);
         $fila->execute();
         return $resultado = $fila->fetchAll();
-        
     }
 }
