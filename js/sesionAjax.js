@@ -10,7 +10,7 @@ var ro = document.getElementById("sessRol");
 */
 $("#tbProductos").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbProductos tr");
-  //console.log("la tabla cambió: " + tabla.length);
+  console.log("la tabla cambió: " + tabla.length);
   Secretaria();
 });
 
@@ -19,7 +19,7 @@ $("#tbComponentes").bind("MutationObserver", function () {
   //console.log("la tabla cambió, componentes: " + tabla.length);
   Secretaria();
 });
-
+ 
 $("#tbBajas").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbBajas tr");
   //console.log("la tabla cambió, componentes: " + tabla.length);
