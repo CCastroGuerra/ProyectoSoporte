@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal Servicio -->
-<div class="modal fade" id="servicioModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="servicioModalLabel" aria-hidden="true">
+<div class="modal fade" id="servicioModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="servicioModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,24 +20,29 @@ include('../templates/cabecera.php');
                   <label for="inputCodigo" class="control-label">Código</label>
                   <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Ingrese el Código">
                 </div>
-                <label for="nombreServicio" class="mb-2">Nombre:</label>
-                <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
                 <div class="form-group mb-2">
-                <label for="selecTipo" class="mb-2">Tipo:</label>
-                <select class="form-select" aria-label="Default select example" id="selecTipo" name="selecTipo">
-                  <option selected>Seleccione tipo</option>
-                  <option value="1">Para PC</option>
-                  <option value="2">Para impresora</option>
-                  <option value="3">Varios</option>
-                </select>
+                  <label for="nombreServicio" class="mb-2">Nombre:</label>
+                  <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
+                  <div class="alerta" id="alerta1"></div>
                 </div>
                 <div class="form-group mb-2">
-                <input class="form-check-input" type="checkbox" id="checkConsumible" style="accent-color: white" />
-                <label for="checkConsumible"> Requiere consumible</label>
+                  <label for="selecTipo" class="mb-2">Tipo:</label>
+                  <select class="form-select" aria-label="Default select example" id="selecTipo" name="selecTipo">
+                    <option value="0" selected>Seleccione tipo</option>
+                    <option value="1">Para PC</option>
+                    <option value="2">Para impresora</option>
+                    <option value="3">Varios</option>
+                  </select>
+                  <div class="alerta" id="alerta2"></div>
                 </div>
-                
-                
-                <div id="alerta"></div>
+                <div class="form-group mb-2">
+                  <input class="form-check-input" type="checkbox" id="checkConsumible" name="checkConsumible" style="accent-color: white" />
+                  <label for="checkConsumible"> Requiere consumible</label>
+
+                </div>
+
+
+                <div class="alerta" id="alerta"></div>
 
               </div>
             </div>
@@ -107,8 +112,12 @@ include('../templates/cabecera.php');
             </thead>
             <tbody id="tbServicio">
               <tr>
-                <td><p class="placeholder-glow"><span class="placeholder col-8"></span></p></td>
-                <td><p class="placeholder-glow"><span class="placeholder col-10"></span></p></td>              
+                <td>
+                  <p class="placeholder-glow"><span class="placeholder col-8"></span></p>
+                </td>
+                <td>
+                  <p class="placeholder-glow"><span class="placeholder col-10"></span></p>
+                </td>
               </tr>
             </tbody>
           </table>
