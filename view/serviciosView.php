@@ -27,7 +27,7 @@ include('../templates/cabecera.php');
                 </div>
                 <div class="form-group mb-2">
                   <label for="selecTipo" class="mb-2">Tipo:</label>
-                  <select class="form-select" aria-label="Default select example" id="selecTipo" name="selecTipo">
+                  <select class="form-select mb-2" aria-label="Default select example" id="selecTipo" name="selecTipo">
                     <option value="0" selected>Seleccione tipo</option>
                     <option value="1">Para PC</option>
                     <option value="2">Para impresora</option>

@@ -5,50 +5,39 @@ console.log(numPagina);
 buscarServicio();
 //listarServicio();
 //Evento para el checkBox
-const checkboxTinta = document.getElementById("checkboxTinta");
-const checkboxToner = document.getElementById("checkboxToner");
-const checkboxCinta = document.getElementById("checkboxCinta");
+const selTipo = document.getElementById("selecTipo");
+const nombreServicio = document.getElementById("nombreServicio");
 const labelText = document.getElementById("nombreServicio");
 
-checkboxTinta.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxTinta"]'
-    ).textContent;
+const alerta = frmServicio.querySelectorAll(".alerta");
+
+alerta.forEach((element) => {
+  element.setAttribute("style", "color:red !important");
+});
+
+nombreServicio.addEventListener("input", function () {
+  if (this.value.trim().length == 0) {
+    document.getElementById("alerta1").innerText =
+      "este campo no puede quedar vacío";
   } else {
-    labelText.value = "";
+    document.getElementById("alerta1").innerText = "";
   }
 });
 
-checkboxToner.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxToner"]'
-    ).textContent;
+selTipo.addEventListener("change", function () {
+  if (this.value == 0) {
+    document.getElementById("alerta2").innerText =
+      "Seleccione una opcíon válida";
   } else {
-    labelText.value = "";
+    document.getElementById("alerta2").innerText = "";
   }
 });
 
-checkboxCinta.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxCinta"]'
-    ).textContent;
-  } else {
-    labelText.value = "";
-  }
-});
 ///
 const modalp = frmServicio.parentNode.parentNode.parentNode.id;
-const alerta = frmServicio.querySelector("#alerta");
 const nombre_servicio = frmServicio.querySelector("#nombreServicio");
 const regla = new RegExp("[a-zA-Z]+$");
 
-alerta.style.color = "red";
-nombre_servicio.oninput = function (evento) {
-  alerta.innerText = "";
-};
 ////
 
 //cambiar titulo de modal
@@ -63,6 +52,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
   switch (button.id) {
     case "":
       modalTitle.textContent = "Guardar";
+      frmServicio.reset();
       break;
     case "btnEditar":
       modalTitle.textContent = "Editar";
@@ -72,6 +62,9 @@ modal.addEventListener("show.coreui.modal", (event) => {
 /**** */
 
 frmServicio.onsubmit = function (e) {
+  var err = 0;
+  var enom = 0;
+  var esel = 0;
   e.preventDefault();
   if (frmServicio.querySelector("#inputCodigo").value !== "") {
     actualizar(id);
@@ -80,18 +73,33 @@ frmServicio.onsubmit = function (e) {
     }, 3000);
     console.log("actualizo");
   } else {
-    if (nombre_servicio.value.trim().length > 0) {
-      if (regla.test(nombre_servicio.value)) {
-        guardarServicio();
-        buscarServicio();
-        console.log("guardo");
-        frmServicio.reset();
-        $("#" + modalp).modal("toggle");
-      } else {
-        alerta.innerText = "el campo solo acepta letras";
-      }
+    if (nombre_servicio.value.trim().length == 0) {
+      document.getElementById("alerta1").innerText =
+        "este campo no puede quedar vacío";
+      enom = 0;
     } else {
-      alerta.innerText = " el elemento no puede estar vacio";
+      document.getElementById("alerta1").innerText = "";
+      enom = 1;
+    }
+
+    if (selTipo.value == 0) {
+      document.getElementById("alerta2").innerText =
+        "Seleccione una opcíon válida";
+      esel = 0;
+    } else {
+      document.getElementById("alerta2").innerText = "";
+      esel = 1;
+    }
+
+    err = enom + esel;
+    console.log("completos: "+err);
+
+    if (err == 2) {
+      guardarServicio();
+      buscarServicio();
+      console.log("guardo");
+      frmServicio.reset();
+      $("#" + modalp).modal("toggle");
     }
     //guardarServicio();
   }
