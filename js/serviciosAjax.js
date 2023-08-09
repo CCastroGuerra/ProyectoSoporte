@@ -24,15 +24,15 @@ nombreServicio.addEventListener("input", function () {
   }
 });
 
-checkboxCinta.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxCinta"]'
-    ).textContent;
+selTipo.addEventListener("change", function () {
+  if (this.value == 0) {
+    document.getElementById("alerta2").innerText =
+      "Seleccione una opcíon válida";
   } else {
-    labelText.value = "";
+    document.getElementById("alerta2").innerText = "";
   }
 });
+
 ///
 const modalp = frmServicio.parentNode.parentNode.parentNode.id;
 const nombre_servicio = frmServicio.querySelector("#nombreServicio");
@@ -92,7 +92,7 @@ frmServicio.onsubmit = function (e) {
     }
 
     err = enom + esel;
-    console.log("completos: " + err);
+    console.log("completos: "+err);
 
     if (err == 2) {
       guardarServicio();
@@ -171,6 +171,7 @@ function buscarServicio() {
               
               <td>${servicio.nombre}</td>
               <td>${servicio.tipoTrabajo}</td>
+              
               <td>
                 
 
@@ -249,9 +250,7 @@ function mostrarEnModal(servicioId) {
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
     document.getElementById("nombreServicio").value = datos.nombre;
-    document.getElementById("selecTipo").value = datos.tipo;
     document.getElementById("inputCodigo").value = datos.id;
-    document.getElementById("checkConsumible").checked = datos.consumible;
   };
   ajax.send(data);
 }
