@@ -92,7 +92,7 @@ frmServicio.onsubmit = function (e) {
     }
 
     err = enom + esel;
-    console.log("completos: "+err);
+    console.log("completos: " + err);
 
     if (err == 2) {
       guardarServicio();
@@ -250,6 +250,8 @@ function mostrarEnModal(servicioId) {
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
     document.getElementById("nombreServicio").value = datos.nombre;
+    document.getElementById("selecTipo").value = datos.tipo;
+    document.getElementById("checkConsumible").checked = datos.consumible;
     document.getElementById("inputCodigo").value = datos.id;
   };
   ajax.send(data);
