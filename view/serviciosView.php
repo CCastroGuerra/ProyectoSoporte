@@ -22,12 +22,20 @@ include('../templates/cabecera.php');
                 </div>
                 <label for="nombreServicio" class="mb-2">Nombre:</label>
                 <input type="text" class="form-control mb-2" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del Servicio">
-                <input class="form-check-input" type="radio" name="checkboxTinta" id="checkboxTinta" value="1">
-                <label class="form-check-label" for="checkboxTinta">Cambio de Tinta</label>
-                <input class="form-check-input" type="radio" name="checkboxTinta" id="checkboxToner" value="2">
-                <label class="form-check-label" for="checkboxToner">Cambio de Toner</label>
-                <input class="form-check-input" type="radio" name="checkboxTinta" id="checkboxCinta" value="3">
-                <label class="form-check-label" for="checkboxCinta">Cambio de Cinta</label>
+                <div class="form-group mb-2">
+                <label for="selecTipo" class="mb-2">Tipo:</label>
+                <select class="form-select" aria-label="Default select example" id="selecTipo" name="selecTipo">
+                  <option selected>Seleccione tipo</option>
+                  <option value="1">Para PC</option>
+                  <option value="2">Para impresora</option>
+                  <option value="3">Varios</option>
+                </select>
+                </div>
+                <div class="form-group mb-2">
+                <input class="form-check-input" type="checkbox" id="checkConsumible" style="accent-color: white" />
+                <label for="checkConsumible"> Requiere consumible</label>
+                </div>
+                
                 
                 <div id="alerta"></div>
 
