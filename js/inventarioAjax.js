@@ -213,7 +213,7 @@ function entradaProductos() {
       guardarEntrada();
       console.log("Cantidad actualizada");
     } else {
-      swal.fire("AVISO DEL SISTEMA", "Error al registrar entrada", "error");
+      swal.fire("AVISO DEL SISTEMA", "Error al registrar entrada, Producto no existe", "error");
       console.log("Error al actualizar");
     }
   };

@@ -22,8 +22,8 @@ include('../templates/cabecera.php');
                         <div class="error-message" id="errorAccion"></div>
 
                         <label for="exampleInputEmail1" class="mb-2">Producto:</label>
-                        <!-- <input type="text" class="form-control is-invalid" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto"> -->
-                        <input type="text" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto">
+                        <!-- <input type="text" class="form-control is-invalid" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="Ingrese Producto"> --> 
+                        <input type="text" class="form-control mb-2" id="nombreproducto" name="nombreProducto" placeholder="P00#" maxlength="4">
                         <div class="error-message" id="errorProducto"></div>
 
                         <label for="cantidad" class="mb-2">Cantidad:</label>
