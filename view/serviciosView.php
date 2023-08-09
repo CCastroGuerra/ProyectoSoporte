@@ -107,6 +107,7 @@ include('../templates/cabecera.php');
             <thead>
               <tr>
                 <th scope="col"><strong>Nombre</strong></th>
+                <th scope="col"><strong>Objetivo</strong></th>
                 <th scope="col"><strong>Opciones</strong></th>
               </tr>
             </thead>

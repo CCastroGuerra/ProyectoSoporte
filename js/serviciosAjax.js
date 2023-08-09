@@ -5,41 +5,7 @@ console.log(numPagina);
 buscarServicio();
 //listarServicio();
 //Evento para el checkBox
-const checkboxTinta = document.getElementById("checkboxTinta");
-const checkboxToner = document.getElementById("checkboxToner");
-const checkboxCinta = document.getElementById("checkboxCinta");
-const labelText = document.getElementById("nombreServicio");
 
-checkboxTinta.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxTinta"]'
-    ).textContent;
-  } else {
-    labelText.value = "";
-  }
-});
-
-checkboxToner.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxToner"]'
-    ).textContent;
-  } else {
-    labelText.value = "";
-  }
-});
-
-checkboxCinta.addEventListener("change", function () {
-  if (this.checked) {
-    labelText.value = document.querySelector(
-      'label[for="checkboxCinta"]'
-    ).textContent;
-  } else {
-    labelText.value = "";
-  }
-});
-///
 const modalp = frmServicio.parentNode.parentNode.parentNode.id;
 const alerta = frmServicio.querySelector("#alerta");
 const nombre_servicio = frmServicio.querySelector("#nombreServicio");
@@ -162,6 +128,7 @@ function buscarServicio() {
             <tr>
               
               <td>${servicio.nombre}</td>
+              <td>${servicio.tipoTrabajo}</td>
               <td>
                 
 
@@ -240,7 +207,9 @@ function mostrarEnModal(servicioId) {
     console.log(respuesta);
     let datos = JSON.parse(respuesta);
     document.getElementById("nombreServicio").value = datos.nombre;
+    document.getElementById("selecTipo").value = datos.tipo;
     document.getElementById("inputCodigo").value = datos.id;
+    document.getElementById("checkConsumible").checked = datos.consumible;
   };
   ajax.send(data);
 }

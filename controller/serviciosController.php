@@ -10,7 +10,7 @@ switch ($accion) {
         break;
     case "guardar":
         var_dump($_POST);
-        $servicio->agregarServicio($_POST["nombreServicio"], $_POST['checkboxTinta']);
+        $servicio->agregarServicio($_POST["nombreServicio"], $_POST['selecTipo'], $_POST['checkConsumible']);
         break;
     case "mostrar":
         $datos = $servicio->traerServicioXId($_POST["id"]);
@@ -18,12 +18,14 @@ switch ($accion) {
             foreach ($datos as $row) {
                 $output['id'] = $row['id_servicios'];
                 $output['nombre'] = $row['nombre_servicios'];
+                $output['tipo'] = $row['tipoTrabajo'];
+                $output['consumible'] = $row['requiere_consumible'];
             }
             echo json_encode($output);
         }
         break;
     case "actualizar":
-        $servicio->actualizarServicio($_POST["id"], $_POST["nombre"]);
+        $servicio->actualizarServicio($_POST["id"], $_POST["nombre"], $_POST['selecTipo'], $_POST['checkConsumible']);
         echo "actualizado correctamente";
         break;
     case "eliminar":
