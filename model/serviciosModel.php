@@ -35,11 +35,11 @@ class Servicio extends Conectar
         }
     }
 
-    public function agregarServicio($nombreServicio, $tipoTrabajo)
+    public function agregarServicio($nombreServicio, $tipoTrabajo, $requiereConsumible)
     {
         $conectar = parent::conexion();
         // $tipoTrabajo = ($nombreServicio === "Cambio de tinta") ? 1 : 2; // Determina el valor de tipoTrabajo según el nombre del servicio
-        $sql = "INSERT INTO `servicios`(`nombre_servicios`,`tipoTrabajo`,`esActivo`) VALUES ('$nombreServicio','$tipoTrabajo', 1)";
+        $sql = "INSERT INTO `servicios`(`nombre_servicios`,`tipoTrabajo`,`requiere_consumible`,`esActivo`) VALUES ('$nombreServicio','$tipoTrabajo',if('$requiereConsumible' = 'on', 1,2), 1)";
         $fila = $conectar->prepare($sql);
         if ($fila->execute()) {
             echo '1';
@@ -48,24 +48,28 @@ class Servicio extends Conectar
         }
     }
 
-    public function actualizarServicio($idServicio, $nombreServicio)
+    public function actualizarServicio($idServicio, $nombreServicio, $tipoTrabajo, $requiereConsumible)
     {
         $conectar = parent::conexion();
         $sql = "UPDATE servicios
             SET
-               nombre_servicios=? 
+               nombre_servicios=?,
+               tipoTrabajo = ?,
+               requiere_consumible = ?
             WHERE
                 id_servicios = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $nombreServicio);
-        $sql->bindValue(2, $idServicio);
+        $sql->bindValue(2, $tipoTrabajo);
+        $sql->bindValue(3, $requiereConsumible);
+        $sql->bindValue(4, $idServicio);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
     public function traerServicioXId($idServicio)
     {
         $conectar = parent::conexion();
-        $sql = "SELECT * FROM servicios WHERE id_servicios = ? AND `esActivo` = 1;";
+        $sql = "SELECT id_servicios, nombre_servicios,tipoTrabajo,requiere_consumible FROM servicios WHERE id_servicios = ? AND `esActivo` = 1;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idServicio);
         $sql->execute();
@@ -103,7 +107,13 @@ class Servicio extends Conectar
             }
             $inicio = ($pagina - 1) * $limit;
             //echo $inicio;
-            $sql = "SELECT * FROM `servicios` WHERE esActivo = 1 AND nombre_servicios LIKE '$textoBusqueda%'  ORDER BY nombre_servicios LIMIT $inicio,$limit";
+            $sql = "SELECT id_servicios,nombre_servicios,tipoTrabajo, CASE
+            tipoTrabajo
+            WHEN 1 THEN 'Para PC'
+            WHEN 2 THEN 'Para impresora'
+            WHEN 3 THEN 'Varios'
+            
+        END AS tipoTrabajo FROM `servicios` WHERE esActivo = 1 AND nombre_servicios LIKE '$textoBusqueda%'  ORDER BY nombre_servicios LIMIT $inicio,$limit";
             $stmt = $conectar->prepare($sql);
             //echo $sql;
             //$stmt->bindValue(1, '%' . $textoBusqueda . '%');
@@ -118,11 +128,18 @@ class Servicio extends Conectar
                 foreach ($areas as $area) {
                     $listado[] = array(
                         "id" => $area["id_servicios"],
-                        "nombre" => $area["nombre_servicios"]
+                        "nombre" => $area["nombre_servicios"],
+                        "tipoTrabajo" => $area["tipoTrabajo"]
                     );
                 }
 
-                $sqlNroFilas = "SELECT count(id_servicios) as cantidad FROM `servicios` WHERE esActivo = 1 AND nombre_servicios LIKE '$textoBusqueda%'  ORDER BY nombre_servicios";
+                $sqlNroFilas = "SELECT count(id_servicios) as cantidad FROM `servicios` WHERE esActivo = 1 AND nombre_servicios LIKE '$textoBusqueda%' OR 
+                tipoTrabajo= CASE 
+                WHEN 'Para PC' LIKE '%$textoBusqueda%'  THEN 1 
+                WHEN 'Para impresora' LIKE '%$textoBusqueda%' THEN 2 
+                WHEN 'Varios' LIKE '%$textoBusqueda%' THEN 3
+                END
+                  ORDER BY nombre_servicios";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 

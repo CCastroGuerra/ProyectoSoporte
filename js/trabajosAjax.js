@@ -294,9 +294,9 @@ btnServicios.addEventListener("click", function (e) {
   let tipoEquipo = document.getElementById("selEquipoValue").value;
   console.log("Valor del tipo: " + tipoEquipo);
   if (tipoEquipo == "2") {
-    listarSelecServicios(" AND tipoTrabajo > 0");
+    listarSelecServicios(" AND tipoTrabajo in (2,3)");
   } else {
-    listarSelecServicios(" AND tipoTrabajo = 0");
+    listarSelecServicios(" AND tipoTrabajo in (1,3)");
   }
   console.log("Trabajo guardado");
 });
