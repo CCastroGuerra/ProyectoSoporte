@@ -126,7 +126,7 @@ include('../templates/cabecera.php');
 
                                                 </div>
                                                 <!--  -->
-                                                <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible" style="display: none;">
+                                                <input type="text" class="form-control form-control-sm mb-2" aria-label="Consumible" id="consumible" name="consumible" placeholder="P00#" maxlength="4" style="display: none;">
                                                 <small class="alerta" id="alComsumible"></small>
                                             </div>
                                         </div>
