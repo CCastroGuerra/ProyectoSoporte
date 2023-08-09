@@ -20,7 +20,7 @@ let btnGuardar = document.getElementById("btnGuardar");
 let tipmod = "";
 let btnCerrar = document.getElementById("btncerrar");
 
-var cfilas=0;
+var cfilas = 0;
 
 //modal equipos
 let areaOrig = document.getElementById("areaORId");
@@ -90,6 +90,7 @@ btnCerrar.addEventListener("click", function (e) {
 //cambiar titulo de modal
 const modal = document.getElementById("TrabajoModal");
 modal.addEventListener("show.coreui.modal", (event) => {
+  selecAccion.disabled = false;
   //console.log("el modal se ha levantado");
   //reconocer que boton ha sido el que efectuo el evento
   var button = event.relatedTarget;
@@ -117,7 +118,7 @@ modal.addEventListener("show.coreui.modal", (event) => {
 
       btnCerrar.disabled = false;
       btnGuardar.disabled = true;
-      cfilas=0;
+      cfilas = 0;
 
       $("#tbopciones").show();
       tipmod = "";
@@ -173,28 +174,34 @@ btnGuardarEquipo.addEventListener("click", function () {
   controldefilas(cfilas);
 });
 /******* ****** contador de elemento en tabla visible */
-function controldefilas(contador){
+function controldefilas(contador) {
   var tabla = document.querySelectorAll("#tbEquipos tr");
   console.log("la tabla cambió: " + contador);
-  
-  console.log("elementos: "+contador);
-  if(selecAccion.value==1){
-    if (contador==1) {
-      btnAñadir.disabled=true;
-    }else{
-      btnAñadir.disabled=false;}
+
+  console.log("elementos: " + contador);
+  if (selecAccion.value == 1) {
+    if (contador == 1) {
+      btnAñadir.disabled = true;
+      selecAccion.disabled = true;
+    } else {
+      btnAñadir.disabled = false;
+    }
   }
-  if(selecAccion.value==2){
-    if (contador==2) {
-      btnAñadir.disabled=true;
-    }else{
-      btnAñadir.disabled=false;}
+  if (selecAccion.value == 2) {
+    if (contador == 1) {
+      selecAccion.disabled = true;
+    }
+    if (contador == 2) {
+      btnAñadir.disabled = true;
+    } else {
+      btnAñadir.disabled = false;
+    }
   }
 }
+
 $("#tbEquipos").bind("MutationObserver", function () {
   var tabla = document.querySelectorAll("#tbEquipos tr");
   console.log("la tabla cambió: " + tabla.length);
-  
 });
 /*
 $("#tableModal").bind("MutationObserver", function () {
@@ -574,6 +581,7 @@ function eliminarEquipoMovimiento(id) {
           listarTablaMovimientos(id);
           cfilas--;
           controldefilas(cfilas);
+          contador--;
         };
 
         let tab = document.getElementById("tbEquipos");
