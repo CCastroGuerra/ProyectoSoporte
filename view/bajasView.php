@@ -21,7 +21,7 @@ include('../templates/cabecera.php');
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
                                 <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
-                                <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="Ingrese #serie">
+                                <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="E00000#" maxlength="7">
                                 <p id="Equipo" style="color:red"></p>
                                 <label for="exampleInputEmail1" class="mb-2">Tipo:</label>
                                 <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
