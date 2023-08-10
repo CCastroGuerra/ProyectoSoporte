@@ -213,7 +213,11 @@ function entradaProductos() {
       guardarEntrada();
       console.log("Cantidad actualizada");
     } else {
-      swal.fire("AVISO DEL SISTEMA", "Error al registrar entrada, Producto no existe", "error");
+      swal.fire(
+        "AVISO DEL SISTEMA",
+        "Error al registrar entrada, Producto no existe",
+        "error"
+      );
       console.log("Error al actualizar");
     }
   };
@@ -324,7 +328,7 @@ function buscarEntrada() {
       entrada.forEach(function (entrada) {
         template += `
         <tr>
-          
+            <td>${entrada.fecha}</td>
             <td>${entrada.nombreProducto}</td>
             <td>${entrada.cantidad}</td>
             
@@ -397,7 +401,7 @@ function buscarSalida() {
       salida.forEach(function (salida) {
         template += `
         <tr>
-          
+             <td>${salida.fecha}</td>
             <td>${salida.nombreProducto}</td>
             <td>${salida.cantidad}</td>
             
@@ -473,11 +477,11 @@ function buscarResumen() {
 
         template += `
         <tr>
-          
+            <td>${resumen.fecha}</td>
             <td >${resumen.nombreProducto}</td>
             <td>${resumen.cantidad}</td>
             <td style = "${estadoStyle}; font-weight: bold;" >${resumen.estado}</td>
-
+           
             
         </tr>
         `;

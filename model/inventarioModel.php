@@ -113,7 +113,7 @@ class Inventario extends Conectar
             $inicio = ($pagina - 1) * $limit;
 
             $sql = "SELECT m.id_movimientos,p.nombre_productos,
-            m.cantidad
+            m.cantidad,  DATE_FORMAT(m.fecha, '%d/%m/%y %H:%i:%s') as Fecha  
                  from movimientos m
             INNER JOIN productos p ON p.id_productos = m.producto_id
              WHERE tipo_movimientos = 1 AND
@@ -134,7 +134,8 @@ class Inventario extends Conectar
                     $listado[] = array(
                         'id' => $producto['id_movimientos'],
                         'nombreProducto' => $producto['nombre_productos'],
-                        'cantidad' => $producto['cantidad']
+                        'cantidad' => $producto['cantidad'],
+                        'fecha' => $producto['Fecha']
 
                     );
                 }
@@ -176,7 +177,7 @@ class Inventario extends Conectar
             $inicio = ($pagina - 1) * $limit;
 
             $sql = "SELECT m.id_movimientos,p.nombre_productos,
-            m.cantidad
+            m.cantidad,  DATE_FORMAT(m.fecha, '%d/%m/%y %H:%i:%s') as Fecha  
                  from movimientos m
             INNER JOIN productos p ON p.id_productos = m.producto_id
              WHERE tipo_movimientos = 2 AND (p.nombre_productos LIKE '%$textoBusqueda%'
@@ -196,6 +197,7 @@ class Inventario extends Conectar
                     $listado[] = array(
                         'id' => $producto['id_movimientos'],
                         'nombreProducto' => $producto['nombre_productos'],
+                        'fecha' => $producto['Fecha'],
                         'cantidad' => $producto['cantidad']
 
                     );
@@ -241,8 +243,9 @@ class Inventario extends Conectar
             m.cantidad,
             CASE
                 WHEN tipo_movimientos = 1 THEN 'ENTRADA'
-                WHEN tipo_movimientos = 2 THEN 'SALIDA' 
-            END AS estado
+                WHEN tipo_movimientos = 2 THEN 'SALIDA'
+            END AS estado,
+               DATE_FORMAT(m.fecha, '%d/%m/%y %H:%i:%s') as Fecha   
         from movimientos m
             INNER JOIN productos p ON p.id_productos = m.producto_id
              WHERE  (p.nombre_productos LIKE '%$textoBusqueda%'
@@ -263,6 +266,7 @@ class Inventario extends Conectar
                         'id' => $producto['id_movimientos'],
                         'nombreProducto' => $producto['nombre_productos'],
                         'cantidad' => $producto['cantidad'],
+                        'fecha' => $producto['Fecha'],
                         'estado' => $producto['estado']
 
                     );
