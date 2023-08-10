@@ -155,6 +155,10 @@ if ($cantidadFilas == 2) {
 // $consulta->execute();
 ?>
 
+<?php
+    require_once("../config/variables.php");
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

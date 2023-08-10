@@ -152,11 +152,13 @@ ob_start();
     $horaActual = date('H:i:s');
 
     ?>
-
+    <?php
+    require_once("../config/variables.php");
+    ?>
 
     <div class="encabezado">
         <div id="logo">
-            <img src="http://localhost/ProyectoSoporte/img/banner.png" alt="">
+            <img src="<?php echo logoreportes; ?>" alt="">
         </div>
         <div id="fecha-hora">
             <span>Fecha: <?php echo $fechaActual; ?></span>

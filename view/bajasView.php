@@ -20,16 +20,27 @@ include('../templates/cabecera.php');
                                     <label class="control-label">Código</label>
                                     <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" placeholder="Código" readonly>
                                 </div>
-                                <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
-                                <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="E00000#" maxlength="7">
-                                <!-- Boton para generar pdf -->
-                                <div class="text-center col-lg-6 col-sm-6">
-                                    <a href="reportesProductos.php" class="pdf-button" target="_blank">
-                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    </a>
+                                <div class="form-group mb-2">
+                                    <div class="mb-2 row">
+                                        <div class="col-lg-6 col-sm-6">
+                                            <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
+                                        </div>
+                                        <!-- Boton para generar pdf -->
+                                        <div class="text-end col-lg-6 col-sm-6">
+                                            <span class="d-inline-block" tabindex="0" data-coreui-toggle="popover" data-coreui-trigger="hover focus" data-coreui-content="Disabled popover">
+                                                <a href="reportesEquipos.php" class="pdf-button" target="_blank" style="padding: 0px 16px 0px 16px !important;">
+                                                    VER
+                                                </a>
+                                            </span>
+                                            
+                                        </div>
+                                        <!--  -->
+                                    </div>
+                                    <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="E00000#" maxlength="7">
+                                    <p id="Equipo" style="color:red"></p>
                                 </div>
-                                <!--  -->
-                                <p id="Equipo" style="color:red"></p>
+
+
                                 <label for="exampleInputEmail1" class="mb-2">Tipo:</label>
                                 <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
                                     <option selected value="0">Seleccione el Tipo</option>
