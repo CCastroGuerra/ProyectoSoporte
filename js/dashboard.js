@@ -7,8 +7,8 @@ const generarColorAleatorio = () => {
   return `rgba(${r},${g},${b},0.85)`;
 };
 
-traerTrabajosXArea();
-productosxterminar();
+//traerTrabajosXArea();
+//productosxterminar();
 
 Chart.defaults.pointHitDetectionRadius = 1;
 Chart.defaults.plugins.tooltip.enabled = false;
@@ -32,7 +32,7 @@ function traerTrabajosxMes() {
     let cantidad = [];
     const colores = [];
     realizado = ajax.responseText;
-    console.log(realizado);
+    //console.log(realizado);
     if (realizado == "") {
       //execute
       //console.log("vacio");
@@ -260,7 +260,6 @@ function traerTrabajosXArea() {
       var colrs = myChart2.config.data.datasets[0].backgroundColor;
       var template = "";
       //console.log("dataSum: "+dataSum);
-      var foot = document.getElementById("Foot2-content");
       for (let index = 0; index < ejex.length; index++) {
         var perc = ((firstSet[index] / dataSum) * 100).toFixed(2);
         //console.log( `(${ejex[index]}, ${firstSet[index]})=> ${perc}% c: ${colrs[index]}`);
@@ -272,8 +271,12 @@ function traerTrabajosXArea() {
           </div>
         </div>`;
       }
+      var foot = document.getElementById("Foot2-content");
       foot.innerHTML = template;
+      
+      
     }
+
   };
   ajax.send(data);
 }
@@ -342,8 +345,8 @@ function productosxterminar() {
         </td>
       </tr>`;
     });
-    var elemento = document.getElementById("productos_Terminar");
-    elemento.innerHTML = template;
+    var tablaprod = document.getElementById("productos_Terminar");
+    tablaprod.innerHTML = template;
   };
 
   ajax.send(data);
