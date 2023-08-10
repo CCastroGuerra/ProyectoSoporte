@@ -124,10 +124,10 @@ switch ($accion) {
     case "botonCerrar":
         $trabajo->cerrarBoton($_POST['id']);
         break;
-    case "salidaConsumibles":
-        //var_dump($_POST);
-        $trabajo->salidaConsumibles($_POST['consumible']);
-        break;
+        // case "salidaConsumibles":
+        //     //var_dump($_POST);
+        //     $trabajo->salidaConsumibles($_POST['consumible']);
+        //     break;
     case "guardarConsumibles":
         //var_dump($_POST);
         $trabajo->guardarSalidaConsumibles($_POST['consumible']);

@@ -590,14 +590,12 @@ function guardarTrabajosServicios() {
         "El equipo se registro correctamente.",
         "success"
       );*/
+      //guardarConsumibles();
       console.log("Trabajos-Servicios registrado correctamente");
     }
     buscarTrabajos();
 
     cerrarEditar();
-    //buscarArea();
-    //buscarComponente();
-    //frmEquipos.reset();
   };
   ajax.send(data);
 }
@@ -680,29 +678,29 @@ function buscarTrabajos() {
   ajax.send(data);
 }
 
-function ocultarMostrarOpciones() {
-  let inputCodigoTipo = document.getElementById("selEquipoValue").value;
-  let miSelect = document.getElementById("selServicio");
-  console.log("codigo de tipo de equipo: " + inputCodigoTipo);
-  for (let i = 0; i < miSelect.dataset.length; i++) {
-    const option = miSelect.options[i].dataset.printer;
-    const valorOpcion = parseInt(option.value);
-    //console.log(valorOpcion);
+// function ocultarMostrarOpciones() {
+//   let inputCodigoTipo = document.getElementById("selEquipoValue").value;
+//   let miSelect = document.getElementById("selServicio");
+//   console.log("codigo de tipo de equipo: " + inputCodigoTipo);
+//   for (let i = 0; i < miSelect.dataset.length; i++) {
+//     const option = miSelect.options[i].dataset.printer;
+//     const valorOpcion = parseInt(option.value);
+//     //console.log(valorOpcion);
 
-    if (
-      (inputCodigoTipo === "2" &&
-        (valorOpcion === 1 || valorOpcion === 2 || valorOpcion === 3)) ||
-      (inputCodigoTipo !== "2" &&
-        valorOpcion !== 1 &&
-        valorOpcion !== 2 &&
-        valorOpcion !== 3)
-    ) {
-      option.style.display = "block"; // Mostrar opciones que cumplen la condición
-    } else {
-      option.style.display = "none"; // Ocultar opciones que no cumplen la condición
-    }
-  }
-}
+//     if (
+//       (inputCodigoTipo === "2" &&
+//         (valorOpcion === 1 || valorOpcion === 2 || valorOpcion === 3)) ||
+//       (inputCodigoTipo !== "2" &&
+//         valorOpcion !== 1 &&
+//         valorOpcion !== 2 &&
+//         valorOpcion !== 3)
+//     ) {
+//       option.style.display = "block"; // Mostrar opciones que cumplen la condición
+//     } else {
+//       option.style.display = "none"; // Ocultar opciones que no cumplen la condición
+//     }
+//   }
+// }
 
 function mostrarEnModal(trabajoId) {
   //btnComponente.disabled = false;

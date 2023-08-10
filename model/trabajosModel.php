@@ -140,14 +140,15 @@ class Trabajos extends Conectar
             $slq2 = "DELETE FROM  temp_servicios  WHERE trabajo_id = '$trabajoId';
             ";
             $fila2 = $conectar->prepare($slq2);
-            if ($fila2->execute()) {
-                $fila2->closeCursor();
-                //echo 'Se elimino correctamente tabla temporal';
-                $this->salidaConsumibles($codProducto);
-            } else {
+            $fila2->execute();
+            // if ($fila2->execute()) {
+            //     $fila2->closeCursor();
+            //     //echo 'Se elimino correctamente tabla temporal';
+            //     //$this->salidaConsumibles($codProducto);
+            // } else {
 
-                //echo 'Error al ejecutar la consulta 2';
-            }
+            //     //echo 'Error al ejecutar la consulta 2';
+            // }
             echo '1';
         } else {
             echo '0';
@@ -248,7 +249,7 @@ class Trabajos extends Conectar
         OR eq.margesi LIKE '%$textoBusqueda%'
         OR a.nombre_area LIKE '%$textoBusqueda%'
      )
-     ORDER BY  YEAR(t.fecha_alta) ASC, MONTH(t.fecha_alta) desc
+     ORDER BY  t.fecha_alta
             LIMIT $inicio, $limit ";
             $stmt = $conectar->prepare($sql);
             $stmt->execute();
@@ -441,39 +442,39 @@ class Trabajos extends Conectar
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
-    public function salidaConsumibles($codProducto)
-    {
-        $conectar = parent::conexion();
-        $query = "SELECT CAST(cantidad_productos AS DECIMAL) cant FROM productos  WHERE codigo_productos = '$codProducto' ";
-        $stmt = $conectar->prepare($query);
-        $stmt->execute();
-        $resultado = $stmt->fetch(PDO::FETCH_LAZY);
-        $cantidadActual = $resultado['cant'];
-        //echo $cantidadActual;
-        // //$stmt->closeCursor();
-        // echo $cantidad;
-        // echo "<br/>";
-        // echo "Cantidad Formulario " . $cantidad;
-        $cantidad = 1;
-        if ($cantidad <= $cantidadActual) {
-            $nuevaCantidad = $cantidadActual - $cantidad;
+    // public function salidaConsumibles($codProducto)
+    // {
+    //     $conectar = parent::conexion();
+    //     $query = "SELECT CAST(cantidad_productos AS DECIMAL) cant FROM productos  WHERE codigo_productos = '$codProducto' ";
+    //     $stmt = $conectar->prepare($query);
+    //     $stmt->execute();
+    //     $resultado = $stmt->fetch(PDO::FETCH_LAZY);
+    //     $cantidadActual = $resultado['cant'];
+    //     //echo $cantidadActual;
+    //     // //$stmt->closeCursor();
+    //     // echo $cantidad;
+    //     // echo "<br/>";
+    //     // echo "Cantidad Formulario " . $cantidad;
+    //     $cantidad = 1;
+    //     if ($cantidad <= $cantidadActual) {
+    //         $nuevaCantidad = $cantidadActual - $cantidad;
 
-            //Actualizar cantidad del producto
+    //         //Actualizar cantidad del producto
 
-            $consulta = "UPDATE productos SET cantidad_productos = ?  WHERE codigo_productos = ?";
-            $stmt = $conectar->prepare($consulta);
-            $stmt->bindValue(1, $nuevaCantidad);
-            $stmt->bindValue(2, $codProducto, PDO::PARAM_STR);
-            if ($stmt->execute()) {
-                // echo '1';
-                $this->guardarSalidaConsumibles($codProducto);
-            } else {
-                echo '0';
-            }
-        } else {
-            echo '0';
-        }
-    }
+    //         $consulta = "UPDATE productos SET cantidad_productos = ?  WHERE codigo_productos = ?";
+    //         $stmt = $conectar->prepare($consulta);
+    //         $stmt->bindValue(1, $nuevaCantidad);
+    //         $stmt->bindValue(2, $codProducto, PDO::PARAM_STR);
+    //         if ($stmt->execute()) {
+    //             // echo '1';
+    //             $this->guardarSalidaConsumibles($codProducto);
+    //         } else {
+    //             echo '0';
+    //         }
+    //     } else {
+    //         echo '0';
+    //     }
+    // }
     public function guardarSalidaConsumibles($codProducto)
     {
         $conectar = parent::conexion();
