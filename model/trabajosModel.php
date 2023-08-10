@@ -344,13 +344,13 @@ class Trabajos extends Conectar
         t.solucion,
         t.recomendacion
         FROM trabajos t
-        INNER JOIN equipos e ON t.equipo_id = e.id_equipos
-        INNER JOIN area a ON a.id_area = e.area_id
-        INNER JOIN marca m ON m.id_marca = e.marca_id
-        INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
-        INNER JOIN personal per ON t.tecnico_id = per.id_personal
-        INNER JOIN personal p ON p.id_personal = t.responsable_id
-        INNER JOIN tipo_equipo tp ON tp.id_tipo_equipo = e.tipo_equipo_id
+        LEFT JOIN equipos e ON t.equipo_id = e.id_equipos
+        LEFT JOIN area a ON a.id_area = e.area_id
+        LEFT JOIN marca m ON m.id_marca = e.marca_id
+        LEFT JOIN modelo mo ON mo.id_modelo = e.modelo_id
+        LEFT JOIN personal per ON t.tecnico_id = per.id_personal
+        LEFT JOIN personal p ON p.id_personal = t.responsable_id
+        LEFT JOIN tipo_equipo tp ON tp.id_tipo_equipo = e.tipo_equipo_id
         WHERE t.id_trabajos = ?;";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $idTrabajos);
