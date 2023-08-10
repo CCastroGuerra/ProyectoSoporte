@@ -86,7 +86,7 @@ include('../templates/cabecera.php');
                                     <label for="selAlim" class="mb-2">Alimentación:</label>
                                     <select class="form-select" aria-label="Default select example" id="selAlim" name="selAlim">
                                         <option value="0" selected>Seleccione la alimentación</option>
-                                        <option value="1" selected>Cable directo</option>
+                                        <option value="1">Cable directo</option>
                                         <option value="2">Transformador</option>
                                     </select>
                                     <small class="alerta" id="alerta8"></small>

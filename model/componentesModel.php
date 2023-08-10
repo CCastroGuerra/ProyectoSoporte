@@ -190,7 +190,7 @@ class Componente extends Conectar
             $id = $_POST["id"];
             // Resto del código para eliminar
             $conectar = parent::conexion();
-            $sql = "UPDATE componentes SET es_activo = 0 WHERE id_componentes = ?";
+            $sql = "UPDATE componentes SET es_activo = 2 WHERE id_componentes = ?";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $id);
             $sql->execute();

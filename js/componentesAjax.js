@@ -324,13 +324,21 @@ function buscarComponente() {
     var disponible = "";
     var dispostyle = "";
     if (componentes != "vacio") {
-      componentes.forEach(function (componentes) {
-        if (componentes.Disponible == 0) {
-          disponible = "NO";
-          dispostyle = "color: red;";
-        } else {
-          disponible = "SI";
-          dispostyle = "color: green;";
+      componentes.forEach(function (componentes) {        
+
+        switch (componentes.Disponible) {
+          case 0:
+            disponible = "NO";
+            dispostyle = "color: rgba(222,162,25,2);;";
+            break;
+          case 1:
+            disponible = "SI";
+            dispostyle = "color: green;";
+            break;
+          case 2:
+            disponible = "ELIMINADO";
+            dispostyle = "color: red;";
+            break;
         }
         template += `
                   <tr>
