@@ -878,7 +878,7 @@ function imprimir(idTrabajo) {
       let datos = JSON.parse(respuesta);
       console.log(datos.idTipoTrabajo);
       let link;
-      if (datos.idTipoTrabajo == 0) {
+      if (datos.idTipoTrabajo != 2) {
         link = "../view/reportesTrabajosTabla.php?id=" + idTrabajo;
       } else {
         link = "../view/reporteImpresora.php?id=" + idTrabajo;
