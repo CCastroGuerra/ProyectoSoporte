@@ -756,10 +756,11 @@ function mostrarEnModal(trabajoId) {
   };
   //guardarTempParaActualizar();
   insertarTempParaActualizar();
-  ajax.send(data);
+
   //componentesEquipoEnModal();
   listarTablaTempServicios();
   buscarTrabajos();
+  ajax.send(data);
 }
 
 /*Funcion para cargar los componentes de los equipos existentes*/
