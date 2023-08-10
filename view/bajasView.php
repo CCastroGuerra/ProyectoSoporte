@@ -4,7 +4,7 @@ include('../templates/cabecera.php');
 
 
 <!-- Modal bajas -->
-<div class="modal fade" id="bajasModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false"  aria-labelledby="rolesModalLabel" aria-hidden="true">
+<div class="modal fade" id="bajasModal" tabindex="-1" data-coreui-backdrop="static" data-coreui-keyboard="false" aria-labelledby="rolesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -22,6 +22,13 @@ include('../templates/cabecera.php');
                                 </div>
                                 <label for="exampleInputEmail1" class="mb-2">Equipo:</label>
                                 <input type="text" class="form-control mb-2" id="codigoEquipo" name="codigoEquipo" placeholder="E00000#" maxlength="7">
+                                <!-- Boton para generar pdf -->
+                                <div class="text-center col-lg-6 col-sm-6">
+                                    <a href="reportesProductos.php" class="pdf-button" target="_blank">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <!--  -->
                                 <p id="Equipo" style="color:red"></p>
                                 <label for="exampleInputEmail1" class="mb-2">Tipo:</label>
                                 <select class="form-select" aria-label="selArea" id="selArea" name="selArea">
@@ -142,12 +149,24 @@ include('../templates/cabecera.php');
                             </thead>
                             <tbody id="tbBajas">
                                 <tr>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
-                                    <td><p class="placeholder-glow"><span class="placeholder w-100"></span></p></td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
+                                    <td>
+                                        <p class="placeholder-glow"><span class="placeholder w-100"></span></p>
+                                    </td>
                                 </tr>
                             </tbody>
 
