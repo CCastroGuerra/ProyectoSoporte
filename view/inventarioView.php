@@ -126,10 +126,11 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-
+                                    <th scope="col"><strong>Fecha</strong></th>
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                     <th scope="col"><strong>Descripción</strong></th>
+
                                 </tr>
                             </thead>
                             <tbody id="tbInventario">
@@ -186,7 +187,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-
+                                    <th scope="col"><strong>Fecha</strong></th>
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>
@@ -243,7 +244,7 @@ include('../templates/cabecera.php');
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-
+                                    <th scope="col"><strong>Fecha</strong></th>
                                     <th scope="col"><strong>Producto</strong></th>
                                     <th scope="col"><strong>Cantidad</strong></th>
                                 </tr>
