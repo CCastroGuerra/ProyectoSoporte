@@ -597,7 +597,7 @@ $servicios = $resultado2['servicios'];
         <div class="container-fluid">
             <table class="table table-borderless" style="margin: 0%">
                 <tr style="width: 100%">
-                    <td class="w-75" style="padding-top: 0; padding-bottom: 0">
+                    <td class="w-50" style="padding-top: 0; padding-bottom: 0">
                         <div class="row">
                             <div class="col-lg-12 col-sm-6">
                                 <b>(E) Soporte Técnico e Informático</b>
