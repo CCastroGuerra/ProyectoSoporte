@@ -484,8 +484,8 @@ class Equipos extends Conectar
                     $listado[] = array(
                         "id" => $marca["id_equipos"],
                         "codigo" => $marca["cod_equipo"],
-                        "nombreEquipo"=>$marca["nombre_equipo"],
-                        "usuariolocal"=>$marca["usuario_local"],
+                        "nombreEquipo" => $marca["nombre_equipo"],
+                        "usuariolocal" => $marca["usuario_local"],
                         "nombreArea" => $marca["nombre_area"],
                         'nombreMarca' => $marca["nombre_marca"],
                         'nombreModelo' => $marca["nombre_modelo"],
@@ -506,14 +506,22 @@ class Equipos extends Conectar
                 INNER JOIN modelo mo ON mo.id_modelo = e.modelo_id
                 INNER JOIN area a ON a.id_area = e.area_id
                 INNER JOIN estado est ON est.id_estado = e.estado_id
-                WHERE e.es_activo = 1  AND nombre_area LIKE '%$textoBusqueda%' 
-                ORDER BY cod_equipo";
+                WHERE e.es_activo = 1   AND (nombre_area LIKE '%$textoBusqueda%' or nombre_marca LIKE '%$textoBusqueda%' or nombre_modelo LIKE '%$textoBusqueda%'
+            or serie LIKE '%$textoBusqueda%'
+            or margesi LIKE '%$textoBusqueda%'
+            or ip LIKE '%$textoBusqueda%'
+            or mac LIKE '%$textoBusqueda%'
+            or margesi LIKE '%$textoBusqueda%'
+            or nombre_estado LIKE '%$textoBusqueda%'
+            or cod_equipo LIKE '%$textoBusqueda%'
+            or DATE_FORMAT(fecha_alta,'%d/%m/%y') LIKE '%$textoBusqueda%')
+            ORDER BY cod_equipo";
                 $fila2 = $conectar->prepare($sqlNroFilas);
                 $fila2->execute();
 
                 $array = $fila2->fetch(PDO::FETCH_LAZY);
                 $paginas = ceil($array['cantidad'] / $limit);
-                //echo 'Imprimiendo paginas: '.$paginas;
+                //echo 'Imprimiendo paginas: ' . $paginas;
 
                 $json = array('listado' => $listado, 'paginas' => $paginas, 'pagina' => $pagina, 'total' => $array['cantidad']);
                 $jsonString  = json_encode($json);

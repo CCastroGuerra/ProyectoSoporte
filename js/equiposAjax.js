@@ -992,7 +992,7 @@ function mostrarEnModal(equipoID) {
 
     document.getElementById("selTipoEquipo").value = datos.nombreTipo;
     document.getElementById("nomEquipo").value = datos.nombreEquipo;
-    document.getElementById("usLocal").value= datos.usuarioLocal;
+    document.getElementById("usLocal").value = datos.usuarioLocal;
     document.getElementById("serie").value = datos.serie;
     document.getElementById("margesi").value = datos.margesi;
     document.getElementById("respValue").value = datos.nombrePersonalId;

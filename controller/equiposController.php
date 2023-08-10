@@ -64,7 +64,7 @@ switch ($accion) {
             foreach ($datos as $row) {
                 $output['id'] = $row["id_equipos"];
                 $output['codEquipo'] = $row["cod_equipo"];
-                $output['nombreEquipo'] = $row["nombre_equipo"];                
+                $output['nombreEquipo'] = $row["nombre_equipo"];
                 $output['usuarioLocal'] = $row["usuario_local"];
                 $output['nombreTipo'] = $row["id_tipo_equipo"];
                 $output['serie'] = $row["serie"];
