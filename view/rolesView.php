@@ -1,6 +1,15 @@
 <?php
 include('../templates/cabecera.php');
 ?>
+<script type="text/javascript">
+    var rolespermitidos=['1'];
+    var ro= document.getElementById("sessRol");
+    
+
+if(!rolespermitidos.includes(ro.dataset.sess)){
+    window.location.replace("../index.php");
+}
+</script>
 
 
 <!-- Modal Roles -->
@@ -48,7 +57,7 @@ include('../templates/cabecera.php');
                         <div class="row">
                             <div class="col-lg-10 col-sm-6">Roles </div>
                             <div class="col-lg-2 col-sm-4 text-end">
-                                <button type="button" class="btn btn-outline-primary" data-coreui-toggle="modal" data-coreui-target="#rolesModal" onclick="limpiarFormulario()"><strong>Añadir</strong></button>
+                                <button type="button" class="btn btn-outline-primary visually-hidden" data-coreui-toggle="modal" data-coreui-target="#rolesModal" onclick="limpiarFormulario()" disabled><strong>Añadir</strong></button>
                             </div>
                         </div>
                     </h3>

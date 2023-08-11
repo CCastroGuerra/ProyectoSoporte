@@ -1,6 +1,7 @@
 var numPagina = 1;
 let id = "";
 var frmPersonal = document.getElementById("formEmpleados");
+reglaemail="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]*([.][a-zA-Z]{3})*([.][a-zA-Z]{2,2}$)";
 
 const modalp = frmPersonal.parentNode.parentNode.parentNode.id;
 let apelli = document.getElementById("apellidos");

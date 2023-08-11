@@ -242,47 +242,16 @@ include('../templates/cabecera.php');
         <!-- grafico -->
         <div class="c-chart-wrapper row justify-content-center align-items-center text-center" style="height:300px;margin-top:40px;">
           <canvas class="chart" id="miCanvas2" height="300"></canvas>
+          <script>
+            traerTrabajosXArea();
+          </script>
           <div id="no-data2" style="display: none;position: absolute;  padding: 50px 0;text-align: center;font-size: 3rem;top: 30%;  width: 100%;">No hay datos</div>
         </div>
         <!-- /grafico -->
       </div>
       <div class="card-footer" id="Foot2">
         <div class="row row-cols-1 row-cols-md-5 text-center" id="Foot2-content">
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Visits</div>
-            <div class="fw-semibold">29.703 Users (40%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Unique</div>
-            <div class="fw-semibold">24.093 Users (20%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Pageviews</div>
-            <div class="fw-semibold">78.706 Views (60%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">New Users</div>
-            <div class="fw-semibold">22.123 Users (80%)</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col mb-sm-2 mb-0">
-            <div class="text-medium-emphasis">Bounce Rate</div>
-            <div class="fw-semibold">40.15%</div>
-            <div class="progress progress-thin mt-2">
-              <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -323,6 +292,9 @@ include('../templates/cabecera.php');
                     </tr>
                   </thead>
                   <tbody id="productos_Terminar">
+                    <script>
+                      productosxterminar();
+                    </script>
                     <tr class="align-middle">
                       <td class="text-center">
                         <div><span>[E0000001]</span></div>

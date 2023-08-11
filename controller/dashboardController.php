@@ -33,6 +33,7 @@ switch ($accion) {
         break;
     case "productosporterminarse":
         $datos = $dashboard->revisarProductosxTerm();
+        setlocale(LC_ALL,"es_ES");
         if (is_array($datos) && count($datos) > 0) {
             $output = array(); // Crear un array para almacenar los datos
             foreach ($datos as $row) {

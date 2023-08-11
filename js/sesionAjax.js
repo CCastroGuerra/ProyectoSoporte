@@ -69,13 +69,12 @@ function Secretaria() {
   var permSecretaria = ["2","3","4"];
   var permAdmin =["1"];
   //console.log("funcion secretaria");
-  if (permSecretaria.includes(ro.dataset.sess)) {
-    //console.log("susuario secretaria");
-    sinEliminar();
-  }
+  
   if (permAdmin.includes(ro.dataset.sess)) {
     conEdicion();
     conEliminar();
+  }else{
+    sinEliminar();
   }
 }
 
