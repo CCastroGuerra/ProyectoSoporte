@@ -128,9 +128,8 @@ function buscarRol() {
               <td>
               <button type="button" onClick='mostrarEnModal("${rol.id}")' id="btnEditar" class="btn btn-info btn-outline" data-coreui-toggle="modal" data-coreui-target="#rolesModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
-
             
-              <button type="button" onClick='eliminarRol("${rol.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
+              <button type="button" visually-hiden onClick='eliminarRol("${rol.id}")' class="btn btn-danger pelim" ><i class="fa fa-trash" aria-hidden="true"></i>
               </button>
 
 
