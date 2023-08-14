@@ -22,17 +22,19 @@ $resultadoFecha = $consultaFecha->fetch(PDO::FETCH_ASSOC);
 $fechaRegistro = $resultadoFecha['Fecha'];
 
 $consulta1 = "SELECT e.cod_equipo,e.id_equipos,te.nombre_tipo_equipo,
-        m.nombre_marca,
-        mo.nombre_modelo,
-        e.serie,
-        e.margesi,
-        es.nombre_estado FROM detalles_translado dt
-        INNER JOIN equipos e on dt.equipo_id = e.cod_equipo
-            INNER JOIN marca m ON e.marca_id = m.id_marca
-            INNER JOIN modelo mo ON e.modelo_id = mo.id_modelo
-            INNER JOIN estado es ON es.id_estado = e.estado_id
-            INNER JOIN tipo_equipo te ON te.id_tipo_equipo = e.tipo_equipo_id
-        WHERE id_translado = '$idMovimientos'";
+            m.nombre_marca,
+            mo.nombre_modelo,
+            e.serie,
+            e.margesi,
+            a.nombre_area,
+            es.nombre_estado FROM detalles_translado dt
+            INNER JOIN equipos e on dt.equipo_id = e.cod_equipo
+                INNER JOIN marca m ON e.marca_id = m.id_marca
+                INNER JOIN modelo mo ON e.modelo_id = mo.id_modelo
+                INNER JOIN estado es ON es.id_estado = e.estado_id
+                INNER JOIN tipo_equipo te ON te.id_tipo_equipo = e.tipo_equipo_id
+                INNER JOIN area a ON a.id_area = e.area_id
+            WHERE id_translado = '$idMovimientos'";
 $consulta1 = $conectar->prepare($consulta1);
 $consulta1->execute();
 $resultado1 = $consulta1->fetchAll(PDO::FETCH_ASSOC);
@@ -50,7 +52,7 @@ if ($cantidadFilas == 2) {
             array_push($equipo2, $resultado1[$i]);
         }
     }
-    //print_r($equipo1);
+    // print_r($equipo1);
     $equipo1ID = $equipo1[0]['id_equipos'];
     //echo $equipo1ID;
     // echo $equipo1ID;
@@ -58,13 +60,15 @@ if ($cantidadFilas == 2) {
     mar.nombre_marca,
     mo.nombre_modelo,
     ec.serie_id,
+    c.margesi,
     es.nombre_estado
     FROM equipo_componentes ec
-    INNER JOIN componentes c ON c.tipo_componentes_id = ec.id_equipo_componentes
+    INNER JOIN componentes c ON c.serie = ec.serie_id
     INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
     INNER JOIN marca mar ON mar.id_marca = c.marca_id
     INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
     INNER JOIN estado es ON c.estado_id = es.id_estado
+    
     WHERE ec.`esActivo` = 1
     AND equipo_id = $equipo1ID;";
     $consultaComponentes2 = $conectar->prepare($consultaComponentes2);
@@ -83,13 +87,15 @@ if ($cantidadFilas == 2) {
     ec.serie_id,
     c.margesi,
     es.nombre_estado,
+    a.nombre_area
     FROM equipo_componentes ec
-    INNER JOIN componentes c ON c.tipo_componentes_id = ec.id_equipo_componentes
+    INNER JOIN componentes c ON c.serie = ec.serie_id
     INNER JOIN tipo_componentes tc on tc.id_tipo_componentes = c.tipo_componentes_id
     INNER JOIN marca mar ON mar.id_marca = c.marca_id
     INNER JOIN modelo mo ON mo.id_modelo = c.modelo_id
     INNER JOIN estado es ON c.estado_id = es.id_estado
     INNER JOIN equipos e ON e.id_equipos = ec.equipo_id
+    INNER JOIN area a ON a.id_area = e.area_id
     WHERE ec.`esActivo` = 1
     AND equipo_id = $equipo2ID;";
     $consultaComponentes3 = $conectar->prepare($consultaComponentes3);
@@ -156,8 +162,8 @@ if ($cantidadFilas == 2) {
 ?>
 
 <?php
-    require_once("../config/variables.php");
-    ?>
+require_once("../config/variables.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -300,7 +306,7 @@ if ($cantidadFilas == 2) {
 <body>
     <input type="button" id="imprimir" name="imprimir" value="Imprimir" onclick="window.print();" />
     <div>
-        <textarea name="año" id="" cols="1" style="width: 100%; font-weight: bold;">"Año del Fortalecimiento de la Soberanía Nacional"</textarea>
+        <textarea name="año" id="" cols="1" style="width: 100%;  font-weight: bold;">"Año del Fortalecimiento de la Soberanía Nacional"</textarea>
     </div>
     <!-- <div class="año">
         <h3>"Año del Fortalecimiento de la Soberanía Nacional"</h3>
@@ -312,11 +318,11 @@ if ($cantidadFilas == 2) {
         <textarea name="año" id="" cols="1" style="width: 100%; font-weight: bold;" class="titulo">acta de entrega y/o retiro de bienes patrimoniales del hospital de apoyo ii-1 nuestra señora de las mercedes paita - 2023</textarea>
     </div>
     <div class="fecha">
-        <p>Fecha Actual: <?php echo $fechaActual; ?></p>
+        <!-- <p>Fecha Actual: <?php echo $fechaActual; ?></p> -->
         <p>Fecha Registro: <?php echo $fechaRegistro; ?></p>
     </div>
     <section>
-        <p class="p-tabla">bien patrimonial instalado</p>
+        <textarea name="origen" id="" cols="1" style="width: 100%; text-align: left;  text-transform: uppercase; font-size: 16px;">bien patrimonial instalado en </textarea>
         <table class="tabla" border="default">
             <tr>
                 <th>UD</th>
@@ -363,10 +369,11 @@ if ($cantidadFilas == 2) {
     </section>
     <?php if (!empty($equipo2) || !empty($resultadoComponentes3)) { ?>
         <section>
-            <p class="p-tabla">bien patrimonial retirado</p>
+            <textarea name="destino" id="" cols="1" style="width: 100%; text-align: left;  text-transform: uppercase; font-size: 16px;">bien patrimonial retirado de </textarea>
             <table class="tabla" border="default">
                 <tr>
                     <th>UD</th>
+                    <th>CODIGO</th>
                     <th>EQUIPO</th>
                     <th>MARCA</th>
                     <th>MODELO</th>
@@ -377,6 +384,7 @@ if ($cantidadFilas == 2) {
                 <tr>
                     <?php foreach ($equipo2 as $equipo) { ?>
                         <td>01</td>
+                        <td><?php echo $equipo['cod_equipo'] ?></td>
                         <td><?php echo $equipo['nombre_tipo_equipo'] ?></td>
                         <td><?php echo $equipo['nombre_marca'] ?></td>
                         <td><?php echo $equipo['nombre_modelo'] ?></td>
@@ -389,6 +397,7 @@ if ($cantidadFilas == 2) {
 
                 <?php foreach ($resultadoComponentes3 as $resultado3) { ?>
                     <td>01</td>
+                    <td>-</td>
                     <td><?php echo $resultado3['nombre_tipo_componente'] ?></td>
                     <td><?php echo $resultado3['nombre_marca'] ?></td>
                     <td><?php echo $resultado3['nombre_modelo'] ?></td>
